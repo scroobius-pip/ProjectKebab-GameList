@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-  "build": "next build",
-  "start": "next start"
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,16 @@
   },
   "homepage": "https://github.com/scroobius-pip/ProjectKebab-GameList#readme",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
+    "bootstrap": "^4.3.1",
     "next": "^9.0.5",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.7.3",
+    "@types/react": "^16.9.2",
+    "typescript": "^3.6.2"
   }
 }
