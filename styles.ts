@@ -9,4 +9,10 @@ const colors = {
 
 }
 
-export { colors }
+const font = {
+    weights: {
+        medium: 600
+    }
+}
+
+export { colors, font }

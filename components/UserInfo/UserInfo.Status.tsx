@@ -1,5 +1,5 @@
 import { ReactChild } from 'react'
-import { colors } from '../styles'
+import { colors } from '../../styles'
 
 interface UserInfoItemProps { name: string, value: string | ReactChild, disabled?: boolean, highlighted?: boolean }
 
@@ -36,11 +36,11 @@ export default () => {
                 <UserInfoItem name='Trades' disabled value={
                     <div>
                         <span>
-                            <img style={{ transform: 'rotate(180deg)', }} src={require('../assets/icons/thumbsdown.svg')} />
+                            <img style={{ transform: 'rotate(180deg)', }} src={require('../../assets/icons/thumbsdown.svg')} />
                             <span style={{ marginLeft: 5 }}>0</span>
                         </span>
                         <span style={{ marginLeft: 10 }}>
-                            <img src={require('../assets/icons/thumbsdown.svg')} />
+                            <img src={require('../../assets/icons/thumbsdown.svg')} />
                             <span style={{ marginLeft: 5 }}>0</span>
                         </span>
                     </div>
