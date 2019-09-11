@@ -20,21 +20,20 @@ export default () => {
         <Container>
             <NavBar {...userInfo} />
             <Row >
-                <Col sm={12} md={3}>
+                <Col md={12} lg={3} style={{ marginBottom: 30 }}>
                     <Section>
                         <UserInfo {...userInfo} />
                     </Section>
                 </Col>
-                <Col sm={12} md={9}>
-                    <Row>
-                        <Col sm={12} >
+                <Col md={12} lg={9}>
+                    <Row noGutters={false}>
+                        <Col lg={12} style={{ marginBottom: 30 }} >
                             <Section heading='Details.'>
                                 <ReactMarkdown source={'It aims to be [CommonMark](http:\/\/commonmark.org\/) compliant, and includes options to style the output. These options include:\r\n\r\n*   headingStyle (setext or atx)\r\n*   horizontalRule (\\*, -, or \\_)\r\n*   bullet (\\*, -, or +)\r\n*   codeBlockStyle (indented or fenced)\r\n*   fence (\\` or ~)\r\n*   emDelimiter (\\_ or \\*)\r\n*   strongDelimiter (\\*\\* or \\_\\_)\r\n*   linkStyle (inlined or referenced)\r\n*   linkReferenceStyle (full, collapsed, or shortcut)'} />
                             </Section></Col>
-                        <Col sm={12} >
+                        <Col lg={12}  >
                             <Section heading={`${userInfo.userName}'s List.`}>
                                 <UserList />
-
                             </Section>
                         </Col>
                     </Row>

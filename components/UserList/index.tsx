@@ -1,16 +1,40 @@
 import { Tab, Nav, Table } from 'react-bootstrap'
 import UserListRow from './UserList.Table.Row'
 import UserListTableHead from './UserList.Table.Head'
-import UserListTable from './UserList.Table'
+import UserList from './UserList'
 
 const data = [
     {
         imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
         consoleType: "Nintendo Switch",
         description: "Lorem ipsum dolor sit amet.",
-        name: "Dead or Alive Xtreme 3: Scarlet",
+        name: "Aead or Alive Xtreme 3: Scarlet",
+        tradeType: "Swap"
+    }
+    ,
+    {
+        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
+        consoleType: "Nintendo Switch",
+        description: "Lorem ipsum dolor sit amet.",
+        name: "Bead or Alive Xtreme 3: Scarlet",
         tradeType: "Sale"
     }
+    ,
+    {
+        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
+        consoleType: "Nintendo Switch",
+        description: "Lorem ipsum dolor sit amet.",
+        name: "Cead or Alive Xtreme 3: Scarlet",
+        tradeType: "Swap"
+    },
+    {
+        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
+        consoleType: "Nintendo Switch",
+        description: "Lorem ipsum dolor sit amet.",
+        name: "Zead or Alive Xtreme 3: Scarlet",
+        tradeType: "Sale"
+    }
+
 ]
 
 export default () => {
@@ -29,10 +53,10 @@ export default () => {
         <div style={{ marginTop: 20 }}>
             <Tab.Content>
                 <Tab.Pane eventKey='has'>
-                    <UserListTable data={data} />
+                    <UserList data={data} />
                 </Tab.Pane>
                 <Tab.Pane eventKey='want'>
-                    <UserListTable data={data} />
+                    <UserList data={data} />
                 </Tab.Pane>
             </Tab.Content>
         </div>

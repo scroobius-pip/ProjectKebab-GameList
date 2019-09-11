@@ -1,10 +1,4 @@
-export interface Props {
-    imageUrl: string
-    name: string
-    consoleType: string
-    tradeType: string
-    description: string
-}
+import { Props } from './UserList'
 
 export default ({ imageUrl, consoleType, description, name, tradeType }: Props) => (
     <> <tr>

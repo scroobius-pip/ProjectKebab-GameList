@@ -1,15 +1,23 @@
-import { Table } from 'react-bootstrap'
-import UserListTableHead from './UserList.Table.Head'
-import UserListRow from './UserList.Table.Row'
 import { Props as ListRowProps } from './UserList'
 import UserListCardHead, { FilterValue } from './UserList.Card.Head'
+import UserListRow from './UserList.Card.Row'
 import { useState } from 'react'
 
+const compare = (invert: boolean) => (a: ListRowProps, b: ListRowProps) => {
+    const nameA = a.name
+    const nameB = b.name
 
+    let comparison = 0
+
+    if (nameA > nameB) {
+        comparison = 1;
+    } else if (nameA < nameB) {
+        comparison = -1;
+    }
+    return invert ? comparison * -1 : comparison;
+}
 
 export default ({ data }: { data: ListRowProps[] }) => {
-
-
     const [filterValues, setFilterValues] = useState({ tradeType: [], consoleType: [] } as FilterValue)
     const [sortValue, setSortValue] = useState('')
 
@@ -31,27 +39,20 @@ export default ({ data }: { data: ListRowProps[] }) => {
 
     const filteredAndSortedData = !sortValue.length ? filteredData : filteredData.sort(sortValue === 'Name - Asc' ? compare(true) : compare(false))
 
-    return (
-        <>
-            <UserListCardHead
-                initialFilterValue={{ consoleType: [], tradeType: [] }}
-                onFilterChange={filterChange}
-                onSortChange={sortChange}
-            />
 
-            <Table style={{ backgroundColor: 'transparent' }} striped hover variant="dark">
-                <thead style={{ backgroundColor: 'transparent' }}>
-                    <UserListTableHead />
+    return <>
+        <UserListCardHead
+            initialFilterValue={{ consoleType: [], tradeType: [] }}
+            onFilterChange={filterChange}
+            onSortChange={sortChange}
+        />
+        {
+            filteredAndSortedData.length ?
+                filteredAndSortedData.map(game => {
+                    return <UserListRow key={game.name + game.consoleType} {...game} />
+                }) :
+                <img src={require('../../assets/icons/empty.jpg')} />
+        }
+    </>
 
-                </thead>
-                <tbody>
-                    {
-                        filteredAndSortedData.map(game => {
-                            return <UserListRow {...game} />
-                        })
-                    }
-                </tbody>
-            </Table>
-        </>
-    )
 }
