@@ -1,6 +1,8 @@
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import UserInfoProfileImage from '../UserInfo/UserInfo.ProfileImage'
 import { font } from '../../styles'
+import Link from 'next/link'
+
 interface Props {
     userName: string
     userImage: string
@@ -13,7 +15,7 @@ const StyledNavItem = ({ children, }) => (
 export default ({ userName, userImage }: Props) => {
     return (
         <>
-            <Navbar collapseOnSelect expand='lg' variant="dark">
+            <Navbar style={{ marginBottom: 20 }} collapseOnSelect expand='lg' variant="dark">
                 <Navbar.Brand href="#home" style={{}}>
                     <img style={{ height: 25, marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
@@ -25,8 +27,8 @@ export default ({ userName, userImage }: Props) => {
 
                     </Nav>
                     <Nav style={{ marginRight: 20 }}>
-                        <StyledNavItem >MY GAME LIST</StyledNavItem>
-                        <StyledNavItem >FORUMS</StyledNavItem>
+                        <StyledNavItem>MY GAME LIST</StyledNavItem>
+                        <StyledNavItem>FORUMS</StyledNavItem>
 
                     </Nav>
                     <Nav style={{}}>
@@ -39,8 +41,12 @@ export default ({ userName, userImage }: Props) => {
                                     <span style={{ fontWeight: 600 }}>{userName}</span>
                                 </>
                             } id="collasible-nav-dropdown">
-                                <NavDropdown.Item>Settings</NavDropdown.Item>
-                                <NavDropdown.Item >Logout</NavDropdown.Item>
+                                <NavDropdown.Item>
+                                    <Link href='/settings'>
+                                        <span>Settings</span>
+                                    </Link>
+                                </NavDropdown.Item>
+                                <NavDropdown.Item>Logout</NavDropdown.Item>
                             </NavDropdown>
                         </span>
                     </Nav>

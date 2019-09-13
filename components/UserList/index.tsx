@@ -30,12 +30,13 @@ const data = [
     {
         imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
         consoleType: "Nintendo Switch",
-        description: "Lorem ipsum dolor sit amet.",
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolorum? Aspernatur, expedita!",
         name: "Zead or Alive Xtreme 3: Scarlet",
         tradeType: "Sale"
     }
 
 ]
+
 
 export default () => {
 

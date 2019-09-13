@@ -32,7 +32,7 @@ const FilterButton = ({ active, onClick }: { active: boolean, onClick: () => any
 
 
 
-export default ({ onFilterChange, onSortChange, }: Props) => {
+export default ({ onFilterChange, onSortChange, initialFilterValue }: Props) => {
     const [open, setOpen] = useState(false)
     const [tradeType, setTradeType] = useState([])
     const [consoleType, setConsoleType] = useState([])
@@ -42,7 +42,7 @@ export default ({ onFilterChange, onSortChange, }: Props) => {
             <span style={{ flexGrow: 1 }}>
                 <FilterButton active={open} onClick={() => setOpen(!open)} />
             </span>
-            <span style={{ display: 'flex', alignItems: 'center' }}>
+            <span style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                 <TextDropDown values={['Name - Asc', 'Name - Desc']} onSelect={(sortValue) => {
                     onSortChange(sortValue)
                 }} />
@@ -56,13 +56,13 @@ export default ({ onFilterChange, onSortChange, }: Props) => {
             <div style={{ marginBottom: 20 }}>
                 <h6>Trade Type</h6>
                 <div>
-                    <CheckBoxGroup initialValues={['Sale', 'Swap']} onChange={(values) => setTradeType(values)} />
+                    <CheckBoxGroup initialValues={initialFilterValue.tradeType} onChange={(values) => setTradeType(values)} />
                 </div>
             </div>
             <div style={{ marginBottom: 20 }}>
                 <h6>Console</h6>
                 <div>
-                    <CheckBoxGroup initialValues={['PS3', 'PS4', 'PS2', 'Nintendo Switch', 'Xone']} onChange={(values) => setConsoleType(values)} />
+                    <CheckBoxGroup initialValues={initialFilterValue.consoleType} onChange={(values) => setConsoleType(values)} />
                 </div>
             </div>
             <div style={{ marginBottom: 20, display: 'flex', justifyContent: 'flex-end' }}>

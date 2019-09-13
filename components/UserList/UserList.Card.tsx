@@ -42,7 +42,7 @@ export default ({ data }: { data: ListRowProps[] }) => {
 
     return <>
         <UserListCardHead
-            initialFilterValue={{ consoleType: [], tradeType: [] }}
+            initialFilterValue={{ consoleType: ['PS3', 'PS4', 'PS2', 'Nintendo Switch', 'Xone'], tradeType: ['Sale', 'Swap'] }}
             onFilterChange={filterChange}
             onSortChange={sortChange}
         />

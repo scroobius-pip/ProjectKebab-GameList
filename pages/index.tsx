@@ -1,12 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './index.css'
 
 import Section from '../components/Section';
 import ReactMarkdown from 'react-markdown'
-import { Container, Col, Row, } from 'react-bootstrap'
+import { Col, Row, } from 'react-bootstrap'
 import UserInfo from '../components/UserInfo';
 import UserList from '../components/UserList';
-import NavBar from '../components/NavBar';
+import Layout from '../components/Layout';
 
 const userInfo = {
     userName: 'IncredibleGonzo',
@@ -15,10 +13,10 @@ const userInfo = {
     epochTimeCreated: 1504224000 * 1000
 }
 
+
 export default () => {
     return (
-        <Container>
-            <NavBar {...userInfo} />
+        <Layout>
             <Row >
                 <Col md={12} lg={3} style={{ marginBottom: 30 }}>
                     <Section>
@@ -40,6 +38,6 @@ export default () => {
 
                 </Col>
             </Row>
-        </Container>
+        </Layout>
     )
 }

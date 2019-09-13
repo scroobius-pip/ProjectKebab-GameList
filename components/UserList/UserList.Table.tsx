@@ -5,6 +5,19 @@ import { Props as ListRowProps } from './UserList'
 import UserListCardHead, { FilterValue } from './UserList.Card.Head'
 import { useState } from 'react'
 
+const compare = (invert: boolean) => (a: ListRowProps, b: ListRowProps) => {
+    const nameA = a.name
+    const nameB = b.name
+
+    let comparison = 0
+
+    if (nameA > nameB) {
+        comparison = 1;
+    } else if (nameA < nameB) {
+        comparison = -1;
+    }
+    return invert ? comparison * -1 : comparison;
+}
 
 
 export default ({ data }: { data: ListRowProps[] }) => {
@@ -34,7 +47,7 @@ export default ({ data }: { data: ListRowProps[] }) => {
     return (
         <>
             <UserListCardHead
-                initialFilterValue={{ consoleType: [], tradeType: [] }}
+                initialFilterValue={{ consoleType: ['PS3', 'PS4', 'PS2', 'Nintendo Switch', 'Xone'], tradeType: ['Sale', 'Swap'] }}
                 onFilterChange={filterChange}
                 onSortChange={sortChange}
             />
@@ -45,11 +58,9 @@ export default ({ data }: { data: ListRowProps[] }) => {
 
                 </thead>
                 <tbody>
-                    {
-                        filteredAndSortedData.map(game => {
-                            return <UserListRow {...game} />
-                        })
-                    }
+                    {filteredAndSortedData.map(game => {
+                        return <UserListRow key={game.name + game.consoleType} {...game} />
+                    })}
                 </tbody>
             </Table>
         </>
