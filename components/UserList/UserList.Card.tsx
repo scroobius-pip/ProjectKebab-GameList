@@ -17,7 +17,7 @@ const compare = (invert: boolean) => (a: ListRowProps, b: ListRowProps) => {
     return invert ? comparison * -1 : comparison;
 }
 
-export default ({ data }: { data: ListRowProps[] }) => {
+export default ({ data, id }: { data: ListRowProps[], id: string }) => {
     const [filterValues, setFilterValues] = useState({ tradeType: [], consoleType: [] } as FilterValue)
     const [sortValue, setSortValue] = useState('')
 
@@ -42,6 +42,7 @@ export default ({ data }: { data: ListRowProps[] }) => {
 
     return <>
         <UserListCardHead
+            id={id}
             initialFilterValue={{ consoleType: ['PS3', 'PS4', 'PS2', 'Nintendo Switch', 'Xone'], tradeType: ['Sale', 'Swap'] }}
             onFilterChange={filterChange}
             onSortChange={sortChange}

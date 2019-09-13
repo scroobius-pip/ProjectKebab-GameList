@@ -6,6 +6,50 @@ import { useState } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap'
 import Section from '../components/Section'
 import CheckBox from '../components/CheckBox'
+import SettingsSection, { Props as SettingsSectionProps } from '../components/SettingsSection'
+import Switch from '../components/Switch'
+
+const settingsData: SettingsSectionProps = {
+    sections: [
+        {
+            title: 'Profile Settings',
+            subsections: [
+                {
+                    title: 'Enable match notifications',
+                    description: "We'll send you email and push notiﬁcations  whenever someone has what you want ",
+                    Input: () => {
+                        const [value, setValue] = useState(false)
+
+                        return <Switch id='notifications' isOn={value} handleToggle={() => setValue(!value)} />
+                    }
+                },
+                {
+                    title: 'Location',
+                    description: "You could show your location, for physical trades",
+                    Input: () => {
+                        const [value, setValue] = useState(false)
+
+                        return <Switch id='location' isOn={value} handleToggle={() => setValue(!value)} />
+                    }
+                }
+            ]
+        },
+        {
+            title: 'Membership',
+            subsections: [
+                {
+                    title: 'Premium',
+                    description: "Extra features, ad-free experience, and support the developer",
+                    Input: () => {
+                        const [value, setValue] = useState(false)
+
+                        return <Switch id='premium' isOn={value} handleToggle={() => setValue(!value)} />
+                    }
+                }
+            ]
+        }
+    ]
+}
 
 export default () => {
     const [show, setShow] = useState(false)
@@ -28,47 +72,7 @@ export default () => {
                 <Button onClick={open}>Save</Button>
             </span>
         </div>
-        <div style={{ marginBottom: 40 }} >
-            <div><h6 style={{ marginLeft: 20, color: '#8B8B8B' }}>Profile Settings</h6></div>
-            <div style={{ marginTop: 20 }}>
-                <Section>
 
-
-                    <Row>
-                        <Col xs={12} md={10} >
-                            <h6>Enable match notifications</h6>
-                            <p style={{ maxWidth: 600, color: '#DCDCDC' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat perferendis itaque voluptate, quam nostrum et nisi assumenda nobis reiciendis cupiditate?</p>
-                        </Col>
-                        <Col xs={12} md={2} >
-                            <div style={{ float: 'right' }}>
-                                <CheckBox value='Hello' onChange={() => { }} />
-                            </div>
-                        </Col>
-                    </Row>
-
-                </Section>
-            </div>
-        </div>
-        <div style={{ marginBottom: 40 }} >
-            <div><h6 style={{ marginLeft: 20, color: '#8B8B8B' }}>Membership</h6></div>
-            <div style={{ marginTop: 20 }}>
-                <Section>
-
-
-                    <Row>
-                        <Col xs={12} md={10} >
-                            <h6>Enable match notifications</h6>
-                            <p style={{ maxWidth: 600, color: '#DCDCDC' }}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat perferendis </p>
-                        </Col>
-                        <Col xs={12} md={2} >
-                            <div style={{ float: 'right' }}>
-                                <CheckBox value='Hello' onChange={() => { }} />
-                            </div>
-                        </Col>
-                    </Row>
-
-                </Section>
-            </div>
-        </div>
+        <SettingsSection {...settingsData} />
     </Layout>
 }

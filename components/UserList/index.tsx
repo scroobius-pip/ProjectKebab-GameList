@@ -54,10 +54,10 @@ export default () => {
         <div style={{ marginTop: 20 }}>
             <Tab.Content>
                 <Tab.Pane eventKey='has'>
-                    <UserList data={data} />
+                    <UserList id='has' data={data} />
                 </Tab.Pane>
                 <Tab.Pane eventKey='want'>
-                    <UserList data={data} />
+                    <UserList id='want' data={data} />
                 </Tab.Pane>
             </Tab.Content>
         </div>

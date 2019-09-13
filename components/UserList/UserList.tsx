@@ -10,11 +10,12 @@ export interface Props {
 }
 
 
-export default ({ data }: { data: Props[] }) => {
+
+export default ({ data, id }: { data: Props[], id: string }) => {
     return (
         <>
-            <UserListTable data={data} />
-            {/* <UserListCard data={data} /> */}
+            <UserListTable data={data} id={id} />
+            {/* <UserListCard data={data} id={id} /> */}
         </>
     )
 }

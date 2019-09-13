@@ -15,6 +15,7 @@ interface Props {
     onFilterChange: (filterValue: FilterValue) => any
     onSortChange: (sortValue: string) => any
     initialFilterValue: FilterValue
+    id: string
 }
 
 
@@ -32,7 +33,7 @@ const FilterButton = ({ active, onClick }: { active: boolean, onClick: () => any
 
 
 
-export default ({ onFilterChange, onSortChange, initialFilterValue }: Props) => {
+export default ({ onFilterChange, onSortChange, initialFilterValue, id }: Props) => {
     const [open, setOpen] = useState(false)
     const [tradeType, setTradeType] = useState([])
     const [consoleType, setConsoleType] = useState([])
@@ -56,13 +57,13 @@ export default ({ onFilterChange, onSortChange, initialFilterValue }: Props) => 
             <div style={{ marginBottom: 20 }}>
                 <h6>Trade Type</h6>
                 <div>
-                    <CheckBoxGroup initialValues={initialFilterValue.tradeType} onChange={(values) => setTradeType(values)} />
+                    <CheckBoxGroup id={'trade-type' + id} initialValues={initialFilterValue.tradeType} onChange={(values) => setTradeType(values)} />
                 </div>
             </div>
             <div style={{ marginBottom: 20 }}>
                 <h6>Console</h6>
                 <div>
-                    <CheckBoxGroup initialValues={initialFilterValue.consoleType} onChange={(values) => setConsoleType(values)} />
+                    <CheckBoxGroup id={'console-type' + id} initialValues={initialFilterValue.consoleType} onChange={(values) => setConsoleType(values)} />
                 </div>
             </div>
             <div style={{ marginBottom: 20, display: 'flex', justifyContent: 'flex-end' }}>

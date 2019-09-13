@@ -1,7 +1,7 @@
 import { Props } from './UserList'
 
 export default ({ imageUrl, consoleType, description, name, tradeType }: Props) => (
-    <> <tr>
+    <><tr>
         <td style={{ padding: 0, height: 60, maxHeight: 60, }}>
             <div style={{ height: '100%', }}>
                 <img style={{ maxHeight: '100%', maxWidth: '100%', filter: 'brightness(0.8)' }} src={imageUrl} />

@@ -5,11 +5,12 @@ interface Props {
     inline?: boolean
     initialValues: string[]
     onChange: (values: string[]) => any
+    id: string
 
 }
 
 
-export default ({ initialValues, inline = true, onChange }: Props) => {
+export default ({ initialValues, inline = true, onChange, id }: Props) => {
     const [values, setValues] = useState(new Set<string>())
 
     function toggleValue(value: string) {
@@ -30,7 +31,7 @@ export default ({ initialValues, inline = true, onChange }: Props) => {
         <>
             {
                 initialValues.map(value => {
-                    return <CheckBox inline={inline} value={value} onChange={() => toggleValue(value)} />
+                    return <CheckBox id={id + value} inline={inline} value={value} onChange={() => toggleValue(value)} />
                 }
                 )
             }

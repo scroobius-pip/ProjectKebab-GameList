@@ -6,10 +6,11 @@ interface Props {
     onChange: (value: boolean) => any
     value: string
     inline?: boolean
+    id: string
 
 }
 
-export default ({ value, inline = true, onChange }: Props) => {
+export default ({ value, inline = true, onChange, id }: Props) => {
     const [checked, setChecked] = useState(false)
     return (
         <Form.Check
@@ -18,7 +19,7 @@ export default ({ value, inline = true, onChange }: Props) => {
                 setChecked(!checked)
                 onChange(!checked)
             }}
-            id={Math.random().toString()}
+            id={id}
             custom
             inline={inline}
             label={value} />
