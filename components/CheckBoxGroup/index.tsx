@@ -31,7 +31,7 @@ export default ({ initialValues, inline = true, onChange, id }: Props) => {
         <>
             {
                 initialValues.map(value => {
-                    return <CheckBox id={id + value} inline={inline} value={value} onChange={() => toggleValue(value)} />
+                    return <CheckBox key={value} id={id + value} inline={inline} value={value} onChange={() => toggleValue(value)} />
                 }
                 )
             }

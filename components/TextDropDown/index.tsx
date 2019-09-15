@@ -20,7 +20,7 @@ export default ({ values, onSelect }: Props) => {
         </Dropdown.Toggle>
         <Dropdown.Menu>
             {
-                values.map(value => <Dropdown.Item eventKey={value}>{value}</Dropdown.Item>)
+                values.map(value => <Dropdown.Item key={value} eventKey={value}>{value}</Dropdown.Item>)
             }
         </Dropdown.Menu>
     </Dropdown>)
