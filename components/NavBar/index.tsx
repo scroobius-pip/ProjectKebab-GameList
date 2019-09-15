@@ -16,7 +16,7 @@ export default ({ userName, userImage }: Props) => {
     return (
         <>
             <Navbar style={{ marginBottom: 20 }} collapseOnSelect expand='lg' variant="dark">
-                <Navbar.Brand href="#home" style={{}}>
+                <Navbar.Brand href="/" style={{}}>
                     <img style={{ height: 25, marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -54,7 +54,7 @@ const SettingsSection = ({ title, subsections }: Section) => {
 export default ({ sections }: Props) => {
     return <>
         {sections.map((props) => {
-            return <SettingsSection {...props} />
+            return <SettingsSection key={props.title} {...props} />
         })}
     </>
 }

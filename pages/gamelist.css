@@ -1,0 +1,32 @@
+.public-DraftStyleDefault-block { margin: .3em 0; }
+
+.rdw-option-wrapper >img {
+    filter:invert(1.0)
+}
+
+.rdw-option-wrapper{
+    background: transparent;
+    border-color: transparent;
+    padding:20px
+}
+
+.rdw-option-wrapper:hover {
+    box-shadow: none;
+    background-color: #ffffff0a;
+
+}
+
+.rdw-option-active{
+box-shadow: none;
+background-color: #ffffff0a;
+}
+
+.rdw-option-active:nth-of-type(1) {
+border-top-left-radius: 8px;
+border-bottom-left-radius: 8px;
+}
+
+.rdw-option-active:last-of-type {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

@@ -1,4 +1,4 @@
-import { Form } from 'react-bootstrap';
+import FormCheck from 'react-bootstrap/FormCheck';
 import { useState } from 'react';
 
 interface Props {
@@ -13,15 +13,23 @@ interface Props {
 export default ({ value, inline = true, onChange, id }: Props) => {
     const [checked, setChecked] = useState(false)
     return (
-        <Form.Check
-            checked={checked}
-            onChange={() => {
-                setChecked(!checked)
-                onChange(!checked)
-            }}
-            id={id}
-            custom
-            inline={inline}
-            label={value} />
+        <>
+            <FormCheck
+
+                id={id}
+                custom
+                inline={inline}
+                label={value}
+            >
+                <FormCheck.Input type='checkbox' onChange={() => {
+                    setChecked(!checked)
+                    onChange(!checked)
+                }} checked={checked} id={id} />
+                <FormCheck.Label htmlFor={id} >{value}</FormCheck.Label>
+            </FormCheck>
+
+
+
+        </>
     )
 }
