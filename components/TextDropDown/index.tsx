@@ -4,10 +4,11 @@ import { useState } from 'react'
 interface Props {
     values: string[],
     onSelect?: (currentValue: string) => any
+    initialValue?: string
 }
 
-export default ({ values, onSelect }: Props) => {
-    const [currentDrop, setDrop] = useState(values[0])
+export default ({ values, onSelect, initialValue }: Props) => {
+    const [currentDrop, setDrop] = useState(initialValue || values[0])
 
     return (<Dropdown onSelect={(eventKey: string) => {
         setDrop(eventKey)
@@ -16,7 +17,7 @@ export default ({ values, onSelect }: Props) => {
         }
     }}>
         <Dropdown.Toggle as='span' variant="secondary" id="dropdown-basic">
-            <span style={{ fontWeight: 600 }}>{currentDrop}</span>
+            <span style={{ fontWeight: 600, cursor: 'pointer' }}>{currentDrop}</span>
         </Dropdown.Toggle>
         <Dropdown.Menu>
             {

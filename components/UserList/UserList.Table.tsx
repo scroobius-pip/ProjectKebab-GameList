@@ -1,11 +1,19 @@
 import { Table } from 'react-bootstrap'
+import { unionBy, differenceWith, isEqual } from 'lodash'
 import UserListTableHead from './UserList.Table.Head'
 import UserListRow from './UserList.Table.Row'
-import { Props as ListRowProps } from './UserList'
+import { Game as Game } from './UserList'
 import UserListCardHead, { FilterValue } from './UserList.Card.Head'
 import { useState } from 'react'
 
-const compare = (invert: boolean) => (a: ListRowProps, b: ListRowProps) => {
+export interface Props {
+    initialGames: Game[]
+    id: string
+    editable: boolean
+    onChange: (changeType: 'delete' | 'add' | 'update', data: { id: string, value?: Game }) => any
+}
+
+const compare = (invert: boolean) => (a: Game, b: Game) => {
     const nameA = a.name
     const nameB = b.name
 
@@ -20,20 +28,18 @@ const compare = (invert: boolean) => (a: ListRowProps, b: ListRowProps) => {
 }
 
 
-export default ({ data, id }: { data: ListRowProps[], id: string }) => {
-
+export default ({ initialGames, id, editable = false, onChange }: Props) => {
 
     const [filterValues, setFilterValues] = useState({ tradeType: [], consoleType: [] } as FilterValue)
     const [sortValue, setSortValue] = useState('')
+    const [data, setData] = useState(initialGames)
+
 
     const sortChange: (value: string) => any = (value) => {
-        console.log(value)
         setSortValue(value)
-
     }
 
     const filterChange: (filterValue: FilterValue) => any = (filterValue) => {
-        console.log(filterValue)
         setFilterValues(filterValue)
     }
 
@@ -44,23 +50,55 @@ export default ({ data, id }: { data: ListRowProps[], id: string }) => {
 
     const filteredAndSortedData = !sortValue.length ? filteredData : filteredData.sort(sortValue === 'Name - Asc' ? compare(true) : compare(false))
 
+
+    const handleDelete = (id: string) => {
+        setData([...data.filter(game => game.id !== id)])
+        onChange('delete', { id })
+    }
+
+    const handleDescriptionChange = (id: string, description: string) => {
+        setData(data.map(game => {
+            if (game.id === id) {
+                const changeedGame = { ...game, description }
+                onChange('update', changeedGame)
+                return changeedGame
+            }
+            return { ...game }
+        }))
+
+
+    }
+
+    const handleTradeTypeChange = (id: string, tradeType: string) => {
+        setData(data.map(game => {
+            if (game.id === id) {
+                const changeedGame = { ...game, tradeType }
+                onChange('update', changeedGame)
+                return changeedGame
+            }
+            return { ...game }
+        }))
+    }
+
+    const Row = UserListRow(editable)
     return (
         <>
             <UserListCardHead
                 id={id}
-                initialFilterValue={{ consoleType: ['PS3', 'PS4', 'PS2', 'Nintendo Switch', 'Xone'], tradeType: ['Sale', 'Swap'] }}
+                initialFilterValue={{ consoleType: Array.from((new Set(initialGames.map(game => game.consoleType)))), tradeType: Array.from((new Set(initialGames.map(game => game.tradeType)))) }}
                 onFilterChange={filterChange}
                 onSortChange={sortChange}
             />
 
             <Table style={{ backgroundColor: 'transparent' }} striped hover variant="dark">
                 <thead style={{ backgroundColor: 'transparent' }}>
-                    <UserListTableHead />
-
+                    <UserListTableHead
+                        editable={editable}
+                    />
                 </thead>
                 <tbody>
                     {filteredAndSortedData.map(game => {
-                        return <UserListRow key={game.name + game.consoleType} {...game} />
+                        return <Row onDelete={handleDelete} onDescriptionChange={handleDescriptionChange} onTradeTypeChange={handleTradeTypeChange} id={game.id} key={game.name + game.consoleType} {...game} />
                     })}
                 </tbody>
             </Table>

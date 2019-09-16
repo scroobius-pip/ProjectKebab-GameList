@@ -22,11 +22,14 @@
   },
   "homepage": "https://github.com/scroobius-pip/ProjectKebab-GameList#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.138",
     "@types/react-autosuggest": "^9.3.11",
     "@types/react-draft-wysiwyg": "^1.12.3",
+    "@types/react-textarea-autosize": "^4.3.4",
     "@zeit/next-css": "^1.0.1",
     "bootstrap": "^4.3.1",
     "draft-js": "^0.11.0",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "next": "^9.0.5",
     "next-images": "^1.1.2",
@@ -36,7 +39,8 @@
     "react-bootstrap-table-next": "^3.2.0",
     "react-dom": "^16.9.0",
     "react-draft-wysiwyg": "^1.13.2",
-    "react-markdown": "^4.2.2"
+    "react-markdown": "^4.2.2",
+    "react-textarea-autosize": "^7.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

@@ -9,7 +9,8 @@ const data = [
         consoleType: "Nintendo Switch",
         description: "Lorem ipsum dolor sit amet.",
         name: "Aead or Alive Xtreme 3: Scarlet",
-        tradeType: "Swap"
+        tradeType: "Swap",
+        id: '1'
     }
     ,
     {
@@ -17,7 +18,8 @@ const data = [
         consoleType: "Nintendo Switch",
         description: "Lorem ipsum dolor sit amet.",
         name: "Bead or Alive Xtreme 3: Scarlet",
-        tradeType: "Sale"
+        tradeType: "Sale",
+        id: '2'
     }
     ,
     {
@@ -25,20 +27,22 @@ const data = [
         consoleType: "Nintendo Switch",
         description: "Lorem ipsum dolor sit amet.",
         name: "Cead or Alive Xtreme 3: Scarlet",
-        tradeType: "Swap"
+        tradeType: "Swap",
+        id: '3'
     },
     {
         imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
         consoleType: "Nintendo Switch",
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolorum? Aspernatur, expedita!",
         name: "Zead or Alive Xtreme 3: Scarlet",
-        tradeType: "Sale"
+        tradeType: "Sale",
+        id: '4'
     }
 
 ]
 
 
-export default () => {
+export default ({ editable = false }) => {
 
     return <Tab.Container id="user-list" defaultActiveKey="has">
         <div>
@@ -54,10 +58,13 @@ export default () => {
         <div style={{ marginTop: 20 }}>
             <Tab.Content>
                 <Tab.Pane eventKey='has'>
-                    <UserList id='has' data={data} />
+                    <UserList onChange={(changeType, data) => {
+                        console.log(changeType)
+                        console.log(data)
+                    }} editable={editable} id='has' initialGames={data} />
                 </Tab.Pane>
                 <Tab.Pane eventKey='want'>
-                    <UserList id='want' data={data} />
+                    <UserList editable={editable} id='want' initialGames={data} />
                 </Tab.Pane>
             </Tab.Content>
         </div>

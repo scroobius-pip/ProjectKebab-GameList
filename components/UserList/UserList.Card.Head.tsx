@@ -12,6 +12,7 @@ export interface FilterValue {
 
 
 interface Props {
+
     onFilterChange: (filterValue: FilterValue) => any
     onSortChange: (sortValue: string) => any
     initialFilterValue: FilterValue
@@ -33,7 +34,7 @@ const FilterButton = ({ active, onClick }: { active: boolean, onClick: () => any
 
 
 
-export default ({ onFilterChange, onSortChange, initialFilterValue, id }: Props) => {
+export default ({ onFilterChange, onSortChange, initialFilterValue, id, }: Props) => {
     const [open, setOpen] = useState(false)
     const [tradeType, setTradeType] = useState([])
     const [consoleType, setConsoleType] = useState([])

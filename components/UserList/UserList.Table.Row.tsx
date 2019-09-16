@@ -1,12 +1,23 @@
-import { Props } from './UserList'
+import { Game } from './UserList'
+import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
+import UserListTableRowTextArea from './UserList.Table.Row.TextArea';
+import TextButton from '../TextButton';
+import TextDropDown from '../TextDropDown';
 
-export default ({ imageUrl, consoleType, description, name, tradeType }: Props) => (
+interface Props {
+    onDelete: (id: string) => any
+    onTradeTypeChange: (id: string, tradeType: string) => any
+    onDescriptionChange: (id: string, description: string) => any
+}
+
+export default (editable = false) => ({ imageUrl, consoleType, description, name, tradeType, onDelete, onDescriptionChange, onTradeTypeChange, id }: Game & Props) => (
     <><tr>
-        <td style={{ padding: 0, height: 60, maxHeight: 60, }}>
+        {editable ? null : <td style={{ padding: 0, height: 60, maxHeight: 60, }}>
             <div style={{ height: '100%', }}>
                 <img style={{ maxHeight: '100%', maxWidth: '100%', filter: 'brightness(0.8)' }} src={imageUrl} />
             </div>
-        </td>
+        </td>}
         <td style={{ height: 40, maxHeight: 40 }}>
             <div style={{ height: '100%' }}>
                 {name}
@@ -19,14 +30,25 @@ export default ({ imageUrl, consoleType, description, name, tradeType }: Props) 
         </td>
         <td style={{ height: 40, maxHeight: 40 }}>
             <div style={{ height: '100%' }}>
-                {tradeType}
+                {
+                    editable ? <TextDropDown initialValue={tradeType} values={['Sale', 'Swap']} onSelect={(value) => {
+                        onTradeTypeChange(id, value)
+                    }} /> : tradeType
+                }
             </div>
         </td>
         <td style={{ height: 40, maxHeight: 40 }}>
             <div style={{ height: '100%' }}>
-                {description}
+                {
+                    editable ? <UserListTableRowTextArea initialValue={description} onBlur={(value) => { onDescriptionChange(id, value) }} /> : description
+                }
             </div>
         </td>
+        {editable ?
+            <td>
+                <TextButton onClick={() => { onDelete(id) }}>Delete</TextButton>
+            </td> : null
+        }
     </tr>
     </>
 )

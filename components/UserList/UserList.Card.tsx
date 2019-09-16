@@ -1,9 +1,9 @@
-import { Props as ListRowProps } from './UserList'
+import { Game } from './UserList'
 import UserListCardHead, { FilterValue } from './UserList.Card.Head'
 import UserListRow from './UserList.Card.Row'
 import { useState } from 'react'
 
-const compare = (invert: boolean) => (a: ListRowProps, b: ListRowProps) => {
+const compare = (invert: boolean) => (a: Game, b: Game) => {
     const nameA = a.name
     const nameB = b.name
 
@@ -17,7 +17,7 @@ const compare = (invert: boolean) => (a: ListRowProps, b: ListRowProps) => {
     return invert ? comparison * -1 : comparison;
 }
 
-export default ({ data, id }: { data: ListRowProps[], id: string }) => {
+export default ({ data, id }: { data: Game[], id: string }) => {
     const [filterValues, setFilterValues] = useState({ tradeType: [], consoleType: [] } as FilterValue)
     const [sortValue, setSortValue] = useState('')
 

@@ -1,13 +1,14 @@
 import SortButton from '../SortButton';
 
-export default () => (
+export default ({ editable = false }) => (
     <>
         <tr>
-            <th style={{ width: 60 }} ></th>
+            {editable ? null : <th style={{ width: 60 }} ></th>}
             <th style={{}}>NAME</th>
             <th style={{}}>CONSOLE</th>
             <th style={{}}>TYPE</th>
             <th style={{}}>DESCRIPTION</th>
+            {editable ? <th style={{}}></th> : null}
         </tr>
     </>
 )

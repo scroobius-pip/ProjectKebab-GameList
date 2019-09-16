@@ -1,7 +1,8 @@
-import UserListTable from './UserList.Table';
+import UserListTable, { Props as UserListTableProps } from './UserList.Table';
 import UserListCard from './UserList.Card';
 
-export interface Props {
+export interface Game {
+    id: string
     imageUrl: string
     name: string
     consoleType: string
@@ -9,12 +10,19 @@ export interface Props {
     description: string
 }
 
+interface Props {
+    initialGames: Game[]
+    id: string
+    editable?: boolean
+    onChange?: UserListTableProps['onChange']
+}
 
 
-export default ({ data, id }: { data: Props[], id: string }) => {
+
+export default (props: Props) => {
     return (
         <>
-            <UserListTable data={data} id={id} />
+            <UserListTable editable={!!props.editable} onChange={props.onChange || (() => { })} {...props} />
             {/* <UserListCard data={data} id={id} /> */}
         </>
     )

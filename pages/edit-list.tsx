@@ -16,7 +16,7 @@ export default () => {
             </Col>
             <Col md={12}>
                 <Section heading='Your List.'>
-                    <UserList  />
+                    <UserList editable />
                 </Section>
             </Col>
         </Row>
