@@ -8,8 +8,14 @@ interface Props {
     userImage: string
 }
 
-const StyledNavItem = ({ children, }) => (
-    <Nav.Link style={{ fontWeight: font.weights.medium }}>{children}</Nav.Link>
+const StyledNavItem = ({ children, href }) => (
+
+    <Link href={href}>
+        <Nav.Link style={{ fontWeight: font.weights.medium }}>
+            {children}
+        </Nav.Link>
+    </Link>
+
 )
 
 export default ({ userName, userImage }: Props) => {
@@ -22,13 +28,13 @@ export default ({ userName, userImage }: Props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <StyledNavItem>MATCHES</StyledNavItem>
-                        <StyledNavItem >OFFERS</StyledNavItem>
+                        <StyledNavItem href='#'>MATCHES</StyledNavItem>
+                        <StyledNavItem href='#'>OFFERS</StyledNavItem>
 
                     </Nav>
                     <Nav style={{ marginRight: 20 }}>
-                        <StyledNavItem>MY GAME LIST</StyledNavItem>
-                        <StyledNavItem>FORUMS</StyledNavItem>
+                        <StyledNavItem href='edit-list'>MY GAME LIST</StyledNavItem>
+                        <StyledNavItem href='#'>FORUMS</StyledNavItem>
 
                     </Nav>
                     <Nav style={{}}>
