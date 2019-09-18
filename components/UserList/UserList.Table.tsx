@@ -133,7 +133,7 @@ export default ({ initialGames, id, editable = false, onChange }: Props) => {
             </Row>
             <UserListCardHead
                 id={id}
-                initialFilterValue={{ consoleType: Array.from((new Set(initialGames.map(game => game.consoleType)))), tradeType: Array.from((new Set(initialGames.map(game => game.tradeType)))) }}
+                initialFilterValue={{ consoleType: Array.from((new Set(data.map(game => game.consoleType)))), tradeType: Array.from((new Set(data.map(game => game.tradeType)))) }}
                 onFilterChange={filterChange}
                 onSortChange={sortChange}
                 editable={editable}

@@ -6,10 +6,6 @@ import UserList from '../components/UserList';
 
 
 export default () => {
-
-
-
-
     return <Layout>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
             <span>
