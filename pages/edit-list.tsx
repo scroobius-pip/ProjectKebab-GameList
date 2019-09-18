@@ -28,7 +28,7 @@ export default () => {
             </Col>
             <Col md={12}>
                 <Section heading='Your List.'>
-                    <UserList variant='Table' editable />
+                    <UserList variant='Card' editable />
                 </Section>
             </Col>
         </Row>

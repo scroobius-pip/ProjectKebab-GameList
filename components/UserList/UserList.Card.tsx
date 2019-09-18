@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Props as UserListProps } from './UserList.Table'
 import SearchBox, { Game } from '../SearchBox'
 import { Row, Col } from 'react-bootstrap'
+import { unionBy } from 'lodash'
 
 const games: Game[] = [
     {
@@ -80,6 +81,15 @@ export default ({ initialGames, id, editable = false, onChange }: UserListProps)
         onChange('delete', { id })
     }
 
+
+    const handleAdd = (game: Game) => {
+
+        const userGame: UserGame = { ...game, description: '', tradeType: 'Swap' }
+        setData(unionBy([userGame], data, 'id'))
+        onChange('add', { id: userGame.id, value: userGame })
+    }
+
+
     const handleDescriptionChange = (id: string, description: string) => {
         setData(data.map(game => {
             if (game.id === id) {
@@ -106,9 +116,9 @@ export default ({ initialGames, id, editable = false, onChange }: UserListProps)
 
 
     return <>
-        <Row style={{ marginBottom: 20 }}>
+        <Row style={{ marginBottom: 20, marginLeft: -40, marginRight: -40 }}>
             <Col xs={12} md={8} xl={4}>
-                <SearchBox onSelect={(game) => console.log(game)} searchFunction={async () => games} id={id} />
+                <SearchBox onSelect={handleAdd} searchFunction={async () => games} id={id} />
             </Col>
         </Row>
         <UserListCardHead
