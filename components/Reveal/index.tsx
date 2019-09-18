@@ -8,8 +8,6 @@ interface Props {
 }
 
 export default ({ MainSection, HiddenSection, style, open = false }: Props) => {
-
-
     return (
         <>
             <div style={style}>

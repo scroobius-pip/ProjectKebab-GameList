@@ -1,17 +1,16 @@
 import { Game } from './UserList'
-import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
 import UserListTableRowTextArea from './UserList.Table.Row.TextArea';
 import TextButton from '../TextButton';
 import TextDropDown from '../TextDropDown';
 
-interface Props {
+export interface Props extends Game {
     onDelete: (id: string) => any
     onTradeTypeChange: (id: string, tradeType: string) => any
     onDescriptionChange: (id: string, description: string) => any
+    editable?: boolean
 }
 
-export default (editable = false) => ({ imageUrl, consoleType, description, name, tradeType, onDelete, onDescriptionChange, onTradeTypeChange, id }: Game & Props) => (
+export default ({ imageUrl, consoleType, description, name, tradeType, onDelete, onDescriptionChange, onTradeTypeChange, id, editable = false }: Props) => (
     <><tr>
         {editable ? null : <td style={{ padding: 0, height: 60, maxHeight: 60, }}>
             <div style={{ height: '100%', }}>

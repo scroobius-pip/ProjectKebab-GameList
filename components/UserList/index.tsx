@@ -1,6 +1,4 @@
-import { Tab, Nav, Table } from 'react-bootstrap'
-import UserListRow from './UserList.Table.Row'
-import UserListTableHead from './UserList.Table.Head'
+import { Tab, Nav } from 'react-bootstrap'
 import UserList from './UserList'
 
 const data = [
@@ -38,11 +36,14 @@ const data = [
         tradeType: "Sale",
         id: '4'
     }
-
 ]
 
+interface Props {
+    editable?: boolean
+    variant?: 'Table' | 'Card'
+}
 
-export default ({ editable = false }) => {
+export default ({ editable = false, variant = 'Table' }: Props) => {
 
     return <Tab.Container id="user-list" defaultActiveKey="has">
         <div>
@@ -58,13 +59,20 @@ export default ({ editable = false }) => {
         <div style={{ marginTop: 20 }}>
             <Tab.Content>
                 <Tab.Pane eventKey='has'>
-                    <UserList onChange={(changeType, data) => {
-                        console.log(changeType)
-                        console.log(data)
-                    }} editable={editable} id='has' initialGames={data} />
+                    <UserList
+                        variant={variant}
+                        onChange={(changeType, data) => {
+                            console.log(changeType)
+                            console.log(data)
+                        }} editable={editable} id='has' initialGames={data} />
                 </Tab.Pane>
                 <Tab.Pane eventKey='want'>
-                    <UserList editable={editable} id='want' initialGames={data} />
+                    <UserList
+
+                        variant={variant}
+                        editable={editable}
+                        id='want'
+                        initialGames={data} />
                 </Tab.Pane>
             </Tab.Content>
         </div>

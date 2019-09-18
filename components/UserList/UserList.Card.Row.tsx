@@ -1,13 +1,6 @@
 import { Collapse, Button, Badge } from 'react-bootstrap'
 import { useState } from 'react'
-
-export interface Props {
-    imageUrl: string
-    name: string
-    consoleType: string
-    tradeType: string
-    description: string
-}
+import { Props } from './UserList.Table.Row'
 
 const RevealButton = ({ active, onClick }: { active: boolean, onClick: () => any }) => {
 
@@ -19,7 +12,7 @@ const RevealButton = ({ active, onClick }: { active: boolean, onClick: () => any
 }
 
 
-export default ({ name, consoleType, tradeType, description }: Props) => {
+export default ({ imageUrl, consoleType, description, name, tradeType, onDelete, onDescriptionChange, onTradeTypeChange, id, editable = false }: Props) => {
     const [open, setOpen] = useState(false)
 
     return (

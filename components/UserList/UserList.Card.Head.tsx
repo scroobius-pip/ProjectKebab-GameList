@@ -12,11 +12,11 @@ export interface FilterValue {
 
 
 interface Props {
-
     onFilterChange: (filterValue: FilterValue) => any
     onSortChange: (sortValue: string) => any
     initialFilterValue: FilterValue
     id: string
+    editable?: boolean
 }
 
 
@@ -34,21 +34,24 @@ const FilterButton = ({ active, onClick }: { active: boolean, onClick: () => any
 
 
 
-export default ({ onFilterChange, onSortChange, initialFilterValue, id, }: Props) => {
+export default ({ onFilterChange, onSortChange, initialFilterValue, id, editable = false }: Props) => {
     const [open, setOpen] = useState(false)
     const [tradeType, setTradeType] = useState([])
     const [consoleType, setConsoleType] = useState([])
 
     const MainSection = (
-        <div style={{ marginBottom: 20, display: 'flex' }} >
-            <span style={{ flexGrow: 1 }}>
-                <FilterButton active={open} onClick={() => setOpen(!open)} />
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                <TextDropDown values={['Name - Asc', 'Name - Desc']} onSelect={(sortValue) => {
-                    onSortChange(sortValue)
-                }} />
-            </span>
+        <div>
+            <div style={{ marginBottom: 20, display: 'flex' }} >
+                <span style={{ flexGrow: 1 }}>
+                    <FilterButton active={open} onClick={() => setOpen(!open)} />
+                </span>
+                <span style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+                    <TextDropDown values={['Name - Asc', 'Name - Desc']} onSelect={(sortValue) => {
+                        onSortChange(sortValue)
+                    }} />
+                </span>
+            </div>
+           
         </div>
     )
 

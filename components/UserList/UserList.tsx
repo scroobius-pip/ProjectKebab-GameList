@@ -15,15 +15,19 @@ interface Props {
     id: string
     editable?: boolean
     onChange?: UserListTableProps['onChange']
+    variant?: 'Card' | 'Table'
 }
 
 
 
-export default (props: Props) => {
+export default ({ variant = 'Table', ...props }: Props) => {
     return (
         <>
-            <UserListTable editable={!!props.editable} onChange={props.onChange || (() => { })} {...props} />
-            {/* <UserListCard data={data} id={id} /> */}
+            {
+                variant === 'Table' ?
+                    <UserListTable editable={!!props.editable} onChange={props.onChange || (() => { })} {...props} /> :
+                    <UserListCard editable={!!props.editable} onChange={props.onChange || (() => { })} {...props} />
+            }
         </>
     )
 }

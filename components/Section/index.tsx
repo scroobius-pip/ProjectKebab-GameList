@@ -1,5 +1,5 @@
 // import React from 'react'
-import { colors } from '../styles'
+import { colors } from '../../styles'
 interface Props {
     children: JSX.Element | JSX.Element[],
     heading?: string
