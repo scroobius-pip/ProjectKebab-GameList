@@ -1,6 +1,7 @@
 
 .react-autosuggest__container {
     position: relative;
+    animation-direction: 0.5
   }
   
   .react-autosuggest__input {
@@ -12,6 +13,7 @@
    border-color: transparent;
    padding:5px;
   color:white;
+  font-weight: 600
   }
   
   .react-autosuggest__input:focus {
@@ -41,7 +43,6 @@
     width: 100%;
     z-index: 2;
     background-color: #282B2E;
-    /* background-color: blue; */
     padding: 20px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 
@@ -65,7 +66,16 @@
       margin-left: 40px;
       padding:10px;
   }
-  .react-autosuggest__suggestion--highlighted > div {
+
+  .react-autosuggest__suggestion , img {
+    opacity: 0.5;
+  }
+
+  .react-autosuggest__suggestion--highlighted, img {
+    opacity: 1;
+  }
+
+  .react-autosuggest__suggestion > div {
     font-weight: 600;
   }
 
@@ -87,4 +97,20 @@ background-color: rgb(61, 63, 66);
   
   .react-autosuggest__section-container:not(:first-child) {
       margin-top: 10px;
+  }
+
+  .sponsor {
+    opacity: 0.3;
+    font-size: 15px;
+    margin-top: 15px;
+    font-weight: 600;
+    /* cursor: pointer; */
+    /* float: right; */
+    text-align: right;
+    margin-right: -15px;
+
+  }
+
+  .sponsor:hover {
+    opacity: 0.8;
   }

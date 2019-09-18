@@ -1,9 +1,9 @@
-import { Game } from './UserList'
+import { UserGame } from './UserList'
 import UserListTableRowTextArea from './UserList.Table.Row.TextArea';
 import TextButton from '../TextButton';
 import TextDropDown from '../TextDropDown';
 
-export interface Props extends Game {
+export interface Props extends UserGame {
     onDelete: (id: string) => any
     onTradeTypeChange: (id: string, tradeType: string) => any
     onDescriptionChange: (id: string, description: string) => any

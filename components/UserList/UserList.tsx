@@ -1,17 +1,17 @@
 import UserListTable, { Props as UserListTableProps } from './UserList.Table';
 import UserListCard from './UserList.Card';
 
-export interface Game {
+export interface UserGame {
     id: string
     imageUrl: string
     name: string
     consoleType: string
-    tradeType: string
+    tradeType: 'Swap' | 'Sale'
     description: string
 }
 
 interface Props {
-    initialGames: Game[]
+    initialGames: UserGame[]
     id: string
     editable?: boolean
     onChange?: UserListTableProps['onChange']

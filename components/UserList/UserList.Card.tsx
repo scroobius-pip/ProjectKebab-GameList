@@ -1,10 +1,47 @@
-import { Game } from './UserList'
+import { UserGame } from './UserList'
 import UserListCardHead, { FilterValue } from './UserList.Card.Head'
 import UserListRow from './UserList.Card.Row'
 import { useState } from 'react'
 import { Props as UserListProps } from './UserList.Table'
+import SearchBox, { Game } from '../SearchBox'
+import { Row, Col } from 'react-bootstrap'
 
-const compare = (invert: boolean) => (a: Game, b: Game) => {
+const games: Game[] = [
+    {
+        name: 'Forza Horizon 4',
+        consoleType: 'Xone',
+        id: '1Forza',
+        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
+    },
+    {
+        name: 'Ashen',
+        consoleType: 'Xone',
+        id: '1Ashen',
+        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
+    },
+    {
+        name: "Uncharted 4: A Thief's End",
+        consoleType: 'Playstation 4',
+        id: '1Uncharted',
+        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
+    },
+    {
+        name: 'Metro: Last Light',
+        consoleType: 'Playstation 4',
+        id: '1Metro',
+        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
+    },
+    {
+        name: 'Ashen',
+        consoleType: 'Playstation 4',
+        id: '1Xone',
+        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
+    },
+
+
+]
+
+const compare = (invert: boolean) => (a: UserGame, b: UserGame) => {
     const nameA = a.name
     const nameB = b.name
 
@@ -56,7 +93,7 @@ export default ({ initialGames, id, editable = false, onChange }: UserListProps)
 
     }
 
-    const handleTradeTypeChange = (id: string, tradeType: string) => {
+    const handleTradeTypeChange = (id: string, tradeType: UserGame['tradeType']) => {
         setData(data.map(game => {
             if (game.id === id) {
                 const changedGame = { ...game, tradeType }
@@ -69,6 +106,11 @@ export default ({ initialGames, id, editable = false, onChange }: UserListProps)
 
 
     return <>
+        <Row style={{ marginBottom: 20 }}>
+            <Col xs={12} md={8} xl={4}>
+                <SearchBox onSelect={(game) => console.log(game)} searchFunction={async () => games} id={id} />
+            </Col>
+        </Row>
         <UserListCardHead
             id={id}
             initialFilterValue={{ consoleType: Array.from((new Set(initialGames.map(game => game.consoleType)))), tradeType: Array.from((new Set(initialGames.map(game => game.tradeType)))) }}

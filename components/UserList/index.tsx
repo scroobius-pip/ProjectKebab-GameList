@@ -1,7 +1,7 @@
 import { Tab, Nav } from 'react-bootstrap'
-import UserList from './UserList'
+import UserList, { UserGame } from './UserList'
 
-const data = [
+const data: UserGame[] = [
     {
         imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
         consoleType: "Nintendo Switch",

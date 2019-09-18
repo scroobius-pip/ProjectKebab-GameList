@@ -18,6 +18,13 @@ const intToHSL = (num: number) => {
 }
 
 export default (text: string) => {
-  return intToHSL(getHashCode(text))
+  const colorMap = {
+    'Add custom entry': '#EAEBEB',
+    'Playstation 4': '#FF7600',
+    'Xone': '#21FAB2'
+  }
+
+
+  return colorMap[text] || intToHSL(getHashCode(text))
   // return generateColor(text + '  ')
 }
