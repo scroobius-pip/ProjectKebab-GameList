@@ -19,7 +19,7 @@ const intToHSL = (num: number) => {
 
 export default (text: string) => {
   const colorMap = {
-    'Add custom entry': '#EAEBEB',
+    'Custom Item': '#EAEBEB',
     'Playstation 4': '#FF7600',
     'Xone': '#21FAB2'
   }

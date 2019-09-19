@@ -126,11 +126,11 @@ export default ({ initialGames, id, editable = false, onChange }: Props) => {
 
     return (
         <>
-            <Row style={{ marginBottom: 20 }}>
+            {editable ? <Row style={{ marginBottom: 20 }}>
                 <Col xs={12} md={8} xl={4}>
                     <SearchBox onSelect={handleAdd} searchFunction={async () => games} id={id} />
                 </Col>
-            </Row>
+            </Row> : null}
             <UserListCardHead
                 id={id}
                 initialFilterValue={{ consoleType: Array.from((new Set(data.map(game => game.consoleType)))), tradeType: Array.from((new Set(data.map(game => game.tradeType)))) }}

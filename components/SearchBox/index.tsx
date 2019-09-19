@@ -5,7 +5,7 @@ import './index.css'
 import generateColorFromString from '../../functions/generateColorFromString';
 import { Spinner } from 'react-bootstrap';
 
-async function stall(stallTime = 200) {
+async function stall(stallTime = 500) {
     await new Promise(resolve => setTimeout(resolve, stallTime));
 }
 
@@ -73,7 +73,7 @@ export default ({ id, searchFunction, onSelect }: Props) => {
         await stall()
         const customEntry = {
             name: value,
-            consoleType: 'Add custom entry',
+            consoleType: 'Custom Item',
             id: value,
             imageUrl: ''
         }
@@ -133,7 +133,7 @@ export default ({ id, searchFunction, onSelect }: Props) => {
                     top: 10,
                     left: 18
                 }}
-            ><img style={{ width: '1em' }} src={require('../../assets/icons/search-magnify.svg')} /></span>
+            ><img style={{ width: '1em', opacity: 0.6 }} src={require('../../assets/icons/search-magnify.svg')} /></span>
             <input style={{ textIndent: 40 }} {...inputProps} />
             {
                 loading ? <span>
