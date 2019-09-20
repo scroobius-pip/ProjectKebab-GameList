@@ -6,6 +6,7 @@ interface SubSection {
     title: string
     description: string
     Input: () => React.ReactElement
+
 }
 
 interface Section {
