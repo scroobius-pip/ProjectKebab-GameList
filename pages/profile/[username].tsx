@@ -3,13 +3,15 @@ import Section from '@components/Section';
 import ReactMarkdown from 'react-markdown'
 import { Col, Row, } from 'react-bootstrap'
 import UserInfo from '@components/UserInfo';
-import UserList from '@components/UserList';
+import UserList, { UserGames } from '@components/UserList';
 
 interface UserInfo {
-    userName: string;
-    userImage: string;
-    isPremium: boolean;
-    epochTimeCreated: number;
+    userName: string
+    userImage: string
+    isPremium: boolean
+    epochTimeCreated: number
+    userDescription: string
+    isBanned: boolean
 }
 
 async function stall(stallTime = 500) {
@@ -18,7 +20,7 @@ async function stall(stallTime = 500) {
 
 
 
-const Page = ({ userInfo }: { userInfo: UserInfo }) => {
+const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGames }) => {
 
     return (
         <>
@@ -32,12 +34,12 @@ const Page = ({ userInfo }: { userInfo: UserInfo }) => {
                     <Row noGutters={false}>
                         <Col lg={12} style={{ marginBottom: 30 }} >
                             <Section heading='Details.'>
-                                <ReactMarkdown source={'It aims to be [CommonMark](http:\/\/commonmark.org\/) compliant, and includes options to style the output. These options include:\r\n\r\n*   headingStyle (setext or atx)\r\n*   horizontalRule (\\*, -, or \\_)\r\n*   bullet (\\*, -, or +)\r\n*   codeBlockStyle (indented or fenced)\r\n*   fence (\\` or ~)\r\n*   emDelimiter (\\_ or \\*)\r\n*   strongDelimiter (\\*\\* or \\_\\_)\r\n*   linkStyle (inlined or referenced)\r\n*   linkReferenceStyle (full, collapsed, or shortcut)'} />
+                                <ReactMarkdown source={userInfo.userDescription || `${userInfo.userName} hasn't provided any details`} />
                             </Section>
                         </Col>
                         <Col lg={12}  >
                             <Section heading={`${userInfo.userName}'s List.`}>
-                                <UserList />
+                                <UserList data={userGames} />
                             </Section>
                         </Col>
                     </Row>
@@ -56,7 +58,48 @@ Page.getInitialProps = async ({ query }) => {
                 userName: 'simdi',
                 userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
                 isPremium: true,
-                epochTimeCreated: 1504224000 * 1000
+                epochTimeCreated: 1504224000 * 1000,
+                userDetails: 'It aims to be [CommonMark](http:\/\/commonmark.org\/) compliant, and includes options to style the output. These options include:\r\n\r\n*   headingStyle (setext or atx)\r\n*   horizontalRule (\\*, -, or \\_)\r\n*   bullet (\\*, -, or +)\r\n*   codeBlockStyle (indented or fenced)\r\n*   fence (\\` or ~)\r\n*   emDelimiter (\\_ or \\*)\r\n*   strongDelimiter (\\*\\* or \\_\\_)\r\n*   linkStyle (inlined or referenced)\r\n*   linkReferenceStyle (full, collapsed, or shortcut)'
+            },
+            userGames: {
+                has: [
+                    {
+                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
+                        consoleType: "Nintendo Switch",
+                        description: "Lorem ipsum dolor sit amet.",
+                        name: "Aead or Alive Xtreme 3: Scarlet",
+                        tradeType: "Swap",
+                        id: '1'
+                    }
+                    ,
+                    {
+                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
+                        consoleType: "Nintendo Switch",
+                        description: "Lorem ipsum dolor sit amet.",
+                        name: "Bead or Alive Xtreme 3: Scarlet",
+                        tradeType: "Sale",
+                        id: '2'
+                    }
+                    ,
+                    {
+                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
+                        consoleType: "Nintendo Switch",
+                        description: "Lorem ipsum dolor sit amet.",
+                        name: "Cead or Alive Xtreme 3: Scarlet",
+                        tradeType: "Swap",
+                        id: '3'
+                    },
+                    {
+                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
+                        consoleType: "Nintendo Switch",
+                        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolorum? Aspernatur, expedita!",
+                        name: "Zead or Alive Xtreme 3: Scarlet",
+                        tradeType: "Sale",
+                        id: '4'
+                    }
+                ]
+                ,
+                want: []
             }
         }
 
@@ -66,7 +109,12 @@ Page.getInitialProps = async ({ query }) => {
             userName: 'IncredibleGonzo',
             userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
             isPremium: true,
-            epochTimeCreated: 1504224000 * 1000
+            epochTimeCreated: 1504224000 * 1000,
+            userDetails: ''
+        },
+        userGames: {
+            has: [],
+            want: []
         }
     }
 }

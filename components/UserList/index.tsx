@@ -2,49 +2,19 @@ import { Tab, Nav } from 'react-bootstrap'
 import UserList, { UserGame } from './UserList'
 import { ScreenClassProvider, ScreenClassRender } from 'react-grid-system';
 
-const data: UserGame[] = [
-    {
-        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-        consoleType: "Nintendo Switch",
-        description: "Lorem ipsum dolor sit amet.",
-        name: "Aead or Alive Xtreme 3: Scarlet",
-        tradeType: "Swap",
-        id: '1'
-    }
-    ,
-    {
-        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-        consoleType: "Nintendo Switch",
-        description: "Lorem ipsum dolor sit amet.",
-        name: "Bead or Alive Xtreme 3: Scarlet",
-        tradeType: "Sale",
-        id: '2'
-    }
-    ,
-    {
-        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-        consoleType: "Nintendo Switch",
-        description: "Lorem ipsum dolor sit amet.",
-        name: "Cead or Alive Xtreme 3: Scarlet",
-        tradeType: "Swap",
-        id: '3'
-    },
-    {
-        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-        consoleType: "Nintendo Switch",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolorum? Aspernatur, expedita!",
-        name: "Zead or Alive Xtreme 3: Scarlet",
-        tradeType: "Sale",
-        id: '4'
-    }
-]
+export interface UserGames {
+    has: UserGame[]
+    want: UserGame[]
+}
+
 
 interface Props {
     editable?: boolean
     // variant?: 'Table' | 'Card'
+    data: UserGames
 }
 
-export default ({ editable = false }: Props) => {
+export default ({ editable = false, data }: Props) => {
 
     return <Tab.Container id="user-list" defaultActiveKey="has">
         <div>
@@ -74,15 +44,17 @@ export default ({ editable = false }: Props) => {
                                         onChange={(changeType, data) => {
                                             console.log(changeType)
                                             console.log(data)
-                                        }} editable={editable} id='has' initialGames={data} />
+                                        }}
+                                        editable={editable}
+                                        id='has'
+                                        initialGames={data.has} />
                                 </Tab.Pane>
                                 <Tab.Pane eventKey='want'>
                                     <UserList
-
                                         variant={variant}
                                         editable={editable}
                                         id='want'
-                                        initialGames={data} />
+                                        initialGames={data.want} />
                                 </Tab.Pane>
 
                             </>
