@@ -1,5 +1,6 @@
 import { Tab, Nav } from 'react-bootstrap'
 import UserList, { UserGame } from './UserList'
+import { ScreenClassProvider, ScreenClassRender } from 'react-grid-system';
 
 const data: UserGame[] = [
     {
@@ -40,10 +41,10 @@ const data: UserGame[] = [
 
 interface Props {
     editable?: boolean
-    variant?: 'Table' | 'Card'
+    // variant?: 'Table' | 'Card'
 }
 
-export default ({ editable = false, variant = 'Table' }: Props) => {
+export default ({ editable = false }: Props) => {
 
     return <Tab.Container id="user-list" defaultActiveKey="has">
         <div>
@@ -57,24 +58,40 @@ export default ({ editable = false, variant = 'Table' }: Props) => {
             </Nav>
         </div>
         <div style={{ marginTop: 20 }}>
-            <Tab.Content>
-                <Tab.Pane eventKey='has'>
-                    <UserList
-                        variant={variant}
-                        onChange={(changeType, data) => {
-                            console.log(changeType)
-                            console.log(data)
-                        }} editable={editable} id='has' initialGames={data} />
-                </Tab.Pane>
-                <Tab.Pane eventKey='want'>
-                    <UserList
 
-                        variant={variant}
-                        editable={editable}
-                        id='want'
-                        initialGames={data} />
-                </Tab.Pane>
+
+            <Tab.Content>
+                <ScreenClassProvider>
+
+                    <ScreenClassRender
+                        render={screenClass => {
+                            const variant = ['lg', 'md', 'xl'].includes(screenClass) ? 'Table' : 'Card'
+
+                            return <>
+                                <Tab.Pane eventKey='has'>
+                                    <UserList
+                                        variant={variant}
+                                        onChange={(changeType, data) => {
+                                            console.log(changeType)
+                                            console.log(data)
+                                        }} editable={editable} id='has' initialGames={data} />
+                                </Tab.Pane>
+                                <Tab.Pane eventKey='want'>
+                                    <UserList
+
+                                        variant={variant}
+                                        editable={editable}
+                                        id='want'
+                                        initialGames={data} />
+                                </Tab.Pane>
+
+                            </>
+                        }}
+
+                    />
+                </ScreenClassProvider>
             </Tab.Content>
+
         </div>
     </Tab.Container>
 
