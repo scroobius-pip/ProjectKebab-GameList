@@ -1,23 +1,28 @@
 
-import Section from '../components/Section';
+import Section from '@components/Section';
 import ReactMarkdown from 'react-markdown'
 import { Col, Row, } from 'react-bootstrap'
-import UserInfo from '../components/UserInfo';
-import UserList from '../components/UserList';
-import Layout from '../components/Layout';
+import UserInfo from '@components/UserInfo';
+import UserList from '@components/UserList';
 
-const userInfo = {
-    userName: 'IncredibleGonzo',
-    userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
-    isPremium: true,
-    epochTimeCreated: 1504224000 * 1000
+interface UserInfo {
+    userName: string;
+    userImage: string;
+    isPremium: boolean;
+    epochTimeCreated: number;
+}
+
+async function stall(stallTime = 500) {
+    await new Promise(resolve => setTimeout(resolve, stallTime));
 }
 
 
-export default () => {
+
+const Page = ({ userInfo }: { userInfo: UserInfo }) => {
+
     return (
         <>
-            {/* <Row >
+            <Row >
                 <Col md={12} lg={3} style={{ marginBottom: 30 }}>
                     <Section>
                         <UserInfo {...userInfo} />
@@ -38,7 +43,32 @@ export default () => {
                     </Row>
 
                 </Col>
-            </Row> */}
+            </Row>
         </>
     )
 }
+
+Page.getInitialProps = async ({ query }) => {
+    if (query.username === 'me') {
+        await stall()
+        return {
+            userInfo: {
+                userName: 'simdi',
+                userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
+                isPremium: true,
+                epochTimeCreated: 1504224000 * 1000
+            }
+        }
+
+    }
+    return {
+        userInfo: {
+            userName: 'IncredibleGonzo',
+            userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
+            isPremium: true,
+            epochTimeCreated: 1504224000 * 1000
+        }
+    }
+}
+
+export default Page

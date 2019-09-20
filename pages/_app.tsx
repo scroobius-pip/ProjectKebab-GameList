@@ -1,12 +1,11 @@
 import React from 'react'
 import App from 'next/app'
-import Link from 'next/link'
 import NProgress from 'nprogress'
 import Router from 'next/router'
 import Head from 'next/head'
 import Layout from '../components/Layout'
-
-Router.events.on('routerChangeStart', url => {
+import '../static/nprogress.css'
+Router.events.on('routerChangeStart', () => {
     NProgress.start()
 })
 

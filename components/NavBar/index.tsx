@@ -23,7 +23,7 @@ export default ({ userName, userImage }: Props) => {
     return (
         <>
             <Navbar style={{ marginBottom: 20 }} collapseOnSelect expand='lg' variant="dark">
-                <Navbar.Brand href="/" style={{}}>
+                <Navbar.Brand href="/profile/me" style={{}}>
                     <img style={{ height: 25, marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -34,7 +34,7 @@ export default ({ userName, userImage }: Props) => {
 
                     </Nav>
                     <Nav style={{ marginRight: 20 }}>
-                        <StyledNavItem href='/edit-list'>MY GAME LIST</StyledNavItem>
+                        <StyledNavItem href='/mylist'>MY GAME LIST</StyledNavItem>
                         <StyledNavItem href='/forums'>FORUMS</StyledNavItem>
 
                     </Nav>
