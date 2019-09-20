@@ -62,7 +62,7 @@ export default () => {
     }
 
 
-    return <Layout>
+    return <>
         <PremiumWithModal close={close} visible={show} />
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
             <span>
@@ -74,5 +74,5 @@ export default () => {
         </div>
 
         <SettingsSection {...settingsData} />
-    </Layout>
+    </>
 }

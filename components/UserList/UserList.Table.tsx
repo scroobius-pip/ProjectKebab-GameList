@@ -6,7 +6,8 @@ import { UserGame } from './UserList'
 import UserListCardHead, { FilterValue } from './UserList.Card.Head'
 import { useState } from 'react'
 import SearchBox, { Game } from '../SearchBox'
-
+// import nProgress from 'nprogress'
+// import { Align } from 'react-grid-system'
 const games: Game[] = [
     {
         name: 'Forza Horizon 4',

@@ -16,7 +16,7 @@ const userInfo = {
 
 export default () => {
     return (
-        <Layout>
+        <>
             <Row >
                 <Col md={12} lg={3} style={{ marginBottom: 30 }}>
                     <Section>
@@ -38,6 +38,6 @@ export default () => {
 
                 </Col>
             </Row>
-        </Layout>
+        </>
     )
 }

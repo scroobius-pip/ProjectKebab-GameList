@@ -6,7 +6,7 @@ import UserList from '../components/UserList';
 
 
 export default () => {
-    return <Layout>
+    return <>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
             <span>
                 <Button variant='outline-danger'>Cancel</Button>
@@ -28,5 +28,5 @@ export default () => {
                 </Section>
             </Col>
         </Row>
-    </Layout >
+    </>
 }

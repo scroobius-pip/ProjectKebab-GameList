@@ -16,6 +16,11 @@
   font-weight: 600
   }
   
+  .react-autosuggest__input::placeholder {
+     color:white;
+     opacity: 0.6
+
+  }
   .react-autosuggest__input:focus {
     outline: none;
   }

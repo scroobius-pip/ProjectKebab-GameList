@@ -2,6 +2,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import UserInfoProfileImage from '../UserInfo/UserInfo.ProfileImage'
 import { font } from '../../styles'
 import Link from 'next/link'
+import Router from 'next/router'
 
 interface Props {
     userName: string
@@ -10,11 +11,11 @@ interface Props {
 
 const StyledNavItem = ({ children, href }) => (
 
-    <Link href={href}>
-        <Nav.Link style={{ fontWeight: font.weights.medium }}>
-            {children}
-        </Nav.Link>
-    </Link>
+
+    <Nav.Link onClick={() => Router.push(href)} style={{ fontWeight: font.weights.medium }}>
+        {children}
+    </Nav.Link>
+
 
 )
 
@@ -28,13 +29,13 @@ export default ({ userName, userImage }: Props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <StyledNavItem href='#'>MATCHES</StyledNavItem>
-                        <StyledNavItem href='#'>OFFERS</StyledNavItem>
+                        <StyledNavItem href='/matches'>MATCHES</StyledNavItem>
+                        <StyledNavItem href='/offers'>OFFERS</StyledNavItem>
 
                     </Nav>
                     <Nav style={{ marginRight: 20 }}>
-                        <StyledNavItem href='edit-list'>MY GAME LIST</StyledNavItem>
-                        <StyledNavItem href='#'>FORUMS</StyledNavItem>
+                        <StyledNavItem href='/edit-list'>MY GAME LIST</StyledNavItem>
+                        <StyledNavItem href='/forums'>FORUMS</StyledNavItem>
 
                     </Nav>
                     <Nav style={{}}>
@@ -47,10 +48,10 @@ export default ({ userName, userImage }: Props) => {
                                     <span style={{ fontWeight: 600 }}>{userName}</span>
                                 </>
                             } id="collasible-nav-dropdown">
-                                <NavDropdown.Item>
-                                    <Link href='/settings'>
-                                        <span>Settings</span>
-                                    </Link>
+                                <NavDropdown.Item onClick={() => Router.push('/settings')}>
+                                    {/* <Link href='/settings'> */}
+                                    <span>Settings</span>
+                                    {/* </Link> */}
                                 </NavDropdown.Item>
                                 <NavDropdown.Item>Logout</NavDropdown.Item>
                             </NavDropdown>
