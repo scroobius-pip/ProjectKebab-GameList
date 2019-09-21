@@ -88,7 +88,7 @@ Page.getInitialProps = async () => {
         userSettings: {
             notifications_enabled: true,
             location_enabled: true,
-            premium_enabled: true
+            premium_enabled: false
         }
     }
 }

@@ -2,22 +2,26 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import UserInfoProfileImage from '../UserInfo/UserInfo.ProfileImage'
 import { font } from '../../styles'
 import Link from 'next/link'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
+import { Children } from 'react'
+import React from 'react'
 
 interface Props {
     userName: string
     userImage: string
 }
 
-const StyledNavItem = ({ children, href }) => (
-
-
-    <Nav.Link onClick={() => Router.push(href)} style={{ fontWeight: font.weights.medium }}>
+const StyledNavItem = ({ children, href }) => {
+    const router = useRouter()
+    const active = router.pathname === href
+    return <Nav.Link onClick={() => Router.push(href)} style={{ fontWeight: font.weights.medium, padding: 7, ...(active ? ({ backgroundColor: '#ffffff0d', borderRadius: 5, color: '#ffffffbf', }) : ({})) }}>
         {children}
     </Nav.Link>
 
 
-)
+}
+
+
 
 export default ({ userName, userImage }: Props) => {
     return (
@@ -31,7 +35,6 @@ export default ({ userName, userImage }: Props) => {
                     <Nav className="mr-auto">
                         <StyledNavItem href='/matches'>MATCHES</StyledNavItem>
                         <StyledNavItem href='/offers'>OFFERS</StyledNavItem>
-
                     </Nav>
                     <Nav style={{ marginRight: 20 }}>
                         <StyledNavItem href='/mylist'>MY GAME LIST</StyledNavItem>
@@ -60,6 +63,7 @@ export default ({ userName, userImage }: Props) => {
                 </Navbar.Collapse>
 
             </Navbar>
+
         </>
     )
 }
