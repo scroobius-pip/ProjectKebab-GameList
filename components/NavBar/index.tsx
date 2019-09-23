@@ -1,6 +1,6 @@
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Button } from 'react-bootstrap'
 import UserInfoProfileImage from '../UserInfo/UserInfo.ProfileImage'
-import { font } from '../../styles'
+import { font, colors } from '../../styles'
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
 import { Children } from 'react'
@@ -21,49 +21,61 @@ const StyledNavItem = ({ children, href }) => {
 
 }
 
+const loggedIn = false
 
 
 export default ({ userName, userImage }: Props) => {
     return (
-        <>
-            <Navbar style={{ marginBottom: 20 }} collapseOnSelect expand='lg' variant="dark">
-                <Navbar.Brand href="/profile/me" style={{}}>
+        <div style={{ marginBottom: 20 }}>
+            <Navbar collapseOnSelect expand='lg' variant="dark">
+                <Navbar.Brand href="/profile/me" style={{ marginRight: 'auto' }}>
                     <img style={{ height: 25, marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                        <StyledNavItem href='/matches'>MATCHES</StyledNavItem>
-                        <StyledNavItem href='/offers'>OFFERS</StyledNavItem>
-                    </Nav>
-                    <Nav style={{ marginRight: 20 }}>
-                        <StyledNavItem href='/mylist'>MY GAME LIST</StyledNavItem>
-                        <StyledNavItem href='/forums'>FORUMS</StyledNavItem>
+                {loggedIn ? <>  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Collapse id="responsive-navbar-nav">
+                        <Nav className="mr-auto">
+                            <StyledNavItem href='/matches'>MATCHES</StyledNavItem>
+                            <StyledNavItem href='/offers'>OFFERS</StyledNavItem>
+                        </Nav>
+                        <Nav style={{ marginRight: 20 }}>
+                            <StyledNavItem href='/mylist'>MY GAME LIST</StyledNavItem>
+                            <StyledNavItem href='/forums'>FORUMS</StyledNavItem>
 
-                    </Nav>
-                    <Nav style={{}}>
+                        </Nav>
+                        <Nav style={{}}>
+                            <span>
+                                <NavDropdown as='li' title={
+                                    <>
+                                        <span style={{ marginRight: 10 }}>
+                                            <UserInfoProfileImage size={40} src={userImage} />
+                                        </span>
+                                        <span style={{ fontWeight: 600 }}>{userName}</span>
+                                    </>
+                                } id="collasible-nav-dropdown">
+                                    <NavDropdown.Item onClick={() => Router.push('/settings')}>
+                                        <span>Settings</span>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>Logout</NavDropdown.Item>
+                                </NavDropdown>
+                            </span>
+
+
+                        </Nav>
+                    </Navbar.Collapse>
+                </> :
+                    <Nav style={{ justifyContent: 'flex-end' }}>
+
                         <span>
-                            <NavDropdown as='li' title={
-                                <>
-                                    <span style={{ marginRight: 10 }}>
-                                        <UserInfoProfileImage size={40} src={userImage} />
-                                    </span>
-                                    <span style={{ fontWeight: 600 }}>{userName}</span>
-                                </>
-                            } id="collasible-nav-dropdown">
-                                <NavDropdown.Item onClick={() => Router.push('/settings')}>
-                                    {/* <Link href='/settings'> */}
-                                    <span>Settings</span>
-                                    {/* </Link> */}
-                                </NavDropdown.Item>
-                                <NavDropdown.Item>Logout</NavDropdown.Item>
-                            </NavDropdown>
+                            <Button>
+                                <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Create your game list</span>
+                                <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/pencil.svg')} />
+                            </Button>
                         </span>
                     </Nav>
-                </Navbar.Collapse>
+                }
 
             </Navbar>
 
-        </>
+        </div>
     )
 }

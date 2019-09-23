@@ -1,4 +1,4 @@
-import { PremiumWithModal } from '../components/Modals'
+import { PremiumWithModal, LoginWithModal } from '../components/Modals'
 import { useState } from 'react'
 import { Button, } from 'react-bootstrap'
 import SettingsSection, { Props as SettingsSectionProps } from '../components/SettingsSection'
@@ -69,7 +69,7 @@ const Page = ({ userSettings }: { userSettings: UserSettings }) => {
 
 
     return <>
-        <PremiumWithModal close={close} visible={show} />
+        <LoginWithModal close={close} visible={show} />
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
             <span>
                 <Button variant='outline-danger'>Cancel</Button>

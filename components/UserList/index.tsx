@@ -31,7 +31,7 @@ export default ({ editable = false, data }: Props) => {
 
 
             <Tab.Content>
-                <ScreenClassProvider>
+             
 
                     <ScreenClassRender
                         render={screenClass => {
@@ -61,7 +61,7 @@ export default ({ editable = false, data }: Props) => {
                         }}
 
                     />
-                </ScreenClassProvider>
+              
             </Tab.Content>
 
         </div>

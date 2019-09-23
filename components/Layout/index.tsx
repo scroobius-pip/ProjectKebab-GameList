@@ -3,6 +3,7 @@ import './index.css'
 
 import { Container } from 'react-bootstrap';
 import NavBar from '../NavBar';
+import { ScreenClassProvider } from 'react-grid-system';
 
 
 
@@ -16,8 +17,10 @@ const userInfo = {
 
 export default ({ children }) => {
     return <Container>
-        <NavBar {...userInfo} />
-        {children}
+        <ScreenClassProvider>
+            <NavBar {...userInfo} />
+            {children}
+        </ScreenClassProvider>
     </Container>
 
 }

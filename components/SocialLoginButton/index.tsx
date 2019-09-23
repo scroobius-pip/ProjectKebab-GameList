@@ -5,14 +5,14 @@ interface Props {
 }
 
 export default ({ color, image, onClick }: Props) => {
-    return <div className='social-button' onClick={onClick}>
+    return <span className='social-button' onClick={onClick}>
         <img style={{ height: '80%', width: '80%' }} src={image} />
         <style jsx>
             {`
             .social-button {
                 background-color:${color};
                 border-radius: 5px;
-                display: flex;
+                display: inline-flex;
                 padding: 20px;
                max-height:100px;
                max-width:100px;
@@ -30,5 +30,5 @@ export default ({ color, image, onClick }: Props) => {
             
             `}
         </style>
-    </div>
+    </span>
 }

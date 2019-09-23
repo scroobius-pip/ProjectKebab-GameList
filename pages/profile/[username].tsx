@@ -1,7 +1,7 @@
 
 import Section from '@components/Section';
 import ReactMarkdown from 'react-markdown'
-import { Col, Row, } from 'react-bootstrap'
+import { Col, Row, Alert, } from 'react-bootstrap'
 import UserInfo from '@components/UserInfo';
 import UserList, { UserGames } from '@components/UserList';
 
@@ -34,7 +34,11 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
                     <Row noGutters={false}>
                         <Col lg={12} style={{ marginBottom: 30 }} >
                             <Section heading='Details.'>
-                                <ReactMarkdown source={userInfo.userDescription || `${userInfo.userName} hasn't provided any details`} />
+                                {
+                                    userInfo.userDescription.length ?
+                                        <ReactMarkdown source={userInfo.userDescription} /> :
+                                        <Alert variant='info'>{userInfo.userName} hasn't provided any details</Alert>
+                                }
                             </Section>
                         </Col>
                         <Col lg={12}  >
@@ -59,7 +63,7 @@ Page.getInitialProps = async ({ query }) => {
                 userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
                 isPremium: true,
                 epochTimeCreated: 1504224000 * 1000,
-                userDetails: 'It aims to be [CommonMark](http:\/\/commonmark.org\/) compliant, and includes options to style the output. These options include:\r\n\r\n*   headingStyle (setext or atx)\r\n*   horizontalRule (\\*, -, or \\_)\r\n*   bullet (\\*, -, or +)\r\n*   codeBlockStyle (indented or fenced)\r\n*   fence (\\` or ~)\r\n*   emDelimiter (\\_ or \\*)\r\n*   strongDelimiter (\\*\\* or \\_\\_)\r\n*   linkStyle (inlined or referenced)\r\n*   linkReferenceStyle (full, collapsed, or shortcut)'
+                userDescription: 'It aims to be [CommonMark](http:\/\/commonmark.org\/) compliant, and includes options to style the output. These options include:\r\n\r\n*   headingStyle (setext or atx)\r\n*   horizontalRule (\\*, -, or \\_)\r\n*   bullet (\\*, -, or +)\r\n*   codeBlockStyle (indented or fenced)\r\n*   fence (\\` or ~)\r\n*   emDelimiter (\\_ or \\*)\r\n*   strongDelimiter (\\*\\* or \\_\\_)\r\n*   linkStyle (inlined or referenced)\r\n*   linkReferenceStyle (full, collapsed, or shortcut)'
             },
             userGames: {
                 has: [
@@ -110,7 +114,7 @@ Page.getInitialProps = async ({ query }) => {
             userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
             isPremium: true,
             epochTimeCreated: 1504224000 * 1000,
-            userDetails: ''
+            userDescription: ''
         },
         userGames: {
             has: [],
