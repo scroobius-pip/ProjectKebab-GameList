@@ -3,7 +3,6 @@ import { Modal, ModalBody } from 'react-bootstrap';
 interface Props {
     visible: boolean
     close: () => any
-    // children: React.ElementType
 }
 
 export default (Content: React.ElementType) => ({ visible, close }: Props) => {

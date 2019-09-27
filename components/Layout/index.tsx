@@ -10,19 +10,15 @@ import React from 'react';
 
 
 interface Props {
-    user: User
     signInClicked: () => any
     children: any
 }
 
 export default (props: Props) => {
-
     return <Container>
         <ScreenClassProvider>
-            <UserProvider value={props.user}>
-                <NavBar onSignInClicked={props.signInClicked} onSignOutClicked={() => { }} user={props.user} />
-                {props.children}
-            </UserProvider>
+            <NavBar onSignInClicked={props.signInClicked} onSignOutClicked={() => { }} />
+            {props.children}
         </ScreenClassProvider>
     </Container >
 

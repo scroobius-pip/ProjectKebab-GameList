@@ -1,5 +1,6 @@
 import SocialLoginButton from '@components/SocialLoginButton';
 
+
 export default () => {
 
     return <div style={{ backgroundColor: '#353739', color: '#EAEBEB', padding: 25, textAlign: 'center' }}>

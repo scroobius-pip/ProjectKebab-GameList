@@ -2,6 +2,48 @@ import { useState, useContext } from 'react'
 import { Button, } from 'react-bootstrap'
 import SettingsSection, { Props as SettingsSectionProps } from '../components/SettingsSection'
 import Switch from '../components/Switch'
+import React from 'react'
+import Router from 'next/router'
+import AuthTokenContext from 'context/AuthTokenContext'
+import { withAuth } from '@components/WithAuth'
+import { getAuthToken } from 'functions/authToken'
+
+class Page extends React.Component<Props> {
+
+    static async getInitialProps(ctx) {
+        const authToken = getAuthToken(ctx)
+        console.log(`auth token: ${authToken}`)
+
+        return {
+            userSettings: {
+                notifications_enabled: true,
+                location_enabled: true,
+                premium_enabled: false,
+
+            }
+        }
+    }
+
+
+    render() {
+
+        return (
+            <>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
+                    <span>
+                        <Button variant='outline-danger'>Cancel</Button>
+                    </span>
+                    <span style={{ marginLeft: 10 }}>
+                        <Button onClick={() => { }}>Save</Button>
+
+                    </span>
+                </div>
+
+                <SettingsSection {...settingsData(this.props.userSettings)} />
+            </>
+        )
+    }
+}
 
 interface UserSettings {
     notifications_enabled: boolean
@@ -72,52 +114,5 @@ const settingsData: (userSettings: UserSettings) => SettingsSectionProps = (sett
     }
 )
 
-const Page = ({ userSettings, signInClicked, premiumClicked }: Props) => {
 
-    userSettings.handlePremiumToggle = (value) => {
-        premiumClicked()
-        return !value
-    }
-
-    userSettings.handleLocationToggle = (value) => {
-        return !value
-    }
-
-    userSettings.handleNotificationToggle = (value) => {
-        return !value
-    }
-
-
-    return (
-        <>
-            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
-                <span>
-                    <Button variant='outline-danger'>Cancel</Button>
-                </span>
-                <span style={{ marginLeft: 10 }}>
-                    <Button onClick={() => { }}>Save</Button>
-                </span>
-            </div>
-
-            <SettingsSection {...settingsData(userSettings)} />
-        </>
-    )
-}
-
-
-
-Page.getInitialProps = async () => {
-
-    return {
-        userSettings: {
-            notifications_enabled: true,
-            location_enabled: true,
-            premium_enabled: false,
-
-        }
-    }
-}
-
-
-
-export default Page
+export default withAuth(Page)

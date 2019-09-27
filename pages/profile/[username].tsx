@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { Col, Row, Alert, } from 'react-bootstrap'
 import UserInfo from '@components/UserInfo';
 import UserList, { UserGames } from '@components/UserList';
+import { withAuth } from '@components/WithAuth';
 
 interface UserInfo {
     userName: string
@@ -123,4 +124,4 @@ Page.getInitialProps = async ({ query }) => {
     }
 }
 
-export default Page
+export default withAuth(Page)

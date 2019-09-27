@@ -3,6 +3,8 @@ import Section from '../components/Section';
 import { Row, Col, Button } from 'react-bootstrap';
 import Editor from '../components/Editor';
 import UserList, { UserGames } from '../components/UserList';
+import { getAuthToken } from 'functions/authToken';
+import { withAuth } from '@components/WithAuth';
 
 interface UserInfo {
     userName: string
@@ -42,6 +44,8 @@ const Page = ({ userInfo, userGames, authToken }: { userInfo: UserInfo, userGame
 
 
 Page.getInitialProps = async ({ ctx }) => {
+    // console.log(getAuthToken(ctx))
+
 
     return {
         userInfo: {
@@ -95,4 +99,4 @@ Page.getInitialProps = async ({ ctx }) => {
     }
 }
 
-export default Page
+export default withAuth(Page)

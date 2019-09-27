@@ -8,8 +8,8 @@ import '../static/nprogress.css'
 import { getAuthToken, setAuthToken, isExpired } from 'functions/authToken'
 import User from 'types/IUser'
 import { LoginWithModal, PremiumWithModal } from '@components/Modals'
-
-
+import { AuthTokenProvider } from 'context/AuthTokenContext'
+import { UserProvider } from 'context/UserContext'
 
 Router.events.on('routerChangeStart', () => {
     NProgress.start()
@@ -20,10 +20,12 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 interface Props {
     authToken: string
+    user?: User
 }
 
 interface State {
-    user: User
+    user?: User
+    authToken: string
     premiumVisible: boolean
     signInVisible: boolean
 }
@@ -33,9 +35,10 @@ class MyApp extends App<Props, {}, State> {
     constructor(props) {
         super(props)
         this.state = {
-            user: null,
             premiumVisible: false,
-            signInVisible: false
+            signInVisible: false,
+            authToken: this.props.authToken,
+            user: this.props.user
         }
         this.togglePremiumModal = this.togglePremiumModal.bind(this)
         this.toggleSignInModal = this.toggleSignInModal.bind(this)
@@ -55,18 +58,11 @@ class MyApp extends App<Props, {}, State> {
     }
 
 
-    signInClicked = () => {
+    signInClicked = async () => {
         this.toggleSignInModal()
         this.setState({
-            user: {
-                id: 'simdi',
-                info: {
-                    userName: 'IncredibleGonzo',
-                    userImageUrl: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
-                    isPro: true,
-                    epochTimeCreated: 1504224000 * 1000
-                },
-            }
+            user: (await getUserWithAuthToken('aa')),
+            authToken: 'aa'
         })
     }
 
@@ -79,17 +75,35 @@ class MyApp extends App<Props, {}, State> {
                 <Head>
                     <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
                 </Head>
-
-                <Layout signInClicked={this.signInClicked} user={this.state.user} >
-                    <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
-                    <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
-
-                    <Component {...pageProps} signInClicked={this.signInClicked} premiumClicked={this.togglePremiumModal} />
-                </Layout>
+                <AuthTokenProvider value={this.state.authToken}>
+                    <UserProvider value={this.state.user}>
+                        <Layout signInClicked={this.signInClicked}  >
+                            <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
+                            <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
+                            <Component {...pageProps} signInClicked={this.signInClicked} premiumClicked={this.togglePremiumModal} />
+                        </Layout>
+                    </UserProvider>
+                </AuthTokenProvider>
 
             </>
         )
     }
+}
+
+const getUserWithAuthToken = (authToken: string): Promise<User> | User => {
+    if (authToken) {
+        return {
+            id: 'simdi',
+            info: {
+                userName: 'IncredibleGonzo',
+                userImageUrl: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
+                isPro: true,
+                epochTimeCreated: 1504224000 * 1000
+            },
+
+        }
+    }
+    return null
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
@@ -98,9 +112,12 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
         authToken = ''
     }
 
+    const user = authToken ? await getUserWithAuthToken(authToken) : null
+
     return {
         pageProps: {
             authToken,
+            user,
             ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
         }
     }
