@@ -15,7 +15,7 @@ interface Section {
 }
 
 export interface Props {
-    sections: Section[]
+    sections: Section[],
 }
 
 const SubSection = ({ title, description, Input }: SubSection) => {
