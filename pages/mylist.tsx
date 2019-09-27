@@ -3,7 +3,6 @@ import Section from '../components/Section';
 import { Row, Col, Button } from 'react-bootstrap';
 import Editor from '../components/Editor';
 import UserList, { UserGames } from '../components/UserList';
-import { async } from 'q';
 
 interface UserInfo {
     userName: string
@@ -14,7 +13,8 @@ interface UserInfo {
     isBanned: boolean
 }
 
-const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGames }) => {
+const Page = ({ userInfo, userGames, authToken }: { userInfo: UserInfo, userGames: UserGames, authToken: string }) => {
+    console.log(`auth token: ${authToken}`)
     return <>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
             <span>
@@ -41,7 +41,7 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
 }
 
 
-Page.getInitialProps = async () => {
+Page.getInitialProps = async ({ ctx }) => {
 
     return {
         userInfo: {

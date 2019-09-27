@@ -60,10 +60,10 @@ Page.getInitialProps = async ({ query }) => {
         return {
             userInfo: {
                 userName: 'simdi',
-                userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
+                userImage: "",
                 isPremium: true,
                 epochTimeCreated: 1504224000 * 1000,
-                userDescription: 'It aims to be [CommonMark](http:\/\/commonmark.org\/) compliant, and includes options to style the output. These options include:\r\n\r\n*   headingStyle (setext or atx)\r\n*   horizontalRule (\\*, -, or \\_)\r\n*   bullet (\\*, -, or +)\r\n*   codeBlockStyle (indented or fenced)\r\n*   fence (\\` or ~)\r\n*   emDelimiter (\\_ or \\*)\r\n*   strongDelimiter (\\*\\* or \\_\\_)\r\n*   linkStyle (inlined or referenced)\r\n*   linkReferenceStyle (full, collapsed, or shortcut)'
+                userDescription: ''
             },
             userGames: {
                 has: [
