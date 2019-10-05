@@ -1,5 +1,3 @@
-import { setAuthToken } from 'functions/authToken';
-import redirect from 'functions/redirect';
 import { Spinner } from 'react-bootstrap';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';

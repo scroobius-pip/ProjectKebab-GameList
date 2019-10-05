@@ -1,7 +1,6 @@
 import SocialLoginButton from '@components/SocialLoginButton';
 
-
-export default () => {
+export default ({ errorMessage = '' }: { errorMessage: string }) => {
 
     return <div style={{ backgroundColor: '#353739', color: '#EAEBEB', padding: 25, textAlign: 'center' }}>
         <h2><strong>Login</strong></h2>
@@ -16,7 +15,7 @@ export default () => {
             </span>
         </div>
         <div style={{ marginTop: 10 }}>
-            <p style={{ color: '#FF0055' }}>This reddit account is banned</p>
+            <p style={{ color: '#FF0055' }}>{errorMessage}</p>
         </div>
         <div>
             <p>By signing in you agree to nakama's <a href='terms.io'>terms and conditions</a></p>

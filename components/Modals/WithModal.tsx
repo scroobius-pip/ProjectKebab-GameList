@@ -3,15 +3,17 @@ import { Modal, ModalBody } from 'react-bootstrap';
 interface Props {
     visible: boolean
     close: () => any
+    [x: string]: any
+
 }
 
-export default (Content: React.ElementType) => ({ visible, close }: Props) => {
+export default (Content: React.ElementType) => ({ visible, close, ...props }: Props) => {
 
     return (
         <>
             <Modal onHide={close} show={visible}>
                 <ModalBody>
-                    <Content close={close} />
+                    <Content {...props} close={close} />
                 </ModalBody>
             </Modal>
             <style>
