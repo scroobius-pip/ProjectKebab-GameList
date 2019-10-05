@@ -124,4 +124,4 @@ Page.getInitialProps = async ({ query }) => {
     }
 }
 
-export default (Page)
+export default withAuth(Page)

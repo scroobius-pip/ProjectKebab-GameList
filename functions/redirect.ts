@@ -1,7 +1,7 @@
 import Router from 'next/router'
 
 function redirect(ctx: any, location: string) {
-    if (ctx.res) {
+    if (ctx && ctx.res) {
         ctx.res.writeHead(302, {
             Location: location,
             'Content-Type': 'text/html; charset=utf-8',
