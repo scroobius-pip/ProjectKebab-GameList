@@ -12,7 +12,7 @@ class Page extends React.Component<Props> {
 
     static async getInitialProps(ctx) {
         const authToken = getAuthToken(ctx)
-        console.log(`auth token: ${authToken}`)
+        // console.log(`auth token: ${authToken}`)
 
         return {
             userSettings: {
@@ -27,6 +27,13 @@ class Page extends React.Component<Props> {
 
     render() {
 
+        const userSettings = this.props.userSettings
+        userSettings.handlePremiumToggle = () => {
+            this.props.premiumClicked()
+            return false
+        }
+        userSettings.handleNotificationToggle = (value) => { return !value }
+        userSettings.handleLocationToggle = (value) => { return !value }
         return (
             <>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
@@ -39,7 +46,7 @@ class Page extends React.Component<Props> {
                     </span>
                 </div>
 
-                <SettingsSection {...settingsData(this.props.userSettings)} />
+                <SettingsSection {...settingsData(userSettings)} />
             </>
         )
     }

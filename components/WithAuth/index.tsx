@@ -6,7 +6,9 @@ export const withAuth = (WrappedComponent: any) => {
     return class AuthComponent extends React.Component {
         static async getInitialProps(ctx) {
             let authToken = getAuthToken(ctx)
+            console.log(authToken)
             if (isExpired(authToken)) {
+                console.log('expired or invalid token')
                 redirect(ctx, '/login')
                 return
             }

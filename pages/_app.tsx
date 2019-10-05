@@ -9,7 +9,8 @@ import { getAuthToken, setAuthToken, isExpired } from 'functions/authToken'
 import User from 'types/IUser'
 import { LoginWithModal, PremiumWithModal } from '@components/Modals'
 import { AuthTokenProvider } from 'context/AuthTokenContext'
-import { UserProvider } from 'context/UserContext'
+import UserContext, { UserProvider } from 'context/UserContext'
+import redirect from 'functions/redirect'
 
 Router.events.on('routerChangeStart', () => {
     NProgress.start()
@@ -34,6 +35,7 @@ class MyApp extends App<Props, {}, State> {
 
     constructor(props) {
         super(props)
+
         this.state = {
             premiumVisible: false,
             signInVisible: false,
@@ -58,11 +60,27 @@ class MyApp extends App<Props, {}, State> {
     }
 
 
-    signInClicked = async () => {
-        this.toggleSignInModal()
+    signIn = async (token: string) => {
+        if (typeof token === 'string' && token) {
+            this.setState({
+                authToken: token,
+                user: await getUserWithAuthToken(token)
+            })
+            setAuthToken(token)
+            redirect(null, '/mylist')
+        } else {
+            redirect(null, '/login')
+        }
+
+
+    }
+
+    signOut = async () => {
+        setAuthToken('')
+        redirect(null, '/')
         this.setState({
-            user: (await getUserWithAuthToken('aa')),
-            authToken: 'aa'
+            user: null,
+            authToken: null
         })
     }
 
@@ -77,12 +95,14 @@ class MyApp extends App<Props, {}, State> {
                 </Head>
                 <AuthTokenProvider value={this.state.authToken}>
                     <UserProvider value={this.state.user}>
-                        <Layout signInClicked={this.signInClicked}  >
+
+                        <Layout signInClicked={this.toggleSignInModal} signOutClicked={this.signOut} >
                             <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
                             <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
-                            <Component {...pageProps} signInClicked={this.signInClicked} premiumClicked={this.togglePremiumModal} />
+                            <Component {...pageProps} signOut={this.signOut} signIn={this.signIn} premiumClicked={this.togglePremiumModal} />
                         </Layout>
                     </UserProvider>
+
                 </AuthTokenProvider>
 
             </>
@@ -111,13 +131,15 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     if (isExpired(authToken)) {
         authToken = ''
     }
+    // console.log(`authtoken: ${authToken}`)
 
     const user = authToken ? await getUserWithAuthToken(authToken) : null
-
+    // console.log(user)
     return {
+        user,
+        authToken,
         pageProps: {
             authToken,
-            user,
             ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
         }
     }

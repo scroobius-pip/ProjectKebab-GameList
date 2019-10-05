@@ -11,13 +11,14 @@ import React from 'react';
 
 interface Props {
     signInClicked: () => any
+    signOutClicked: () => any
     children: any
 }
 
 export default (props: Props) => {
     return <Container>
         <ScreenClassProvider>
-            <NavBar onSignInClicked={props.signInClicked} onSignOutClicked={() => { }} />
+            <NavBar onSignInClicked={props.signInClicked} onSignOutClicked={props.signOutClicked} />
             {props.children}
         </ScreenClassProvider>
     </Container >

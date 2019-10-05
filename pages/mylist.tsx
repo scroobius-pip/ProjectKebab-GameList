@@ -16,7 +16,7 @@ interface UserInfo {
 }
 
 const Page = ({ userInfo, userGames, authToken }: { userInfo: UserInfo, userGames: UserGames, authToken: string }) => {
-    console.log(`auth token: ${authToken}`)
+    // console.log(`auth token: ${authToken}`)
     return <>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
             <span>
