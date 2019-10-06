@@ -1,10 +1,11 @@
 
 import Section from '@components/Section';
 import ReactMarkdown from 'react-markdown'
-import { Col, Row, Alert, } from 'react-bootstrap'
+import { Col, Row, Alert, Button, } from 'react-bootstrap'
 import UserInfo from '@components/UserInfo';
 import UserList, { UserGames } from '@components/UserList';
 import { withAuth } from '@components/WithAuth';
+import Router from 'next/router'
 
 interface UserInfo {
     userName: string
@@ -25,10 +26,16 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
 
     return (
         <>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
+                <span>
+                    <Button onClick={() => Router.push('/mylist')} variant='outline-primary'>Edit List</Button>
+                </span>
+
+            </div>
             <Row >
                 <Col md={12} lg={3} style={{ marginBottom: 30 }}>
                     <Section>
-                        <UserInfo {...userInfo} />
+                        <UserInfo disableChat {...userInfo} />
                     </Section>
                 </Col>
                 <Col md={12} lg={9}>

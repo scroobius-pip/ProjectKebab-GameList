@@ -13,9 +13,10 @@ interface Props {
     userImage: string
     isPremium: boolean
     epochTimeCreated: number
+    disableChat?: boolean
 }
 
-export default ({ userName, userImage, isPremium, epochTimeCreated }: Props) => {
+export default ({ userName, userImage, isPremium, epochTimeCreated, disableChat = false }: Props) => {
 
     return <>
         <ProfileImageStatus src={userImage} />
@@ -23,7 +24,7 @@ export default ({ userName, userImage, isPremium, epochTimeCreated }: Props) => 
         <UserInfoMemberSince epochTimeCreated={epochTimeCreated} />
         <UserInfoSocialButtons socialLinks={[{ link: `https://www.reddit.com/user/${userName}`, platform: 'reddit' }]} />
         <UserInfoStatus />
-        <UserInfoChat userName={userName} />
+        {disableChat ? null : <UserInfoChat userName={userName} />}
         <UserInfoCopy />
 
     </>

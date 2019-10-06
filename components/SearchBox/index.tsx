@@ -14,6 +14,7 @@ export interface Game {
     consoleType: string
     id: string
     imageUrl: string
+    custom?: boolean
 }
 
 type Suggestion = Game
@@ -75,7 +76,8 @@ export default ({ id, searchFunction, onSelect }: Props) => {
             name: value,
             consoleType: 'Custom Item',
             id: value,
-            imageUrl: ''
+            imageUrl: '',
+            custom: true
         }
         await setSuggestions(parseGroupedGamesToSections(groupGamesByConsoleType([...(await searchFunction(value)), customEntry])))
         setLoading(false)
