@@ -20,11 +20,9 @@ const Page = ({ userInfo, userGames, authToken }: { userInfo: UserInfo, userGame
     return <>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
             <span>
-                <Button variant='outline-danger'>Cancel</Button>
+                <Button variant='outline-primary'>View List</Button>
             </span>
-            <span style={{ marginLeft: 10 }}>
-                <Button onClick={() => { }}>Save</Button>
-            </span>
+
         </div>
         <Row>
             <Col md={12} style={{ marginBottom: 30 }}>

@@ -11,6 +11,9 @@ import { LoginWithModal, PremiumWithModal } from '@components/Modals'
 import { AuthTokenProvider } from 'context/AuthTokenContext'
 import UserContext, { UserProvider } from 'context/UserContext'
 import redirect from 'functions/redirect'
+import WithApollo from '@components/WithApollo'
+import { ApolloProvider } from 'react-apollo'
+import ApolloClient from 'apollo-client'
 
 Router.events.on('routerChangeStart', () => {
     NProgress.start()
@@ -22,6 +25,7 @@ Router.events.on('routeChangeError', () => NProgress.done())
 interface Props {
     authToken: string
     user?: User
+    apolloClient: ApolloClient<any>
 }
 
 interface State {
@@ -95,12 +99,14 @@ class MyApp extends App<Props, {}, State> {
                 </Head>
                 <AuthTokenProvider value={this.state.authToken}>
                     <UserProvider value={this.state.user}>
+                        <ApolloProvider client={this.props.apolloClient}>
 
-                        <Layout signInClicked={this.toggleSignInModal} signOutClicked={this.signOut} >
-                            <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
-                            <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
-                            <Component {...pageProps} signOut={this.signOut} signIn={this.signIn} premiumClicked={this.togglePremiumModal} />
-                        </Layout>
+                            <Layout signInClicked={this.toggleSignInModal} signOutClicked={this.signOut} >
+                                <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
+                                <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
+                                <Component {...pageProps} signOut={this.signOut} signIn={this.signIn} premiumClicked={this.togglePremiumModal} />
+                            </Layout>
+                        </ApolloProvider>
                     </UserProvider>
 
                 </AuthTokenProvider>
@@ -145,4 +151,4 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     }
 }
 
-export default MyApp
+export default WithApollo(MyApp)
