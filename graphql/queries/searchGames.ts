@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost'
 
 const searchGames = gql`
-query Games($input:SearchGamesQueryInput!){
+query searchGames($input:SearchGamesQueryInput!){
 searchGames(input:$input ) {
    result {
      consoleType

@@ -18,25 +18,25 @@ export type Scalars = {
 };
 
 
-export type AddDbGamesInput = {
+export type IAddDbGamesInput = {
   name: Scalars['String'],
   consoleType: Scalars['String'],
   imageUrl: Scalars['String'],
   popularity: Scalars['Float'],
 };
 
-export type AddDbGamesMutationInput = {
-  games: Array<AddDbGamesInput>,
+export type IAddDbGamesMutationInput = {
+  games: Array<IAddDbGamesInput>,
 };
 
-export type AddDbGamesMutationResult = {
+export type IAddDbGamesMutationResult = {
    __typename?: 'AddDbGamesMutationResult',
   result?: Maybe<Scalars['Boolean']>,
-  notAdded?: Maybe<Array<Maybe<AddDbGamesMutationResultNotAdded>>>,
+  notAdded?: Maybe<Array<Maybe<IAddDbGamesMutationResultNotAdded>>>,
   error?: Maybe<Scalars['String']>,
 };
 
-export type AddDbGamesMutationResultNotAdded = {
+export type IAddDbGamesMutationResultNotAdded = {
    __typename?: 'AddDbGamesMutationResultNotAdded',
   name: Scalars['String'],
   consoleType: Scalars['String'],
@@ -44,50 +44,50 @@ export type AddDbGamesMutationResultNotAdded = {
   popularity: Scalars['Float'],
 };
 
-export type AddGamesInput = {
+export type IAddGamesInput = {
   gameId: Scalars['ID'],
-  details: UserGameDetailsInput,
-  customItemDetails?: Maybe<AddGamesInputCustomItemDetails>,
+  details: IUserGameDetailsInput,
+  customItemDetails?: Maybe<IAddGamesInputCustomItemDetails>,
 };
 
-export type AddGamesInputCustomItemDetails = {
+export type IAddGamesInputCustomItemDetails = {
   name: Scalars['String'],
   consoleType: Scalars['String'],
 };
 
-export type AddGamesMutationInput = {
-  games: Array<AddGamesInput>,
+export type IAddGamesMutationInput = {
+  games: Array<IAddGamesInput>,
 };
 
-export type AddGamesMutationResult = {
+export type IAddGamesMutationResult = {
    __typename?: 'AddGamesMutationResult',
   result: Scalars['Boolean'],
-  error?: Maybe<Error>,
+  error?: Maybe<IError>,
 };
 
-export enum CacheControlScope {
+export enum ICacheControlScope {
   Public = 'PUBLIC',
   Private = 'PRIVATE'
 }
 
-export type CreateOfferMutationInput = {
-  offer: OfferInput,
+export type ICreateOfferMutationInput = {
+  offer: IOfferInput,
 };
 
-export type CreateOfferMutationResult = {
+export type ICreateOfferMutationResult = {
    __typename?: 'CreateOfferMutationResult',
-  result?: Maybe<Offer>,
-  error?: Maybe<Error>,
+  result?: Maybe<IOffer>,
+  error?: Maybe<IError>,
 };
 
-export type Error = {
+export type IError = {
    __typename?: 'Error',
   id: Scalars['ID'],
   message: Scalars['String'],
   type: Scalars['String'],
 };
 
-export type Game = {
+export type IGame = {
    __typename?: 'Game',
   name: Scalars['String'],
   consoleType?: Maybe<Scalars['String']>,
@@ -95,105 +95,105 @@ export type Game = {
   imageUrl?: Maybe<Scalars['String']>,
 };
 
-export type Match = {
+export type IMatch = {
    __typename?: 'Match',
-  user: User,
+  user: IUser,
   distance: Scalars['Float'],
 };
 
-export type MatchQueryInput = {
-  sortBy: MatchSortType,
+export type IMatchQueryInput = {
+  sortBy: IMatchSortType,
   latitude: Scalars['Float'],
   longitude: Scalars['Float'],
 };
 
-export type MatchQueryResult = {
+export type IMatchQueryResult = {
    __typename?: 'MatchQueryResult',
-  result?: Maybe<Array<Match>>,
+  result?: Maybe<Array<IMatch>>,
 };
 
-export enum MatchSortType {
+export enum IMatchSortType {
   Distance = 'distance',
   MatchRate = 'matchRate'
 }
 
-export type Mutation = {
+export type IMutation = {
    __typename?: 'Mutation',
-  addUserGames?: Maybe<AddGamesMutationResult>,
-  removeUserGames?: Maybe<RemoveGamesMutationResult>,
-  updateUserGames?: Maybe<UpdateGamesMutationResult>,
-  addDbGames?: Maybe<AddDbGamesMutationResult>,
-  updateOffer?: Maybe<UpdateOfferMutationResult>,
-  createOffer?: Maybe<CreateOfferMutationResult>,
-  updateUserInfo?: Maybe<UpdateUserInfoMutationResult>,
+  addUserGames?: Maybe<IAddGamesMutationResult>,
+  removeUserGames?: Maybe<IRemoveGamesMutationResult>,
+  updateUserGames?: Maybe<IUpdateGamesMutationResult>,
+  addDbGames?: Maybe<IAddDbGamesMutationResult>,
+  updateOffer?: Maybe<IUpdateOfferMutationResult>,
+  createOffer?: Maybe<ICreateOfferMutationResult>,
+  updateUserInfo?: Maybe<IUpdateUserInfoMutationResult>,
 };
 
 
-export type MutationAddUserGamesArgs = {
-  input: AddGamesMutationInput
+export type IMutationAddUserGamesArgs = {
+  input: IAddGamesMutationInput
 };
 
 
-export type MutationRemoveUserGamesArgs = {
-  input: RemoveGamesMutationInput
+export type IMutationRemoveUserGamesArgs = {
+  input: IRemoveGamesMutationInput
 };
 
 
-export type MutationUpdateUserGamesArgs = {
-  input: UpdateGamesMutationInput
+export type IMutationUpdateUserGamesArgs = {
+  input: IUpdateGamesMutationInput
 };
 
 
-export type MutationAddDbGamesArgs = {
-  input: AddDbGamesMutationInput
+export type IMutationAddDbGamesArgs = {
+  input: IAddDbGamesMutationInput
 };
 
 
-export type MutationUpdateOfferArgs = {
-  input?: Maybe<UpdateOfferMutationInput>
+export type IMutationUpdateOfferArgs = {
+  input?: Maybe<IUpdateOfferMutationInput>
 };
 
 
-export type MutationCreateOfferArgs = {
-  input?: Maybe<CreateOfferMutationInput>
+export type IMutationCreateOfferArgs = {
+  input?: Maybe<ICreateOfferMutationInput>
 };
 
 
-export type MutationUpdateUserInfoArgs = {
-  input: UpdateUserInfoMutationInput
+export type IMutationUpdateUserInfoArgs = {
+  input: IUpdateUserInfoMutationInput
 };
 
-export type Offer = {
+export type IOffer = {
    __typename?: 'Offer',
   offerId: Scalars['ID'],
-  senderGames: Array<UserGame>,
-  receiverGames: Array<UserGame>,
+  senderGames: Array<IUserGame>,
+  receiverGames: Array<IUserGame>,
   receiverId: Scalars['ID'],
   senderId: Scalars['ID'],
   epochTimeCreated: Scalars['String'],
-  status: OfferStatus,
-  receiverStatus: OfferStatus,
-  senderStatus: OfferStatus,
+  status: IOfferStatus,
+  receiverStatus: IOfferStatus,
+  senderStatus: IOfferStatus,
 };
 
-export type OfferInput = {
-  myGames: Array<UserGameInput>,
-  otherGames: Array<UserGameInput>,
+export type IOfferInput = {
+  myGames: Array<IUserGameInput>,
+  otherGames: Array<IUserGameInput>,
   otherId: Scalars['ID'],
 };
 
-export type OfferQueryInput = {
-  status: OfferStatus,
-  pagination?: Maybe<PaginationInput>,
+export type IOfferQueryInput = {
+  status: IOfferStatus,
+  pagination?: Maybe<IPaginationInput>,
 };
 
-export type OfferQueryResult = {
+export type IOfferQueryResult = {
    __typename?: 'OfferQueryResult',
-  result?: Maybe<Array<Offer>>,
-  pageInfo?: Maybe<PageInfo>,
+  result?: Maybe<Array<IOffer>>,
+  pageInfo?: Maybe<IPageInfo>,
 };
 
-export enum OfferStatus {
+export enum IOfferStatus {
   Pending = 'pending',
   Ongoing = 'ongoing',
   Completed = 'completed',
@@ -201,231 +201,222 @@ export enum OfferStatus {
   Declined = 'declined'
 }
 
-export type PageInfo = {
+export type IPageInfo = {
    __typename?: 'PageInfo',
   noOfItems: Scalars['Int'],
 };
 
-export type PaginationInput = {
+export type IPaginationInput = {
   offset: Scalars['Int'],
   limit: Scalars['Int'],
 };
 
-export type Query = {
+export type IQuery = {
    __typename?: 'Query',
-  searchGames: SearchGamesQueryResult,
-  matches: MatchQueryResult,
-  offers: OfferQueryResult,
-  me?: Maybe<User>,
-  user?: Maybe<User>,
+  searchGames: ISearchGamesQueryResult,
+  matches: IMatchQueryResult,
+  offers: IOfferQueryResult,
+  me?: Maybe<IUser>,
+  user?: Maybe<IUser>,
 };
 
 
-export type QuerySearchGamesArgs = {
-  input: SearchGamesQueryInput
+export type IQuerySearchGamesArgs = {
+  input: ISearchGamesQueryInput
 };
 
 
-export type QueryMatchesArgs = {
-  input: MatchQueryInput
+export type IQueryMatchesArgs = {
+  input: IMatchQueryInput
 };
 
 
-export type QueryOffersArgs = {
-  input: OfferQueryInput
+export type IQueryOffersArgs = {
+  input: IOfferQueryInput
 };
 
 
-export type QueryUserArgs = {
-  input: UserQueryInput
+export type IQueryUserArgs = {
+  input: IUserQueryInput
 };
 
-export type RemoveGamesInput = {
+export type IRemoveGamesInput = {
   id: Scalars['ID'],
 };
 
-export type RemoveGamesMutationInput = {
-  games: Array<RemoveGamesInput>,
+export type IRemoveGamesMutationInput = {
+  games: Array<IRemoveGamesInput>,
 };
 
-export type RemoveGamesMutationResult = {
+export type IRemoveGamesMutationResult = {
    __typename?: 'RemoveGamesMutationResult',
   result: Scalars['Boolean'],
 };
 
-export type SearchGamesQueryInput = {
+export type ISearchGamesQueryInput = {
   searchText: Scalars['String'],
   limit?: Maybe<Scalars['Int']>,
 };
 
-export type SearchGamesQueryResult = {
+export type ISearchGamesQueryResult = {
    __typename?: 'SearchGamesQueryResult',
-  result?: Maybe<Array<Game>>,
+  result?: Maybe<Array<IGame>>,
 };
 
-export type UpdateGamesInput = {
+export type IUpdateGamesInput = {
   id: Scalars['ID'],
-  details: UpdateGamesInputDetails,
+  details: IUpdateGamesInputDetails,
 };
 
-export type UpdateGamesInputDetails = {
+export type IUpdateGamesInputDetails = {
   description: Scalars['String'],
-  status: UserGameDetailsStatus,
-  tradeType: UserGameDetailsTradeType,
+  status: IUserGameDetailsStatus,
+  tradeType: IUserGameDetailsTradeType,
 };
 
-export type UpdateGamesMutationInput = {
-  games: Array<UpdateGamesInput>,
+export type IUpdateGamesMutationInput = {
+  games: Array<IUpdateGamesInput>,
 };
 
-export type UpdateGamesMutationResult = {
+export type IUpdateGamesMutationResult = {
    __typename?: 'UpdateGamesMutationResult',
   result: Scalars['Boolean'],
 };
 
-export type UpdateOfferMutationInput = {
+export type IUpdateOfferMutationInput = {
   offerId: Scalars['ID'],
-  type: UpdateOfferMutationInputType,
+  type: IUpdateOfferMutationInputType,
 };
 
-export enum UpdateOfferMutationInputType {
+export enum IUpdateOfferMutationInputType {
   Complete = 'complete',
   Accept = 'accept',
   Decline = 'decline',
   Cancel = 'cancel'
 }
 
-export type UpdateOfferMutationResult = {
+export type IUpdateOfferMutationResult = {
    __typename?: 'UpdateOfferMutationResult',
-  result?: Maybe<Offer>,
+  result?: Maybe<IOffer>,
 };
 
-export type UpdateUserInfoMutationInput = {
-  info: UserInfoInput,
+export type IUpdateUserInfoMutationInput = {
+  info: IUserInfoInput,
 };
 
-export type UpdateUserInfoMutationResult = {
+export type IUpdateUserInfoMutationResult = {
    __typename?: 'UpdateUserInfoMutationResult',
-  result?: Maybe<UserInfo>,
-  error?: Maybe<Error>,
+  result?: Maybe<IUserInfo>,
+  error?: Maybe<IError>,
 };
 
 
-export type User = {
+export type IUser = {
    __typename?: 'User',
   id: Scalars['ID'],
-  info: UserInfo,
-  wantedGames?: Maybe<Array<UserGame>>,
-  hasGames?: Maybe<Array<UserGame>>,
+  info: IUserInfo,
+  wantedGames?: Maybe<Array<IUserGame>>,
+  hasGames?: Maybe<Array<IUserGame>>,
 };
 
-export type UserGame = {
+export type IUserGame = {
    __typename?: 'UserGame',
   id: Scalars['ID'],
-  details: UserGameDetails,
-  game: Game,
+  details: IUserGameDetails,
+  game: IGame,
 };
 
-export type UserGameDetails = {
+export type IUserGameDetails = {
    __typename?: 'UserGameDetails',
   description: Scalars['String'],
-  status: UserGameDetailsStatus,
-  tradeType: UserGameDetailsTradeType,
+  status: IUserGameDetailsStatus,
+  tradeType: IUserGameDetailsTradeType,
 };
 
-export type UserGameDetailsInput = {
+export type IUserGameDetailsInput = {
   description: Scalars['String'],
-  status?: Maybe<UserGameDetailsStatus>,
-  tradeType: UserGameDetailsTradeType,
+  status?: Maybe<IUserGameDetailsStatus>,
+  tradeType: IUserGameDetailsTradeType,
 };
 
-export enum UserGameDetailsStatus {
+export enum IUserGameDetailsStatus {
   Has = 'has',
   Want = 'want'
 }
 
-export enum UserGameDetailsTradeType {
+export enum IUserGameDetailsTradeType {
   Swap = 'swap',
   Sale = 'sale'
 }
 
-export type UserGameInput = {
-  details: UserGameDetailsInput,
+export type IUserGameInput = {
+  details: IUserGameDetailsInput,
   gameId: Scalars['ID'],
 };
 
-export type UserInfo = {
+export type IUserInfo = {
    __typename?: 'UserInfo',
   email?: Maybe<Scalars['String']>,
   description?: Maybe<Scalars['String']>,
   isPro?: Maybe<Scalars['Boolean']>,
   epochTimeCreated?: Maybe<Scalars['String']>,
-  location?: Maybe<UserInfoLocation>,
+  location?: Maybe<IUserInfoLocation>,
   noOfSuccessfulExchanges?: Maybe<Scalars['Int']>,
-  rating?: Maybe<UserInfoRating>,
+  rating?: Maybe<IUserInfoRating>,
   userImageUrl?: Maybe<Scalars['String']>,
   userName?: Maybe<Scalars['String']>,
   isBanned?: Maybe<Scalars['Boolean']>,
   setting_matchNotifications?: Maybe<Scalars['Boolean']>,
 };
 
-export type UserInfoInput = {
+export type IUserInfoInput = {
   email?: Maybe<Scalars['String']>,
   description?: Maybe<Scalars['String']>,
   isPro?: Maybe<Scalars['Boolean']>,
-  location?: Maybe<UserInfoLocationInput>,
+  location?: Maybe<IUserInfoLocationInput>,
   userImageUrl?: Maybe<Scalars['String']>,
   userName?: Maybe<Scalars['String']>,
   isBanned?: Maybe<Scalars['Boolean']>,
   setting_matchNotifications?: Maybe<Scalars['Boolean']>,
 };
 
-export type UserInfoLocation = {
+export type IUserInfoLocation = {
    __typename?: 'UserInfoLocation',
   city: Scalars['String'],
   state: Scalars['String'],
 };
 
-export type UserInfoLocationInput = {
+export type IUserInfoLocationInput = {
   longitude: Scalars['Float'],
   latitude: Scalars['Float'],
 };
 
-export type UserInfoRating = {
+export type IUserInfoRating = {
    __typename?: 'UserInfoRating',
   negative?: Maybe<Scalars['Int']>,
   positive?: Maybe<Scalars['Int']>,
 };
 
-export type UserQueryInput = {
-  by: UserQueryType,
+export type IUserQueryInput = {
+  by: IUserQueryType,
   value: Scalars['String'],
 };
 
-export enum UserQueryType {
+export enum IUserQueryType {
   Id = 'id',
   Username = 'username'
 }
 
-export type GamesQueryVariables = {
-  input: SearchGamesQueryInput
+export type ISearchGamesQueryVariables = {
+  input: ISearchGamesQueryInput
 };
 
 
-export type GamesQuery = (
-  { __typename?: 'Query' }
-  & { searchGames: (
-    { __typename?: 'SearchGamesQueryResult' }
-    & { result: Maybe<Array<(
-      { __typename?: 'Game' }
-      & Pick<Game, 'consoleType' | 'id' | 'imageUrl' | 'name'>
-    )>> }
-  ) }
-);
+export type ISearchGamesQuery = { __typename?: 'Query', searchGames: { __typename?: 'SearchGamesQueryResult', result: Maybe<Array<{ __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string }>> } };
 
 
-export const GamesDocument = gql`
-    query Games($input: SearchGamesQueryInput!) {
+export const SearchGamesDocument = gql`
+    query searchGames($input: SearchGamesQueryInput!) {
   searchGames(input: $input) {
     result {
       consoleType
@@ -436,46 +427,46 @@ export const GamesDocument = gql`
   }
 }
     `;
-export type GamesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<GamesQuery, GamesQueryVariables>, 'query'> & ({ variables: GamesQueryVariables; skip?: boolean; } | { skip: boolean; });
+export type SearchGamesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<ISearchGamesQuery, ISearchGamesQueryVariables>, 'query'> & ({ variables: ISearchGamesQueryVariables; skip?: boolean; } | { skip: boolean; });
 
-    export const GamesComponent = (props: GamesComponentProps) => (
-      <ApolloReactComponents.Query<GamesQuery, GamesQueryVariables> query={GamesDocument} {...props} />
+    export const SearchGamesComponent = (props: SearchGamesComponentProps) => (
+      <ApolloReactComponents.Query<ISearchGamesQuery, ISearchGamesQueryVariables> query={SearchGamesDocument} {...props} />
     );
     
-export type GamesProps<TChildProps = {}> = ApolloReactHoc.DataProps<GamesQuery, GamesQueryVariables> & TChildProps;
-export function withGames<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+export type ISearchGamesProps<TChildProps = {}> = ApolloReactHoc.DataProps<ISearchGamesQuery, ISearchGamesQueryVariables> & TChildProps;
+export function withSearchGames<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
   TProps,
-  GamesQuery,
-  GamesQueryVariables,
-  GamesProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, GamesQuery, GamesQueryVariables, GamesProps<TChildProps>>(GamesDocument, {
-      alias: 'games',
+  ISearchGamesQuery,
+  ISearchGamesQueryVariables,
+  ISearchGamesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, ISearchGamesQuery, ISearchGamesQueryVariables, ISearchGamesProps<TChildProps>>(SearchGamesDocument, {
+      alias: 'searchGames',
       ...operationOptions
     });
 };
 
 /**
- * __useGamesQuery__
+ * __useSearchGamesQuery__
  *
- * To run a query within a React component, call `useGamesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGamesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * To run a query within a React component, call `useSearchGamesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchGamesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGamesQuery({
+ * const { data, loading, error } = useSearchGamesQuery({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useGamesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GamesQuery, GamesQueryVariables>) {
-        return ApolloReactHooks.useQuery<GamesQuery, GamesQueryVariables>(GamesDocument, baseOptions);
+export function useSearchGamesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ISearchGamesQuery, ISearchGamesQueryVariables>) {
+        return ApolloReactHooks.useQuery<ISearchGamesQuery, ISearchGamesQueryVariables>(SearchGamesDocument, baseOptions);
       }
-export function useGamesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GamesQuery, GamesQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<GamesQuery, GamesQueryVariables>(GamesDocument, baseOptions);
+export function useSearchGamesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ISearchGamesQuery, ISearchGamesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<ISearchGamesQuery, ISearchGamesQueryVariables>(SearchGamesDocument, baseOptions);
         }
-export type GamesQueryHookResult = ReturnType<typeof useGamesQuery>;
-export type GamesLazyQueryHookResult = ReturnType<typeof useGamesLazyQuery>;
-export type GamesQueryResult = ApolloReactCommon.QueryResult<GamesQuery, GamesQueryVariables>;
+export type SearchGamesQueryHookResult = ReturnType<typeof useSearchGamesQuery>;
+export type SearchGamesLazyQueryHookResult = ReturnType<typeof useSearchGamesLazyQuery>;
+export type SearchGamesQueryResult = ApolloReactCommon.QueryResult<ISearchGamesQuery, ISearchGamesQueryVariables>;

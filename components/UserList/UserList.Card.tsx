@@ -1,11 +1,13 @@
 import { UserGame } from './UserList'
 import UserListCardHead, { FilterValue } from './UserList.Card.Head'
 import UserListRow from './UserList.Card.Row'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Props as UserListProps } from './UserList.Table'
 import SearchBox, { Game } from '../SearchBox'
 import { Row, Col } from 'react-bootstrap'
 import { unionBy } from 'lodash'
+import { ApolloConsumer, getApolloContext } from 'react-apollo'
+import searchGames from 'functions/graphql/queries/searchGames'
 
 const games: Game[] = [
     {
@@ -60,6 +62,8 @@ export default ({ initialGames, id, editable = false, onChange }: UserListProps)
     const [filterValues, setFilterValues] = useState({ tradeType: [], consoleType: [] } as FilterValue)
     const [sortValue, setSortValue] = useState('')
     const [data, setData] = useState(initialGames)
+    const apolloClient = useContext(getApolloContext()).client
+
 
     const sortChange: (value: string) => any = (value) => {
         setSortValue(value)
@@ -118,7 +122,10 @@ export default ({ initialGames, id, editable = false, onChange }: UserListProps)
     return <>
         <Row style={{ marginBottom: 20, marginLeft: -40, marginRight: -40 }}>
             <Col xs={12} md={8} xl={4}>
-                <SearchBox onSelect={handleAdd} searchFunction={async () => games} id={id} />
+
+                <SearchBox onSelect={handleAdd} searchFunction={async (searchText) => {
+                    return await searchGames(searchText, apolloClient)
+                }} id={id} />
             </Col>
         </Row>
         <UserListCardHead

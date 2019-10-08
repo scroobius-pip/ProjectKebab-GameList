@@ -1,9 +1,10 @@
 import AutoSuggest from 'react-autosuggest'
 import { useState } from 'react'
-import { debounce } from 'lodash';
+import { throttle } from 'lodash';
 // import './index.css'
 import generateColorFromString from '../../functions/utils/generateColorFromString';
 import { Spinner } from 'react-bootstrap';
+import { DebounceInput } from 'react-debounce-input';
 
 async function stall(stallTime = 500) {
     await new Promise(resolve => setTimeout(resolve, stallTime));
@@ -58,7 +59,7 @@ interface Props {
 
 export default ({ id, searchFunction, onSelect }: Props) => {
 
-    const debouncedSearchFunction = debounce(searchFunction, 500)
+    // const debouncedSearchFunction = debounce(searchFunction, 500)
 
     const [value, setValue] = useState('')
     const [suggestions, setSuggestions] = useState([])
@@ -68,10 +69,9 @@ export default ({ id, searchFunction, onSelect }: Props) => {
         setValue(newValue)
     }
 
-
-    const onSuggestionsFetchRequested = debounce(async ({ value }) => {
+    const loadSuggestions = async (value: string) => {
         setLoading(true)
-        await stall()
+
         const customEntry = {
             name: value,
             consoleType: 'Custom Item',
@@ -79,9 +79,14 @@ export default ({ id, searchFunction, onSelect }: Props) => {
             imageUrl: '',
             custom: true
         }
-        await setSuggestions(parseGroupedGamesToSections(groupGamesByConsoleType([...(await searchFunction(value)), customEntry])))
+        setSuggestions(parseGroupedGamesToSections(groupGamesByConsoleType([...(await searchFunction(value)), customEntry])))
+
         setLoading(false)
-    }, 500)
+    }
+
+    const onSuggestionsFetchRequested = async ({ value }) => {
+        loadSuggestions(value)
+    }
 
     const onSuggestionsClearRequested = () => {
         setValue('')
@@ -136,7 +141,7 @@ export default ({ id, searchFunction, onSelect }: Props) => {
                     left: 18
                 }}
             ><img style={{ width: '1em', opacity: 0.6 }} src={require('../../assets/icons/search-magnify.svg')} /></span>
-            <input style={{ textIndent: 40 }} {...inputProps} />
+            <DebounceInput minLength={3} debounceTimeout={500} style={{ textIndent: 40 }} {...inputProps} />
             {
                 loading ? <span>
                     <Spinner
@@ -172,7 +177,7 @@ export default ({ id, searchFunction, onSelect }: Props) => {
         <>
             <AutoSuggest
                 suggestions={suggestions}
-                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                onSuggestionsFetchRequested={throttle(onSuggestionsFetchRequested, 500)}
                 onSuggestionsClearRequested={onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
@@ -185,6 +190,7 @@ export default ({ id, searchFunction, onSelect }: Props) => {
                 renderInputComponent={renderInputComponent}
                 highlightFirstSuggestion
                 onSuggestionSelected={onSuggestionSelected}
+
             />
             <style jsx global>
                 {`
