@@ -131,7 +131,7 @@ export default ({ initialGames, id, editable = false, onChange }: Props) => {
     return (
         <>
             {editable ? <Row style={{ marginBottom: 20 }}>
-                <Col xs={12} md={8} xl={4}>
+                <Col xs={12} md={8} xl={6}>
                     <SearchBox onSelect={handleAdd} searchFunction={async (searchText) => {
                         return await searchGames(searchText, apolloClient)
                     }} id={id} />
