@@ -17,9 +17,10 @@ export default (App: any) => {
 
         static async getInitialProps(ctx: any) {
             const {
+
                 Component,
                 router,
-                ctx: { req, res }
+                ctx: { req, res, AppTree, }
             } = ctx;
             const apollo = initApollo(
                 {},
@@ -49,8 +50,9 @@ export default (App: any) => {
                 // and extract the resulting data
                 try {
                     // Run all GraphQL queries
+
                     await getDataFromTree(
-                        <App
+                        <AppTree
                             {...appProps}
                             Component={Component}
                             router={router}

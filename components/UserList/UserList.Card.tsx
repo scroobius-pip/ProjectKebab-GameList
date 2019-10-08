@@ -6,43 +6,6 @@ import { Props as UserListProps } from './UserList.Table'
 import SearchBox, { Game } from '../SearchBox'
 import { Row, Col } from 'react-bootstrap'
 import { unionBy } from 'lodash'
-import { ApolloConsumer, getApolloContext } from 'react-apollo'
-import searchGames from 'functions/graphql/queries/searchGames'
-
-const games: Game[] = [
-    {
-        name: 'Forza Horizon 4',
-        consoleType: 'Xone',
-        id: '1Forza',
-        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
-    },
-    {
-        name: 'Ashen',
-        consoleType: 'Xone',
-        id: '1Ashen',
-        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
-    },
-    {
-        name: "Uncharted 4: A Thief's End",
-        consoleType: 'Playstation 4',
-        id: '1Uncharted',
-        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
-    },
-    {
-        name: 'Metro: Last Light',
-        consoleType: 'Playstation 4',
-        id: '1Metro',
-        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
-    },
-    {
-        name: 'Ashen',
-        consoleType: 'Playstation 4',
-        id: '1Xone',
-        imageUrl: 'https://images.igdb.com/igdb/image/upload/t_cover_big/co1m5n.jpg'
-    },
-
-
-]
 
 const compare = (invert: boolean) => (a: UserGame, b: UserGame) => {
     const nameA = a.name
@@ -58,11 +21,10 @@ const compare = (invert: boolean) => (a: UserGame, b: UserGame) => {
     return invert ? comparison * -1 : comparison;
 }
 
-export default ({ initialGames, id, editable = false, onChange }: UserListProps) => {
+export default ({ initialGames, id, editable = false, onChange, searchFunction }: UserListProps) => {
     const [filterValues, setFilterValues] = useState({ tradeType: [], consoleType: [] } as FilterValue)
     const [sortValue, setSortValue] = useState('')
     const [data, setData] = useState(initialGames)
-    const apolloClient = useContext(getApolloContext()).client
 
 
     const sortChange: (value: string) => any = (value) => {
@@ -123,9 +85,7 @@ export default ({ initialGames, id, editable = false, onChange }: UserListProps)
         <Row style={{ marginBottom: 20, marginLeft: -40, marginRight: -40 }}>
             <Col xs={12} md={8} xl={4}>
 
-                <SearchBox onSelect={handleAdd} searchFunction={async (searchText) => {
-                    return await searchGames(searchText, apolloClient)
-                }} id={id} />
+                <SearchBox onSelect={handleAdd} searchFunction={searchFunction} id={id} />
             </Col>
         </Row>
         <UserListCardHead

@@ -5,10 +5,15 @@ import { Game } from '@components/SearchBox';
 
 export default async (searchText: string, client: ApolloClient<any>): Promise<Game[]> => {
 
-    const results = await client.query<ISearchGamesQuery, ISearchGamesQueryVariables>({
-        variables: { input: { limit: 5, searchText } },
-        query: searchGames
-    })
-    const games = results.data.searchGames.result || []
-    return games
+    try {
+        const results = await client.query<ISearchGamesQuery, ISearchGamesQueryVariables>({
+            variables: { input: { limit: 10, searchText } },
+            query: searchGames
+        })
+        const games = results.data.searchGames.result || []
+        return games
+    } catch (error) {
+        return []
+    }
+
 }
