@@ -6,7 +6,7 @@ import React from "react";
 import { getDataFromTree } from "react-apollo";
 import initApollo from "./InitApollo";
 import { isBrowser } from "./isBrowser";
-import { getAuthToken } from 'functions/authToken';
+import { getAuthToken } from 'functions/utils/authToken';
 
 export default (App: any) => {
     return class WithData extends React.Component {

@@ -1,7 +1,7 @@
 import LoginModal from '@components/Modals/LoginModal';
 import { LoginWithModal } from '@components/Modals';
 import { useRouter } from 'next/router';
-import redirect from 'functions/redirect';
+import redirect from 'functions/utils/redirect';
 
 const Page = () => {
     const router = useRouter()

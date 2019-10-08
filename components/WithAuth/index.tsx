@@ -1,6 +1,6 @@
 import React from 'react';
-import { getAuthToken, isExpired } from 'functions/authToken';
-import redirect from 'functions/redirect';
+import { getAuthToken, isExpired } from 'functions/utils/authToken';
+import redirect from 'functions/utils/redirect';
 
 export const withAuth = (WrappedComponent: any) => {
     return class AuthComponent extends React.Component {

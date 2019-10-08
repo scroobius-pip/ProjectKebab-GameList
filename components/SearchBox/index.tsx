@@ -2,7 +2,7 @@ import AutoSuggest from 'react-autosuggest'
 import { useState } from 'react'
 import { debounce } from 'lodash';
 // import './index.css'
-import generateColorFromString from '../../functions/generateColorFromString';
+import generateColorFromString from '../../functions/utils/generateColorFromString';
 import { Spinner } from 'react-bootstrap';
 
 async function stall(stallTime = 500) {

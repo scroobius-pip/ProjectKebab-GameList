@@ -3,7 +3,7 @@ import Section from '../components/Section';
 import { Row, Col, Button } from 'react-bootstrap';
 import Editor from '../components/Editor';
 import UserList, { UserGames } from '../components/UserList';
-import { getAuthToken } from 'functions/authToken';
+import { getAuthToken } from 'functions/utils/authToken';
 import { withAuth } from '@components/WithAuth';
 
 interface UserInfo {

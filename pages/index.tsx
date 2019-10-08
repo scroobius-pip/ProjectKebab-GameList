@@ -1,5 +1,5 @@
-import { getAuthToken, isExpired } from 'functions/authToken';
-import redirect from 'functions/redirect';
+import { getAuthToken, isExpired } from 'functions/utils/authToken';
+import redirect from 'functions/utils/redirect';
 import React from 'react';
 
 

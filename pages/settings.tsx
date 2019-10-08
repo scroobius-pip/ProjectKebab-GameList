@@ -6,7 +6,7 @@ import React from 'react'
 import Router from 'next/router'
 import AuthTokenContext from 'context/AuthTokenContext'
 import { withAuth } from '@components/WithAuth'
-import { getAuthToken } from 'functions/authToken'
+import { getAuthToken } from 'functions/utils/authToken'
 
 class Page extends React.Component<Props> {
 
