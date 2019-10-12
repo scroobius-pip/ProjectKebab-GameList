@@ -36,7 +36,7 @@ class Page extends React.Component<Props> {
         userSettings.handleLocationToggle = (value) => { return !value }
         return (
             <>
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
+                {/* <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
                     <span>
                         <Button variant='outline-danger'>Cancel</Button>
                     </span>
@@ -44,7 +44,7 @@ class Page extends React.Component<Props> {
                         <Button onClick={() => { }}>Save</Button>
 
                     </span>
-                </div>
+                </div> */}
 
                 <SettingsSection {...settingsData(userSettings)} />
             </>

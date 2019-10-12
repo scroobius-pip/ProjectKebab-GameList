@@ -13,7 +13,7 @@ export interface UserGame {
     description: string
 }
 
-interface Props {
+export interface Props {
     initialGames: UserGame[]
     id: string
     editable?: boolean

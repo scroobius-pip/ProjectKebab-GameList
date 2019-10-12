@@ -1,5 +1,5 @@
 import { Tab, Nav } from 'react-bootstrap'
-import UserList, { UserGame } from './UserList'
+import UserList, { UserGame, Props as UserListProps } from './UserList'
 import { ScreenClassProvider, ScreenClassRender } from 'react-grid-system';
 
 export interface UserGames {
@@ -10,11 +10,12 @@ export interface UserGames {
 
 interface Props {
     editable?: boolean
-    // variant?: 'Table' | 'Card'
+    onChange?: UserListProps['onChange']
     data: UserGames
+
 }
 
-export default ({ editable = false, data }: Props) => {
+export default ({ editable = false, data, onChange }: Props) => {
 
     return <Tab.Container id="user-list" defaultActiveKey="has">
         <div>
@@ -31,37 +32,35 @@ export default ({ editable = false, data }: Props) => {
 
 
             <Tab.Content>
-             
 
-                    <ScreenClassRender
-                        render={screenClass => {
-                            const variant = ['lg', 'md', 'xl'].includes(screenClass) ? 'Table' : 'Card'
 
-                            return <>
-                                <Tab.Pane eventKey='has'>
-                                    <UserList
-                                        variant={variant}
-                                        onChange={(changeType, data) => {
-                                            console.log(changeType)
-                                            console.log(data)
-                                        }}
-                                        editable={editable}
-                                        id='has'
-                                        initialGames={data.has} />
-                                </Tab.Pane>
-                                <Tab.Pane eventKey='want'>
-                                    <UserList
-                                        variant={variant}
-                                        editable={editable}
-                                        id='want'
-                                        initialGames={data.want} />
-                                </Tab.Pane>
+                <ScreenClassRender
+                    render={screenClass => {
+                        const variant = ['lg', 'md', 'xl'].includes(screenClass) ? 'Table' : 'Card'
 
-                            </>
-                        }}
+                        return <>
+                            <Tab.Pane eventKey='has'>
+                                <UserList
+                                    variant={variant}
+                                    onChange={onChange}
+                                    editable={editable}
+                                    id='has'
+                                    initialGames={data.has} />
+                            </Tab.Pane>
+                            <Tab.Pane eventKey='want'>
+                                <UserList
+                                    onChange={onChange}
+                                    variant={variant}
+                                    editable={editable}
+                                    id='want'
+                                    initialGames={data.want} />
+                            </Tab.Pane>
 
-                    />
-              
+                        </>
+                    }}
+
+                />
+
             </Tab.Content>
 
         </div>

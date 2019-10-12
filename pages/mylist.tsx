@@ -1,10 +1,15 @@
 import Layout from '../components/Layout';
 import Section from '../components/Section';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Spinner } from 'react-bootstrap';
 import Editor from '../components/Editor';
 import UserList, { UserGames } from '../components/UserList';
 import { getAuthToken } from 'functions/utils/authToken';
 import { withAuth } from '@components/WithAuth';
+import { colors } from '../styles'
+import { unionBy } from 'lodash'
+import { useState } from 'react';
+import mergeOperations, { Operation } from 'functions/utils/mergeOperation';
+import mergeOperation from 'functions/utils/mergeOperation';
 
 interface UserInfo {
     userName: string
@@ -17,11 +22,30 @@ interface UserInfo {
 
 const Page = ({ userInfo, userGames, authToken }: { userInfo: UserInfo, userGames: UserGames, authToken: string }) => {
     // console.log(`auth token: ${authToken}`)
+    const [gameOperations, setGameOperations] = useState<{ [id: string]: Operation }>({})
+
     return <>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
-            <span>
-                <Button variant='outline-primary'>View List</Button>
-            </span>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end', marginBottom: 20, flexDirection: 'column' }}>
+            <div>
+                <span>
+                    <Button variant='outline-primary'>View List</Button>
+                </span>
+            </div>
+            <div
+                style={{ marginTop: 20 }}
+            >
+                <Spinner
+                    variant='light'
+                    style={{
+                        width: '1em',
+                        height: '1em',
+                    }}
+                    animation="grow" />
+                <span style={{ color: colors.text, fontWeight: 600, marginLeft: 5 }}>
+                    Saving
+                </span>
+
+            </div>
 
         </div>
         <Row>
@@ -33,7 +57,21 @@ const Page = ({ userInfo, userGames, authToken }: { userInfo: UserInfo, userGame
             </Col>
             <Col md={12}>
                 <Section heading='Your List.'>
-                    <UserList data={userGames} editable />
+                    <UserList
+                        onChange={(changeType, data) => {
+                            setGameOperations({
+                                ...gameOperations,
+                                [data.id]: mergeOperation(
+                                    {
+                                        ...(gameOperations[data.id] || {}),
+                                        [changeType]: data,
+                                    }
+                                )
+                            })
+
+                            console.log(mergeOperations(gameOperations))
+                        }}
+                        data={userGames} editable />
                 </Section>
             </Col>
         </Row>

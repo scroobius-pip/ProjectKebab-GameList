@@ -52,7 +52,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
 
         const userGame: UserGame = { ...game, description: '', tradeType: 'Swap' }
         setData(unionBy([userGame], data, 'id'))
-        onChange('add', { id: userGame.id, value: userGame })
+        onChange('add', userGame)
     }
 
 
