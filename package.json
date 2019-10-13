@@ -25,6 +25,7 @@
   "homepage": "https://github.com/scroobius-pip/ProjectKebab-GameList#readme",
   "dependencies": {
     "@graphql-codegen/cli": "^1.8.1",
+    "@rooks/use-interval": "^3.4.0",
     "@types/jsonwebtoken": "^8.3.4",
     "@types/jwt-decode": "^2.2.1",
     "@types/lodash": "^4.14.138",

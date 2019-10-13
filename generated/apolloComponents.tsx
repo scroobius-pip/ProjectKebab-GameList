@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import * as React from 'react';
 import * as ApolloReactCommon from '@apollo/react-common';
+import * as React from 'react';
 import * as ApolloReactComponents from '@apollo/react-components';
 import * as ApolloReactHoc from '@apollo/react-hoc';
 import * as ApolloReactHooks from '@apollo/react-hooks';
@@ -407,6 +407,23 @@ export enum IUserQueryType {
   Username = 'username'
 }
 
+export type IAddUserGamesMutationVariables = {
+  games: Array<IAddGamesInput>
+};
+
+
+export type IAddUserGamesMutation = { __typename?: 'Mutation', addUserGames: Maybe<{ __typename?: 'AddGamesMutationResult', result: boolean, error: Maybe<{ __typename?: 'Error', message: string, type: string, id: string }> }> };
+
+export type IGetDescriptionQueryVariables = {};
+
+
+export type IGetDescriptionQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', info: { __typename?: 'UserInfo', description: Maybe<string> } }> };
+
+export type IUserGameQueryVariables = {};
+
+
+export type IUserGameQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
+
 export type ISearchGamesQueryVariables = {
   input: ISearchGamesQueryInput
 };
@@ -415,6 +432,187 @@ export type ISearchGamesQueryVariables = {
 export type ISearchGamesQuery = { __typename?: 'Query', searchGames: { __typename?: 'SearchGamesQueryResult', result: Maybe<Array<{ __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string }>> } };
 
 
+export const AddUserGamesDocument = gql`
+    mutation addUserGames($games: [AddGamesInput!]!) {
+  addUserGames(input: {games: $games}) {
+    result
+    error {
+      message
+      type
+      id
+    }
+  }
+}
+    `;
+export type IAddUserGamesMutationFn = ApolloReactCommon.MutationFunction<IAddUserGamesMutation, IAddUserGamesMutationVariables>;
+export type AddUserGamesComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<IAddUserGamesMutation, IAddUserGamesMutationVariables>, 'mutation'>;
+
+    export const AddUserGamesComponent = (props: AddUserGamesComponentProps) => (
+      <ApolloReactComponents.Mutation<IAddUserGamesMutation, IAddUserGamesMutationVariables> mutation={AddUserGamesDocument} {...props} />
+    );
+    
+export type IAddUserGamesProps<TChildProps = {}> = ApolloReactHoc.MutateProps<IAddUserGamesMutation, IAddUserGamesMutationVariables> & TChildProps;
+export function withAddUserGames<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IAddUserGamesMutation,
+  IAddUserGamesMutationVariables,
+  IAddUserGamesProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, IAddUserGamesMutation, IAddUserGamesMutationVariables, IAddUserGamesProps<TChildProps>>(AddUserGamesDocument, {
+      alias: 'addUserGames',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useAddUserGamesMutation__
+ *
+ * To run a mutation, you first call `useAddUserGamesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddUserGamesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addUserGamesMutation, { data, loading, error }] = useAddUserGamesMutation({
+ *   variables: {
+ *      games: // value for 'games'
+ *   },
+ * });
+ */
+export function useAddUserGamesMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<IAddUserGamesMutation, IAddUserGamesMutationVariables>) {
+        return ApolloReactHooks.useMutation<IAddUserGamesMutation, IAddUserGamesMutationVariables>(AddUserGamesDocument, baseOptions);
+      }
+export type AddUserGamesMutationHookResult = ReturnType<typeof useAddUserGamesMutation>;
+export type AddUserGamesMutationResult = ApolloReactCommon.MutationResult<IAddUserGamesMutation>;
+export type AddUserGamesMutationOptions = ApolloReactCommon.BaseMutationOptions<IAddUserGamesMutation, IAddUserGamesMutationVariables>;
+export const GetDescriptionDocument = gql`
+    query getDescription {
+  me {
+    info {
+      description
+    }
+  }
+}
+    `;
+export type GetDescriptionComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IGetDescriptionQuery, IGetDescriptionQueryVariables>, 'query'>;
+
+    export const GetDescriptionComponent = (props: GetDescriptionComponentProps) => (
+      <ApolloReactComponents.Query<IGetDescriptionQuery, IGetDescriptionQueryVariables> query={GetDescriptionDocument} {...props} />
+    );
+    
+export type IGetDescriptionProps<TChildProps = {}> = ApolloReactHoc.DataProps<IGetDescriptionQuery, IGetDescriptionQueryVariables> & TChildProps;
+export function withGetDescription<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IGetDescriptionQuery,
+  IGetDescriptionQueryVariables,
+  IGetDescriptionProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, IGetDescriptionQuery, IGetDescriptionQueryVariables, IGetDescriptionProps<TChildProps>>(GetDescriptionDocument, {
+      alias: 'getDescription',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGetDescriptionQuery__
+ *
+ * To run a query within a React component, call `useGetDescriptionQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDescriptionQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDescriptionQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetDescriptionQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<IGetDescriptionQuery, IGetDescriptionQueryVariables>) {
+        return ApolloReactHooks.useQuery<IGetDescriptionQuery, IGetDescriptionQueryVariables>(GetDescriptionDocument, baseOptions);
+      }
+export function useGetDescriptionLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<IGetDescriptionQuery, IGetDescriptionQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<IGetDescriptionQuery, IGetDescriptionQueryVariables>(GetDescriptionDocument, baseOptions);
+        }
+export type GetDescriptionQueryHookResult = ReturnType<typeof useGetDescriptionQuery>;
+export type GetDescriptionLazyQueryHookResult = ReturnType<typeof useGetDescriptionLazyQuery>;
+export type GetDescriptionQueryResult = ApolloReactCommon.QueryResult<IGetDescriptionQuery, IGetDescriptionQueryVariables>;
+export const UserGameDocument = gql`
+    query UserGame {
+  me {
+    hasGames {
+      id
+      details {
+        description
+        status
+        tradeType
+      }
+      game {
+        consoleType
+        id
+        imageUrl
+        name
+      }
+    }
+    wantedGames {
+      id
+      details {
+        description
+        status
+        tradeType
+      }
+      game {
+        consoleType
+        id
+        imageUrl
+        name
+      }
+    }
+  }
+}
+    `;
+export type UserGameComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IUserGameQuery, IUserGameQueryVariables>, 'query'>;
+
+    export const UserGameComponent = (props: UserGameComponentProps) => (
+      <ApolloReactComponents.Query<IUserGameQuery, IUserGameQueryVariables> query={UserGameDocument} {...props} />
+    );
+    
+export type IUserGameProps<TChildProps = {}> = ApolloReactHoc.DataProps<IUserGameQuery, IUserGameQueryVariables> & TChildProps;
+export function withUserGame<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IUserGameQuery,
+  IUserGameQueryVariables,
+  IUserGameProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, IUserGameQuery, IUserGameQueryVariables, IUserGameProps<TChildProps>>(UserGameDocument, {
+      alias: 'userGame',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useUserGameQuery__
+ *
+ * To run a query within a React component, call `useUserGameQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserGameQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserGameQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUserGameQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<IUserGameQuery, IUserGameQueryVariables>) {
+        return ApolloReactHooks.useQuery<IUserGameQuery, IUserGameQueryVariables>(UserGameDocument, baseOptions);
+      }
+export function useUserGameLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<IUserGameQuery, IUserGameQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<IUserGameQuery, IUserGameQueryVariables>(UserGameDocument, baseOptions);
+        }
+export type UserGameQueryHookResult = ReturnType<typeof useUserGameQuery>;
+export type UserGameLazyQueryHookResult = ReturnType<typeof useUserGameLazyQuery>;
+export type UserGameQueryResult = ApolloReactCommon.QueryResult<IUserGameQuery, IUserGameQueryVariables>;
 export const SearchGamesDocument = gql`
     query searchGames($input: SearchGamesQueryInput!) {
   searchGames(input: $input) {

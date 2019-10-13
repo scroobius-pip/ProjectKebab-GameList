@@ -3,12 +3,9 @@ import UserListCard from './UserList.Card';
 import { getApolloContext } from 'react-apollo'
 import searchGames from 'functions/graphql/queries/searchGames';
 import { useContext } from 'react';
+import { Game } from '@components/SearchBox';
 
-export interface UserGame {
-    id: string
-    imageUrl: string
-    name: string
-    consoleType: string
+export interface UserGame extends Game {
     tradeType: 'Swap' | 'Sale'
     description: string
 }

@@ -17,7 +17,7 @@ export interface Game {
     imageUrl: string
     custom?: boolean
 }
-
+0
 type Suggestion = Game
 
 interface GroupedGames {

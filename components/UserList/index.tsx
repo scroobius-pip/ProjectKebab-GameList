@@ -10,12 +10,13 @@ export interface UserGames {
 
 interface Props {
     editable?: boolean
-    onChange?: UserListProps['onChange']
+    onHasChange?: UserListProps['onChange']
+    onWantChange?: UserListProps['onChange']
     data: UserGames
 
 }
 
-export default ({ editable = false, data, onChange }: Props) => {
+export default ({ editable = false, data, onHasChange,onWantChange }: Props) => {
 
     return <Tab.Container id="user-list" defaultActiveKey="has">
         <div>
@@ -42,14 +43,14 @@ export default ({ editable = false, data, onChange }: Props) => {
                             <Tab.Pane eventKey='has'>
                                 <UserList
                                     variant={variant}
-                                    onChange={onChange}
+                                    onChange={onHasChange}
                                     editable={editable}
                                     id='has'
                                     initialGames={data.has} />
                             </Tab.Pane>
                             <Tab.Pane eventKey='want'>
                                 <UserList
-                                    onChange={onChange}
+                                    onChange={onWantChange}
                                     variant={variant}
                                     editable={editable}
                                     id='want'

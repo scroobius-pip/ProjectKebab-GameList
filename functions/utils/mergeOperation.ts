@@ -1,15 +1,15 @@
 import { merge } from 'lodash'
 
 
-export interface Operation {
+export interface Operation<T> {
 
-    add?: any
-    update?: any
-    delete?: boolean
+    add?: T
+    update?: T
+    delete?: T
 
 }
 
-const mergeOperation = (operation: Operation): Operation => {
+const mergeOperation = <T>(operation: Operation<T>): Operation<T> => {
 
     if (operation.delete && operation.add) return null
     if (operation.add && operation.update) return {

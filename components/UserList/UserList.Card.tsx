@@ -52,7 +52,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
 
         const userGame: UserGame = { ...game, description: '', tradeType: 'Swap' }
         setData(unionBy([userGame], data, 'id'))
-        onChange('add', userGame)
+        onChange('add', { value: userGame, id: userGame.id })
     }
 
 
@@ -60,7 +60,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
         setData(data.map(game => {
             if (game.id === id) {
                 const changedGame = { ...game, description }
-                onChange('update', changedGame)
+                onChange('update', { value: changedGame, id: changedGame.id })
                 return changedGame
             }
             return { ...game }
@@ -73,7 +73,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
         setData(data.map(game => {
             if (game.id === id) {
                 const changedGame = { ...game, tradeType }
-                onChange('update', changedGame)
+                onChange('update', { value: changedGame, id: changedGame.id })
                 return changedGame
             }
             return { ...game }

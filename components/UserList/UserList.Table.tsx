@@ -12,10 +12,11 @@ export interface Props {
     initialGames: UserGame[]
     id: string
     editable: boolean
-    onChange: (changeType: 'delete' | 'add' | 'update', data: { id: string, value?: UserGame }) => any
+    onChange: (changeType: 'delete' | 'add' | 'update', data: OnChangeDataUserList) => any
     searchFunction: (searchText: string) => Promise<Game[]>
 }
 
+export interface OnChangeDataUserList { id: string, value?: UserGame }
 const compare = (invert: boolean) => (a: UserGame, b: UserGame) => {
     const nameA = a.name
     const nameB = b.name
@@ -63,14 +64,14 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
 
         const userGame: UserGame = { ...game, description: '', tradeType: 'Swap' }
         setData(unionBy([userGame], data, 'id'))
-        onChange('add', userGame )
+        onChange('add', { value: userGame, id: userGame.id })
     }
 
     const handleDescriptionChange = (id: string, description: string) => {
         setData(data.map(game => {
             if (game.id === id) {
                 const changedGame = { ...game, description }
-                onChange('update', changedGame)
+                onChange('update', { value: changedGame, id: changedGame.id })
                 return changedGame
             }
             return { ...game }
@@ -83,7 +84,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
         setData(data.map(game => {
             if (game.id === id) {
                 const changedGame = { ...game, tradeType }
-                onChange('update', changedGame)
+                onChange('update', { value: changedGame, id: changedGame.id })
                 return changedGame
             }
             return { ...game }
