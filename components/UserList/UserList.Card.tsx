@@ -103,7 +103,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                         onDescriptionChange={handleDescriptionChange}
                         onTradeTypeChange={handleTradeTypeChange}
 
-                        key={game.name + game.consoleType}
+                        key={game.id}
                         {...game}
                     />
                 }) :

@@ -16,6 +16,7 @@ import addGames from 'functions/graphql/mutations/addGames';
 import { ApolloClient } from 'apollo-boost';
 import { getApolloContext } from 'react-apollo';
 import useInterval from "@rooks/use-interval"
+import removeGames from 'functions/graphql/mutations/removeGames';
 
 
 interface UserInfo {
@@ -30,7 +31,7 @@ interface UserInfo {
 const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any>) => async (operations: { [id: string]: Operation<OnChangeDataUserList> }, ) => {
     const addOperations: UserGame[] = []
     const updateOperations: UserGame[] = []
-    const deleteOperations: string[] = []
+    const deleteOperations: Array<{ id: string }> = []
     console.log(operations)
     for (const id in operations) {
         if (operations[id].add) {
@@ -41,13 +42,14 @@ const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any
             continue
         }
         if (operations[id].delete) {
-            continue
+            deleteOperations.push({ id })
         }
     }
 
     console.log(addOperations)
-    const result = await addGames(status)(addOperations, client)
-    return result.success
+    const resultAdd = await addGames(status)(addOperations, client)
+    const resultDelete = await removeGames(deleteOperations, client)
+    return resultAdd.success && resultDelete.success
     // return false
 }
 
@@ -82,7 +84,7 @@ const Page = () => {
     const handleWantChange: (changeType: "delete" | "add" | "update", data: OnChangeDataUserList) => any = (changeType, data) => {
         const mergedOperations = mergeOperation<OnChangeDataUserList>({
             ...(wantGameOperations[data.id] || {}),
-            [changeType]:  data
+            [changeType]: data
         })
 
 
@@ -116,7 +118,7 @@ const Page = () => {
 
     useInterval(() => {
         saveOperations()
-    }, 3000, true)
+    }, !isEmpty(hasGameOperations) ? 5000 : null, true)
 
 
     return <>
@@ -142,7 +144,13 @@ const Page = () => {
                             <span style={{ color: colors.text, fontWeight: 600, marginLeft: 5 }}>
                                 Saving
                             </span>
-                        </> : null
+                        </> : isEmpty(hasGameOperations) ?
+                            <span style={{ color: colors.secondary, fontWeight: 600, marginLeft: 5 }}>
+                                Saved
+                        </span> :
+                            <span style={{ color: 'red', fontWeight: 600, marginLeft: 5 }}>
+                                Not Saved
+                            </span>
 
                 }
             </div>

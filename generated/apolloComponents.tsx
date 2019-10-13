@@ -414,6 +414,13 @@ export type IAddUserGamesMutationVariables = {
 
 export type IAddUserGamesMutation = { __typename?: 'Mutation', addUserGames: Maybe<{ __typename?: 'AddGamesMutationResult', result: boolean, error: Maybe<{ __typename?: 'Error', message: string, type: string, id: string }> }> };
 
+export type IRemoveUserGamesMutationVariables = {
+  games: Array<IRemoveGamesInput>
+};
+
+
+export type IRemoveUserGamesMutation = { __typename?: 'Mutation', removeUserGames: Maybe<{ __typename?: 'RemoveGamesMutationResult', result: boolean }> };
+
 export type IGetDescriptionQueryVariables = {};
 
 
@@ -486,6 +493,55 @@ export function useAddUserGamesMutation(baseOptions?: ApolloReactHooks.MutationH
 export type AddUserGamesMutationHookResult = ReturnType<typeof useAddUserGamesMutation>;
 export type AddUserGamesMutationResult = ApolloReactCommon.MutationResult<IAddUserGamesMutation>;
 export type AddUserGamesMutationOptions = ApolloReactCommon.BaseMutationOptions<IAddUserGamesMutation, IAddUserGamesMutationVariables>;
+export const RemoveUserGamesDocument = gql`
+    mutation removeUserGames($games: [RemoveGamesInput!]!) {
+  removeUserGames(input: {games: $games}) {
+    result
+  }
+}
+    `;
+export type IRemoveUserGamesMutationFn = ApolloReactCommon.MutationFunction<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables>;
+export type RemoveUserGamesComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables>, 'mutation'>;
+
+    export const RemoveUserGamesComponent = (props: RemoveUserGamesComponentProps) => (
+      <ApolloReactComponents.Mutation<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables> mutation={RemoveUserGamesDocument} {...props} />
+    );
+    
+export type IRemoveUserGamesProps<TChildProps = {}> = ApolloReactHoc.MutateProps<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables> & TChildProps;
+export function withRemoveUserGames<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IRemoveUserGamesMutation,
+  IRemoveUserGamesMutationVariables,
+  IRemoveUserGamesProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables, IRemoveUserGamesProps<TChildProps>>(RemoveUserGamesDocument, {
+      alias: 'removeUserGames',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useRemoveUserGamesMutation__
+ *
+ * To run a mutation, you first call `useRemoveUserGamesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveUserGamesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeUserGamesMutation, { data, loading, error }] = useRemoveUserGamesMutation({
+ *   variables: {
+ *      games: // value for 'games'
+ *   },
+ * });
+ */
+export function useRemoveUserGamesMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables>) {
+        return ApolloReactHooks.useMutation<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables>(RemoveUserGamesDocument, baseOptions);
+      }
+export type RemoveUserGamesMutationHookResult = ReturnType<typeof useRemoveUserGamesMutation>;
+export type RemoveUserGamesMutationResult = ApolloReactCommon.MutationResult<IRemoveUserGamesMutation>;
+export type RemoveUserGamesMutationOptions = ApolloReactCommon.BaseMutationOptions<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables>;
 export const GetDescriptionDocument = gql`
     query getDescription {
   me {
