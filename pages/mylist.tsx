@@ -17,6 +17,7 @@ import { ApolloClient } from 'apollo-boost';
 import { getApolloContext } from 'react-apollo';
 import useInterval from "@rooks/use-interval"
 import removeGames from 'functions/graphql/mutations/removeGames';
+import updateGames from 'functions/graphql/mutations/updateGames';
 
 
 interface UserInfo {
@@ -39,17 +40,18 @@ const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any
             continue
         }
         if (operations[id].update) {
-            continue
+            updateOperations.push(operations[id].update.value)
         }
         if (operations[id].delete) {
             deleteOperations.push({ id })
         }
     }
 
-    console.log(addOperations)
+
     const resultAdd = await addGames(status)(addOperations, client)
     const resultDelete = await removeGames(deleteOperations, client)
-    return resultAdd.success && resultDelete.success
+    const resultUpdate = await updateGames(status)(updateOperations, client)
+    return resultAdd.success && resultDelete.success && resultUpdate.success
     // return false
 }
 
