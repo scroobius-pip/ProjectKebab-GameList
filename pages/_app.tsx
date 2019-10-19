@@ -124,7 +124,7 @@ const getUserWithAuthToken = (authToken: string): Promise<User> | User => {
                 userName: 'IncredibleGonzo',
                 userImageUrl: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
                 isPro: true,
-                epochTimeCreated: 1504224000 * 1000
+                epochTimeCreated: (1504224000 * 1000).toString()
             },
 
         }

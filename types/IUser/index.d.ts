@@ -8,7 +8,7 @@ export interface UserInfo {
 
     description?: string
     isPro?: boolean
-    epochTimeCreated?: number
+    epochTimeCreated?: string
     location?: UserInfoLocation
     // noOfSuccessfulExchanges?: number
     userImageUrl?: string
