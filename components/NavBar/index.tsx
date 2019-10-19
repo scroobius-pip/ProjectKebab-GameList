@@ -27,7 +27,7 @@ const StyledNavItem = ({ children, href }) => {
 const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
 
     const LoggedInComponent = ({ user }: { user: User }) => {
-        const { description, epochTimeCreated, isPro, isBanned, userImageUrl, userName, location } = user.info
+        const { userImageUrl, userName, email } = user.info
 
         return (
             <>  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -48,7 +48,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                                     <span style={{ marginRight: 10 }}>
                                         <UserInfoProfileImage size={40} src={userImageUrl} />
                                     </span>
-                                    <span style={{ fontWeight: 600 }}>{userName}</span>
+                                    <span style={{ fontWeight: 600 }}>{userName || email}</span>
                                 </>
                             } id="collasible-nav-dropdown">
                                 <NavDropdown.Item onClick={() => Router.push('/settings')}>

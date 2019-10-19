@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import App from 'next/app'
 import NProgress from 'nprogress'
 import Router from 'next/router'
@@ -12,8 +12,11 @@ import { AuthTokenProvider } from 'context/AuthTokenContext'
 import UserContext, { UserProvider } from 'context/UserContext'
 import redirect from 'functions/utils/redirect'
 import WithApollo from '@components/WithApollo'
-import { ApolloProvider } from 'react-apollo'
+import { ApolloProvider, getApolloContext } from 'react-apollo'
 import ApolloClient from 'apollo-client'
+import getUserInfo from 'functions/graphql/queries/getUserInfo'
+import { GetUserInfoComponent } from 'generated/apolloComponents'
+import Spinner from 'react-bootstrap/Spinner'
 
 Router.events.on('routerChangeStart', () => {
     NProgress.start()
@@ -24,12 +27,12 @@ Router.events.on('routeChangeError', () => NProgress.done())
 
 interface Props {
     authToken: string
-    user?: User
+    // user?: User
     apolloClient: ApolloClient<any>
 }
 
 interface State {
-    user?: User
+    // user?: User
     authToken: string
     premiumVisible: boolean
     signInVisible: boolean
@@ -44,10 +47,11 @@ class MyApp extends App<Props, {}, State> {
             premiumVisible: false,
             signInVisible: false,
             authToken: this.props.authToken,
-            user: this.props.user
+            // user: this.props.user
         }
         this.togglePremiumModal = this.togglePremiumModal.bind(this)
         this.toggleSignInModal = this.toggleSignInModal.bind(this)
+
     }
 
 
@@ -68,7 +72,7 @@ class MyApp extends App<Props, {}, State> {
         if (typeof token === 'string' && token) {
             this.setState({
                 authToken: token,
-                user: await getUserWithAuthToken(token)
+
             })
             setAuthToken(token)
             redirect(null, '/mylist')
@@ -83,7 +87,7 @@ class MyApp extends App<Props, {}, State> {
         setAuthToken('')
         redirect(null, '/')
         this.setState({
-            user: null,
+
             authToken: null
         })
     }
@@ -97,39 +101,27 @@ class MyApp extends App<Props, {}, State> {
                 <Head>
                     <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
                 </Head>
-                <AuthTokenProvider value={this.state.authToken}>
-                    <UserProvider value={this.state.user}>
-                        <ApolloProvider client={this.props.apolloClient}>
 
-                            <Layout signInClicked={this.toggleSignInModal} signOutClicked={this.signOut} >
-                                <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
-                                <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
-                                <Component {...pageProps} signOut={this.signOut} signIn={this.signIn} premiumClicked={this.togglePremiumModal} />
-                            </Layout>
-                        </ApolloProvider>
-                    </UserProvider>
+                <ApolloProvider client={this.props.apolloClient}>
+                    <GetUserInfoComponent>
 
-                </AuthTokenProvider>
+                        {({ loading, data, error }) => {
+                            return !loading ? <UserProvider value={data ? data.me : null}>
+
+                                <Layout signInClicked={this.toggleSignInModal} signOutClicked={this.signOut} >
+                                    <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
+                                    <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
+                                    <Component {...pageProps} signOut={this.signOut} signIn={this.signIn} premiumClicked={this.togglePremiumModal} />
+                                </Layout>
+                            </UserProvider> : <Spinner animation="grow" variant="secondary" />
+                        }}
+                    </GetUserInfoComponent>
+                </ApolloProvider>
+
 
             </>
         )
     }
-}
-
-const getUserWithAuthToken = (authToken: string): Promise<User> | User => {
-    if (authToken) {
-        return {
-            id: 'simdi',
-            info: {
-                userName: 'IncredibleGonzo',
-                userImageUrl: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
-                isPro: true,
-                epochTimeCreated: 1504224000 * 1000
-            },
-
-        }
-    }
-    return null
 }
 
 MyApp.getInitialProps = async ({ Component, ctx }) => {
@@ -137,12 +129,9 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     if (isExpired(authToken)) {
         authToken = ''
     }
-    // console.log(`authtoken: ${authToken}`)
 
-    const user = authToken ? await getUserWithAuthToken(authToken) : null
-    // console.log(user)
     return {
-        user,
+        // user,
         authToken,
         pageProps: {
             authToken,
