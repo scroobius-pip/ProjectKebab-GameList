@@ -1,5 +1,5 @@
 import { Table, Row, Col } from 'react-bootstrap'
-import { unionBy, differenceWith, isEqual } from 'lodash'
+import { unionBy, differenceWith, unionWith } from 'lodash'
 import UserListTableHead from './UserList.Table.Head'
 import UserListRow from './UserList.Table.Row'
 import { UserGame } from './UserList'
@@ -61,10 +61,20 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
     }
 
     const handleAdd = (game: Game) => {
-
         const userGame: UserGame = { ...game, description: '', tradeType: 'Swap' }
-        setData(unionBy([userGame], data, 'id'))
-        onChange('add', { value: userGame, id: userGame.id })
+
+        setData((data) => {
+            const newData = unionWith(data, [userGame], (game1, game2) => {
+                return game1.consoleType + game1.name === game2.consoleType + game2.name
+            })
+
+            if (data.length !== newData.length) {
+                onChange('add', { value: userGame, id: userGame.id })
+            }
+            return newData
+        })
+
+
     }
 
     const handleDescriptionChange = (id: string, description: string) => {

@@ -5,7 +5,7 @@ import { useState, useContext } from 'react'
 import { Props as UserListProps } from './UserList.Table'
 import SearchBox, { Game } from '../SearchBox'
 import { Row, Col } from 'react-bootstrap'
-import { unionBy } from 'lodash'
+import { unionBy, unionWith } from 'lodash'
 
 const compare = (invert: boolean) => (a: UserGame, b: UserGame) => {
     const nameA = a.name
@@ -49,10 +49,20 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
 
 
     const handleAdd = (game: Game) => {
-
         const userGame: UserGame = { ...game, description: '', tradeType: 'Swap' }
-        setData(unionBy([userGame], data, 'id'))
-        onChange('add', { value: userGame, id: userGame.id })
+
+        setData((data) => {
+            const newData = unionWith(data, [userGame], (game1, game2) => {
+                return game1.consoleType + game1.name === game2.consoleType + game2.name
+            })
+
+            if (data.length !== newData.length) {
+                onChange('add', { value: userGame, id: userGame.id })
+            }
+            return newData
+        })
+
+
     }
 
 
