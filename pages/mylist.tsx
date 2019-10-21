@@ -3,13 +3,11 @@ import { Row, Col, Button, Spinner } from 'react-bootstrap';
 import Editor from '../components/Editor';
 import UserList, { UserGames } from '../components/UserList';
 import { withAuth } from '@components/WithAuth';
-import { colors } from '../styles'
-import { unionBy, values, isEmpty } from 'lodash'
-import { useState, useContext } from 'react';
+import { colors, font } from '../styles'
+import { isEmpty } from 'lodash'
+import { useState, useContext, useEffect } from 'react';
 import mergeOperation, { Operation } from 'functions/utils/mergeOperation';
-// import mergeOperation from 'functions/utils/mergeOperation';
-import { UserGameComponent, GetDescriptionComponent, IUserGameDetailsStatus } from 'generated/apolloComponents';
-import mapToUserGame from 'graphql/utils/mapToUserGame';
+import { IUserGameDetailsStatus } from 'generated/apolloComponents';
 import { OnChangeDataUserList } from '@components/UserList/UserList.Table';
 import { UserGame } from '@components/UserList/UserList';
 import addGames from 'functions/graphql/mutations/addGames';
@@ -18,6 +16,12 @@ import { getApolloContext } from 'react-apollo';
 import useInterval from "@rooks/use-interval"
 import removeGames from 'functions/graphql/mutations/removeGames';
 import updateGames from 'functions/graphql/mutations/updateGames';
+import getMyGamesAndDescription from 'functions/graphql/queries/getMyGamesAndDescription';
+import mapToUserGame from 'graphql/utils/mapToUserGame';
+import { withApollo } from 'functions/utils/apollo';
+import redirect from 'functions/utils/redirect';
+import LoadingButton from '@components/LoadingButton';
+import { useRouter } from 'next/router';
 
 
 interface UserInfo {
@@ -56,15 +60,25 @@ const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any
 }
 
 
-const Page = () => {
+interface Props {
+    description: string
+    userGames: UserGames
+}
+
+const Page = ({ description, userGames: initialUserGames }: Props) => {
 
     const [hasGameOperations, setHasGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
     const [wantGameOperations, setWantGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
+    const [userGames, setUserGames] = useState<UserGames>()
+
     const [saving, setSaving] = useState(false)
     const apolloClient = useContext(getApolloContext()).client
-
+    const router = useRouter()
     const hasSendOperations = sendOperations(IUserGameDetailsStatus.Has, apolloClient)
     const wantSendOperations = sendOperations(IUserGameDetailsStatus.Want, apolloClient)
+
+
+
 
     const handleHasChange: (changeType: "delete" | "add" | "update", data: OnChangeDataUserList) => any = (changeType, data) => {
 
@@ -96,7 +110,7 @@ const Page = () => {
             [data.id]: mergedOperations
         })
 
-        console.log(mergeOperation(wantGameOperations));
+        console.log(mergeOperation(wantGameOperations))
     }
 
 
@@ -115,12 +129,29 @@ const Page = () => {
         }
 
         setSaving(false)
+        document.location.reload()
+
+
 
     }
 
-    useInterval(() => {
-        saveOperations()
-    }, !isEmpty(hasGameOperations) || !isEmpty(wantGameOperations) ? 2000 : null, true)
+    const reloadData = async () => {
+        console.log('loading')
+        const data = await getMyGamesAndDescription(apolloClient)
+        console.log(data)
+        return {
+            userGames: {
+                has: data.hasGames.map(mapToUserGame()),
+                want: data.wantedGames.map(mapToUserGame()),
+
+            },
+            description: data.info.description
+        }
+    }
+
+    // useInterval(() => {
+    //     saveOperations()
+    // }, !isEmpty(hasGameOperations) || !isEmpty(wantGameOperations) ? 2000 : null, true)
 
 
     return <>
@@ -133,7 +164,7 @@ const Page = () => {
             <div
                 style={{ marginTop: 20 }}
             >
-                {
+                {/* {
                     saving ?
                         <>
                             <Spinner
@@ -154,50 +185,57 @@ const Page = () => {
                                 Not Saved
                             </span>
 
-                }
+                } */}
+                <LoadingButton
+                    disabled={isEmpty(hasGameOperations) && isEmpty(wantGameOperations)}
+                    onClick={async () => {
+                        await saveOperations()
+                    }}
+                    loadingText='Saving'
+                    normalText='Save' />
             </div>
 
         </div>
         <Row>
             <Col md={12} style={{ marginBottom: 30 }}>
                 <Section heading='Description.'>
-                    <GetDescriptionComponent>
-                        {
-                            ({ data, loading }) =>
-                                loading ? <p>...loading</p> : <Editor initialContent={data.me.info.description} />
-                        }
-                    </GetDescriptionComponent>
+                    <Editor initialContent={description} />
                 </Section>
 
             </Col>
             <Col md={12}>
                 <Section heading='Your List.'>
-                    <UserGameComponent>
 
-                        {({ data, loading }) => {
+                    <UserList
+                        onHasChange={handleHasChange}
+                        onWantChange={handleWantChange}
+                        data={userGames ? userGames : initialUserGames}
+                        editable
+                    />
 
-                            console.log(data)
-                            if (loading || !data) return <p>...Loading</p>
-                            console.log(data)
-                            const userGames: UserGames = {
-                                has: data.me.hasGames.map(mapToUserGame()),
-                                want: data.me.wantedGames.map(mapToUserGame()),
-
-                            }
-
-                            return <UserList
-                                onHasChange={handleHasChange}
-                                onWantChange={handleWantChange}
-                                data={userGames} editable />
-                        }}
-                    </UserGameComponent>
                 </Section>
             </Col>
         </Row>
     </>
 }
 
+Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
 
 
-export default withAuth(Page)
+    const data = await getMyGamesAndDescription(apolloClient)
+    if (!data) {
+        redirect(ctx, '/login')
+        return
+    }
+    return {
+        userGames: {
+            has: data.hasGames.map(mapToUserGame()),
+            want: data.wantedGames.map(mapToUserGame()),
+
+        },
+        description: data.info.description
+    }
+}
+
+export default withApollo(withAuth(Page))
 

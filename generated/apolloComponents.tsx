@@ -428,10 +428,10 @@ export type IUpdateUserGamesMutationVariables = {
 
 export type IUpdateUserGamesMutation = { __typename?: 'Mutation', updateUserGames: Maybe<{ __typename?: 'UpdateGamesMutationResult', result: boolean }> };
 
-export type IGetDescriptionQueryVariables = {};
+export type IGetMyDescriptionAndGamesQueryVariables = {};
 
 
-export type IGetDescriptionQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', info: { __typename?: 'UserInfo', description: Maybe<string> } }> };
+export type IGetMyDescriptionAndGamesQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', info: { __typename?: 'UserInfo', description: Maybe<string> }, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
 
 export type IUserGameQueryVariables = {};
 
@@ -603,57 +603,85 @@ export function useUpdateUserGamesMutation(baseOptions?: ApolloReactHooks.Mutati
 export type UpdateUserGamesMutationHookResult = ReturnType<typeof useUpdateUserGamesMutation>;
 export type UpdateUserGamesMutationResult = ApolloReactCommon.MutationResult<IUpdateUserGamesMutation>;
 export type UpdateUserGamesMutationOptions = ApolloReactCommon.BaseMutationOptions<IUpdateUserGamesMutation, IUpdateUserGamesMutationVariables>;
-export const GetDescriptionDocument = gql`
-    query getDescription {
+export const GetMyDescriptionAndGamesDocument = gql`
+    query getMyDescriptionAndGames {
   me {
     info {
       description
     }
+    hasGames {
+      id
+      details {
+        description
+        status
+        tradeType
+      }
+      game {
+        consoleType
+        id
+        imageUrl
+        name
+      }
+    }
+    wantedGames {
+      id
+      details {
+        description
+        status
+        tradeType
+      }
+      game {
+        consoleType
+        id
+        imageUrl
+        name
+      }
+    }
   }
 }
     `;
-export type GetDescriptionComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IGetDescriptionQuery, IGetDescriptionQueryVariables>, 'query'>;
+export type GetMyDescriptionAndGamesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables>, 'query'>;
 
-    export const GetDescriptionComponent = (props: GetDescriptionComponentProps) => (
-      <ApolloReactComponents.Query<IGetDescriptionQuery, IGetDescriptionQueryVariables> query={GetDescriptionDocument} {...props} />
+    export const GetMyDescriptionAndGamesComponent = (props: GetMyDescriptionAndGamesComponentProps) => (
+      <ApolloReactComponents.Query<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables> query={GetMyDescriptionAndGamesDocument} {...props} />
     );
     
-export type IGetDescriptionProps<TChildProps = {}> = ApolloReactHoc.DataProps<IGetDescriptionQuery, IGetDescriptionQueryVariables> & TChildProps;
-export function withGetDescription<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+export type IGetMyDescriptionAndGamesProps<TChildProps = {}> = ApolloReactHoc.DataProps<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables> & TChildProps;
+export function withGetMyDescriptionAndGames<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
   TProps,
-  IGetDescriptionQuery,
-  IGetDescriptionQueryVariables,
-  IGetDescriptionProps<TChildProps>>) {
-    return ApolloReactHoc.withQuery<TProps, IGetDescriptionQuery, IGetDescriptionQueryVariables, IGetDescriptionProps<TChildProps>>(GetDescriptionDocument, {
-      alias: 'getDescription',
+  IGetMyDescriptionAndGamesQuery,
+  IGetMyDescriptionAndGamesQueryVariables,
+  IGetMyDescriptionAndGamesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables, IGetMyDescriptionAndGamesProps<TChildProps>>(GetMyDescriptionAndGamesDocument, {
+      alias: 'getMyDescriptionAndGames',
       ...operationOptions
     });
 };
 
 /**
- * __useGetDescriptionQuery__
+ * __useGetMyDescriptionAndGamesQuery__
  *
- * To run a query within a React component, call `useGetDescriptionQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetDescriptionQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * To run a query within a React component, call `useGetMyDescriptionAndGamesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMyDescriptionAndGamesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetDescriptionQuery({
+ * const { data, loading, error } = useGetMyDescriptionAndGamesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetDescriptionQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<IGetDescriptionQuery, IGetDescriptionQueryVariables>) {
-        return ApolloReactHooks.useQuery<IGetDescriptionQuery, IGetDescriptionQueryVariables>(GetDescriptionDocument, baseOptions);
+export function useGetMyDescriptionAndGamesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables>) {
+        return ApolloReactHooks.useQuery<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables>(GetMyDescriptionAndGamesDocument, baseOptions);
       }
-export function useGetDescriptionLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<IGetDescriptionQuery, IGetDescriptionQueryVariables>) {
-          return ApolloReactHooks.useLazyQuery<IGetDescriptionQuery, IGetDescriptionQueryVariables>(GetDescriptionDocument, baseOptions);
+export function useGetMyDescriptionAndGamesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables>(GetMyDescriptionAndGamesDocument, baseOptions);
         }
-export type GetDescriptionQueryHookResult = ReturnType<typeof useGetDescriptionQuery>;
-export type GetDescriptionLazyQueryHookResult = ReturnType<typeof useGetDescriptionLazyQuery>;
-export type GetDescriptionQueryResult = ApolloReactCommon.QueryResult<IGetDescriptionQuery, IGetDescriptionQueryVariables>;
+export type GetMyDescriptionAndGamesQueryHookResult = ReturnType<typeof useGetMyDescriptionAndGamesQuery>;
+export type GetMyDescriptionAndGamesLazyQueryHookResult = ReturnType<typeof useGetMyDescriptionAndGamesLazyQuery>;
+export type GetMyDescriptionAndGamesQueryResult = ApolloReactCommon.QueryResult<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables>;
 export const UserGameDocument = gql`
     query UserGame {
   me {

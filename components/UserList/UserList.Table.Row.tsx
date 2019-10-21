@@ -39,7 +39,7 @@ export default ({ imageUrl, consoleType, description, name, tradeType, onDelete,
         <td style={{ height: 40, maxHeight: 40 }}>
             <div style={{ height: '100%' }}>
                 {
-                    editable ? <UserListTableRowTextArea initialValue={description} onBlur={(value) => { onDescriptionChange(id, value) }} /> : description
+                    editable ? <UserListTableRowTextArea initialValue={description} onChange={(value) => { onDescriptionChange(id, value) }} /> : description
                 }
             </div>
         </td>

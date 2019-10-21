@@ -9,7 +9,8 @@ export default async (client: ApolloClient<any>): Promise<User> => {
             query: getUserInfo
         })
 
-        return result.data.me
+        if (result.data) return result.data.me
+        return null
 
     } catch (error) {
         console.log(error)

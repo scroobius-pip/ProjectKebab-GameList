@@ -10,10 +10,12 @@ export interface UserInfo {
     isPro?: boolean
     epochTimeCreated?: string
     location?: UserInfoLocation
+    email?: string
     // noOfSuccessfulExchanges?: number
     userImageUrl?: string
     userName?: string
     isBanned?: boolean
+    setting_matchNotifications?: boolean
 }
 
 

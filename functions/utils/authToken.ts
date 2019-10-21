@@ -15,13 +15,13 @@ const isExpired = (authToken: string): boolean => {
 }
 
 const getAuthToken = (ctx: NextPageContext): string => {
-    const { authToken = '' } = cookies(ctx)
-    return authToken
+    const { token = '' } = cookies(ctx)
+    return token
 }
 
 const setAuthToken = (token: string) => {
     if (typeof document !== 'undefined')
-        document.cookie = `authToken=${token}; path=/`
+        document.cookie = `token=${token}; path=/`
 }
 
 export {

@@ -6,6 +6,7 @@ import redirect from 'functions/utils/redirect';
 const Page = () => {
     const router = useRouter()
     const { error } = router.query
+    // const ctx = router.
     return <LoginWithModal errorMessage={error || ''} visible={true} close={() => { }} />
 }
 
@@ -14,6 +15,7 @@ Page.getInitialProps = ({ query, ...ctx }) => {
     if (query.token) {
         redirect(ctx, '/token/' + query.token)
     }
+    return {}
 }
 
 export default Page
