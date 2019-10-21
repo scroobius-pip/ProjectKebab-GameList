@@ -120,7 +120,7 @@ const Page = () => {
 
     useInterval(() => {
         saveOperations()
-    }, !isEmpty(hasGameOperations) ? 5000 : null, true)
+    }, !isEmpty(hasGameOperations) || !isEmpty(wantGameOperations) ? 2000 : null, true)
 
 
     return <>
@@ -146,7 +146,7 @@ const Page = () => {
                             <span style={{ color: colors.text, fontWeight: 600, marginLeft: 5 }}>
                                 Saving
                             </span>
-                        </> : isEmpty(hasGameOperations) ?
+                        </> : isEmpty(hasGameOperations) && isEmpty(wantGameOperations) ?
                             <span style={{ color: colors.secondary, fontWeight: 600, marginLeft: 5 }}>
                                 Saved
                         </span> :
@@ -176,8 +176,9 @@ const Page = () => {
 
                         {({ data, loading }) => {
 
-                            if (loading) return <p>...Loading</p>
-                            // console.log(props)
+                            console.log(data)
+                            if (loading || !data) return <p>...Loading</p>
+                            console.log(data)
                             const userGames: UserGames = {
                                 has: data.me.hasGames.map(mapToUserGame()),
                                 want: data.me.wantedGames.map(mapToUserGame()),
