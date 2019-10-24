@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost'
 const getUserGames = gql`
 query UserGame {
     me {
+        id
         hasGames {
             id
             details {

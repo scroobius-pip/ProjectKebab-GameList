@@ -3,7 +3,7 @@ import App from 'next/app'
 import NProgress from 'nprogress'
 import Router from 'next/router'
 import Head from 'next/head'
-import Layout from '../components/Layout'
+import Layout from '../components/WithLayout'
 import '../static/nprogress.css'
 import { setAuthToken } from 'functions/utils/authToken'
 import User from 'types/IUser'
@@ -95,11 +95,9 @@ class MyApp extends App<Props, {}, State> {
                 <Head>
                     <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
                 </Head>
-                <Layout signInClicked={this.toggleSignInModal} signOutClicked={this.signOut} >
-                    <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
-                    <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
-                    <Component {...pageProps} signOut={this.signOut} signIn={this.signIn} premiumClicked={this.togglePremiumModal} />
-                </Layout>
+
+                <Component {...pageProps} />
+
             </>
         )
     }

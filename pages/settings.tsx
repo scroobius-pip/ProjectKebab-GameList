@@ -7,6 +7,8 @@ import Router from 'next/router'
 import AuthTokenContext from 'context/AuthTokenContext'
 import { withAuth } from '@components/WithAuth'
 import { getAuthToken } from 'functions/utils/authToken'
+import WithLayout from '@components/WithLayout'
+import { withApollo } from 'functions/utils/apollo'
 
 class Page extends React.Component<Props> {
 
@@ -122,4 +124,4 @@ const settingsData: (userSettings: UserSettings) => SettingsSectionProps = (sett
 )
 
 
-export default withAuth(Page)
+export default withApollo(withAuth(WithLayout(Page)))

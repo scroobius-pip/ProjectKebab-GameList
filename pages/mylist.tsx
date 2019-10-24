@@ -22,6 +22,7 @@ import { withApollo } from 'functions/utils/apollo';
 import redirect from 'functions/utils/redirect';
 import LoadingButton from '@components/LoadingButton';
 import { useRouter } from 'next/router';
+import WithLayout from '@components/WithLayout';
 
 
 interface UserInfo {
@@ -220,13 +221,13 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
 }
 
 Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
-
+    // console.log(ctx)
 
     const data = await getMyGamesAndDescription(apolloClient)
-    if (!data) {
-        redirect(ctx, '/login')
-        return
-    }
+    // if (!data) {
+    //     redirect(ctx, '/login')
+    //     return
+    // }
     return {
         userGames: {
             has: data.hasGames.map(mapToUserGame()),
@@ -237,5 +238,5 @@ Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
     }
 }
 
-export default withApollo(withAuth(Page))
+export default withApollo(withAuth(WithLayout(Page)))
 

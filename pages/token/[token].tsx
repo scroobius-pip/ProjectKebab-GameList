@@ -2,6 +2,7 @@ import { Spinner } from 'react-bootstrap';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import redirect from 'functions/utils/redirect';
+import WithLayout from '@components/WithLayout';
 // import { async } from 'q';
 
 const Page = ({ signIn, token }) => {
@@ -31,4 +32,4 @@ Page.getInitialProps = async ({ query, ...ctx }) => {
 
 
 
-export default Page
+export default WithLayout(Page)

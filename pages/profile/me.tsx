@@ -6,6 +6,7 @@ import UserInfo from '@components/UserInfo';
 import UserList, { UserGames } from '@components/UserList';
 import { withAuth } from '@components/WithAuth';
 import Router from 'next/router'
+import WithLayout from '@components/WithLayout';
 
 interface UserInfo {
     userName: string
@@ -131,4 +132,4 @@ Page.getInitialProps = async ({ query }) => {
     }
 }
 
-export default withAuth(Page)
+export default withAuth(WithLayout(Page))

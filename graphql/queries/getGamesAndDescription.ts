@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost'
 export default gql`
 query getMyDescriptionAndGames{
     me{
+    id
      info{
       description
     }

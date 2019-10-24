@@ -431,12 +431,12 @@ export type IUpdateUserGamesMutation = { __typename?: 'Mutation', updateUserGame
 export type IGetMyDescriptionAndGamesQueryVariables = {};
 
 
-export type IGetMyDescriptionAndGamesQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', info: { __typename?: 'UserInfo', description: Maybe<string> }, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
+export type IGetMyDescriptionAndGamesQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', id: string, info: { __typename?: 'UserInfo', description: Maybe<string> }, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
 
 export type IUserGameQueryVariables = {};
 
 
-export type IUserGameQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
+export type IUserGameQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', id: string, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
 
 export type IGetUserInfoQueryVariables = {};
 
@@ -606,6 +606,7 @@ export type UpdateUserGamesMutationOptions = ApolloReactCommon.BaseMutationOptio
 export const GetMyDescriptionAndGamesDocument = gql`
     query getMyDescriptionAndGames {
   me {
+    id
     info {
       description
     }
@@ -685,6 +686,7 @@ export type GetMyDescriptionAndGamesQueryResult = ApolloReactCommon.QueryResult<
 export const UserGameDocument = gql`
     query UserGame {
   me {
+    id
     hasGames {
       id
       details {
