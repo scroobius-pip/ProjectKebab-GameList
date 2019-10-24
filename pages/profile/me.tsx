@@ -7,6 +7,7 @@ import UserList, { UserGames } from '@components/UserList';
 import { withAuth } from '@components/WithAuth';
 import Router from 'next/router'
 import WithLayout from '@components/WithLayout';
+import { withApollo } from 'functions/utils/apollo';
 
 interface UserInfo {
     userName: string
@@ -132,4 +133,4 @@ Page.getInitialProps = async ({ query }) => {
     }
 }
 
-export default withAuth(WithLayout(Page))
+export default withApollo(withAuth(WithLayout(Page)))
