@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-export default ({ epochTimeCreated }: { epochTimeCreated: number }) => {
+export default ({ epochTimeCreated }: { epochTimeCreated: string }) => {
     const timeCreated = moment(epochTimeCreated)
 
 

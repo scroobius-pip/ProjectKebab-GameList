@@ -12,7 +12,7 @@ interface Props {
     userName: string
     userImage: string
     isPremium: boolean
-    epochTimeCreated: number
+    epochTimeCreated: string
     disableChat?: boolean
 }
 
