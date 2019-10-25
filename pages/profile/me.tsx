@@ -92,7 +92,7 @@ Page.getInitialProps = async ({ apolloClient }) => {
         isPremium,
         epochTimeCreated
     }
-    console.log(userInfo)
+    // console.log(userInfo)
     return {
         userInfo,
         userGames: {
