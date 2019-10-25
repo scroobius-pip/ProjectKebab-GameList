@@ -74,7 +74,7 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
 
     const [saving, setSaving] = useState(false)
     const apolloClient = useContext(getApolloContext()).client
-    const router = useRouter()
+    const Router = useRouter()
     const hasSendOperations = sendOperations(IUserGameDetailsStatus.Has, apolloClient)
     const wantSendOperations = sendOperations(IUserGameDetailsStatus.Want, apolloClient)
 
@@ -159,7 +159,7 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end', marginBottom: 20, flexDirection: 'column' }}>
             <div>
                 <span>
-                    <Button variant='outline-primary'>View List</Button>
+                    <Button onClick={() => Router.push('/profile/me')} variant='outline-primary'>View List</Button>
                 </span>
             </div>
             <div

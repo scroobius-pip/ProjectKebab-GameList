@@ -8,12 +8,15 @@ import { withAuth } from '@components/WithAuth';
 import Router from 'next/router'
 import WithLayout from '@components/WithLayout';
 import { withApollo } from 'functions/utils/apollo';
+import getUserInfo from 'functions/graphql/queries/getUserInfo';
+import getMyGamesAndDescription from 'functions/graphql/queries/getMyGamesAndDescription';
+import mapToUserGame from 'graphql/utils/mapToUserGame';
 
 interface UserInfo {
     userName: string
     userImage: string
     isPremium: boolean
-    epochTimeCreated: number
+    epochTimeCreated: string
     userDescription: string
     isBanned: boolean
 }
@@ -64,73 +67,42 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
     )
 }
 
-Page.getInitialProps = async ({ query }) => {
-    if (query.username === 'me') {
-        await stall()
-        return {
-            userInfo: {
-                userName: 'simdi',
-                userImage: "",
-                isPremium: true,
-                epochTimeCreated: 1504224000 * 1000,
-                userDescription: ''
-            },
-            userGames: {
-                has: [
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet.",
-                        name: "Aead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Swap",
-                        id: '1'
-                    }
-                    ,
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet.",
-                        name: "Bead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Sale",
-                        id: '2'
-                    }
-                    ,
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet.",
-                        name: "Cead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Swap",
-                        id: '3'
-                    },
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolorum? Aspernatur, expedita!",
-                        name: "Zead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Sale",
-                        id: '4'
-                    }
-                ]
-                ,
-                want: []
-            }
-        }
+Page.getInitialProps = async ({ apolloClient }) => {
 
+    const user = await getUserInfo(apolloClient)
+
+    const gamesAndDescription = await getMyGamesAndDescription(apolloClient)
+
+    const {
+        description: userDescription = '',
+        userName,
+        userImageUrl: userImage = '',
+        isPro: isPremium,
+        epochTimeCreated,
+        isBanned,
+        email
+    } = user.info
+
+    // const resultsGamesAndDescription = 
+    const userInfo: UserInfo = {
+        isBanned,
+        userName: userName || email,
+        userDescription: userDescription || '',
+        userImage,
+        isPremium,
+        epochTimeCreated
     }
+    console.log(userInfo)
     return {
-        userInfo: {
-            userName: 'IncredibleGonzo',
-            userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
-            isPremium: true,
-            epochTimeCreated: 1504224000 * 1000,
-            userDescription: ''
-        },
+        userInfo,
         userGames: {
-            has: [],
-            want: []
-        }
+            has: gamesAndDescription.hasGames.map(mapToUserGame()),
+            want: gamesAndDescription.wantedGames.map(mapToUserGame()),
+
+        } as UserGames
     }
+
+
 }
 
 export default withApollo(withAuth(WithLayout(Page)))

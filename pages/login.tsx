@@ -2,6 +2,7 @@ import LoginModal from '@components/Modals/LoginModal';
 import { LoginWithModal } from '@components/Modals';
 import { useRouter } from 'next/router';
 import redirect from 'functions/utils/redirect';
+import WithLayout from '@components/WithLayout';
 
 const Page = () => {
     const router = useRouter()
@@ -18,4 +19,4 @@ Page.getInitialProps = ({ query, ...ctx }) => {
     return {}
 }
 
-export default Page
+export default WithLayout(Page)
