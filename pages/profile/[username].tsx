@@ -10,7 +10,7 @@ interface UserInfo {
     userName: string
     userImage: string
     isPremium: boolean
-    epochTimeCreated: number
+    epochTimeCreated: string
     userDescription: string
     isBanned: boolean
 }
@@ -114,7 +114,7 @@ Page.getInitialProps = async ({ query }) => {
             userName: 'IncredibleGonzo',
             userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
             isPremium: true,
-            epochTimeCreated: 1504224000 * 1000,
+            epochTimeCreated: (1504224000 * 1000).toString(),
             userDescription: ''
         },
         userGames: {
