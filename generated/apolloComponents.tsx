@@ -421,6 +421,13 @@ export type IRemoveUserGamesMutationVariables = {
 
 export type IRemoveUserGamesMutation = { __typename?: 'Mutation', removeUserGames: Maybe<{ __typename?: 'RemoveGamesMutationResult', result: boolean }> };
 
+export type IUpdateUserDescriptionMutationVariables = {
+  description: Scalars['String']
+};
+
+
+export type IUpdateUserDescriptionMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', description: Maybe<string> }>, error: Maybe<{ __typename?: 'Error', message: string, type: string, id: string }> }> };
+
 export type IUpdateUserGamesMutationVariables = {
   games: Array<IUpdateGamesInput>
 };
@@ -554,6 +561,62 @@ export function useRemoveUserGamesMutation(baseOptions?: ApolloReactHooks.Mutati
 export type RemoveUserGamesMutationHookResult = ReturnType<typeof useRemoveUserGamesMutation>;
 export type RemoveUserGamesMutationResult = ApolloReactCommon.MutationResult<IRemoveUserGamesMutation>;
 export type RemoveUserGamesMutationOptions = ApolloReactCommon.BaseMutationOptions<IRemoveUserGamesMutation, IRemoveUserGamesMutationVariables>;
+export const UpdateUserDescriptionDocument = gql`
+    mutation updateUserDescription($description: String!) {
+  updateUserInfo(input: {info: {description: $description}}) {
+    result {
+      description
+    }
+    error {
+      message
+      type
+      id
+    }
+  }
+}
+    `;
+export type IUpdateUserDescriptionMutationFn = ApolloReactCommon.MutationFunction<IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables>;
+export type UpdateUserDescriptionComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables>, 'mutation'>;
+
+    export const UpdateUserDescriptionComponent = (props: UpdateUserDescriptionComponentProps) => (
+      <ApolloReactComponents.Mutation<IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables> mutation={UpdateUserDescriptionDocument} {...props} />
+    );
+    
+export type IUpdateUserDescriptionProps<TChildProps = {}> = ApolloReactHoc.MutateProps<IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables> & TChildProps;
+export function withUpdateUserDescription<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IUpdateUserDescriptionMutation,
+  IUpdateUserDescriptionMutationVariables,
+  IUpdateUserDescriptionProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables, IUpdateUserDescriptionProps<TChildProps>>(UpdateUserDescriptionDocument, {
+      alias: 'updateUserDescription',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useUpdateUserDescriptionMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserDescriptionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserDescriptionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserDescriptionMutation, { data, loading, error }] = useUpdateUserDescriptionMutation({
+ *   variables: {
+ *      description: // value for 'description'
+ *   },
+ * });
+ */
+export function useUpdateUserDescriptionMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables>) {
+        return ApolloReactHooks.useMutation<IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables>(UpdateUserDescriptionDocument, baseOptions);
+      }
+export type UpdateUserDescriptionMutationHookResult = ReturnType<typeof useUpdateUserDescriptionMutation>;
+export type UpdateUserDescriptionMutationResult = ApolloReactCommon.MutationResult<IUpdateUserDescriptionMutation>;
+export type UpdateUserDescriptionMutationOptions = ApolloReactCommon.BaseMutationOptions<IUpdateUserDescriptionMutation, IUpdateUserDescriptionMutationVariables>;
 export const UpdateUserGamesDocument = gql`
     mutation updateUserGames($games: [UpdateGamesInput!]!) {
   updateUserGames(input: {games: $games}) {

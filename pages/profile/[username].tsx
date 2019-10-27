@@ -5,6 +5,8 @@ import { Col, Row, Alert, } from 'react-bootstrap'
 import UserInfo from '@components/UserInfo';
 import UserList, { UserGames } from '@components/UserList';
 import { withAuth } from '@components/WithAuth';
+import { withApollo } from 'functions/utils/apollo';
+import WithLayout from '@components/WithLayout';
 
 interface UserInfo {
     userName: string
@@ -56,66 +58,14 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
 }
 
 Page.getInitialProps = async ({ query }) => {
-    if (query.username === 'me') {
-        await stall()
-        return {
-            userInfo: {
-                userName: 'simdi',
-                userImage: "",
-                isPremium: true,
-                epochTimeCreated: 1504224000 * 1000,
-                userDescription: ''
-            },
-            userGames: {
-                has: [
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet.",
-                        name: "Aead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Swap",
-                        id: '1'
-                    }
-                    ,
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet.",
-                        name: "Bead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Sale",
-                        id: '2'
-                    }
-                    ,
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet.",
-                        name: "Cead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Swap",
-                        id: '3'
-                    },
-                    {
-                        imageUrl: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1ih7.jpg",
-                        consoleType: "Nintendo Switch",
-                        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, dolorum? Aspernatur, expedita!",
-                        name: "Zead or Alive Xtreme 3: Scarlet",
-                        tradeType: "Sale",
-                        id: '4'
-                    }
-                ]
-                ,
-                want: []
-            }
-        }
 
-    }
     return {
         userInfo: {
             userName: 'IncredibleGonzo',
             userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
             isPremium: true,
             epochTimeCreated: (1504224000 * 1000).toString(),
-            userDescription: ''
+            userDescription: "I've got a few hardware too:\n\n1. A broken xbox one with 3 __controllers__\n2. 2 playstation 1 controllers\n3. 1 camo themed playstation 4 controller"
         },
         userGames: {
             has: [],
@@ -124,4 +74,4 @@ Page.getInitialProps = async ({ query }) => {
     }
 }
 
-export default (Page)
+export default withApollo(WithLayout(Page))

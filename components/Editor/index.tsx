@@ -1,49 +1,69 @@
 import { Editor } from 'react-draft-wysiwyg';
-// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import { useState, useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
+import { stateToMarkdown } from "draft-js-export-markdown";
+import { stateFromMarkdown } from 'draft-js-import-markdown';
 
+import { EditorState } from 'draft-js';
 
 interface Props {
-    initialContent: string
+  initialContent: string
+  onChange: (description: string) => any
 }
 
-export default ({ initialContent }: Props) => {
+export default ({ initialContent, onChange }: Props) => {
 
-    const [editor, setEditor] = useState(false)
-    useEffect(() => {
-        setEditor(true)
-    })
+  const [editor, setEditor] = useState(false)
+  useEffect(() => {
+    setEditor(true)
+    parseInitialMarkdown()
+  })
 
-    return (
-        <>
-            {editor ? <Editor toolbar={
-                {
-                    options: ['inline', 'list'],
-                    inline: {
-                        options: ['bold', 'italic', 'underline', 'strikethrough',]
-                    },
-                    list: {
-                        options: ['unordered', 'ordered']
-                    }
-                }
-            }
-                editorStyle={{
-                    backgroundColor: '#3D3F42',
-                    borderRadius: 5,
-                    padding: '5px 10px 5px 10px',
-                    color: '#EAEBEB',
-                }}
+  const handleContentChange = (rawContent) => {
+    const markdownContent = stateToMarkdown(editorState.getCurrentContent())
+    onChange(markdownContent)
+  }
 
-                toolbarStyle={{
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                    padding: 0,
-                    marginBottom: 10
-                }}
-            /> : <Spinner animation="grow" variant="secondary" />}
-            <style jsx global>
-                {`
+  const parseInitialMarkdown = () => {
+    const contentState = stateFromMarkdown(initialContent)
+    return contentState
+    // setEditorState(contentState)
+  }
+  const [editorState, setEditorState] = useState(EditorState.createWithContent(parseInitialMarkdown()))
+
+  return (
+    <>
+      {editor ? <Editor toolbar={
+        {
+          options: ['inline', 'list'],
+          inline: {
+            options: ['bold', 'italic', 'strikethrough',]
+          },
+          list: {
+            options: ['unordered', 'ordered']
+          }
+        }
+      }
+        editorStyle={{
+          backgroundColor: '#3D3F42',
+          borderRadius: 5,
+          padding: '5px 10px 5px 10px',
+          color: '#EAEBEB',
+        }}
+
+        toolbarStyle={{
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
+          padding: 0,
+          marginBottom: 10
+        }}
+        editorState={editorState}
+        // initialContentState={parseInitialMarkdown()}
+        onEditorStateChange={(state) => { setEditorState(state) }}
+        onContentStateChange={handleContentChange}
+      /> : <Spinner animation="grow" variant="secondary" />}
+      <style jsx global>
+        {`
 
 .rdw-option-wrapper {
     border: 1px solid #F1F1F1;
@@ -944,9 +964,9 @@ export default ({ initialContent }: Props) => {
                     border-bottom-right-radius: 8px;
                 }
                 `}
-            </style>
+      </style>
 
-        </>
-    )
+    </>
+  )
 
 }

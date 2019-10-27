@@ -3,7 +3,6 @@ import { Row, Col, Button, Spinner } from 'react-bootstrap';
 import Editor from '../components/Editor';
 import UserList, { UserGames } from '../components/UserList';
 import { withAuth } from '@components/WithAuth';
-import { colors, font } from '../styles'
 import { isEmpty } from 'lodash'
 import { useState, useContext, useEffect } from 'react';
 import mergeOperation, { Operation } from 'functions/utils/mergeOperation';
@@ -13,16 +12,15 @@ import { UserGame } from '@components/UserList/UserList';
 import addGames from 'functions/graphql/mutations/addGames';
 import { ApolloClient } from 'apollo-boost';
 import { getApolloContext } from 'react-apollo';
-import useInterval from "@rooks/use-interval"
 import removeGames from 'functions/graphql/mutations/removeGames';
 import updateGames from 'functions/graphql/mutations/updateGames';
 import getMyGamesAndDescription from 'functions/graphql/queries/getMyGamesAndDescription';
 import mapToUserGame from 'graphql/utils/mapToUserGame';
 import { withApollo } from 'functions/utils/apollo';
-import redirect from 'functions/utils/redirect';
 import LoadingButton from '@components/LoadingButton';
 import { useRouter } from 'next/router';
 import WithLayout from '@components/WithLayout';
+import updateDescription from 'functions/graphql/mutations/updateDescription';
 
 
 interface UserInfo {
@@ -70,7 +68,8 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
 
     const [hasGameOperations, setHasGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
     const [wantGameOperations, setWantGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
-    const [userGames, setUserGames] = useState<UserGames>()
+    const [changedDescription, setDescription] = useState('')
+
 
     const [saving, setSaving] = useState(false)
     const apolloClient = useContext(getApolloContext()).client
@@ -121,6 +120,7 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
 
         const hasResult = await hasSendOperations(hasGameOperations)
         const wantResult = await wantSendOperations(wantGameOperations)
+        const descriptionResult = await updateDescription(changedDescription, apolloClient)
         console.log(`${hasResult} hasresult`)
         if (hasResult) {
             setHasGameOperations({})
@@ -128,11 +128,12 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
         if (wantResult) {
             setWantGameOperations({})
         }
+        if (descriptionResult.success) {
+            setDescription('')
+        }
 
         setSaving(false)
         document.location.reload()
-
-
 
     }
 
@@ -159,13 +160,20 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end', marginBottom: 20, flexDirection: 'column' }}>
             <div>
                 <span>
-                    <Button onClick={() => Router.push('/profile/me')} variant='outline-primary'>View List</Button>
+                    {isEmpty(hasGameOperations) && isEmpty(wantGameOperations) && !changedDescription.length ?
+                        <Button onClick={() => Router.push('/profile/me')} variant='outline-primary'>View List</Button>
+                        : <LoadingButton
+                            onClick={async () => {
+                                await saveOperations()
+                            }}
+                            loadingText='Saving'
+                            normalText='Save' />}
                 </span>
             </div>
-            <div
+            {/* <div
                 style={{ marginTop: 20 }}
-            >
-                {/* {
+            > */}
+            {/* {
                     saving ?
                         <>
                             <Spinner
@@ -187,20 +195,14 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
                             </span>
 
                 } */}
-                <LoadingButton
-                    disabled={isEmpty(hasGameOperations) && isEmpty(wantGameOperations)}
-                    onClick={async () => {
-                        await saveOperations()
-                    }}
-                    loadingText='Saving'
-                    normalText='Save' />
-            </div>
+
+            {/* </div> */}
 
         </div>
         <Row>
             <Col md={12} style={{ marginBottom: 30 }}>
                 <Section heading='Description.'>
-                    <Editor initialContent={description} />
+                    <Editor onChange={setDescription} initialContent={description} />
                 </Section>
 
             </Col>
@@ -210,7 +212,7 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
                     <UserList
                         onHasChange={handleHasChange}
                         onWantChange={handleWantChange}
-                        data={userGames ? userGames : initialUserGames}
+                        data={initialUserGames}
                         editable
                     />
 
