@@ -7,6 +7,8 @@ import UserList, { UserGames } from '@components/UserList';
 import { withAuth } from '@components/WithAuth';
 import { withApollo } from 'functions/utils/apollo';
 import WithLayout from '@components/WithLayout';
+import getUserFromUsername from 'functions/graphql/queries/getUserFromUsername';
+import mapToUserGame from 'graphql/utils/mapToUserGame';
 
 interface UserInfo {
     userName: string
@@ -57,21 +59,35 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
     )
 }
 
-Page.getInitialProps = async ({ query }) => {
+Page.getInitialProps = async ({ apolloClient, query: { username = '' } }) => {
+    const user = await getUserFromUsername(apolloClient, username)
+    const {
+        description: userDescription = '',
+        userName,
+        userImageUrl: userImage = '',
+        isPro: isPremium,
+        epochTimeCreated,
+        isBanned,
+        email
+    } = user.info
 
-    return {
-        userInfo: {
-            userName: 'IncredibleGonzo',
-            userImage: "https://www.redditstatic.com/avatars/avatar_default_08_0079D3.png",
-            isPremium: true,
-            epochTimeCreated: (1504224000 * 1000).toString(),
-            userDescription: "I've got a few hardware too:\n\n1. A broken xbox one with 3 __controllers__\n2. 2 playstation 1 controllers\n3. 1 camo themed playstation 4 controller"
-        },
-        userGames: {
-            has: [],
-            want: []
-        }
+    const userInfo: UserInfo = {
+        isBanned,
+        userName: userName || email,
+        userDescription: userDescription || '',
+        userImage,
+        isPremium,
+        epochTimeCreated
     }
+    return {
+        userInfo,
+        userGames: {
+            has: user.hasGames.map(mapToUserGame()),
+            want: user.wantedGames.map(mapToUserGame()),
+
+        } as UserGames
+    }
+
 }
 
 export default withApollo(WithLayout(Page))
