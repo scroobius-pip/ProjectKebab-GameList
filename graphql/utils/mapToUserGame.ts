@@ -6,7 +6,7 @@ function mapToUserGame(): (value: { __typename?: "UserGame"; id: string; details
         consoleType: usergame['game'].consoleType,
         description: usergame['details'].description,
         id: usergame.id,
-        imageUrl: '',
+        imageUrl: usergame['game'].imageUrl,
         name: usergame['game'].name,
         tradeType: usergame['details'].tradeType === IUserGameDetailsTradeType.Sale ? 'Sale' : 'Swap'
     });
