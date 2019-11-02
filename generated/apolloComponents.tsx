@@ -435,6 +435,13 @@ export type IUpdateUserGamesMutationVariables = {
 
 export type IUpdateUserGamesMutation = { __typename?: 'Mutation', updateUserGames: Maybe<{ __typename?: 'UpdateGamesMutationResult', result: boolean }> };
 
+export type IUpdateLocationMutationVariables = {
+  location: IUserInfoLocationInput
+};
+
+
+export type IUpdateLocationMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', location: Maybe<{ __typename?: 'UserInfoLocation', country: string, state: string }> }>, error: Maybe<{ __typename?: 'Error', message: string, type: string, id: string }> }> };
+
 export type IGetMyDescriptionAndGamesQueryVariables = {};
 
 
@@ -673,6 +680,65 @@ export function useUpdateUserGamesMutation(baseOptions?: ApolloReactHooks.Mutati
 export type UpdateUserGamesMutationHookResult = ReturnType<typeof useUpdateUserGamesMutation>;
 export type UpdateUserGamesMutationResult = ApolloReactCommon.MutationResult<IUpdateUserGamesMutation>;
 export type UpdateUserGamesMutationOptions = ApolloReactCommon.BaseMutationOptions<IUpdateUserGamesMutation, IUpdateUserGamesMutationVariables>;
+export const UpdateLocationDocument = gql`
+    mutation updateLocation($location: UserInfoLocationInput!) {
+  updateUserInfo(input: {info: {location: $location}}) {
+    result {
+      location {
+        country
+        state
+      }
+    }
+    error {
+      message
+      type
+      id
+    }
+  }
+}
+    `;
+export type IUpdateLocationMutationFn = ApolloReactCommon.MutationFunction<IUpdateLocationMutation, IUpdateLocationMutationVariables>;
+export type UpdateLocationComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<IUpdateLocationMutation, IUpdateLocationMutationVariables>, 'mutation'>;
+
+    export const UpdateLocationComponent = (props: UpdateLocationComponentProps) => (
+      <ApolloReactComponents.Mutation<IUpdateLocationMutation, IUpdateLocationMutationVariables> mutation={UpdateLocationDocument} {...props} />
+    );
+    
+export type IUpdateLocationProps<TChildProps = {}> = ApolloReactHoc.MutateProps<IUpdateLocationMutation, IUpdateLocationMutationVariables> & TChildProps;
+export function withUpdateLocation<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IUpdateLocationMutation,
+  IUpdateLocationMutationVariables,
+  IUpdateLocationProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, IUpdateLocationMutation, IUpdateLocationMutationVariables, IUpdateLocationProps<TChildProps>>(UpdateLocationDocument, {
+      alias: 'updateLocation',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useUpdateLocationMutation__
+ *
+ * To run a mutation, you first call `useUpdateLocationMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateLocationMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateLocationMutation, { data, loading, error }] = useUpdateLocationMutation({
+ *   variables: {
+ *      location: // value for 'location'
+ *   },
+ * });
+ */
+export function useUpdateLocationMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<IUpdateLocationMutation, IUpdateLocationMutationVariables>) {
+        return ApolloReactHooks.useMutation<IUpdateLocationMutation, IUpdateLocationMutationVariables>(UpdateLocationDocument, baseOptions);
+      }
+export type UpdateLocationMutationHookResult = ReturnType<typeof useUpdateLocationMutation>;
+export type UpdateLocationMutationResult = ApolloReactCommon.MutationResult<IUpdateLocationMutation>;
+export type UpdateLocationMutationOptions = ApolloReactCommon.BaseMutationOptions<IUpdateLocationMutation, IUpdateLocationMutationVariables>;
 export const GetMyDescriptionAndGamesDocument = gql`
     query getMyDescriptionAndGames {
   me {

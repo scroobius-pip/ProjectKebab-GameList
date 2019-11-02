@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Button, } from 'react-bootstrap'
 import SettingsSection, { Props as SettingsSectionProps } from '../components/SettingsSection'
 import Switch from '../components/Switch'
@@ -10,48 +10,110 @@ import { getAuthToken } from 'functions/utils/authToken'
 import WithLayout from '@components/WithLayout'
 import { withApollo } from 'functions/utils/apollo'
 import getUserInfo from 'functions/graphql/queries/getUserInfo'
+import updateLocation from 'functions/graphql/mutations/updateLocation'
+import { getApolloContext } from 'react-apollo'
+interface Props {
+    userSettings: Pick<UserSettings, 'notifications_enabled' | 'location_enabled' | 'premium_enabled'>
+    signInClicked?: () => {}
+    premiumClicked?: () => {}
+}
 
-class Page extends React.Component<Props> {
 
-    static async getInitialProps(ctx) {
-        const { info: { setting_matchNotifications } } = await getUserInfo(ctx.apolloClient)
-        return {
-            userSettings: {
-                notifications_enabled: setting_matchNotifications,
-                location_enabled: false,
-                premium_enabled: false,
+const Page = (props: Props) => {
+    const apolloClient = useContext(getApolloContext()).client
 
-            }
-        }
+
+    const [state, setState] = useState({
+
+        notifications_enabled: false,
+        location_enabled: false,
+        premium_enabled: false
+    })
+
+    const setLocation = () => {
+
+        window.navigator.geolocation.getCurrentPosition((position) => {
+
+            const { longitude, latitude } = position.coords
+            console.log(position.coords)
+            updateLocation({ latitude, longitude }, apolloClient)
+            setState({
+                location_enabled: true,
+                ...state
+            })
+        }, (error) => {
+            console.log(error.message)
+            this.setState({
+                location_enabled: false
+            })
+        }, {
+            enableHighAccuracy: true,
+            maximumAge: 60 * 10 * 1000,
+
+        })
+
+
     }
 
+    const unsetLocation = () => {
+        updateLocation({ longitude: 0, latitude: 0 }, apolloClient)
+    }
 
-    render() {
+    useEffect(() => {
 
-        const userSettings = this.props.userSettings
-        userSettings.handlePremiumToggle = () => {
-            this.props.premiumClicked()
+        setState({
+            ...state,
+            ...props.userSettings
+        })
+    }, [])
+
+
+
+
+    const userSettings: UserSettings = {
+        ...state,
+        handleLocationToggle: (value) => {
+            if (value) {
+                unsetLocation()
+            } else {
+
+                setLocation()
+            }
+            return !value
+        },
+        handleNotificationToggle: (value) => { return !value },
+        handlePremiumToggle: () => {
+            props.premiumClicked()
             return false
         }
-        userSettings.handleNotificationToggle = (value) => { return !value }
-        userSettings.handleLocationToggle = (value) => { return !value }
-        return (
-            <>
-                {/* <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
-                    <span>
-                        <Button variant='outline-danger'>Cancel</Button>
-                    </span>
-                    <span style={{ marginLeft: 10 }}>
-                        <Button onClick={() => { }}>Save</Button>
 
-                    </span>
-                </div> */}
-
-                <SettingsSection {...settingsData(userSettings)} />
-            </>
-        )
     }
+
+    return (
+        <>
+
+            <SettingsSection {...settingsData(userSettings)} />
+        </>
+    )
+
 }
+
+Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
+
+
+    const { info: { setting_matchNotifications, location: { country } } } = await getUserInfo(apolloClient)
+    return {
+        userSettings: {
+            notifications_enabled: setting_matchNotifications,
+            location_enabled: !!country.length,
+            premium_enabled: false,
+
+        },
+
+    }
+
+}
+
 
 interface UserSettings {
     notifications_enabled: boolean
@@ -62,11 +124,6 @@ interface UserSettings {
     handlePremiumToggle: (value: boolean) => Promise<boolean> | boolean
 }
 
-interface Props {
-    userSettings: UserSettings
-    signInClicked: () => {}
-    premiumClicked: () => {}
-}
 
 const settingsData: (userSettings: UserSettings) => SettingsSectionProps = (settings) => (
     {
