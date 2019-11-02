@@ -382,7 +382,7 @@ export type IUserInfoInput = {
 
 export type IUserInfoLocation = {
    __typename?: 'UserInfoLocation',
-  city: Scalars['String'],
+  country: Scalars['String'],
   state: Scalars['String'],
 };
 
@@ -450,12 +450,12 @@ export type IGetUserQueryVariables = {
 };
 
 
-export type IGetUserQuery = { __typename?: 'Query', user: Maybe<{ __typename?: 'User', id: string, info: { __typename?: 'UserInfo', email: Maybe<string>, description: Maybe<string>, noOfSuccessfulExchanges: Maybe<number>, epochTimeCreated: Maybe<string>, userName: Maybe<string>, isPro: Maybe<boolean>, isBanned: Maybe<boolean>, userImageUrl: Maybe<string>, setting_matchNotifications: Maybe<boolean> }, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', id: string, name: string, consoleType: Maybe<string>, imageUrl: Maybe<string> } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', id: string, name: string, consoleType: Maybe<string>, imageUrl: Maybe<string> } }>> }> };
+export type IGetUserQuery = { __typename?: 'Query', user: Maybe<{ __typename?: 'User', id: string, info: { __typename?: 'UserInfo', email: Maybe<string>, description: Maybe<string>, noOfSuccessfulExchanges: Maybe<number>, epochTimeCreated: Maybe<string>, userName: Maybe<string>, isPro: Maybe<boolean>, isBanned: Maybe<boolean>, userImageUrl: Maybe<string>, setting_matchNotifications: Maybe<boolean>, location: Maybe<{ __typename?: 'UserInfoLocation', country: string, state: string }> }, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', id: string, name: string, consoleType: Maybe<string>, imageUrl: Maybe<string> } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', id: string, name: string, consoleType: Maybe<string>, imageUrl: Maybe<string> } }>> }> };
 
 export type IGetUserInfoQueryVariables = {};
 
 
-export type IGetUserInfoQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', id: string, info: { __typename?: 'UserInfo', userName: Maybe<string>, email: Maybe<string>, userImageUrl: Maybe<string>, description: Maybe<string>, isPro: Maybe<boolean>, isBanned: Maybe<boolean>, setting_matchNotifications: Maybe<boolean>, epochTimeCreated: Maybe<string> } }> };
+export type IGetUserInfoQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', id: string, info: { __typename?: 'UserInfo', userName: Maybe<string>, email: Maybe<string>, userImageUrl: Maybe<string>, description: Maybe<string>, isPro: Maybe<boolean>, isBanned: Maybe<boolean>, setting_matchNotifications: Maybe<boolean>, epochTimeCreated: Maybe<string>, location: Maybe<{ __typename?: 'UserInfoLocation', country: string, state: string }> } }> };
 
 export type ISearchGamesQueryVariables = {
   input: ISearchGamesQueryInput
@@ -845,6 +845,10 @@ export const GetUserDocument = gql`
       isBanned
       userImageUrl
       setting_matchNotifications
+      location {
+        country
+        state
+      }
     }
     hasGames {
       id
@@ -934,6 +938,10 @@ export const GetUserInfoDocument = gql`
       isBanned
       setting_matchNotifications
       epochTimeCreated
+      location {
+        country
+        state
+      }
     }
   }
 }

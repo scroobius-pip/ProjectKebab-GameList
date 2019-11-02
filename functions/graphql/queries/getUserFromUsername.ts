@@ -1,5 +1,4 @@
 import { ApolloClient } from 'apollo-boost';
-import User from 'types/IUser';
 import { IGetUserQuery, IGetUserQueryVariables } from 'generated/apolloComponents';
 import getUser from 'graphql/queries/getUserFromUsername';
 

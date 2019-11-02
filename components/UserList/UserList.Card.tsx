@@ -92,12 +92,12 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
 
 
     return <>
-        <Row style={{ marginBottom: 20, marginLeft: -40, marginRight: -40 }}>
+        {editable && <Row style={{ marginBottom: 20, marginLeft: -40, marginRight: -40 }}>
             <Col xs={12} md={8} xl={4}>
 
                 <SearchBox onSelect={handleAdd} searchFunction={searchFunction} id={id} />
             </Col>
-        </Row>
+        </Row>}
         <UserListCardHead
             id={id}
             initialFilterValue={{ consoleType: Array.from((new Set(data.map(game => game.consoleType)))), tradeType: Array.from((new Set(data.map(game => game.tradeType)))) }}

@@ -716,7 +716,7 @@
         "description": "",
         "fields": [
           {
-            "name": "city",
+            "name": "country",
             "description": "",
             "args": [],
             "type": {

@@ -201,7 +201,7 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
         </div>
         <Row>
             <Col md={12} style={{ marginBottom: 30 }}>
-                <Section heading='Description.'>
+                <Section heading='Details.'>
                     <Editor onChange={setDescription} initialContent={description} />
                 </Section>
 

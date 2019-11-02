@@ -9,17 +9,16 @@ import { withAuth } from '@components/WithAuth'
 import { getAuthToken } from 'functions/utils/authToken'
 import WithLayout from '@components/WithLayout'
 import { withApollo } from 'functions/utils/apollo'
+import getUserInfo from 'functions/graphql/queries/getUserInfo'
 
 class Page extends React.Component<Props> {
 
     static async getInitialProps(ctx) {
-        const authToken = getAuthToken(ctx)
-        // console.log(`auth token: ${authToken}`)
-
+        const { info: { setting_matchNotifications } } = await getUserInfo(ctx.apolloClient)
         return {
             userSettings: {
-                notifications_enabled: true,
-                location_enabled: true,
+                notifications_enabled: setting_matchNotifications,
+                location_enabled: false,
                 premium_enabled: false,
 
             }

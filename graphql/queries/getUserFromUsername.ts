@@ -16,6 +16,10 @@ query getUser($username:String!){
       isBanned
       userImageUrl
       setting_matchNotifications
+      location {
+        country
+        state
+      }
     }
     hasGames{
       id

@@ -14,6 +14,10 @@ query getUserInfo{
         isBanned
         setting_matchNotifications 
         epochTimeCreated
+        location {
+          country
+          state
+        }
       }
     }
   }

@@ -11,15 +11,10 @@ import { withApollo } from 'functions/utils/apollo';
 import getUserInfo from 'functions/graphql/queries/getUserInfo';
 import getMyGamesAndDescription from 'functions/graphql/queries/getMyGamesAndDescription';
 import mapToUserGame from 'graphql/utils/mapToUserGame';
+import { UserInfo as IUserInfo } from 'types/IUser';
 
-interface UserInfo {
-    userName: string
-    userImage: string
-    isPremium: boolean
-    epochTimeCreated: string
-    userDescription: string
-    isBanned: boolean
-}
+
+
 
 async function stall(stallTime = 500) {
     await new Promise(resolve => setTimeout(resolve, stallTime));
@@ -27,7 +22,7 @@ async function stall(stallTime = 500) {
 
 
 
-const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGames }) => {
+const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGames }) => {
 
     return (
         <>
@@ -48,8 +43,8 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
                         <Col lg={12} style={{ marginBottom: 30 }} >
                             <Section heading='Details.'>
                                 {
-                                    userInfo.userDescription.length ?
-                                        <ReactMarkdown source={userInfo.userDescription} /> :
+                                    userInfo.description.length ?
+                                        <ReactMarkdown source={userInfo.description} /> :
                                         <Alert variant='info'>{userInfo.userName} hasn't provided any details</Alert>
                                 }
                             </Section>
@@ -74,23 +69,25 @@ Page.getInitialProps = async ({ apolloClient }) => {
     const gamesAndDescription = await getMyGamesAndDescription(apolloClient)
 
     const {
-        description: userDescription = '',
+        description = '',
         userName,
-        userImageUrl: userImage = '',
-        isPro: isPremium,
+        userImageUrl = '',
+        isPro,
         epochTimeCreated,
         isBanned,
-        email
+        email,
+        location
     } = user.info
 
     // const resultsGamesAndDescription = 
-    const userInfo: UserInfo = {
+    const userInfo: IUserInfo = {
         isBanned,
         userName: userName || email,
-        userDescription: userDescription || '',
-        userImage,
-        isPremium,
-        epochTimeCreated
+        description,
+        userImageUrl,
+        isPro,
+        epochTimeCreated,
+        location
     }
     // console.log(userInfo)
     return {

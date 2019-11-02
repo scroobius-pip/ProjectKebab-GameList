@@ -26,8 +26,13 @@ const UserInfoItem = ({ name, value, disabled = false, highlighted = false }: Us
     </div>
 )
 
+interface Props {
+    country: string
+    state: string
+    isBanned: boolean
+}
 
-export default () => {
+export default ({ country, state }: Props) => {
     return (
         <>
             <div style={{ marginBottom: 10 }} >
@@ -45,7 +50,7 @@ export default () => {
                         </span>
                     </div>
                 } />
-                <UserInfoItem name='Location' highlighted value='USA-OH' />
+                <UserInfoItem name='Location' highlighted value={`${country}-${state}`} />
             </div>
 
         </>

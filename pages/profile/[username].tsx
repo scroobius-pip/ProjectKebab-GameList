@@ -9,15 +9,20 @@ import { withApollo } from 'functions/utils/apollo';
 import WithLayout from '@components/WithLayout';
 import getUserFromUsername from 'functions/graphql/queries/getUserFromUsername';
 import mapToUserGame from 'graphql/utils/mapToUserGame';
+import { UserInfo as IUserInfo } from 'types/IUser';
 
-interface UserInfo {
-    userName: string
-    userImage: string
-    isPremium: boolean
-    epochTimeCreated: string
-    userDescription: string
-    isBanned: boolean
-}
+// interface IUserInfo {
+//     userName: string
+//     userImage: string
+//     isPremium: boolean
+//     epochTimeCreated: string
+//     userDescription: string
+//     isBanned: boolean
+//     location: {
+//         state: string
+//         country: string
+//     }
+// }
 
 async function stall(stallTime = 500) {
     await new Promise(resolve => setTimeout(resolve, stallTime));
@@ -25,7 +30,7 @@ async function stall(stallTime = 500) {
 
 
 
-const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGames }) => {
+const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGames }) => {
 
     return (
         <>
@@ -40,8 +45,8 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
                         <Col lg={12} style={{ marginBottom: 30 }} >
                             <Section heading='Details.'>
                                 {
-                                    userInfo.userDescription.length ?
-                                        <ReactMarkdown source={userInfo.userDescription} /> :
+                                    userInfo.description.length ?
+                                        <ReactMarkdown source={userInfo.description} /> :
                                         <Alert variant='info'>{userInfo.userName} hasn't provided any details</Alert>
                                 }
                             </Section>
@@ -62,22 +67,26 @@ const Page = ({ userInfo, userGames }: { userInfo: UserInfo, userGames: UserGame
 Page.getInitialProps = async ({ apolloClient, query: { username = '' } }) => {
     const user = await getUserFromUsername(apolloClient, username)
     const {
-        description: userDescription = '',
+        description = '',
         userName,
-        userImageUrl: userImage = '',
-        isPro: isPremium,
+        userImageUrl = '',
+        isPro,
         epochTimeCreated,
         isBanned,
-        email
+        email,
+        location
     } = user.info
 
-    const userInfo: UserInfo = {
+    const userInfo: IUserInfo = {
         isBanned,
         userName: userName || email,
-        userDescription: userDescription || '',
-        userImage,
-        isPremium,
-        epochTimeCreated
+        // userDescription: userDescription || '',
+        description,
+        userImageUrl,
+
+        isPro,
+        epochTimeCreated,
+        location
     }
     return {
         userInfo,

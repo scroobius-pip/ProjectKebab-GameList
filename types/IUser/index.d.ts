@@ -16,10 +16,14 @@ export interface UserInfo {
     userName?: string
     isBanned?: boolean
     setting_matchNotifications?: boolean
+    location: {
+        country: string
+        state: string
+    }
 }
 
 
 export interface UserInfoLocation {
-    city: string
+    state: string
     country: string
 }
