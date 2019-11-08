@@ -36,9 +36,9 @@ export default ({ close }: Props) => {
 
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 10 }}>
-            <span>
+            {/* <span>
                 Ps. it comes with a shiny badge *wink
-            </span>
+            </span> */}
         </div>
         <style jsx>
             {`

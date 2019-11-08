@@ -7,7 +7,7 @@ export default async (searchText: string, client: ApolloClient<any>): Promise<Ga
 
     try {
         const results = await client.query<ISearchGamesQuery, ISearchGamesQueryVariables>({
-            variables: { input: { limit: 10, searchText } },
+            variables: { input: { limit: 20, searchText } },
             query: searchGames
         })
         const games = results.data.searchGames.result || []

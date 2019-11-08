@@ -81,7 +81,7 @@ Page.getInitialProps = async ({ apolloClient, query: { username = '' } }) => {
         isBanned,
         userName: userName || email,
         // userDescription: userDescription || '',
-        description,
+        description: description || "User hasn't provided details",
         userImageUrl,
 
         isPro,

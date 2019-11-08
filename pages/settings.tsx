@@ -75,6 +75,7 @@ const Page = (props: Props) => {
         handleLocationToggle: (value) => {
             if (value) {
                 unsetLocation()
+
             } else {
 
                 setLocation()

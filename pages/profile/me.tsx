@@ -83,7 +83,7 @@ Page.getInitialProps = async ({ apolloClient }) => {
     const userInfo: IUserInfo = {
         isBanned,
         userName: userName || email,
-        description,
+        description: description || "You haven't provided any details",
         userImageUrl,
         isPro,
         epochTimeCreated,
