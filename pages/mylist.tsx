@@ -78,7 +78,22 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
     const wantSendOperations = sendOperations(IUserGameDetailsStatus.Want, apolloClient)
 
 
+    useEffect(() => {
 
+        window.addEventListener('beforeunload', function (e) {
+            // Cancel the event
+            if ((!isEmpty(hasGameOperations) || !isEmpty(wantGameOperations))) {
+                e.preventDefault()
+                return e.returnValue = 'You have not saved your games'
+            } else {
+                delete e['returnValue']
+            }
+            // e.preventDefault();
+            // // Chrome requires returnValue to be set
+            // e.returnValue = '';
+        })
+
+    }, [])
 
     const handleHasChange: (changeType: "delete" | "add" | "update", data: OnChangeDataUserList) => any = (changeType, data) => {
 

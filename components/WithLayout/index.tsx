@@ -1,18 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 
-import { Container, Spinner } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import NavBar from '../NavBar';
 import { ScreenClassProvider } from 'react-grid-system';
 import { UserProvider } from 'context/UserContext';
-import User from 'types/IUser';
-import React, { useState, useContext } from 'react';
-import { withApollo } from 'functions/utils/apollo';
+import React, {  } from 'react';
 import getUserInfo from 'functions/graphql/queries/getUserInfo';
 import { LoginWithModal, PremiumWithModal } from '@components/Modals';
+import PageLoader from '@components/PageLoader'
 import { setAuthToken } from 'functions/utils/authToken';
 import redirect from 'functions/utils/redirect';
-import { getApolloContext } from 'react-apollo';
 
 
 interface Props {
@@ -100,6 +98,7 @@ const Layout = (Component: any) => {
 
 
             return <Container>
+                <PageLoader color='rgb(109, 123, 212)' height={5} options={{ showSpinner: false }} />
                 <ScreenClassProvider>
 
                     <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
