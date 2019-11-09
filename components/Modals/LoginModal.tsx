@@ -21,6 +21,14 @@ export default ({ errorMessage = '' }: { errorMessage: string }) => {
         <div>
             <p>By signing in you agree to nakama's <a href='terms.io'>terms and conditions</a></p>
         </div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <a href='https://discord.gg/2DadQ7d'>
+
+                <img style={{ height: '2em' }} src={require('../../assets/icons/discord-icon.svg')} />
+            </a>
+
+
+        </div>
     </div >
 
 
