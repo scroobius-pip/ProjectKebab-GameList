@@ -66,8 +66,6 @@ const Layout = (Component: any) => {
 
 
 
-        // const [user, setUser] = useState<User>(null) 
-
         signIn = async (token: string) => {
             console.log(token)
             if (typeof token === 'string' && token) {
@@ -94,9 +92,6 @@ const Layout = (Component: any) => {
         render() {
             const { user, ...props } = this.props;
 
-
-
-
             return <Container>
                 <PageLoader color='rgb(109, 123, 212)' height={5} options={{ showSpinner: false }} />
                 <ScreenClassProvider>
@@ -114,12 +109,6 @@ const Layout = (Component: any) => {
     }
 
 
-    // LayoutComponent.getInitialProps = async ({ apolloClient, ...ctx }) => {
-    //     const user = await getUserInfo(apolloClient)
-    //     console.log(user)
-    //     return { user, apolloClient, ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {}) }
-    // }
-    // return LayoutComponent
 }
 
 

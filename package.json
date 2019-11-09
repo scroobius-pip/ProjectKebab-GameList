@@ -61,6 +61,7 @@
     "react-dom": "^16.9.0",
     "react-draft-wysiwyg": "^1.13.2",
     "react-grid-system": "^5.0.2",
+    "react-load-image": "^0.1.7",
     "react-markdown": "^4.2.2",
     "react-textarea-autosize": "^7.1.0"
   },

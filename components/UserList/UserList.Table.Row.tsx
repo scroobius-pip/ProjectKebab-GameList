@@ -2,6 +2,8 @@ import { UserGame } from './UserList'
 import UserListTableRowTextArea from './UserList.Table.Row.TextArea';
 import TextButton from '../TextButton';
 import TextDropDown from '../TextDropDown';
+import ImageLoader from 'react-load-image'
+import { Spinner } from 'react-bootstrap';
 
 export interface Props extends UserGame {
     onDelete: (id: string) => any
@@ -10,11 +12,17 @@ export interface Props extends UserGame {
     editable?: boolean
 }
 
-export default ({ imageUrl , consoleType, description, name, tradeType, onDelete, onDescriptionChange, onTradeTypeChange, id, editable = false }: Props) => (
+export default ({ imageUrl, consoleType, description, name, tradeType, onDelete, onDescriptionChange, onTradeTypeChange, id, editable = false }: Props) => (
     <><tr>
         {editable ? null : <td style={{ padding: 0, height: 60, maxHeight: 60, }}>
-            <div style={{ height: '100%', }}>
-               {imageUrl&& <img alt={name} style={{ maxHeight: '100%', maxWidth: '100%', filter: 'brightness(0.8)' }} src={imageUrl} />}
+            <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                {!!imageUrl && <ImageLoader
+                    src={imageUrl}
+                >
+                    <img alt={name} style={{ maxHeight: '100%', maxWidth: '100%', filter: 'brightness(0.8)' }} />
+                    <div></div>
+                    <Spinner size='sm' animation='grow' />
+                </ImageLoader>}
             </div>
         </td>}
         <td style={{ height: 40, maxHeight: 40 }}>
