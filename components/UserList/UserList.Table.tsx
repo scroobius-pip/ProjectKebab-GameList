@@ -109,13 +109,13 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                     <SearchBox onSelect={handleAdd} searchFunction={searchFunction} id={id} />
                 </Col>
             </Row> : null}
-            <UserListCardHead
+            {!!data.length && <UserListCardHead
                 id={id}
                 initialFilterValue={{ consoleType: Array.from((new Set(data.map(game => game.consoleType)))), tradeType: Array.from((new Set(data.map(game => game.tradeType)))) }}
                 onFilterChange={filterChange}
                 onSortChange={sortChange}
                 editable={editable}
-            />
+            />}
             {
                 filteredAndSortedData.length ?
                     <Table style={{ backgroundColor: 'transparent' }} striped hover variant="dark">
@@ -142,7 +142,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                             }
                         </tbody>
                     </Table> :
-                    <img style={{ width: 100, height: 100, borderRadius: 5 }} src={require('../../assets/icons/empty.jpg')} />
+                    <img style={{ width: 100, height: 100, borderRadius: 5, filter: 'brightness(0.65)' }} src={require('../../assets/icons/empty.jpg')} />
             }
         </>
     )

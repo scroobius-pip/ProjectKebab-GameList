@@ -98,13 +98,13 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                 <SearchBox onSelect={handleAdd} searchFunction={searchFunction} id={id} />
             </Col>
         </Row>}
-        <UserListCardHead
+        {!!data.length && <UserListCardHead
             id={id}
             initialFilterValue={{ consoleType: Array.from((new Set(data.map(game => game.consoleType)))), tradeType: Array.from((new Set(data.map(game => game.tradeType)))) }}
             onFilterChange={filterChange}
             onSortChange={sortChange}
             editable={editable}
-        />
+        />}
         {
             filteredAndSortedData.length ?
                 filteredAndSortedData.map(game => {
@@ -117,7 +117,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                         {...game}
                     />
                 }) :
-                <img src={require('../../assets/icons/empty.jpg')} />
+                <img style={{ filter: 'brightness(0.65)', width: '50%', borderRadius: 5 }} src={require('../../assets/icons/empty.jpg')} />
         }
     </>
 
