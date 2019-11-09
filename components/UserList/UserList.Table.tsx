@@ -116,25 +116,34 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                 onSortChange={sortChange}
                 editable={editable}
             />
-            <Table style={{ backgroundColor: 'transparent' }} striped hover variant="dark">
-                <thead style={{ backgroundColor: 'transparent' }}>
-                    <UserListTableHead
-                        editable={editable}
-                    />
-                </thead>
-                <tbody>
-                    {filteredAndSortedData.map(game => {
-                        return <UserListRow
-                            onDelete={handleDelete}
-                            onDescriptionChange={handleDescriptionChange}
-                            onTradeTypeChange={handleTradeTypeChange}
-                            editable={editable}
-                            key={game.id}
-                            {...game}
-                        />
-                    })}
-                </tbody>
-            </Table>
+            {
+                filteredAndSortedData.length ?
+                    <Table style={{ backgroundColor: 'transparent' }} striped hover variant="dark">
+                        <thead style={{ backgroundColor: 'transparent' }}>
+                            <UserListTableHead
+                                editable={editable}
+                            />
+                        </thead>
+                        <tbody>
+                            {
+
+
+                                filteredAndSortedData.map(game => {
+                                    return <UserListRow
+                                        onDelete={handleDelete}
+                                        onDescriptionChange={handleDescriptionChange}
+                                        onTradeTypeChange={handleTradeTypeChange}
+                                        editable={editable}
+                                        key={game.id}
+                                        {...game}
+                                    />
+                                })
+
+                            }
+                        </tbody>
+                    </Table> :
+                    <img style={{ width: 100, height: 100, borderRadius: 5 }} src={require('../../assets/icons/empty.jpg')} />
+            }
         </>
     )
 }
