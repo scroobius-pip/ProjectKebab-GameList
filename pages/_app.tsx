@@ -1,9 +1,6 @@
 import React from 'react'
 import App from 'next/app'
-import NProgress from 'nprogress'
-import Router from 'next/router'
 import Head from 'next/head'
-import '../static/nprogress.css'
 import { setAuthToken } from 'functions/utils/authToken'
 import User from 'types/IUser'
 import redirect from 'functions/utils/redirect'
@@ -34,8 +31,6 @@ class MyApp extends App<Props, {}, State> {
         this.togglePremiumModal = this.togglePremiumModal.bind(this)
         this.toggleSignInModal = this.toggleSignInModal.bind(this)
     }
-
-
 
 
     togglePremiumModal = (value = true) => {

@@ -55,7 +55,6 @@ const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any
     const resultDelete = await removeGames(deleteOperations, client)
     const resultUpdate = await updateGames(status)(updateOperations, client)
     return resultAdd.success && resultDelete.success && resultUpdate.success
-    // return false
 }
 
 
@@ -72,28 +71,25 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
 
 
     const [saving, setSaving] = useState(false)
+    const router = useRouter()
     const apolloClient = useContext(getApolloContext()).client
     const Router = useRouter()
     const hasSendOperations = sendOperations(IUserGameDetailsStatus.Has, apolloClient)
     const wantSendOperations = sendOperations(IUserGameDetailsStatus.Want, apolloClient)
 
 
+    const isSaved = isEmpty(hasGameOperations) && isEmpty(wantGameOperations) && !changedDescription.length;
+
+    const handleRouteChange = async () => {
+        console.log('started routing')
+
+        await saveOperations()
+    }
+
     useEffect(() => {
-
-        window.addEventListener('beforeunload', function (e) {
-            // Cancel the event
-            if ((!isEmpty(hasGameOperations) || !isEmpty(wantGameOperations))) {
-                e.preventDefault()
-                return e.returnValue = 'You have not saved your games'
-            } else {
-                delete e['returnValue']
-            }
-            // e.preventDefault();
-            // // Chrome requires returnValue to be set
-            // e.returnValue = '';
-        })
-
+        router.events.on('routeChangeStart', handleRouteChange)
     }, [])
+
 
     const handleHasChange: (changeType: "delete" | "add" | "update", data: OnChangeDataUserList) => any = (changeType, data) => {
 
@@ -136,7 +132,7 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
         const hasResult = await hasSendOperations(hasGameOperations)
         const wantResult = await wantSendOperations(wantGameOperations)
         const descriptionResult = await updateDescription(changedDescription, apolloClient)
-        console.log(`${hasResult} hasresult`)
+
         if (hasResult) {
             setHasGameOperations({})
         }
@@ -148,70 +144,26 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
         }
 
         setSaving(false)
-        document.location.reload()
 
     }
-
-    const reloadData = async () => {
-        console.log('loading')
-        const data = await getMyGamesAndDescription(apolloClient)
-        console.log(data)
-        return {
-            userGames: {
-                has: data.hasGames.map(mapToUserGame()),
-                want: data.wantedGames.map(mapToUserGame()),
-
-            },
-            description: data.info.description
-        }
-    }
-
-    // useInterval(() => {
-    //     saveOperations()
-    // }, !isEmpty(hasGameOperations) || !isEmpty(wantGameOperations) ? 2000 : null, true)
 
 
     return <>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end', marginBottom: 20, flexDirection: 'column' }}>
             <div>
                 <span>
-                    {isEmpty(hasGameOperations) && isEmpty(wantGameOperations) && !changedDescription.length ?
+                    {isSaved ?
                         <Button onClick={() => Router.push('/profile/me')} variant='outline-primary'>View List</Button>
                         : <LoadingButton
                             onClick={async () => {
                                 await saveOperations()
+                                document.location.reload()
+
                             }}
                             loadingText='Saving'
                             normalText='Save' />}
                 </span>
             </div>
-            {/* <div
-                style={{ marginTop: 20 }}
-            > */}
-            {/* {
-                    saving ?
-                        <>
-                            <Spinner
-                                variant='light'
-                                style={{
-                                    width: '1em',
-                                    height: '1em',
-                                }}
-                                animation="grow" />
-                            <span style={{ color: colors.text, fontWeight: 600, marginLeft: 5 }}>
-                                Saving
-                            </span>
-                        </> : isEmpty(hasGameOperations) && isEmpty(wantGameOperations) ?
-                            <span style={{ color: colors.secondary, fontWeight: 600, marginLeft: 5 }}>
-                                Saved
-                        </span> :
-                            <span style={{ color: 'red', fontWeight: 600, marginLeft: 5 }}>
-                                Not Saved
-                            </span>
-
-                } */}
-
-            {/* </div> */}
 
         </div>
         <Row>
@@ -238,13 +190,9 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
 }
 
 Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
-    // console.log(ctx)
 
     const data = await getMyGamesAndDescription(apolloClient)
-    // if (!data) {
-    //     redirect(ctx, '/login')
-    //     return
-    // }
+
     return {
         userGames: {
             has: data.hasGames.map(mapToUserGame()),

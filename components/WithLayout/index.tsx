@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 import NavBar from '../NavBar';
 import { ScreenClassProvider } from 'react-grid-system';
 import { UserProvider } from 'context/UserContext';
-import React, {  } from 'react';
+import React, { } from 'react';
 import getUserInfo from 'functions/graphql/queries/getUserInfo';
 import { LoginWithModal, PremiumWithModal } from '@components/Modals';
 import PageLoader from '@components/PageLoader'
@@ -86,7 +86,7 @@ const Layout = (Component: any) => {
             // await this.props.apolloClient.cache.reset()
 
 
-            redirect(null, '/')
+            redirect(null, '/login')
         }
 
 
