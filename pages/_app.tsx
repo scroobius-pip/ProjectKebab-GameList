@@ -77,9 +77,7 @@ class MyApp extends App<Props, {}, State> {
 
         return (
             <>
-                <Head>
-                    <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
-                </Head>
+
 
                 <Component {...pageProps} />
 
