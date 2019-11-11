@@ -1,12 +1,8 @@
 import { useState, useContext, useEffect } from 'react'
-import { Button, } from 'react-bootstrap'
 import SettingsSection, { Props as SettingsSectionProps } from '../components/SettingsSection'
 import Switch from '../components/Switch'
 import React from 'react'
-import Router from 'next/router'
-import AuthTokenContext from 'context/AuthTokenContext'
 import { withAuth } from '@components/WithAuth'
-import { getAuthToken } from 'functions/utils/authToken'
 import WithLayout from '@components/WithLayout'
 import { withApollo } from 'functions/utils/apollo'
 import getUserInfo from 'functions/graphql/queries/getUserInfo'
@@ -99,7 +95,7 @@ const Page = (props: Props) => {
 
 }
 
-Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
+Page.getInitialProps = async ({ apolloClient }): Promise<Props> => {
 
 
     const { info: { setting_matchNotifications, location: { country } } } = await getUserInfo(apolloClient)

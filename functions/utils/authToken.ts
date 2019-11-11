@@ -21,7 +21,7 @@ const getAuthToken = (ctx: NextPageContext): string => {
 
 const setAuthToken = (token: string) => {
     if (typeof document !== 'undefined')
-        document.cookie = `token=${token}; path=/`
+        document.cookie = `token=${token}; path=/; expires=31536000;secure;samesite `
 }
 
 export {

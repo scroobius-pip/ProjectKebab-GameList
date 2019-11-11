@@ -23,14 +23,6 @@ import WithLayout from '@components/WithLayout';
 import updateDescription from 'functions/graphql/mutations/updateDescription';
 
 
-interface UserInfo {
-    userName: string
-    userImage: string
-    isPremium: boolean
-    epochTimeCreated: number
-    userDescription: string
-    isBanned: boolean
-}
 
 const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any>) => async (operations: { [id: string]: Operation<OnChangeDataUserList> }, ) => {
     const addOperations: UserGame[] = []
