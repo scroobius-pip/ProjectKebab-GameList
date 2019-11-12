@@ -1,10 +1,10 @@
 import Section from '../components/Section';
-import { Row, Col, Button, Spinner } from 'react-bootstrap';
+import { Row, Col, Button, Spinner, Toast } from 'react-bootstrap';
 import Editor from '../components/Editor';
 import UserList, { UserGames } from '../components/UserList';
 import { withAuth } from '@components/WithAuth';
-import { isEmpty } from 'lodash'
-import { useState, useContext, useEffect } from 'react';
+import { isEmpty, has } from 'lodash'
+import React, { useState, useContext, useEffect } from 'react';
 import mergeOperation, { Operation } from 'functions/utils/mergeOperation';
 import { IUserGameDetailsStatus } from 'generated/apolloComponents';
 import { OnChangeDataUserList } from '@components/UserList/UserList.Table';
@@ -18,10 +18,9 @@ import getMyGamesAndDescription from 'functions/graphql/queries/getMyGamesAndDes
 import mapToUserGame from 'graphql/utils/mapToUserGame';
 import { withApollo } from 'functions/utils/apollo';
 import LoadingButton from '@components/LoadingButton';
-import { useRouter } from 'next/router';
+import { useRouter, Router } from 'next/router';
 import WithLayout from '@components/WithLayout';
 import updateDescription from 'functions/graphql/mutations/updateDescription';
-
 
 
 
@@ -37,7 +36,6 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
     const [hasGameOperations, setHasGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
     const [wantGameOperations, setWantGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
     const [changedDescription, setDescription] = useState('')
-
 
     const [saving, setSaving] = useState(false)
 

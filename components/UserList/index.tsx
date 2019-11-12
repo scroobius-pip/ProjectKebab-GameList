@@ -16,7 +16,7 @@ interface Props {
 
 }
 
-export default ({ editable = false, data, onHasChange,onWantChange }: Props) => {
+export default ({ editable = false, data, onHasChange, onWantChange }: Props) => {
 
     return <Tab.Container id="user-list" defaultActiveKey="has">
         <div>
