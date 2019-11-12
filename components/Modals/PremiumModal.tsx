@@ -10,7 +10,7 @@ export default ({ close }: Props) => {
         <h2><strong>Get Premium</strong></h2>
         <div style={{ marginTop: 10, }}>
             <ul style={{ lineHeight: 2, fontWeight: 600 }}>
-                <li>Add 20+ games to your list.</li>
+                <li>Add 100+ games to your list.</li>
                 <li>Import your steam wishlist.</li>
                 <li>Get notifications when someone has what you want.</li>
             </ul>
