@@ -78,7 +78,9 @@ class MyApp extends App<Props, {}, State> {
         return (
             <>
 
-
+                <Head>
+                    <script type="text/javascript" src={require('../static/hotjar')} />
+                </Head>
                 <Component {...pageProps} />
 
             </>
