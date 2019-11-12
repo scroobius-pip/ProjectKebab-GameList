@@ -31,8 +31,11 @@ export default (status: IUserGameDetailsStatus) => async (games: UserGame[], cli
             mutation: addGames
         })
 
+        console.log(results.data.addUserGames)
+
         return {
-            success: results.data.addUserGames.result
+            success: results.data.addUserGames.result,
+            message: results.data.addUserGames.error ? results.data.addUserGames.error.type : ''
         }
 
     } catch (error) {

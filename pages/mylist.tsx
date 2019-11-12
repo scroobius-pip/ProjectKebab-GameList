@@ -24,38 +24,15 @@ import updateDescription from 'functions/graphql/mutations/updateDescription';
 
 
 
-const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any>) => async (operations: { [id: string]: Operation<OnChangeDataUserList> }, ) => {
-    const addOperations: UserGame[] = []
-    const updateOperations: UserGame[] = []
-    const deleteOperations: Array<{ id: string }> = []
-    console.log(operations)
-    for (const id in operations) {
-        if (operations[id].add) {
-            addOperations.push(operations[id].add.value)
-            continue
-        }
-        if (operations[id].update) {
-            updateOperations.push(operations[id].update.value)
-        }
-        if (operations[id].delete) {
-            deleteOperations.push({ id })
-        }
-    }
-
-
-    const resultAdd = await addGames(status)(addOperations, client)
-    const resultDelete = await removeGames(deleteOperations, client)
-    const resultUpdate = await updateGames(status)(updateOperations, client)
-    return resultAdd.success && resultDelete.success && resultUpdate.success
-}
 
 
 interface Props {
     description: string
     userGames: UserGames
+    premiumClicked?: () => {}
 }
 
-const Page = ({ description, userGames: initialUserGames }: Props) => {
+const Page = ({ description, userGames: initialUserGames, premiumClicked }: Props) => {
 
     const [hasGameOperations, setHasGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
     const [wantGameOperations, setWantGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
@@ -63,6 +40,42 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
 
 
     const [saving, setSaving] = useState(false)
+
+    const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any>) => async (operations: { [id: string]: Operation<OnChangeDataUserList> }, ) => {
+        const addOperations: UserGame[] = []
+        const updateOperations: UserGame[] = []
+        const deleteOperations: Array<{ id: string }> = []
+        console.log(operations)
+        for (const id in operations) {
+            if (!operations[id]) continue
+
+            if (operations[id].add) {
+                addOperations.push(operations[id].add.value)
+                continue // you have to add a game before you can update or delete it
+            }
+            if (operations[id].update) {
+                updateOperations.push(operations[id].update.value)
+            }
+            if (operations[id].delete) {
+                deleteOperations.push({ id })
+            }
+        }
+
+
+        const resultAdd = await addGames(status)(addOperations, client)
+        const resultDelete = await removeGames(deleteOperations, client)
+        const resultUpdate = await updateGames(status)(updateOperations, client)
+        if (!(resultAdd.success && resultDelete.success && resultUpdate.success)) {
+            console.error(resultAdd)
+            if (resultAdd.message === 'UPGRADE_MEMBERSHIP') {
+                premiumClicked()
+            }
+            console.error(resultDelete)
+            console.error(resultUpdate)
+        }
+        return resultAdd.success && resultDelete.success && resultUpdate.success
+    }
+
     const router = useRouter()
     const apolloClient = useContext(getApolloContext()).client
     const Router = useRouter()
@@ -75,7 +88,9 @@ const Page = ({ description, userGames: initialUserGames }: Props) => {
     const handleRouteChange = async () => {
         console.log('started routing')
 
-        await saveOperations()
+        if (!isSaved) {
+            await saveOperations()
+        }
     }
 
     useEffect(() => {
