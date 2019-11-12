@@ -1,6 +1,5 @@
 import { NextPageContext } from 'next'
 import cookies from 'next-cookies'
-import jwt from 'jsonwebtoken'
 import decode from 'jwt-decode'
 
 
@@ -21,7 +20,7 @@ const getAuthToken = (ctx: NextPageContext): string => {
 
 const setAuthToken = (token: string) => {
     if (typeof document !== 'undefined')
-        document.cookie = `token=${token}; path=/; expires=31536000;secure;samesite `
+        document.cookie = `token=${token}; path=/; max-age=2841782400;samesite `
 }
 
 export {
