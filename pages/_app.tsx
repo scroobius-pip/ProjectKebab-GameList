@@ -79,6 +79,8 @@ class MyApp extends App<Props, {}, State> {
             <>
 
                 <Head>
+                    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152414840-1"></script>
+                    <script dangerouslySetInnerHTML={googleAnalyticsCode} />
                     <script dangerouslySetInnerHTML={hotJarTrackingCode} />
                 </Head>
                 <Component {...pageProps} />
@@ -105,6 +107,22 @@ r=o.createElement('script');r.async=1;
 r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
 a.appendChild(r);
 })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+
+    `
+}
+
+
+const googleAnalyticsCode = {
+    __html: `
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-152414840-1');
+
 
     `
 }

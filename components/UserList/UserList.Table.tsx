@@ -1,4 +1,4 @@
-import { Table, Row, Col } from 'react-bootstrap'
+import { Table, Row, Col, Button } from 'react-bootstrap'
 import { unionBy, differenceWith, unionWith } from 'lodash'
 import UserListTableHead from './UserList.Table.Head'
 import UserListRow from './UserList.Table.Row'
@@ -7,6 +7,7 @@ import UserListCardHead, { FilterValue } from './UserList.Card.Head'
 import { useState, useContext } from 'react'
 import SearchBox, { Game } from '../SearchBox'
 import searchGames from 'functions/graphql/queries/searchGames'
+import { font } from 'styles'
 
 export interface Props {
     initialGames: UserGame[]
@@ -107,15 +108,25 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
             {editable ? <Row style={{ marginBottom: 20 }}>
                 <Col xs={12} md={8} xl={6}>
                     <SearchBox onSelect={handleAdd} searchFunction={searchFunction} id={id} />
+
                 </Col>
-            </Row> : null}
-            {!!data.length && <UserListCardHead
-                id={id}
-                initialFilterValue={{ consoleType: Array.from((new Set(data.map(game => game.consoleType)))), tradeType: Array.from((new Set(data.map(game => game.tradeType)))) }}
-                onFilterChange={filterChange}
-                onSortChange={sortChange}
-                editable={editable}
-            />}
+                {id === 'want' && < Col md={4}>
+                    <Button disabled>
+                        <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Import Your Steam Wishlist</span>
+                        <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/search-add.svg')} />
+                    </Button>
+                </Col>}
+            </Row> : null
+            }
+            {
+                !!data.length && <UserListCardHead
+                    id={id}
+                    initialFilterValue={{ consoleType: Array.from((new Set(data.map(game => game.consoleType)))), tradeType: Array.from((new Set(data.map(game => game.tradeType)))) }}
+                    onFilterChange={filterChange}
+                    onSortChange={sortChange}
+                    editable={editable}
+                />
+            }
             {
                 filteredAndSortedData.length ?
                     <Table style={{ backgroundColor: 'transparent' }} striped hover variant="dark">

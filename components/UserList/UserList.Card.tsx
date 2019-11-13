@@ -4,8 +4,9 @@ import UserListRow from './UserList.Card.Row'
 import { useState, useContext } from 'react'
 import { Props as UserListProps } from './UserList.Table'
 import SearchBox, { Game } from '../SearchBox'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 import { unionBy, unionWith } from 'lodash'
+import { font } from 'styles'
 
 const compare = (invert: boolean) => (a: UserGame, b: UserGame) => {
     const nameA = a.name
@@ -97,6 +98,12 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
 
                 <SearchBox onSelect={handleAdd} searchFunction={searchFunction} id={id} />
             </Col>
+            {id === 'want' && < Col style={{ marginTop: 20, display: 'flex', justifyContent: 'flex-end' }} md={4}>
+                <Button disabled>
+                    <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Import Your Steam Wishlist</span>
+                    <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/search-add.svg')} />
+                </Button>
+            </Col>}
         </Row>}
         {!!data.length && <UserListCardHead
             id={id}
