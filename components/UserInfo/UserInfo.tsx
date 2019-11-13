@@ -23,7 +23,7 @@ export default ({ userName, userImageUrl, isPro, epochTimeCreated, location, isB
         <UserInfoSocialButtons socialLinks={[{ link: `https://www.reddit.com/user/${userName}`, platform: 'reddit' }]} />
         <UserInfoStatus country={location.country} state={location.state} isBanned={isBanned} />
         {disableChat ? null : <UserInfoChat userName={userName} />}
-        <UserInfoCopy />
+        <UserInfoCopy userName={userName} />
 
     </>
 }
