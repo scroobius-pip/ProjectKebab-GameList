@@ -19,7 +19,8 @@ export default ({ errorMessage = '' }: { errorMessage: string }) => {
             <p style={{ color: '#FF0055' }}>{errorMessage}</p>
         </div>
         <div>
-            <p>By signing in you agree to nakama's <a href='terms.io'>terms and conditions</a></p>
+            {/* <p>By signing in you agree to nakama's <a href='terms.io'>terms and conditions</a></p> */}
+            <p>Sign In To Create Your Game List And Easily Find Trade Partners</p>
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <a href='https://discord.gg/2DadQ7d'>

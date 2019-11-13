@@ -11,8 +11,8 @@ export default ({ close }: Props) => {
         <div style={{ marginTop: 10, }}>
             <ul style={{ lineHeight: 2, fontWeight: 600 }}>
                 <li>Add 100+ games to your list.</li>
-                <li>Import your steam wishlist.</li>
-                <li>Get notifications when someone has what you want.</li>
+                <li>Synchronize your steam wishlist. (Coming Soon)</li>
+                <li>Get notifications when someone has what you want. (Coming Soon)</li>
             </ul>
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 40 }}>
