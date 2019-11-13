@@ -12,6 +12,7 @@ import getUserInfo from 'functions/graphql/queries/getUserInfo';
 import getMyGamesAndDescription from 'functions/graphql/queries/getMyGamesAndDescription';
 import mapToUserGame from 'graphql/utils/mapToUserGame';
 import { UserInfo as IUserInfo } from 'types/IUser';
+import Head from 'next/head';
 
 
 
@@ -26,6 +27,9 @@ const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGam
 
     return (
         <>
+            <Head>
+                <title> {`${userInfo.userName}'s Trade List`}</title>
+            </Head>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 20 }}>
                 <span>
                     <Button onClick={() => Router.push('/mylist')} variant='outline-primary'>Edit List</Button>
@@ -56,8 +60,8 @@ const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGam
                         </Col>
                     </Row>
 
-                </Col>
-            </Row>
+                </Col >
+            </Row >
         </>
     )
 }

@@ -16,13 +16,18 @@ export default ({ imageUrl, consoleType, description, name, tradeType, onDelete,
     <><tr>
         {editable ? null : <td style={{ padding: 0, height: 60, maxHeight: 60, }}>
             <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                {!!imageUrl && <ImageLoader
-                    src={imageUrl}
-                >
-                    <img alt={name} style={{ maxHeight: '100%', maxWidth: '100%', filter: 'brightness(0.8)' }} />
-                    <div></div>
-                    <Spinner size='sm' animation='grow' />
-                </ImageLoader>}
+                {imageUrl?
+                    <ImageLoader
+                        src={imageUrl}
+                    >
+                        <img alt={name} style={{ maxHeight: '100%', maxWidth: '100%', filter: 'brightness(0.8)' }} />
+                        <div></div>
+                        <Spinner size='sm' animation='grow' />
+                    </ImageLoader>
+                  : 
+                  <img alt={name} src='https://images.igdb.com/igdb/image/upload/t_thumb/nocover_qhhlj6.jpg' style={{ maxHeight: '100%', maxWidth: '100%', filter: 'brightness(0.4)' }} />
+                  
+                }
             </div>
         </td>}
         <td style={{ height: 40, maxHeight: 40 }}>

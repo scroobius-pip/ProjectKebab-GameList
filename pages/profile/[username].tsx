@@ -10,6 +10,7 @@ import WithLayout from '@components/WithLayout';
 import getUserFromUsername from 'functions/graphql/queries/getUserFromUsername';
 import mapToUserGame from 'graphql/utils/mapToUserGame';
 import { UserInfo as IUserInfo } from 'types/IUser';
+import Head from 'next/head';
 
 // interface IUserInfo {
 //     userName: string
@@ -34,6 +35,9 @@ const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGam
 
     return (
         <>
+            <Head>
+                <title> {`${userInfo.userName}'s Trade List`}</title>
+            </Head>
             <Row >
                 <Col md={12} lg={3} style={{ marginBottom: 30 }}>
                     <Section>

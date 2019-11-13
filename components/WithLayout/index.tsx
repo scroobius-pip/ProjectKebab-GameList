@@ -11,12 +11,14 @@ import { LoginWithModal, PremiumWithModal } from '@components/Modals';
 import PageLoader from '@components/PageLoader'
 import { setAuthToken } from 'functions/utils/authToken';
 import redirect from 'functions/utils/redirect';
+import User from 'types/IUser';
+import Head from 'next/head';
 
 
 interface Props {
 
     Component: any
-    user: any
+    user: User
     apolloClient: any
 }
 
@@ -93,6 +95,7 @@ const Layout = (Component: any) => {
             const { user, ...props } = this.props;
 
             return <Container>
+
                 <PageLoader color='rgb(109, 123, 212)' height={5} options={{ showSpinner: false }} />
                 <ScreenClassProvider>
 
