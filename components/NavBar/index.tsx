@@ -85,7 +85,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                             <Nav style={{ justifyContent: 'flex-end' }}>
 
                                 <span>
-                                    <Button onClick={onSignInClicked}>
+                                    <Button style={{ backgroundColor: colors.primary, borderColor: colors.primary }} onClick={onSignInClicked}>
                                         <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Create your game list</span>
                                         <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/pencil.svg')} />
                                     </Button>
