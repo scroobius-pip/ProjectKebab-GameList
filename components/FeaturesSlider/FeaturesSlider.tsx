@@ -11,24 +11,28 @@ export default () => {
         <>
 
             <CarouselProvider
-                naturalSlideWidth={350}
-                naturalSlideHeight={250}
+                naturalSlideWidth={1}
+                naturalSlideHeight={1.1}
                 totalSlides={3}
                 infinite
-            >
-                <Slider>
-                    <Slide index={0}>
-                        <FeatureSlide />
-                    </Slide>
-                    <Slide index={1}>
-                        <FeatureSlide />
-                    </Slide>
-                    <Slide index={2}>
-                        <FeatureSlide />
-                    </Slide>
-                </Slider>
 
-                <DotGroup />
+            >
+                <div style={{ position: 'relative' }}>
+
+                    <Slider>
+                        <Slide index={0}>
+                            <FeatureSlide />
+                        </Slide>
+                        <Slide index={1}>
+                            <FeatureSlide />
+                        </Slide>
+                        <Slide index={2}>
+                            <FeatureSlide />
+                        </Slide>
+                    </Slider>
+
+                    <DotGroup />
+                </div>
 
             </CarouselProvider>
 
@@ -47,7 +51,7 @@ function FeatureSlide() {
         backgroundColor: 'rgb(41, 43, 47)',
         padding: 20,
         paddingTop: 40,
-        marginTop: 50
+        marginTop: 50,
     }}>
         <div className='icon-circle' style={{ position: 'absolute', backgroundColor: 'rgb(41, 43, 47)', display: 'table' }}>
             <div className='icon-circle-inner' style={{ backgroundColor: '#4A4C4F' }}></div>
@@ -61,21 +65,22 @@ function FeatureSlide() {
             {`
 
                     .feature-card {
-                      
+                       
                         border-radius:10px;
-                        width:350px;
-                        height:250px;
+                        width:90vw;
+                       height:30vh;
                         margin:auto;
+                        min-height:30vh;
                         max-width:350px;
                         box-shadow:0 5px 20px 4px rgba(0, 0, 0, 0.22);
                     }
                     
                     .icon-circle {
                         width:8vh;
+                       
                         height:8vh;
                         top:-4vh;
                         border-radius:50%;
-                        
                         left:50%;
                         margin-left: -4vh;
                         padding:10px;
@@ -83,12 +88,15 @@ function FeatureSlide() {
                         
                     }
 
+
                     .icon-circle-inner {
                         width:100%;
                         height:100%;
                         border-radius:50%;
                         display:table-cell;
                     }
+
+                 
                     
                     `}
         </style>
