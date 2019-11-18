@@ -70,15 +70,15 @@ const LandingSection = ({ title, children }: LandingSectionProps) => {
 interface LandingAccordionProps {
     heading: string
     body: string
-    key: string
+    id: string
 }
 
-const LandingAccordion = ({ heading, body, key }: LandingAccordionProps) => {
+const LandingAccordion = ({ heading, body, id }: LandingAccordionProps) => {
     return <Card style={{ backgroundColor: colors.section, marginBottom: 10 }}>
-        <Accordion.Toggle as={Card.Header} eventKey={key}>
+        <Accordion.Toggle as={Card.Header} eventKey={id}>
             {heading}
         </Accordion.Toggle>
-        <Accordion.Collapse eventKey={key}>
+        <Accordion.Collapse eventKey={id}>
             <Card.Body style={{ backgroundColor: colors.background }}>{body}</Card.Body>
         </Accordion.Collapse>
     </Card>
@@ -191,7 +191,7 @@ const Page = () => {
             </div>
             <LandingSection title='Features'>
 
-                <div style={{ width: '100%' }}>
+                <div style={{ marginBottom: 40 }}>
                     {/* for feature cards */}
 
                     <FeaturesSlider />
@@ -204,12 +204,12 @@ const Page = () => {
                     <Accordion defaultActiveKey="0">
 
                         <LandingAccordion
-                            key='0'
+                            id='0'
                             heading='How would scammers be prevented from accessing the platform ?'
                             body='hello bodddy'
                         />
                         <LandingAccordion
-                            key='1'
+                            id='1'
                             heading='How do you plan to prevent scamming ?'
                             body='hello body'
                         />
