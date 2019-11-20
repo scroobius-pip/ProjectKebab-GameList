@@ -6,6 +6,7 @@ import WithLayout from '@components/WithLayout';
 import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
 import { colors } from '../styles'
 import FeaturesSlider from '@components/FeaturesSlider';
+import LandingPageAnimation from '@components/LandingPageAnimation';
 
 // export default class extends React.Component {
 // static async getInitialProps(ctx) {
@@ -88,10 +89,9 @@ const LandingAccordion = ({ heading, body, id }: LandingAccordionProps) => {
 
 const Page = () => {
     return <>
+        <LandingPageAnimation />
         <div style={{ color: 'white', }}>
-            <div style={{ height: '20vh', backgroundColor: 'grey' }}>
 
-            </div>
             <div>
                 <div>
                     <h1>List.</h1>
@@ -168,22 +168,22 @@ const Page = () => {
                                 top:1vw;
                                 background-color:${colors.primary};
                             }
-@media only screen and (min-width: 768px){
-    .online_stat{
-        font-size:20px;
-    }
-    .online_stat_label{
-        font-size:16px;
-        padding-left: 20px;
-        letter-spacing:initial;
-    }
-    .online_stat_label:before {
-        width:10px;
-        height:10px;
-        top:8px;
-    }
+                            @media only screen and (min-width: 768px){
+                                .online_stat{
+                                    font-size:20px;
+                                }
+                                .online_stat_label{
+                                    font-size:16px;
+                                    padding-left: 20px;
+                                    letter-spacing:initial;
+                                }
+                                .online_stat_label:before {
+                                    width:10px;
+                                    height:10px;
+                                    top:8px;
+                                }
 
-}
+                            }
                             `}
                         </style>
                     </div>
