@@ -89,7 +89,9 @@ const LandingAccordion = ({ heading, body, id }: LandingAccordionProps) => {
 
 const Page = () => {
     return <>
-        <LandingPageAnimation />
+        <div style={{ marginTop: '5vh', marginBottom: '5vh' }}>
+            <LandingPageAnimation />
+        </div>
         <div style={{ color: 'white', }}>
 
             <div>
