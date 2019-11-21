@@ -1,5 +1,5 @@
 import { colors } from '../../styles'
-import { useSpring, animated, useSprings } from 'react-spring'
+import { useSpring, animated, useSprings, config } from 'react-spring'
 import { useState, useEffect } from 'react'
 import { random } from 'lodash'
 
@@ -25,15 +25,17 @@ const platforms = [
 export default () => {
     const [lIndex, setLIndex] = useState(0)
     const [rIndex, setRIndex] = useState(2)
-    const lProps = useSpring({ top: calculateTop(lIndex) })
-    const rProps = useSpring({ top: calculateTop(rIndex) })
+    const lProps = useSpring({ top: calculateTop(lIndex), config: config.gentle })
+    const rProps = useSpring({ top: calculateTop(rIndex), config: config.gentle })
     const lSprings = useSprings(platforms.length, platforms.map((_, index) => (index === lIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0.1, transform: 'scale(0.8)' })))
     const rSprings = useSprings(platforms.length, platforms.map((_, index) => (index === rIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0.1, transform: 'scale(0.8)' })))
 
     useEffect(() => {
         setInterval(() => {
-            setLIndex(random(0, platforms.length - 1, false))
-            setRIndex(random(0, platforms.length - 1, false))
+            let randLIndex = random(0, platforms.length - 1, false)
+            setLIndex(randLIndex)
+            let randRIndex = random(0, platforms.length - 1, false)
+            setRIndex(randRIndex === 0 && randRIndex === randLIndex ? 1 : randRIndex)
         }, 2000)
     }, [])
 
