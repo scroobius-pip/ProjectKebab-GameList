@@ -2,103 +2,71 @@ import React from 'react'
 import { CarouselProvider, Slide, Slider, DotGroup, Dot } from 'pure-react-carousel'
 import 'pure-react-carousel/dist/react-carousel.es.css'
 import './dot.css'
+import FeatureCard from './FeatureCard'
+import { ScreenClassRender } from 'react-grid-system'
+import { Row, Col } from 'react-bootstrap'
 
 
 export default () => {
 
 
+
+
     return (
         <>
+            <ScreenClassRender
 
-            <CarouselProvider
-                naturalSlideWidth={1}
-                naturalSlideHeight={1.1}
-                totalSlides={3}
-                infinite
+                render={screenClass => {
+                    return ['md', 'lg', 'xl'].includes(screenClass) ? <FeatureGrid /> : <FeatureSlider />
 
-            >
-                <div style={{ position: 'relative' }}>
-
-                    <Slider>
-                        <Slide index={0}>
-                            <FeatureSlide />
-                        </Slide>
-                        <Slide index={1}>
-                            <FeatureSlide />
-                        </Slide>
-                        <Slide index={2}>
-                            <FeatureSlide />
-                        </Slide>
-                    </Slider>
-
-                    <DotGroup />
-                </div>
-
-            </CarouselProvider>
-
-
-
+                }}
+            />
         </>
 
     )
 
 }
 
-function FeatureSlide() {
-    return <div className='feature-card' style={{
-        position: 'relative',
-        textAlign: 'center',
-        backgroundColor: 'rgb(41, 43, 47)',
-        padding: 20,
-        paddingTop: 40,
-        marginTop: 50,
-    }}>
-        <div className='icon-circle' style={{ position: 'absolute', backgroundColor: 'rgb(41, 43, 47)', display: 'table' }}>
-            <div className='icon-circle-inner' style={{ backgroundColor: '#4A4C4F' }}></div>
 
-        </div>
-        <div>
-            <h1 style={{ fontWeight: 'bolder' }}>Matching</h1>
-            <p style={{ marginTop: 15, color: '#AEAEAE' }}>Nakama makes trading your games easier and safe</p>
-        </div>
-        <style jsx>
-            {`
+const FeatureSlider = () => <CarouselProvider
+    naturalSlideWidth={1}
+    naturalSlideHeight={1.1}
+    totalSlides={3}
+    infinite
 
-                    .feature-card {
-                       
-                        border-radius:10px;
-                        width:90vw;
-                       height:30vh;
-                        margin:auto;
-                        min-height:30vh;
-                        max-width:350px;
-                        box-shadow:0 5px 20px 4px rgba(0, 0, 0, 0.22);
-                    }
-                    
-                    .icon-circle {
-                        width:8vh;
-                       
-                        height:8vh;
-                        top:-4vh;
-                        border-radius:50%;
-                        left:50%;
-                        margin-left: -4vh;
-                        padding:10px;
-                        box-shadow: 0 5px 20px 4px rgba(0, 0, 0, 0.22);
-                        
-                    }
+>
+    <div style={{ position: 'relative' }}>
+
+        <Slider>
+            <Slide index={0}>
+                <FeatureCard />
+            </Slide>
+            <Slide index={1}>
+                <FeatureCard />
+            </Slide>
+            <Slide index={2}>
+                <FeatureCard />
+            </Slide>
+        </Slider>
+
+        <DotGroup />
+    </div>
+
+</CarouselProvider>
 
 
-                    .icon-circle-inner {
-                        width:100%;
-                        height:100%;
-                        border-radius:50%;
-                        display:table-cell;
-                    }
+const FeatureGrid = () => {
+    return <Row>
+        <Col xl={4} md={6}>
+            <FeatureCard />
+        </Col>
+        <Col xl={4} md={6}>
+            <FeatureCard />
 
-                 
-                    
-                    `}
-        </style>
-    </div>;
+        </Col>
+        <Col xl={4} md={6}>
+
+            <FeatureCard />
+        </Col>
+    </Row>
 }

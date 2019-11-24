@@ -7,6 +7,7 @@ import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
 import { colors } from '../styles'
 import FeaturesSlider from '@components/FeaturesSlider';
 import LandingPageAnimation from '@components/LandingPageAnimation';
+import { ScreenClassRender } from 'react-grid-system';
 
 // export default class extends React.Component {
 // static async getInitialProps(ctx) {
@@ -41,6 +42,7 @@ const SignUpButton = () => (
             {`
             .button-container{
                 width:100%;
+               
             }
             @media only screen and (min-width: 768px){
                 .button-container {
@@ -60,7 +62,7 @@ const LandingSection = ({ title, children }: LandingSectionProps) => {
         {children}
         <div>
             <div style={{
-                // display: 'flex', justifyContent: 'center' 
+                display: 'flex', justifyContent: 'center'
             }}>
                 <SignUpButton />
             </div>
@@ -89,18 +91,20 @@ const LandingAccordion = ({ heading, body, id }: LandingAccordionProps) => {
 
 const Page = () => {
     return <>
-        <div style={{ marginTop: '5vh', marginBottom: '5vh' }}>
+        {/* <div style={{ marginTop: '5vh', marginBottom: '5vh' }}>
             <LandingPageAnimation />
-        </div>
+        </div> */}
         <div style={{ color: 'white', }}>
 
-            <div>
-                <div>
-                    <h1>List.</h1>
-                    <h1>Match.</h1>
-                    <h1>Trade Games.</h1>
-                    <style jsx>
-                        {`
+            <Row>
+                <Col xs={{ span: 12, order: 12 }} md={{ span: 8, order: 1 }}>
+                    <div>
+                        <div>
+                            <h1>List.</h1>
+                            <h1>Match.</h1>
+                            <h1>Trade Games.</h1>
+                            <style jsx>
+                                {`
                         h1{
                             font-size: 10vw;
                             font-weight: 700;        
@@ -111,16 +115,16 @@ const Page = () => {
                             }
                         }
                         `}
-                    </style>
-                </div>
-                <div style={{ marginTop: 20 }}>
-                    <p >
+                            </style>
+                        </div>
+                        <div style={{ marginTop: 20 }}>
+                            <p >
 
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque incidunt corporis minus perspiciatis repellat amet accusamus consectetur, vero saepe autem.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque incidunt corporis minus perspiciatis repellat amet accusamus consectetur, vero saepe autem.
 </p>
 
-                    <style jsx>
-                        {`
+                            <style jsx>
+                                {`
                         p{
                             font-size: 4vw;
                             max-width:100%;
@@ -129,14 +133,43 @@ const Page = () => {
                         @media only screen and (min-width:768px){
                             p{
                                 font-size:18px;
-                                max-width:450px;
+                                max-width:80%;
                                 color:#AEAEAE;
                             }
                         }
                         `}
-                    </style>
-                </div>
-            </div>
+                            </style>
+                        </div>
+                    </div>
+                </Col>
+                <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} xs={{ span: 12, order: 1 }} md={{ span: 4, order: 12 }}>
+                    <ScreenClassRender
+                        render={screenClass => {
+
+                            switch (screenClass) {
+                                case 'lg':
+                                case 'xl':
+                                    return <LandingPageAnimation itemSize={5} itemPadding={1} />
+
+                                // case 'sm':
+                                case 'md':
+                                    return <LandingPageAnimation itemSize={4} itemPadding={1} />
+                                default:
+                                    return <LandingPageAnimation />
+                            }
+
+
+                            // return ['lg', 'md', 'xl'].includes(screenClass) ?
+                            //     <LandingPageAnimation itemSize={5} itemPadding={1} /> :
+                            //     <LandingPageAnimation />
+                        }}
+                    >
+
+                    </ScreenClassRender>
+
+
+                </Col>
+            </Row>
             <div>
                 <div>
                     <SignUpButton />
@@ -193,7 +226,7 @@ const Page = () => {
             </div>
             <LandingSection title='Features'>
 
-                <div style={{ marginBottom: 40 }}>
+                <div style={{ marginBottom: 50 }}>
                     {/* for feature cards */}
 
                     <FeaturesSlider />

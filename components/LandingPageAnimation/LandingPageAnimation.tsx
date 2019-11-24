@@ -3,14 +3,7 @@ import { useSpring, animated, useSprings, config } from 'react-spring'
 import { useState, useEffect } from 'react'
 import { random } from 'lodash'
 
-const calculateTop = (index: number) => {
-    const vw = (index * -10) + 30
-    const vmin = (index * -4) + 12
 
-    return `calc(${vw}vw + ${vmin}vmin)`
-
-
-}
 
 const platforms = [
     require('./platformIcons/coin.svg'),
@@ -22,7 +15,21 @@ const platforms = [
     require('./platformIcons/Wii.svg'),
 ]
 
-export default () => {
+export default ({ itemSize = 10, itemPadding = 2, }) => {
+
+    // const itemSize = 10
+    // const itemPadding = 2
+    const offsetFactor = 3
+
+    const calculateTop = (index: number) => {
+        const vw = (index * -itemSize) + itemSize * offsetFactor //replace 10 with a variable size "itemSize", replace 30 with itemSize*offsetFactor
+        const vmin = (index * (-itemPadding * 2)) + (itemPadding * 2) * offsetFactor //replace -4 with a variable size "itemPadding", replace 12 with itemPadding*offsetFactor
+
+        return `calc(${vw}vw + ${vmin}vmin)`
+
+
+    }
+
     const [lIndex, setLIndex] = useState(0)
     const [rIndex, setRIndex] = useState(2)
     const lProps = useSpring({ top: calculateTop(lIndex), config: config.gentle })
@@ -45,11 +52,12 @@ export default () => {
             justifyContent: 'space-between',
             alignItems: 'center',
             width: '100%',
-            height: '15vw',
+            height: `${itemSize + (itemPadding * 2)}vw`,
+            minHeight: `${itemSize + (itemPadding * 2)}vw`
 
         }}>
             <div style={{}}>
-                <img style={{ height: '5vw' }} src={require('./platformIcons/user.svg')} />
+                <img style={{ height: `${itemSize - 1}vw` }} src={require('./platformIcons/reddit-user.svg')} />
             </div>
             <div style={{
                 backgroundColor: colors.section,
@@ -73,15 +81,15 @@ export default () => {
                         }}
                     >
                         {lSprings.map((props, index) => (
-                            <animated.div style={{ padding: '2vmin', ...props }}>
-                                <img style={{ height: '10vw' }} src={platforms[index]} />
+                            <animated.div style={{ padding: `${itemPadding}vmin`, ...props }}>
+                                <img style={{ height: `${itemSize}vw` }} src={platforms[index]} />
                             </animated.div>
                         ))}
 
 
                     </div>
                 </animated.div>
-                <img style={{ height: '5vw', opacity: 0.5, }} src={require('./platformIcons/trade-arrow.svg')} />
+                <img style={{ height: `${itemSize - 1}vw`, opacity: 0.2, }} src={require('./platformIcons/trade-arrow.svg')} />
                 <animated.div style={{ position: 'relative', ...rProps }}>
                     <div
                         style={{
@@ -91,8 +99,8 @@ export default () => {
                         }}
                     >
                         {rSprings.map((props, index) => (
-                            <animated.div style={{ padding: '2vmin', ...props }}>
-                                <img style={{ height: '10vw' }} src={platforms[index]} />
+                            <animated.div style={{ padding: `${itemPadding}vmin`, ...props }}>
+                                <img style={{ height: `${itemSize}vw` }} src={platforms[index]} />
                             </animated.div>
                         ))}
 
@@ -101,7 +109,7 @@ export default () => {
                 </animated.div>
             </div>
             <div style={{}}>
-                <img style={{ height: '5vw' }} src={require('./platformIcons/user.svg')} />
+                <img style={{ height: `${itemSize - 1}vw` }} src={require('./platformIcons/reddit-user.svg')} />
             </div>
         </div >
     </div>
