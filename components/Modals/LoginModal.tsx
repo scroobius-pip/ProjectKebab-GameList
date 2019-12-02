@@ -20,7 +20,7 @@ export default ({ errorMessage = '' }: { errorMessage: string }) => {
         </div>
         <div>
             {/* <p>By signing in you agree to nakama's <a href='terms.io'>terms and conditions</a></p> */}
-            <p>Sign In To Create Your Game List And Easily Find Trade Partners</p>
+            <p>Sign in to create your game list and easily find trade partners</p>
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <a href='https://discord.gg/XcUPyaB'>

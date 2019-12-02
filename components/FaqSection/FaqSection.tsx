@@ -22,6 +22,10 @@ const faqData: FaqDatum[] = [
     {
         heading: 'Physical or Digital ?',
         body: ''
+    },
+    {
+        heading: '',
+        body: ''
     }
 ]
 

@@ -30,11 +30,11 @@ interface LandingSectionProps {
     children: any
 }
 
-const SignUpButton = () => (
+const SignUpButton = ({ onClick }) => (
     <>
         <div className='button-container'>
 
-            <Button className='custom-button' style={{ padding: 10, backgroundColor: colors.primary, borderRadius: 2 }} block  >
+            <Button onClick={onClick} className='custom-button' style={{ padding: 10, backgroundColor: colors.primary, borderRadius: 2 }} block  >
                 <span style={{ fontWeight: 600 }}> SIGN UP</span>
             </Button>
         </div>
@@ -73,7 +73,7 @@ const LandingSection = ({ title, children }: LandingSectionProps) => {
 
 
 
-const Page = () => {
+const Page = ({ signIn }) => {
     return <>
         {/* <div style={{ marginTop: '5vh', marginBottom: '5vh' }}>
             <LandingPageAnimation />
@@ -150,7 +150,7 @@ const Page = () => {
             </Row>
             <div>
                 <div>
-                    <SignUpButton />
+                    <SignUpButton onClick={signIn} />
                 </div>
                 <div style={{ marginTop: 20 }}>
                     <div className='online_stat'>
