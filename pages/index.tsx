@@ -5,7 +5,7 @@ import React from 'react';
 import WithLayout from '@components/WithLayout';
 import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
 import { colors } from '../styles'
-import FeaturesSlider from '@components/FeaturesSlider';
+import FeaturesSection from '@components/FeaturesSection';
 import LandingPageAnimation from '@components/LandingPageAnimation';
 import { ScreenClassRender } from 'react-grid-system';
 
@@ -57,14 +57,14 @@ const SignUpButton = () => (
 )
 
 const LandingSection = ({ title, children }: LandingSectionProps) => {
-    return <div style={{ marginBottom: 40 }}>
+    return <div style={{ marginTop: '10vmin' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 'bolder' }}>{title}</h1>
         {children}
         <div>
             <div style={{
                 display: 'flex', justifyContent: 'center'
             }}>
-                <SignUpButton />
+                {/* <SignUpButton /> */}
             </div>
         </div>
     </div>
@@ -157,11 +157,6 @@ const Page = () => {
                                 default:
                                     return <LandingPageAnimation />
                             }
-
-
-                            // return ['lg', 'md', 'xl'].includes(screenClass) ?
-                            //     <LandingPageAnimation itemSize={5} itemPadding={1} /> :
-                            //     <LandingPageAnimation />
                         }}
                     >
 
@@ -226,16 +221,16 @@ const Page = () => {
             </div>
             <LandingSection title='Features'>
 
-                <div style={{ marginBottom: 50 }}>
+                <div style={{}}>
                     {/* for feature cards */}
 
-                    <FeaturesSlider />
+                    <FeaturesSection />
                 </div>
 
             </LandingSection>
             <LandingSection title='Faq'>
 
-                <div>
+                <div style={{ width: '100%', maxWidth: 800, margin: 'auto' }}>
                     <Accordion defaultActiveKey="0">
 
                         <LandingAccordion

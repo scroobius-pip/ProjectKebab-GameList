@@ -5,7 +5,7 @@ import React from 'react';
 import WithLayout from '@components/WithLayout';
 import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
 import { colors } from '../styles'
-import FeaturesSlider from '@components/FeaturesSlider';
+import FeaturesSlider from '@components/FeaturesSection';
 import LandingPageAnimation from '@components/LandingPageAnimation';
 import { ScreenClassRender } from 'react-grid-system';
 

@@ -21,11 +21,11 @@
 .carousel__dot-group{
    display:flex;
    justify-content: center;
-   position: absolute;
+   /* position: absolute;
     left:0; 
    right: 0; 
 
-   top:40vh;
+   top:40vh; */
 
 }
 
