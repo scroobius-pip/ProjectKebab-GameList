@@ -6,7 +6,7 @@ function FeatureCard({ title = '', body = '', icon }) {
         // backgroundColor: 'rgba(41, 43, 47,0.5)',
         padding: 20,
         paddingTop: 40,
-        marginTop: 60,
+        marginTop: 40,
 
     }}>
         <div className='icon-circle' style={{ position: 'absolute' }}>

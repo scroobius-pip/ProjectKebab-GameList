@@ -6,13 +6,13 @@ import { random } from 'lodash'
 
 
 const platforms = [
-    require('./platformIcons/coin.svg'),
-    require('./platformIcons/steam.svg'),
-    require('./platformIcons/playstation.svg'),
-    require('./platformIcons/xbox.svg'),
-    require('./platformIcons/switch.svg'),
-    require('./platformIcons/origin.svg'),
-    require('./platformIcons/Wii.svg'),
+    require('./icons/coin.svg'),
+    require('./icons/steam.svg'),
+    require('./icons/playstation.svg'),
+    require('./icons/xbox.svg'),
+    require('./icons/switch.svg'),
+    require('./icons/origin.svg'),
+    require('./icons/Wii.svg'),
 ]
 
 export default ({ itemSize = 10, itemPadding = 2, }) => {
@@ -57,7 +57,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
 
         }}>
             <div style={{}}>
-                <img style={{ height: `${itemSize - 1}vw` }} src={require('./platformIcons/reddit-user.svg')} />
+                <img style={{ height: `${itemSize - 1}vw` }} src={require('./icons/reddit-user.svg')} />
             </div>
             <div style={{
                 backgroundColor: colors.section,
@@ -89,7 +89,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
 
                     </div>
                 </animated.div>
-                <img style={{ height: `${itemSize - 1}vw`, opacity: 0.2, }} src={require('./platformIcons/trade-arrow.svg')} />
+                <img style={{ height: `${itemSize - 1}vw`, opacity: 0.2, }} src={require('./icons/trade-arrow.svg')} />
                 <animated.div style={{ position: 'relative', ...rProps }}>
                     <div
                         style={{
@@ -109,7 +109,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
                 </animated.div>
             </div>
             <div style={{}}>
-                <img style={{ height: `${itemSize - 1}vw` }} src={require('./platformIcons/reddit-user2.svg')} />
+                <img style={{ height: `${itemSize - 1}vw` }} src={require('./icons/reddit-user2.svg')} />
             </div>
         </div >
     </div>

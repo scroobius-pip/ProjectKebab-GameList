@@ -23,7 +23,7 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
     {
         title: 'Game List',
         body: `
-        Manage your list of games and items, you can share a link on trading subreddits, and let potential traders find games easily.
+        Manage your list of  games and items, you can share a link on trading subreddits, and let potential traders find games easily.
         `,
         icon: require('./list.svg')
     },
@@ -55,7 +55,7 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
 
 const FeatureSlider = () => <CarouselProvider
     naturalSlideWidth={1}
-    naturalSlideHeight={1.1}
+    naturalSlideHeight={0.85}
     totalSlides={Features.length}
     infinite
 >

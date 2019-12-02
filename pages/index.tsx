@@ -8,6 +8,7 @@ import { colors } from '../styles'
 import FeaturesSection from '@components/FeaturesSection';
 import LandingPageAnimation from '@components/LandingPageAnimation';
 import { ScreenClassRender } from 'react-grid-system';
+import FaqSection from '@components/FaqSection';
 
 // export default class extends React.Component {
 // static async getInitialProps(ctx) {
@@ -57,8 +58,8 @@ const SignUpButton = () => (
 )
 
 const LandingSection = ({ title, children }: LandingSectionProps) => {
-    return <div style={{ marginTop: '10vmin' }}>
-        <h1 style={{ textAlign: 'center', fontWeight: 'bolder' }}>{title}</h1>
+    return <div style={{ marginTop: 40 }}>
+        <h1 style={{ textAlign: 'center', fontWeight: 'bolder', marginBottom: 20 }}>{title}</h1>
         {children}
         <div>
             <div style={{
@@ -68,23 +69,6 @@ const LandingSection = ({ title, children }: LandingSectionProps) => {
             </div>
         </div>
     </div>
-}
-
-interface LandingAccordionProps {
-    heading: string
-    body: string
-    id: string
-}
-
-const LandingAccordion = ({ heading, body, id }: LandingAccordionProps) => {
-    return <Card style={{ backgroundColor: colors.section, marginBottom: 10 }}>
-        <Accordion.Toggle as={Card.Header} eventKey={id}>
-            {heading}
-        </Accordion.Toggle>
-        <Accordion.Collapse eventKey={id}>
-            <Card.Body style={{ backgroundColor: colors.background }}>{body}</Card.Body>
-        </Accordion.Collapse>
-    </Card>
 }
 
 
@@ -119,9 +103,8 @@ const Page = () => {
                         </div>
                         <div style={{ marginTop: 20 }}>
                             <p >
-
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque incidunt corporis minus perspiciatis repellat amet accusamus consectetur, vero saepe autem.
-</p>
+                                Nakama allows you to easily find trade partners to exchange physical or digital games with. It also allows you to manage your gaming inventory. It's aim is to make trading easier and faster.
+                            </p>
 
                             <style jsx>
                                 {`
@@ -222,33 +205,28 @@ const Page = () => {
             <LandingSection title='Features'>
 
                 <div style={{}}>
-                    {/* for feature cards */}
-
                     <FeaturesSection />
                 </div>
 
             </LandingSection>
-            <LandingSection title='Faq'>
-
-                <div style={{ width: '100%', maxWidth: 800, margin: 'auto' }}>
-                    <Accordion defaultActiveKey="0">
-
-                        <LandingAccordion
-                            id='0'
-                            heading='How would scammers be prevented from accessing the platform ?'
-                            body='hello bodddy'
-                        />
-                        <LandingAccordion
-                            id='1'
-                            heading='How do you plan to prevent scamming ?'
-                            body='hello body'
-                        />
-
-                    </Accordion>
-                </div>
-            </LandingSection>
+            {/* <LandingSection title='Faq'>
+                <FaqSection />
+            </LandingSection> */}
             <LandingSection title='Roadmap'>
-
+                <div style={{ textAlign: 'left', maxWidth: 800, color: '#AEAEAE', margin: 'auto', fontSize: 18 }}>
+                    <p>
+                        <b>Stage 1</b> Allow reddit and steam users to register, the platform is used only for listing games and matching users, trades aren't done on the platform but through current channels like r/gameswap.
+                    </p>
+                    <p>
+                        <b>Stage 2</b> Switch over to invite only membership, allow invited members to register with an email and password. Actual trading is still not done on the platform.
+                    </p>
+                    <p>
+                        <b>Stage 3</b> New features!, users can now chat and make offers, trading can now be done on the platform.
+                    </p>
+                    {/* <p>
+                        <b>Stage 4</b> Partnership with steam ? to allow secure trading of games. Swap meets ?. In game currency ?
+                    </p> */}
+                </div>
             </LandingSection>
         </div>
 
