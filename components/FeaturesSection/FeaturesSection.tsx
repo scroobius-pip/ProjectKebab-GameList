@@ -42,7 +42,7 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
     },
     {
         title: 'Notifications',
-        body: 'Get notified once someone has what you want.',
+        body: 'Get notified once someone has what you want and vice-versa',
         icon: require('./notification.svg')
     },
     // {

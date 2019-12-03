@@ -221,7 +221,7 @@ const Page = ({ signIn }) => {
                         <b>Stage 2</b> Switch over to invite only membership, allow invited members to register with an email and password. Actual trading is still not done on the platform.
                     </p>
                     <p>
-                        <b>Stage 3</b> New features!, users can now chat and make offers, trading can now be done on the platform.
+                        <b>Stage 3</b> New features! users can now chat and make offers, trading can now be done on the platform.
                     </p>
                     {/* <p>
                         <b>Stage 4</b> Partnership with steam ? to allow secure trading of games. Swap meets ?. In game currency ?
