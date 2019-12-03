@@ -24,7 +24,7 @@ const faqData: FaqDatum[] = [
         body: ''
     },
     {
-        heading: '',
+        heading: 'Is trading done on the platform ?',
         body: ''
     }
 ]

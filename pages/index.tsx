@@ -103,7 +103,7 @@ const Page = ({ signIn }) => {
                         </div>
                         <div style={{ marginTop: 20 }}>
                             <p >
-                                Nakama allows you to easily find trade partners to exchange physical or digital games with. It also allows you to manage your gaming inventory. It's aim is to make trading easier and faster.
+                                Nakama allows you to easily find trade partners to exchange physical or digital games with. It also allows you to manage your gaming inventory. It's aim is to make trading easier and safer.
                             </p>
 
                             <style jsx>
@@ -214,8 +214,8 @@ const Page = ({ signIn }) => {
             </LandingSection> */}
             <LandingSection title='Roadmap'>
                 <div style={{ textAlign: 'left', maxWidth: 800, color: '#AEAEAE', margin: 'auto', fontSize: 18 }}>
-                    <p>
-                        <b>Stage 1</b> Allow reddit and steam users to register, the platform is used only for listing games and matching users, trades aren't done on the platform but through current channels like r/gameswap.
+                    <p style={{ color: 'white' }}>
+                        <b >Stage 1</b> Allow reddit and steam users to register, the platform is used only for listing games and matching users, trades aren't done on the platform but through current channels like r/gameswap.
                     </p>
                     <p>
                         <b>Stage 2</b> Switch over to invite only membership, allow invited members to register with an email and password. Actual trading is still not done on the platform.

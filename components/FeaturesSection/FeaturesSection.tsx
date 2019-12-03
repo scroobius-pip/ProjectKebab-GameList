@@ -70,5 +70,5 @@ const FeatureSlider = () => <CarouselProvider
 
 
 const FeatureGrid = () => <Row>
-    {Features.map(feature => <Col xl={4} md={{ span: 6 }}><FeatureCard {...feature} /> </Col>)}
-</Row>
+    {Features.map((feature, i) => <Col xl={{ span: 4, offset: i === 3 ? 2 : 0 }} md={{ span: 6, offset: i === 4 ? 3 : 0 }}><FeatureCard {...feature} /> </Col>)}
+</Row >
