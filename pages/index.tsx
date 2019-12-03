@@ -103,7 +103,8 @@ const Page = ({ signIn }) => {
                         </div>
                         <div style={{ marginTop: 20 }}>
                             <p >
-                                Nakama allows you to easily find trade partners to exchange physical or digital games with. It also allows you to manage your gaming inventory. It's aim is to make trading easier and safer.
+
+                                Find trade partners to exchange physical or digital games. Manage your huge lists. It's aim is to make trading video games easier and safer.
                             </p>
 
                             <style jsx>
@@ -221,7 +222,7 @@ const Page = ({ signIn }) => {
                         <b>Stage 2</b> Switch over to invite only membership, allow invited members to register with an email and password. Actual trading is still not done on the platform.
                     </p>
                     <p>
-                        <b>Stage 3</b> New features! users can now chat and make offers, trading can now be done on the platform.
+                        <b>Stage 3</b> New features !!! users are able to chat, make offers and trade on the platform.
                     </p>
                     {/* <p>
                         <b>Stage 4</b> Partnership with steam ? to allow secure trading of games. Swap meets ?. In game currency ?

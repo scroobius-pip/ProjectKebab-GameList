@@ -11,10 +11,7 @@ interface LandingAccordionProps {
 type FaqDatum = Pick<LandingAccordionProps, "body" | "heading">
 
 const faqData: FaqDatum[] = [
-    {
-        heading: "What about paid accounts ?",
-        body: ''
-    },
+
     {
         heading: 'How safe is nakama ?',
         body: ''
@@ -25,6 +22,19 @@ const faqData: FaqDatum[] = [
     },
     {
         heading: 'Is trading done on the platform ?',
+        body: ''
+    },
+    {
+        heading: 'What platforms are supported ?',
+        body: ''
+    },
+    {
+        heading: 'What about hardware ?',
+        body: ''
+    },
+   
+    {
+        heading: 'Hey how much does this service cost ?',
         body: ''
     }
 ]
