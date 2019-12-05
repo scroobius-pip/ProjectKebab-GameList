@@ -55,7 +55,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                                     <span style={{ fontWeight: 600 }}>{userName || email}</span>
                                 </>
                             } id="collasible-nav-dropdown">
-                                <NavDropdown.Item onClick={() => Router.replace('/preferences')}>
+                                <NavDropdown.Item onClick={() => Router.push('/preferences')}>
                                     <span>Settings</span>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={onSignOutClicked}>Logout</NavDropdown.Item>
