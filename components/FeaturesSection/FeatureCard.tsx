@@ -61,6 +61,7 @@ function FeatureCard({ title = '', body = '', icon }) {
 
                     .feature-card:hover > .icon-circle {
                         background-color:rgb(109, 123, 212);
+                        // background-color:#0080FF;
                     }
 
 

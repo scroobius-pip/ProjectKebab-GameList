@@ -103,8 +103,7 @@ const Page = ({ signIn }) => {
                         </div>
                         <div style={{ marginTop: 20 }}>
                             <p >
-
-                                Find trade partners to exchange physical or digital games. Manage your huge lists. It's aim is to make trading video games easier and safer.
+                                Find trade partners to exchange physical or digital games. Manage your huge lists. Nakama's aim is to make trading video games easier and safer.
                             </p>
 
                             <style jsx>
@@ -214,7 +213,7 @@ const Page = ({ signIn }) => {
                 <FaqSection />
             </LandingSection> */}
             <LandingSection title='Roadmap'>
-                <div style={{ textAlign: 'left', maxWidth: 800, color: '#AEAEAE', margin: 'auto', fontSize: 18 }}>
+                <div style={{ textAlign: 'center', maxWidth: 800, color: '#AEAEAE', margin: 'auto', fontSize: 16 }}>
                     <p style={{ color: 'white' }}>
                         <b >Stage 1</b> Allow reddit and steam users to register, the platform is used only for listing games and matching users, trades aren't done on the platform but through current channels like r/gameswap.
                     </p>
@@ -233,6 +232,17 @@ const Page = ({ signIn }) => {
 
     </>
 }
+
+// Page.getInitialProps = async (ctx) => {
+
+//     let authToken = getAuthToken(ctx)
+//     if (isExpired(authToken)) {
+//         redirect(ctx, '/login')
+//         return
+//     } else {
+//         redirect(ctx, '/profile/me')
+//     }
+// }
 
 
 export default WithLayout(Page)

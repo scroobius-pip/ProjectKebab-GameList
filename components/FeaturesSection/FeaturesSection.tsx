@@ -23,7 +23,7 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
     {
         title: 'Game List',
         body: `
-        Manage your list of  games and items, you can share a link on trading subreddits, and let potential traders find games easily.
+        Manage your list of  games and items, you can share a link on trading subreddits, and let potential traders find your games easily.
         `,
         icon: require('./list.svg')
     },
@@ -70,5 +70,5 @@ const FeatureSlider = () => <CarouselProvider
 
 
 const FeatureGrid = () => <Row>
-    {Features.map((feature, i) => <Col xl={{ span: 4, offset: i === 3 ? 2 : 0 }} md={{ span: 6, offset: i === 4 ? 3 : 0 }}><FeatureCard {...feature} /> </Col>)}
+    {Features.map((feature, i) => <Col key={i} xl={{ span: 4, offset: i === 3 ? 2 : 0 }} md={{ span: 6, offset: i === 4 ? 3 : 0 }}><FeatureCard {...feature} /> </Col>)}
 </Row >

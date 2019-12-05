@@ -4,6 +4,7 @@ import { IGetUserInfoQuery, IGetUserInfoQueryVariables } from 'generated/apolloC
 import getUserInfo from 'graphql/queries/getUserInfo';
 
 export default async (client: ApolloClient<any>): Promise<User> => {
+    if (!client) return null
     try {
         const result = await client.query<IGetUserInfoQuery, IGetUserInfoQueryVariables>({
             query: getUserInfo

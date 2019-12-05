@@ -81,7 +81,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
                         }}
                     >
                         {lSprings.map((props, index) => (
-                            <animated.div style={{ padding: `${itemPadding}vmin`, ...props }}>
+                            <animated.div key={index} style={{ padding: `${itemPadding}vmin`, ...props }}>
                                 <img style={{ height: `${itemSize}vw` }} src={platforms[index]} />
                             </animated.div>
                         ))}
@@ -99,7 +99,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
                         }}
                     >
                         {rSprings.map((props, index) => (
-                            <animated.div style={{ padding: `${itemPadding}vmin`, ...props }}>
+                            <animated.div key={index} style={{ padding: `${itemPadding}vmin`, ...props }}>
                                 <img style={{ height: `${itemSize}vw` }} src={platforms[index]} />
                             </animated.div>
                         ))}
