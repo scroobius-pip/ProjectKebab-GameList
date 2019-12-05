@@ -20,12 +20,11 @@ const StyledNavItem = ({ children, href }) => {
         {children}
     </Nav.Link>
 
-
 }
 
 
 const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
-
+    const router = useRouter()
     const LoggedInComponent = ({ user }: { user: User }) => {
         const { description, epochTimeCreated, isPro, isBanned, userImageUrl, userName, location, email } = user.info
 
@@ -56,7 +55,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                                     <span style={{ fontWeight: 600 }}>{userName || email}</span>
                                 </>
                             } id="collasible-nav-dropdown">
-                                <NavDropdown.Item onClick={() => Router.push('/settings')}>
+                                <NavDropdown.Item onClick={() => Router.push('/preferences')}>
                                     <span>Settings</span>
                                 </NavDropdown.Item>
                                 <NavDropdown.Item onClick={onSignOutClicked}>Logout</NavDropdown.Item>
@@ -75,7 +74,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
     return (
         <div style={{ marginBottom: 20 }}>
             <Navbar collapseOnSelect expand='lg' variant="dark">
-                <Navbar.Brand href="/profile/me" style={{ marginRight: 'auto', padding: 10 }}>
+                <Navbar.Brand href="/profile/me" style={{}}>
                     <img style={{ height: '1.5em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
                 <UserConsumer>
@@ -84,12 +83,12 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                             <LoggedInComponent user={user} /> :
                             <Nav style={{ justifyContent: 'flex-end' }}>
 
-                                <span>
+                                {router.pathname === '/' ? null : <span>
                                     <Button style={{ backgroundColor: colors.primary, borderColor: colors.primary }} onClick={onSignInClicked}>
                                         <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Create your game list</span>
                                         <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/pencil.svg')} />
                                     </Button>
-                                </span>
+                                </span>}
                             </Nav>
 
                     }}

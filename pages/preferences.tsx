@@ -130,7 +130,7 @@ const settingsData: (userSettings: UserSettings) => SettingsSectionProps = (sett
                 subsections: [
                     {
                         title: 'Enable match notifications',
-                        description: "We'll send you email and push notiﬁcations  whenever someone has what you want ",
+                        description: "We'll send you email and push notiﬁcations whenever someone has what you want ",
                         Input: () => {
                             const [value, setValue] = useState(settings.notifications_enabled)
                             const handleToggle = async () => {
@@ -143,7 +143,7 @@ const settingsData: (userSettings: UserSettings) => SettingsSectionProps = (sett
                     },
                     {
                         title: 'Location',
-                        description: "You could show your location, for physical trades",
+                        description: "You could show your location for physical trades",
                         Input: () => {
                             const [value, setValue] = useState(settings.location_enabled)
                             const handleToggle = async () => {
