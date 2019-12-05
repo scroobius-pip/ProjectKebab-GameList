@@ -48,7 +48,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                     </Nav>
                     <Nav style={{}}>
                         <span>
-                            <NavDropdown as='li' title={
+                            <NavDropdown title={
                                 <>
                                     <span style={{ marginRight: 10 }}>
                                         <UserInfoProfileImage size={40} src={userImageUrl} />
@@ -76,7 +76,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
         <div style={{ marginBottom: 20 }}>
             <Navbar collapseOnSelect expand='lg' variant="dark">
                 <Navbar.Brand href="/profile/me" style={{ marginRight: 'auto', padding: 10 }}>
-                    <img style={{ height: 25, marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
+                    <img style={{ height: '1.5em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
                 <UserConsumer>
                     {(user) => {

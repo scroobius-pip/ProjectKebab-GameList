@@ -103,7 +103,7 @@ const Page = ({ signIn }) => {
                         </div>
                         <div style={{ marginTop: 20 }}>
                             <p >
-                                Find trade partners to exchange physical or digital games. Manage your huge lists. Nakama's aim is to make trading video games easier and safer.
+                                Find trade partners to exchange physical or digital games. Manage your huge game lists. Nakama's aim is to make trading video games easier and safer.
                             </p>
 
                             <style jsx>
