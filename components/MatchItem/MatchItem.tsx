@@ -1,6 +1,6 @@
 import { colors } from '../../styles'
 
-interface Props {
+export interface Match {
     username: string
     userImage: string
     location?: {
@@ -12,7 +12,11 @@ interface Props {
     matchType: 'location' | 'rate'
 }
 
-export default (props: Props) => (
+interface Props {
+    match: Match
+}
+
+export default ({ match: props }: Props) => (
     <div className='match-item' onClick={() => { }} style={{ marginTop: 15, cursor: 'pointer' }}>
 
         <div className='match-container' style={styles.container}>

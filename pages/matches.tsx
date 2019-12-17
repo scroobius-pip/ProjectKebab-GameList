@@ -10,7 +10,7 @@ interface Props {
 }
 
 const TabHead = () => <div style={{ fontSize: 20, fontWeight: 600, display: 'flex', justifyContent: 'center' }}>
-    <Nav variant='pills'>
+    <Nav variant='pills'   >
         <Nav.Item>
             <Nav.Link style={{ transition: 'all 200ms ease' }} eventKey='rate'>
 
@@ -27,7 +27,13 @@ const TabHead = () => <div style={{ fontSize: 20, fontWeight: 600, display: 'fle
         </Nav.Item>
 
     </Nav>
-
+    <style jsx>{
+        `
+.nav-link.active {
+    background-color: ${colors.primary}
+}
+`
+    }</style>
 </div>
 
 const TabContent = () => <Tab.Content>
