@@ -28,13 +28,14 @@ import FaqSection from '@components/FaqSection';
 interface LandingSectionProps {
     title: string
     children: any
+    description?: string
 }
 
 const SignUpButton = ({ onClick }) => (
     <>
         <div className='button-container'>
 
-            <Button onClick={onClick} className='custom-button' style={{ padding: 10, backgroundColor: colors.primary, borderRadius: 2 }} block  >
+            <Button onClick={onClick} className='custom-button' style={{ padding: 10, backgroundColor: colors.primary, borderRadius: 2, borderColor: colors.primary }} block  >
                 <span style={{ fontWeight: 600 }}> SIGN UP</span>
             </Button>
         </div>
@@ -57,9 +58,12 @@ const SignUpButton = ({ onClick }) => (
     </>
 )
 
-const LandingSection = ({ title, children }: LandingSectionProps) => {
-    return <div style={{ marginTop: 40 }}>
+const LandingSection = ({ title, children, description }: LandingSectionProps) => {
+    return <div id={title} style={{ marginBottom: 40, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 'bolder', marginBottom: 20 }}>{title}</h1>
+        <h4 style={{ textAlign: 'center', marginBottom: 40, fontWeight: 'normal', }}>
+            {description}
+        </h4>
         {children}
         <div>
             <div style={{
@@ -68,6 +72,7 @@ const LandingSection = ({ title, children }: LandingSectionProps) => {
                 {/* <SignUpButton /> */}
             </div>
         </div>
+
     </div>
 }
 
@@ -75,20 +80,20 @@ const LandingSection = ({ title, children }: LandingSectionProps) => {
 
 const Page = ({ signIn }) => {
     return <>
-        {/* <div style={{ marginTop: '5vh', marginBottom: '5vh' }}>
-            <LandingPageAnimation />
-        </div> */}
         <div style={{ color: 'white', }}>
 
-            <Row>
-                <Col xs={{ span: 12, order: 12 }} md={{ span: 8, order: 1 }}>
-                    <div>
+            <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', }}>
+
+
+                <Row>
+                    <Col xs={{ span: 12, order: 12 }} md={{ span: 12, order: 12 }} lg={{ span: 8, order: 1 }}>
                         <div>
-                            <h1>List.</h1>
-                            <h1>Match.</h1>
-                            <h1>Trade Games.</h1>
-                            <style jsx>
-                                {`
+                            <div>
+                                <h1>List.</h1>
+                                <h1>Match.</h1>
+                                <h1>Trade Games.</h1>
+                                <style jsx>
+                                    {`
                         h1{
                             font-size: 10vw;
                             font-weight: 700;        
@@ -99,15 +104,15 @@ const Page = ({ signIn }) => {
                             }
                         }
                         `}
-                            </style>
-                        </div>
-                        <div style={{ marginTop: 20 }}>
-                            <p >
-                                Find trade partners to exchange physical or digital games. Manage your huge game lists. Nakama's goal is making trading physical or digital video games easier and safer.
+                                </style>
+                            </div>
+                            <div style={{ marginTop: 20 }}>
+                                <p >
+                                    Create your game list. Get matched with trade partners to sell or swap physical or digital games.
                             </p>
 
-                            <style jsx>
-                                {`
+                                <style jsx>
+                                    {`
                         p{
                             font-size: 4vw;
                             max-width:100%;
@@ -121,43 +126,44 @@ const Page = ({ signIn }) => {
                             }
                         }
                         `}
-                            </style>
+                                </style>
+                            </div>
                         </div>
-                    </div>
-                </Col>
-                <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} xs={{ span: 12, order: 1 }} md={{ span: 4, order: 12 }}>
-                    <ScreenClassRender
-                        render={screenClass => {
+                    </Col>
+                    <Col style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '5vh' }} md={{ span: 12, order: 1 }} xs={{ span: 12, order: 1 }} lg={{ span: 4, order: 12 }}>
+                        <ScreenClassRender
+                            render={screenClass => {
 
-                            switch (screenClass) {
-                                case 'lg':
-                                case 'xl':
-                                    return <LandingPageAnimation itemSize={5} itemPadding={1} />
+                                switch (screenClass) {
+                                    // case 'md':
+                                    case 'lg':
+                                    case 'xl':
+                                        return <LandingPageAnimation itemSize={5} itemPadding={1} />
 
-                                // case 'sm':
-                                case 'md':
-                                    return <LandingPageAnimation itemSize={4} itemPadding={1} />
-                                default:
-                                    return <LandingPageAnimation />
-                            }
-                        }}
-                    >
+                                    // case 'sm':
+                                    case 'md':
+                                        return <LandingPageAnimation itemSize={10} itemPadding={1} />
+                                    default:
+                                        return <LandingPageAnimation />
+                                }
+                            }}
+                        >
 
-                    </ScreenClassRender>
+                        </ScreenClassRender>
 
 
-                </Col>
-            </Row>
-            <div>
+                    </Col>
+                </Row>
                 <div>
-                    <SignUpButton onClick={signIn} />
-                </div>
-                <div style={{ marginTop: 20 }}>
-                    <div className='online_stat'>
-                        <div className='online_stat_label'>Registered</div>
-                        1,289
+                    <div>
+                        <SignUpButton onClick={signIn} />
+                    </div>
+                    <div style={{ marginTop: 20 }}>
+                        <div className='online_stat'>
+                            <div className='online_stat_label'>Registered</div>
+                            1,289
                         <style jsx>
-                            {`
+                                {`
                             .online_stat{
                                font-size: 5vw;
                            
@@ -198,35 +204,80 @@ const Page = ({ signIn }) => {
 
                             }
                             `}
-                        </style>
+                            </style>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <LandingSection title='Features'>
+                <div className='section-link' style={{ textAlign: 'center', position: 'absolute', bottom: '5vh', left: 0, right: 0, fontSize: 18 }}>
 
-                <div style={{}}>
+                    <span style={{ display: 'block' }}><a href='#Features' style={{ color: 'white', fontWeight: 600, textDecoration: 'none', letterSpacing: 1, }}>
+                        FEATURES
+                    </a></span>
+                    <span>
+                        <img width={'10em'} src={require('../assets/icons/down-arrow.svg')} />
+                    </span>
+                    <style jsx>
+                        {`
+.section-link {
+    opacity: 0.5;
+    transition: opacity 200ms ease;
+}
+.section-link:hover {
+    opacity:1;
+}
+`}
+                    </style>
+                </div>
+
+            </div>
+            <LandingSection description='Current and Coming Soon Features' title='Features'>
+
+                <div style={{ position: 'relative', height: '90%', }}>
                     <FeaturesSection />
+
+
+                    <div className='section-link' style={{ textAlign: 'center', fontSize: 18, marginTop: 40 }}>
+                        <span style={{ display: 'block' }}><a href='#Roadmap' style={{ color: 'white', fontWeight: 600, textDecoration: 'none', letterSpacing: 1, }}>
+                            ROAD MAP
+                    </a></span>
+                        <span>
+                            <img width={'10em'} src={require('../assets/icons/down-arrow.svg')} />
+                        </span>
+                        <style jsx>
+                            {`
+.section-link {
+    opacity: 0.5;
+    transition: opacity 200ms ease;
+}
+.section-link:hover {
+    opacity:1;
+}
+`}
+                        </style>
+                    </div>
                 </div>
 
             </LandingSection>
             {/* <LandingSection title='Faq'>
                 <FaqSection />
             </LandingSection> */}
-            <LandingSection title='Roadmap'>
-                <div style={{ textAlign: 'center', maxWidth: 800, color: '#AEAEAE', margin: 'auto', fontSize: 16 }}>
+
+            <LandingSection description={''} title='Roadmap'>
+                <div style={{ height: '60%', alignSelf: 'center', textAlign: 'center', maxWidth: 800, color: '#AEAEAE', fontSize: 18 }}>
                     <p style={{ color: 'white' }}>
-                        <b >Stage 1</b> Allow reddit and steam users to register, the platform is used only for listing games and matching users, trades aren't done on the platform but through current channels like r/gameswap.
+                        <b >Stage 1:</b> Allow reddit and steam users to register, the platform is used only for listing games and matching users, trades aren't done on the platform but through current channels like r/gameswap.
                     </p>
-                    <p>
-                        <b>Stage 2</b> Switch over to invite only membership, allow invited members to register with an email and password. Actual trading is still not done on the platform.
+                    <p style={{ marginTop: 40 }}>
+                        <b>Stage 2:</b> Switch over to invite only membership, allow invited members to register with an email and password. Actual trading is still not done on the platform.
                     </p>
-                    <p>
-                        <b>Stage 3</b> New features !!! users are able to chat, make offers and trade on the platform.
+                    <p style={{ marginTop: 40 }}>
+                        <b>Stage 3:</b> New features !!! users are able to chat, make offers and trade on the platform.
                     </p>
                     {/* <p>
                         <b>Stage 4</b> Partnership with steam ? to allow secure trading of games. Swap meets ?. In game currency ?
                     </p> */}
                 </div>
+
             </LandingSection>
         </div>
 

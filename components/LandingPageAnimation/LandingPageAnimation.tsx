@@ -22,20 +22,20 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
     const offsetFactor = 3
 
     const calculateTop = (index: number) => {
-        const vw = (index * -itemSize) + itemSize * offsetFactor //replace 10 with a variable size "itemSize", replace 30 with itemSize*offsetFactor
-        const vmin = (index * (-itemPadding * 2)) + (itemPadding * 2) * offsetFactor //replace -4 with a variable size "itemPadding", replace 12 with itemPadding*offsetFactor
+        const vw = (index * -itemSize) + itemSize * offsetFactor
+        const vmin = (index * (-itemPadding * 2)) + (itemPadding * 2) * offsetFactor
 
         return `calc(${vw}vw + ${vmin}vmin)`
 
 
     }
 
-    const [lIndex, setLIndex] = useState(0)
-    const [rIndex, setRIndex] = useState(2)
+    const [lIndex, setLIndex] = useState(random(0, platforms.length - 1, false))
+    const [rIndex, setRIndex] = useState(random(0, platforms.length - 1, false))
     const lProps = useSpring({ top: calculateTop(lIndex), config: config.gentle })
     const rProps = useSpring({ top: calculateTop(rIndex), config: config.gentle })
-    const lSprings = useSprings(platforms.length, platforms.map((_, index) => (index === lIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0, transform: 'scale(0.8)' })))
-    const rSprings = useSprings(platforms.length, platforms.map((_, index) => (index === rIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0, transform: 'scale(0.8)' })))
+    const lSprings = useSprings(platforms.length, platforms.map((_, index) => (index === lIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0.2, transform: 'scale(0.8)' })))
+    const rSprings = useSprings(platforms.length, platforms.map((_, index) => (index === rIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0.2, transform: 'scale(0.8)' })))
 
     useEffect(() => {
         setInterval(() => {

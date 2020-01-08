@@ -13,6 +13,7 @@ import { setAuthToken } from 'functions/utils/authToken';
 import redirect from 'functions/utils/redirect';
 import User from 'types/IUser';
 import Head from 'next/head';
+import { colors } from 'styles';
 
 
 interface Props {
@@ -94,20 +95,27 @@ const Layout = (Component: any) => {
         render() {
             const { user, ...props } = this.props;
 
-            return <Container>
+            return <>
+                <Container>
 
-                <PageLoader color='rgb(109, 123, 212)' height={5} options={{ showSpinner: false }} />
-                <ScreenClassProvider>
+                    <PageLoader color='rgb(109, 123, 212)' height={5} options={{ showSpinner: false }} />
+                    <ScreenClassProvider>
 
-                    <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
-                    <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
-                    <UserProvider value={user}>
-                        <NavBar onSignInClicked={() => this.toggleSignInModal(true)} onSignOutClicked={this.signOut} />
-                        <Component  {...props} signOut={this.signOut} signIn={this.signIn} premiumClicked={() => this.togglePremiumModal(true)} />
-                    </UserProvider>
+                        <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
+                        <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
+                        <UserProvider value={user}>
+                            <NavBar onSignInClicked={() => this.toggleSignInModal(true)} onSignOutClicked={this.signOut} />
+                            <Component  {...props} signOut={this.signOut} signIn={this.signIn} premiumClicked={() => this.togglePremiumModal(true)} />
+                        </UserProvider>
 
-                </ScreenClassProvider>
-            </Container >
+                    </ScreenClassProvider>
+
+                </Container >
+                <footer style={{ width: '100%', position: 'relative', zIndex: -1 }}>
+                    <img width='100%' style={{}} src={require('../../assets/graphics/wave-grey.svg')} />
+
+                </footer>
+            </>
         }
     }
 

@@ -6,7 +6,7 @@ import User from 'types/IUser'
 import redirect from 'functions/utils/redirect'
 import ApolloClient from 'apollo-client'
 import getUserInfo from 'functions/graphql/queries/getUserInfo'
-
+import './index.css'
 
 interface Props {
     apolloClient: ApolloClient<any>

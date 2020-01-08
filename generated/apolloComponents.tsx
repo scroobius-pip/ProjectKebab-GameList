@@ -84,8 +84,13 @@ export type IError = {
    __typename?: 'Error',
   id: Scalars['ID'],
   message: Scalars['String'],
-  type: Scalars['String'],
+  type: IErrorType,
 };
+
+export enum IErrorType {
+  UpgradeMembership = 'UPGRADE_MEMBERSHIP',
+  AuthError = 'AUTH_ERROR'
+}
 
 export type IGame = {
    __typename?: 'Game',
@@ -97,23 +102,28 @@ export type IGame = {
 
 export type IMatch = {
    __typename?: 'Match',
-  user: IUser,
-  distance: Scalars['Float'],
+  id: Scalars['ID'],
+  userImageUrl: Scalars['String'],
+  userName: Scalars['String'],
+  matchRate?: Maybe<Scalars['Float']>,
+  wantedGameNames?: Maybe<Array<Scalars['String']>>,
+  hasGameNames?: Maybe<Array<Scalars['String']>>,
+  state?: Maybe<Scalars['String']>,
+  country?: Maybe<Scalars['String']>,
 };
 
 export type IMatchQueryInput = {
   sortBy: IMatchSortType,
-  latitude: Scalars['Float'],
-  longitude: Scalars['Float'],
 };
 
 export type IMatchQueryResult = {
    __typename?: 'MatchQueryResult',
   result?: Maybe<Array<IMatch>>,
+  error?: Maybe<Array<IError>>,
 };
 
 export enum IMatchSortType {
-  Distance = 'distance',
+  Location = 'location',
   MatchRate = 'matchRate'
 }
 
@@ -412,7 +422,7 @@ export type IAddUserGamesMutationVariables = {
 };
 
 
-export type IAddUserGamesMutation = { __typename?: 'Mutation', addUserGames: Maybe<{ __typename?: 'AddGamesMutationResult', result: boolean, error: Maybe<{ __typename?: 'Error', message: string, type: string, id: string }> }> };
+export type IAddUserGamesMutation = { __typename?: 'Mutation', addUserGames: Maybe<{ __typename?: 'AddGamesMutationResult', result: boolean, error: Maybe<{ __typename?: 'Error', message: string, type: IErrorType, id: string }> }> };
 
 export type IRemoveUserGamesMutationVariables = {
   games: Array<IRemoveGamesInput>
@@ -426,7 +436,7 @@ export type IUpdateUserDescriptionMutationVariables = {
 };
 
 
-export type IUpdateUserDescriptionMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', description: Maybe<string> }>, error: Maybe<{ __typename?: 'Error', message: string, type: string, id: string }> }> };
+export type IUpdateUserDescriptionMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', description: Maybe<string> }>, error: Maybe<{ __typename?: 'Error', message: string, type: IErrorType, id: string }> }> };
 
 export type IUpdateUserGamesMutationVariables = {
   games: Array<IUpdateGamesInput>
@@ -440,12 +450,19 @@ export type IUpdateLocationMutationVariables = {
 };
 
 
-export type IUpdateLocationMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', location: Maybe<{ __typename?: 'UserInfoLocation', country: string, state: string }> }>, error: Maybe<{ __typename?: 'Error', message: string, type: string, id: string }> }> };
+export type IUpdateLocationMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', location: Maybe<{ __typename?: 'UserInfoLocation', country: string, state: string }> }>, error: Maybe<{ __typename?: 'Error', message: string, type: IErrorType, id: string }> }> };
 
 export type IGetMyDescriptionAndGamesQueryVariables = {};
 
 
 export type IGetMyDescriptionAndGamesQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', id: string, info: { __typename?: 'UserInfo', description: Maybe<string> }, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
+
+export type IGetMatchesQueryVariables = {
+  input: IMatchQueryInput
+};
+
+
+export type IGetMatchesQuery = { __typename?: 'Query', matches: { __typename?: 'MatchQueryResult', result: Maybe<Array<{ __typename?: 'Match', id: string, userImageUrl: string, userName: string, matchRate: Maybe<number>, wantedGameNames: Maybe<Array<string>>, hasGameNames: Maybe<Array<string>>, state: Maybe<string>, country: Maybe<string> }>>, error: Maybe<Array<{ __typename?: 'Error', message: string }>> } };
 
 export type IUserGameQueryVariables = {};
 
@@ -819,6 +836,68 @@ export function useGetMyDescriptionAndGamesLazyQuery(baseOptions?: ApolloReactHo
 export type GetMyDescriptionAndGamesQueryHookResult = ReturnType<typeof useGetMyDescriptionAndGamesQuery>;
 export type GetMyDescriptionAndGamesLazyQueryHookResult = ReturnType<typeof useGetMyDescriptionAndGamesLazyQuery>;
 export type GetMyDescriptionAndGamesQueryResult = ApolloReactCommon.QueryResult<IGetMyDescriptionAndGamesQuery, IGetMyDescriptionAndGamesQueryVariables>;
+export const GetMatchesDocument = gql`
+    query getMatches($input: MatchQueryInput!) {
+  matches(input: $input) {
+    result {
+      id
+      userImageUrl
+      userName
+      matchRate
+      wantedGameNames
+      hasGameNames
+      state
+      country
+    }
+    error {
+      message
+    }
+  }
+}
+    `;
+export type GetMatchesComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IGetMatchesQuery, IGetMatchesQueryVariables>, 'query'> & ({ variables: IGetMatchesQueryVariables; skip?: boolean; } | { skip: boolean; });
+
+    export const GetMatchesComponent = (props: GetMatchesComponentProps) => (
+      <ApolloReactComponents.Query<IGetMatchesQuery, IGetMatchesQueryVariables> query={GetMatchesDocument} {...props} />
+    );
+    
+export type IGetMatchesProps<TChildProps = {}> = ApolloReactHoc.DataProps<IGetMatchesQuery, IGetMatchesQueryVariables> & TChildProps;
+export function withGetMatches<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IGetMatchesQuery,
+  IGetMatchesQueryVariables,
+  IGetMatchesProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, IGetMatchesQuery, IGetMatchesQueryVariables, IGetMatchesProps<TChildProps>>(GetMatchesDocument, {
+      alias: 'getMatches',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGetMatchesQuery__
+ *
+ * To run a query within a React component, call `useGetMatchesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMatchesQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMatchesQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useGetMatchesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<IGetMatchesQuery, IGetMatchesQueryVariables>) {
+        return ApolloReactHooks.useQuery<IGetMatchesQuery, IGetMatchesQueryVariables>(GetMatchesDocument, baseOptions);
+      }
+export function useGetMatchesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<IGetMatchesQuery, IGetMatchesQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<IGetMatchesQuery, IGetMatchesQueryVariables>(GetMatchesDocument, baseOptions);
+        }
+export type GetMatchesQueryHookResult = ReturnType<typeof useGetMatchesQuery>;
+export type GetMatchesLazyQueryHookResult = ReturnType<typeof useGetMatchesLazyQuery>;
+export type GetMatchesQueryResult = ApolloReactCommon.QueryResult<IGetMatchesQuery, IGetMatchesQueryVariables>;
 export const UserGameDocument = gql`
     query UserGame {
   me {

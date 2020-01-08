@@ -7,11 +7,11 @@ import { ScreenClassRender } from 'react-grid-system'
 import { Row, Col } from 'react-bootstrap'
 
 
-// export default () => <ScreenClassRender
-//     render={screenClass => ['md', 'lg', 'xl'].includes(screenClass) ? <FeatureGrid /> : <FeatureGrid />}
-// />
+export default () => <ScreenClassRender
+    render={screenClass => ['md', 'lg', 'xl'].includes(screenClass) ? <FeatureGrid /> : <FeatureSlider />}
+/>
 
-export default () => <FeatureGrid />
+// export default () => <FeatureGrid />
 
 const Features: Array<{ title: string, body: string, icon: any }> = [
     {

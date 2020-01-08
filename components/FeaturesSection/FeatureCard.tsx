@@ -1,3 +1,4 @@
+import { colors } from 'styles';
 
 function FeatureCard({ title = '', body = '', icon }) {
     return <div className='feature-card' style={{
@@ -7,6 +8,7 @@ function FeatureCard({ title = '', body = '', icon }) {
         padding: 20,
         paddingTop: 40,
         marginTop: 40,
+        userSelect: 'none'
 
     }}>
         <div className='icon-circle' style={{ position: 'absolute' }}>
@@ -55,12 +57,12 @@ function FeatureCard({ title = '', body = '', icon }) {
                     }
 
                     .icon {
-                        width:80%;
-                        height:80%;
+                        width:70%;
+                        height:70%;
                     }
 
                     .feature-card:hover > .icon-circle {
-                        background-color:rgb(109, 123, 212);
+                        background-color:${colors.primary};
                         // background-color:#0080FF;
                     }
 

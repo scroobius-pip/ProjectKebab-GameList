@@ -7,31 +7,50 @@ export interface Match {
         city: string
         country: string
     }
-    matchedGames?: string[]
+    matchedGames: {
+        hasGameNames: string[]
+        wantGameNames: string[]
+    }
     matchRate?: number
-    matchType: 'location' | 'rate'
+    // matchType: 'location' | 'rate'
 }
 
 interface Props {
     match: Match
+    onClick: (userName: string) => any
 }
 
-export default ({ match: props }: Props) => (
-    <div className='match-item' onClick={() => { }} style={{ marginTop: 15, cursor: 'pointer' }}>
+const MatchedGamesText = ({ matchedGames }: { matchedGames: Match['matchedGames'] }) => {
+    const { hasGameNames, wantGameNames } = matchedGames
+    return <>
+        {!!hasGameNames.length && <span>Has <b>{hasGameNames[0]}</b> and {hasGameNames.length - 1} others. </span>}
+        {!!wantGameNames.length && <span>Wants <b>{wantGameNames[0]}</b> and {wantGameNames.length - 1} others.</span>}
+    </>
+}
+
+
+
+export default ({ match, onClick }: Props) => {
+
+    const handleClick = () => {
+        onClick(match.username)
+    }
+
+    return <div className='match-item' onClick={handleClick} style={{ marginTop: 15, cursor: 'pointer' }}>
 
         <div className='match-container' style={styles.container}>
             <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
                 <img style={{ height: '100%', paddingRight: 10 }} src={require('../../assets/icons/reddit-user.svg')} />
-                <div>
+                <div style={{ textAlign: 'left' }}>
                     <div>
-                        <span style={{ fontSize: 20, fontWeight: 600, marginRight: 5 }}>{props.username}</span>
-                        <img style={{ height: '1.2em' }} src={props.userImage} />
+                        <span style={{ fontSize: 20, fontWeight: 600, marginRight: 5 }}>{match.username}</span>
+                        <img style={{ height: '1.2em' }} src={match.userImage} />
                     </div>
                     <div>
-                        <span style={{ fontSize: 14, fontWeight: 600, color: '#8B8B8B' }}>{`${props.location.country}-${props.location.city}`}</span>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: '#8B8B8B' }}>{`${match.location.country}-${match.location.city}`}</span>
                     </div>
                     <div>
-                        <span>Has <b>Super Mario Odyssey</b> and 3 others.</span>
+                        <MatchedGamesText matchedGames={match.matchedGames} />
                     </div>
                 </div>
             </div>
@@ -40,9 +59,9 @@ export default ({ match: props }: Props) => (
                 <img src={require('../../assets/icons/arrow_right.svg')} />
             </div>
 
-        </div>
-        <div style={{ height: 5, backgroundColor: colors.primary, width: '100%' }} />
-        <span className='match-rate' style={{ fontWeight: 600, color: 'white' }}>80% Match Rate</span>
+        </div >
+        <div style={{ height: 5, backgroundColor: colors.primary, width: (match.matchRate || 100) + '%' }} />
+        {!!match.matchRate && <span className='match-rate' style={{ fontWeight: 600, color: 'white' }}>{match.matchRate}% Match Rate</span>}
         <style jsx>
             {`
 
@@ -72,9 +91,9 @@ export default ({ match: props }: Props) => (
 }
 `}
         </style>
-    </div>
+    </div >
 
-);
+};
 const styles: { [key: string]: React.CSSProperties } = {
     container: {
         marginLeft: -20,

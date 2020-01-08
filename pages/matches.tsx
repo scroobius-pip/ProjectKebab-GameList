@@ -5,48 +5,50 @@ import { colors, font } from 'styles';
 import Section from '@components/Section';
 import { Tab, Nav } from 'react-bootstrap';
 import MatchContainer from '@components/MatchContainer'
+import { IMatchSortType } from 'generated/apolloComponents';
 interface Props {
     premiumClicked?: () => {}
 }
 
-const TabHead = () => <div style={{ fontSize: 20, fontWeight: 600, display: 'flex', justifyContent: 'center' }}>
-    <Nav variant='pills'   >
-        <Nav.Item>
-            <Nav.Link style={{ transition: 'all 200ms ease' }} eventKey='rate'>
 
-                <span style={styles.navItemSpans}>Match Rate</span>
-                <img src={require('../assets/icons/match_rate.svg')} style={styles.navItemImg} />
 
-            </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-            <Nav.Link style={{ transition: 'all 200ms ease' }} eventKey='location'>
-                <span style={styles.navItemSpans}>Location</span>
-                <img src={require('../assets/icons/location.svg')} style={styles.navItemImg} />
-            </Nav.Link>
-        </Nav.Item>
+const Page = ({ premiumClicked }: Props) => {
 
-    </Nav>
-    <style jsx>{
-        `
+    const TabHead = () => <div style={{ fontSize: 20, fontWeight: 600, display: 'flex', justifyContent: 'center' }}>
+        <Nav variant='pills'   >
+            <Nav.Item>
+                <Nav.Link style={{ transition: 'all 200ms ease' }} eventKey='rate'>
+
+                    <span style={styles.navItemSpans}>Match Rate</span>
+                    <img src={require('../assets/icons/match_rate.svg')} style={styles.navItemImg} />
+
+                </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link style={{ transition: 'all 200ms ease' }} eventKey='location'>
+                    <span style={styles.navItemSpans}>Location</span>
+                    <img src={require('../assets/icons/location.svg')} style={styles.navItemImg} />
+                </Nav.Link>
+            </Nav.Item>
+
+        </Nav>
+        <style jsx>{
+            `
 .nav-link.active {
     background-color: ${colors.primary}
 }
 `
-    }</style>
-</div>
+        }</style>
+    </div>
 
-const TabContent = () => <Tab.Content>
-    <Tab.Pane eventKey='rate'>
-        <MatchContainer />
-    </Tab.Pane>
-    <Tab.Pane eventKey='location'>
-
-        <MatchContainer />
-    </Tab.Pane>
-</Tab.Content>
-
-const Page = ({ premiumClicked }: Props) => {
+    const TabContent = () => <Tab.Content>
+        <Tab.Pane eventKey='rate'>
+            <MatchContainer openPremium={premiumClicked} matchType={IMatchSortType['MatchRate']} />
+        </Tab.Pane>
+        <Tab.Pane eventKey='location'>
+            <MatchContainer openPremium={premiumClicked} matchType={IMatchSortType['Location']} />
+        </Tab.Pane>
+    </Tab.Content>
 
     return (
         <>
