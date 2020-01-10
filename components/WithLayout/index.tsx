@@ -112,7 +112,7 @@ const Layout = (Component: any) => {
 
                 </Container >
                 <footer style={{ width: '100%', position: 'relative', zIndex: -1 }}>
-                    <img width='100%' style={{}} src={require('../../assets/graphics/wave-grey.svg')} />
+                    {/* <img width='100%' style={{}} src={require('../../assets/graphics/wave-grey.svg')} /> */}
 
                 </footer>
             </>

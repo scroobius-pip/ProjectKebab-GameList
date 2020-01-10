@@ -160,7 +160,8 @@ function createApolloClient(initialState = {}, { getToken }) {
         credentials: 'same-origin',
         fetch,
         fetchOptions,
-        uri: 'https://swapem-api.scroobius-pip.now.sh/graphql',
+        // uri: 'https://swapem-api.scroobius-pip.now.sh/graphql',
+        uri: 'http://localhost:3000/graphql',
         useGETForQueries: true
     })
 

@@ -12,11 +12,11 @@ interface Props {
 }
 
 export default ({ matchType, openPremium }: Props) => {
-    const { data: { matches: { result: matches } }, loading, error } = useGetMatchesQuery({ variables: { input: { sortBy: matchType } } })
+    const { data, loading, error } = useGetMatchesQuery({ variables: { input: { sortBy: matchType } } })
     const router = useRouter()
 
     const handleMatchItemClicked = (userName: string) => {
-        (userName.substring(0, 3) === 'XXX') ? openPremium() : router.push('/profile/' + userName)
+        (userName[userName.length - 1] === '*') ? openPremium() : router.push('/profile/' + userName)
     }
 
     return <div style={{ width: '100%', maxWidth: 500, margin: 'auto', marginTop: 20, textAlign: 'center' }}>
@@ -24,7 +24,7 @@ export default ({ matchType, openPremium }: Props) => {
             width: '3em',
             height: '3em'
         }} /> : <>{
-            matches.map((match, i) => {
+            data.matches.result.map((match, i) => {
                 const parsedMatch: Match = {
                     matchedGames: {
                         hasGameNames: match.hasGameNames,
@@ -33,8 +33,8 @@ export default ({ matchType, openPremium }: Props) => {
                     userImage: match.userImageUrl,
                     username: match.userName,
                     location: {
-                        city: match.state,
-                        country: match.country
+                        city: match.state || '',
+                        country: match.country || ''
                     },
                 }
 

@@ -22,9 +22,15 @@ interface Props {
 
 const MatchedGamesText = ({ matchedGames }: { matchedGames: Match['matchedGames'] }) => {
     const { hasGameNames, wantGameNames } = matchedGames
+    const hasGameNamesCount = hasGameNames.length
+    const wantGamesNamesCount = wantGameNames.length
+
+
+
     return <>
-        {!!hasGameNames.length && <span>Has <b>{hasGameNames[0]}</b> and {hasGameNames.length - 1} others. </span>}
-        {!!wantGameNames.length && <span>Wants <b>{wantGameNames[0]}</b> and {wantGameNames.length - 1} others.</span>}
+        <span>- </span>
+        {!!hasGameNamesCount && <span>Has <b>{hasGameNames[0]}</b> {!!(hasGameNamesCount - 1) && `and ${hasGameNamesCount} others.`} </span>}
+        {!!wantGamesNamesCount && <span>Wants <b>{wantGameNames[0]}</b>{!!(wantGamesNamesCount - 1) && `and ${wantGamesNamesCount} others.`}</span>}
     </>
 }
 
@@ -40,7 +46,7 @@ export default ({ match, onClick }: Props) => {
 
         <div className='match-container' style={styles.container}>
             <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
-                <img style={{ height: '100%', paddingRight: 10 }} src={require('../../assets/icons/reddit-user.svg')} />
+                <img style={{ height: '100%', paddingRight: 10 }} src={match.userImage} />
                 <div style={{ textAlign: 'left' }}>
                     <div>
                         <span style={{ fontSize: 20, fontWeight: 600, marginRight: 5 }}>{match.username}</span>

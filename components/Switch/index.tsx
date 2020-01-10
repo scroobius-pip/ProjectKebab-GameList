@@ -1,30 +1,50 @@
 import './index.css'
+import { Spinner } from 'react-bootstrap'
+import { useState } from 'react'
 
 interface Props {
-    isOn: boolean
-    handleToggle: () => any
-    id: string
+  initialState: boolean
+  handleToggle: (currentState: boolean) => Promise<void> | void
+  id: string
 }
 
-export default ({ isOn, handleToggle, id }: Props) => {
-    return (
-        <>
-            <input
-                checked={isOn}
-                onChange={handleToggle}
-                className="react-switch-checkbox"
-                id={id}
-                type="checkbox"
-            />
-            <label
-                className="react-switch-label"
-                htmlFor={id}
-                style={{ background: isOn && 'rgb(109, 123, 212)' }}
-            >
-                <span className={`react-switch-button`} />
-            </label>
-            <style jsx global>
-                {`
+
+export default ({ handleToggle, id, initialState }: Props) => {
+  const [isOn, setIsOn] = useState(initialState || false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const onChange = async () => {
+    try {
+      setIsLoading(true)
+      await handleToggle(isOn)
+      setIsOn(!isOn)
+    } catch (error) {
+      console.error(error)
+      setIsOn(isOn)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <>
+      <input
+        checked={isOn}
+        onChange={onChange}
+        className="react-switch-checkbox"
+        id={id}
+        type="checkbox"
+      />
+      <label
+        className="react-switch-label"
+        htmlFor={id}
+        style={{ background: isOn && 'rgb(109, 123, 212)' }}
+      >
+        <span className={`react-switch-button`} />
+        {isLoading && <Spinner variant='light' animation='border' className='spinner' />}
+      </label>
+      <style jsx global>
+        {`
 
 .react-switch-checkbox {
     height: 0;
@@ -66,8 +86,25 @@ export default ({ isOn, handleToggle, id }: Props) => {
   .react-switch-label:active .react-switch-button {
     width: 35px;
   }
+
+  .spinner {
+    position:absolute;
+   right:8px;
+   transition: opacity .2s;
+
+  }
+
+  .react-switch-checkbox:checked + .react-switch-label  .spinner {
+    left:8px;
+  }
+
+  .spinner-border {
+    width:1.5rem;
+    height:1.5rem;
+  }
+ 
 `}
-            </style>
-        </>
-    )
+      </style>
+    </>
+  )
 }
