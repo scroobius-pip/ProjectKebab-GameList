@@ -93,8 +93,6 @@ class MyApp extends App<Props, {}, State> {
 
 export default MyApp
 
-
-
 const hotJarTrackingCode = {
     __html: `
     <!-- Hotjar Tracking Code for nakamalist.now.sh -->
