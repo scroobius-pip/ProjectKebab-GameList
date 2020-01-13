@@ -6,8 +6,8 @@ import { withAuth } from '@components/WithAuth'
 import WithLayout from '@components/WithLayout'
 import { withApollo } from 'functions/utils/apollo'
 import getUserInfo from 'functions/graphql/queries/getUserInfo'
-import updateLocation from 'functions/graphql/mutations/updateLocation'
 import { getApolloContext } from 'react-apollo'
+import { UpdateLocation } from '../functions/UpdateLocation'
 interface Props {
     userSettings: Pick<UserSettings, 'notifications_enabled' | 'location_enabled' | 'premium_enabled'>
     signInClicked?: () => {}
@@ -59,27 +59,9 @@ const initSettingsData: (userSettings: UserSettings) => SettingsSectionProps = (
 const Page = (props: Props) => {
     const apolloClient = useContext(getApolloContext()).client
 
-    const getPosition = function (options: PositionOptions): Promise<Position> {
-        return new Promise(function (resolve, reject) {
-            navigator.geolocation.getCurrentPosition(resolve, reject, options);
-        });
-    }
 
-    const setLocation = async () => {
-        try {
-            const { longitude, latitude } = (await getPosition({
-                maximumAge: 60 * 10 * 1000,
-            })).coords
 
-            await updateLocation({ latitude, longitude }, apolloClient)
-
-        } catch (error) {
-            throw error
-        }
-    }
-    const unsetLocation = async () => {
-        await updateLocation({ longitude: 0, latitude: 0 }, apolloClient)
-    }
+    const { unsetLocation, setLocation } = UpdateLocation(apolloClient)
 
 
 
@@ -124,3 +106,5 @@ Page.getInitialProps = async ({ apolloClient }): Promise<Props> => {
 
 
 export default withApollo(withAuth(WithLayout(Page)))
+
+
