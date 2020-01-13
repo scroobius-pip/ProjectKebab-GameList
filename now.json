@@ -1,4 +1,16 @@
 {
     "name": "nakamalist",
-    "alias": "nakamalist.now.sh"
+    "alias": "nakamalist.now.sh",
+    "builds": [
+        {
+            "src": "static/loaderio-acb472a19050f5235e3caa5fb4b9eeaa.txt",
+            "use": "@now/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/webpushr-sw.js",
+            "dest": "static/webpushr-sw.js"
+        }
+    ]
 }

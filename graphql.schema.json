@@ -11,15 +11,15 @@
       {
         "kind": "OBJECT",
         "name": "Query",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "searchGames",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -46,11 +46,11 @@
           },
           {
             "name": "matches",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -77,11 +77,11 @@
           },
           {
             "name": "offers",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -108,7 +108,7 @@
           },
           {
             "name": "me",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -120,11 +120,11 @@
           },
           {
             "name": "user",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -154,12 +154,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SearchGamesQueryInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "searchText",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -173,7 +173,7 @@
           },
           {
             "name": "limit",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Int",
@@ -209,11 +209,11 @@
       {
         "kind": "OBJECT",
         "name": "SearchGamesQueryResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -240,11 +240,11 @@
       {
         "kind": "OBJECT",
         "name": "Game",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "name",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -260,7 +260,7 @@
           },
           {
             "name": "consoleType",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -272,7 +272,7 @@
           },
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -288,7 +288,7 @@
           },
           {
             "name": "imageUrl",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -317,12 +317,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "MatchQueryInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "sortBy",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -342,20 +342,20 @@
       {
         "kind": "ENUM",
         "name": "MatchSortType",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "location",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "matchRate",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -365,11 +365,11 @@
       {
         "kind": "OBJECT",
         "name": "MatchQueryResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -389,20 +389,12 @@
           },
           {
             "name": "error",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "Error",
-                  "ofType": null
-                }
-              }
+              "kind": "OBJECT",
+              "name": "Error",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -416,11 +408,11 @@
       {
         "kind": "OBJECT",
         "name": "Match",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -436,7 +428,7 @@
           },
           {
             "name": "userImageUrl",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -452,7 +444,7 @@
           },
           {
             "name": "userName",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -468,7 +460,7 @@
           },
           {
             "name": "matchRate",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -480,7 +472,7 @@
           },
           {
             "name": "wantedGameNames",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -500,7 +492,7 @@
           },
           {
             "name": "hasGameNames",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -520,7 +512,7 @@
           },
           {
             "name": "state",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -532,7 +524,7 @@
           },
           {
             "name": "country",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -561,11 +553,11 @@
       {
         "kind": "OBJECT",
         "name": "Error",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -581,7 +573,7 @@
           },
           {
             "name": "message",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -597,7 +589,7 @@
           },
           {
             "name": "type",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -620,26 +612,26 @@
       {
         "kind": "ENUM",
         "name": "ErrorType",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "UPGRADE_MEMBERSHIP",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "AUTH_ERROR",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "LOCATION_NOT_SET",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -649,12 +641,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "OfferQueryInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "status",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -668,7 +660,7 @@
           },
           {
             "name": "pagination",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "PaginationInput",
@@ -684,38 +676,38 @@
       {
         "kind": "ENUM",
         "name": "OfferStatus",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "pending",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "ongoing",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "completed",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "cancelled",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "declined",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -725,12 +717,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "PaginationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "offset",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -744,7 +736,7 @@
           },
           {
             "name": "limit",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -764,11 +756,11 @@
       {
         "kind": "OBJECT",
         "name": "OfferQueryResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -788,7 +780,7 @@
           },
           {
             "name": "pageInfo",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -807,11 +799,11 @@
       {
         "kind": "OBJECT",
         "name": "Offer",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "offerId",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -827,7 +819,7 @@
           },
           {
             "name": "senderGames",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -851,7 +843,7 @@
           },
           {
             "name": "receiverGames",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -875,7 +867,7 @@
           },
           {
             "name": "receiverId",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -891,7 +883,7 @@
           },
           {
             "name": "senderId",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -907,7 +899,7 @@
           },
           {
             "name": "epochTimeCreated",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -923,7 +915,7 @@
           },
           {
             "name": "status",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -939,7 +931,7 @@
           },
           {
             "name": "receiverStatus",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -955,7 +947,7 @@
           },
           {
             "name": "senderStatus",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -978,11 +970,11 @@
       {
         "kind": "OBJECT",
         "name": "UserGame",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -998,7 +990,7 @@
           },
           {
             "name": "details",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1014,7 +1006,7 @@
           },
           {
             "name": "game",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1037,11 +1029,11 @@
       {
         "kind": "OBJECT",
         "name": "UserGameDetails",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "description",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1057,7 +1049,7 @@
           },
           {
             "name": "status",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1073,7 +1065,7 @@
           },
           {
             "name": "tradeType",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1096,20 +1088,20 @@
       {
         "kind": "ENUM",
         "name": "UserGameDetailsStatus",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "has",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "want",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1119,20 +1111,20 @@
       {
         "kind": "ENUM",
         "name": "UserGameDetailsTradeType",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "swap",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "sale",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1142,11 +1134,11 @@
       {
         "kind": "OBJECT",
         "name": "PageInfo",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "noOfItems",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1169,11 +1161,11 @@
       {
         "kind": "OBJECT",
         "name": "User",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1189,7 +1181,7 @@
           },
           {
             "name": "info",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1205,7 +1197,7 @@
           },
           {
             "name": "wantedGames",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -1225,7 +1217,7 @@
           },
           {
             "name": "hasGames",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -1252,11 +1244,11 @@
       {
         "kind": "OBJECT",
         "name": "UserInfo",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "email",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1268,7 +1260,7 @@
           },
           {
             "name": "description",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1280,7 +1272,7 @@
           },
           {
             "name": "isPro",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1292,7 +1284,7 @@
           },
           {
             "name": "epochTimeCreated",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1304,7 +1296,7 @@
           },
           {
             "name": "location",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -1316,7 +1308,7 @@
           },
           {
             "name": "noOfSuccessfulExchanges",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1328,7 +1320,7 @@
           },
           {
             "name": "rating",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -1340,7 +1332,7 @@
           },
           {
             "name": "userImageUrl",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1352,7 +1344,7 @@
           },
           {
             "name": "userName",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1364,7 +1356,7 @@
           },
           {
             "name": "isBanned",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1376,7 +1368,7 @@
           },
           {
             "name": "setting_matchNotifications",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1405,11 +1397,11 @@
       {
         "kind": "OBJECT",
         "name": "UserInfoLocation",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "country",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1425,7 +1417,7 @@
           },
           {
             "name": "state",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1448,11 +1440,11 @@
       {
         "kind": "OBJECT",
         "name": "UserInfoRating",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "negative",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1464,7 +1456,7 @@
           },
           {
             "name": "positive",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1483,12 +1475,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UserQueryInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "by",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1502,7 +1494,7 @@
           },
           {
             "name": "value",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1522,20 +1514,20 @@
       {
         "kind": "ENUM",
         "name": "UserQueryType",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "username",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1545,15 +1537,15 @@
       {
         "kind": "OBJECT",
         "name": "Mutation",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "addUserGames",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1576,11 +1568,11 @@
           },
           {
             "name": "removeUserGames",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1603,11 +1595,11 @@
           },
           {
             "name": "updateUserGames",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1630,11 +1622,11 @@
           },
           {
             "name": "addDbGames",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1657,11 +1649,11 @@
           },
           {
             "name": "updateOffer",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "UpdateOfferMutationInput",
@@ -1680,11 +1672,11 @@
           },
           {
             "name": "createOffer",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "CreateOfferMutationInput",
@@ -1703,11 +1695,11 @@
           },
           {
             "name": "updateUserInfo",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "input",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -1737,12 +1729,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AddGamesMutationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "games",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1770,12 +1762,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AddGamesInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "gameId",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1789,7 +1781,7 @@
           },
           {
             "name": "details",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1803,7 +1795,7 @@
           },
           {
             "name": "customItemDetails",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "AddGamesInputCustomItemDetails",
@@ -1819,12 +1811,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UserGameDetailsInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "description",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1838,7 +1830,7 @@
           },
           {
             "name": "status",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "ENUM",
               "name": "UserGameDetailsStatus",
@@ -1848,7 +1840,7 @@
           },
           {
             "name": "tradeType",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1868,12 +1860,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AddGamesInputCustomItemDetails",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "name",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1887,7 +1879,7 @@
           },
           {
             "name": "consoleType",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1907,11 +1899,11 @@
       {
         "kind": "OBJECT",
         "name": "AddGamesMutationResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1927,7 +1919,7 @@
           },
           {
             "name": "error",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -1946,12 +1938,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "RemoveGamesMutationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "games",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1979,12 +1971,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "RemoveGamesInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2004,11 +1996,11 @@
       {
         "kind": "OBJECT",
         "name": "RemoveGamesMutationResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2031,12 +2023,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UpdateGamesMutationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "games",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2064,12 +2056,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UpdateGamesInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "id",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2083,7 +2075,7 @@
           },
           {
             "name": "details",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2103,12 +2095,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UpdateGamesInputDetails",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "description",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2122,7 +2114,7 @@
           },
           {
             "name": "status",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2136,7 +2128,7 @@
           },
           {
             "name": "tradeType",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2156,11 +2148,11 @@
       {
         "kind": "OBJECT",
         "name": "UpdateGamesMutationResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2183,12 +2175,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AddDbGamesMutationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "games",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2216,12 +2208,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "AddDbGamesInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "name",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2235,7 +2227,7 @@
           },
           {
             "name": "consoleType",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2249,7 +2241,7 @@
           },
           {
             "name": "imageUrl",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2263,7 +2255,7 @@
           },
           {
             "name": "popularity",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2283,11 +2275,11 @@
       {
         "kind": "OBJECT",
         "name": "AddDbGamesMutationResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -2299,7 +2291,7 @@
           },
           {
             "name": "notAdded",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "LIST",
@@ -2315,7 +2307,7 @@
           },
           {
             "name": "error",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -2334,11 +2326,11 @@
       {
         "kind": "OBJECT",
         "name": "AddDbGamesMutationResultNotAdded",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "name",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2354,7 +2346,7 @@
           },
           {
             "name": "consoleType",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2370,7 +2362,7 @@
           },
           {
             "name": "imageUrl",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2386,7 +2378,7 @@
           },
           {
             "name": "popularity",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -2409,12 +2401,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UpdateOfferMutationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "offerId",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2428,7 +2420,7 @@
           },
           {
             "name": "type",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2448,32 +2440,32 @@
       {
         "kind": "ENUM",
         "name": "UpdateOfferMutationInputType",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "complete",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "accept",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "decline",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "cancel",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -2483,11 +2475,11 @@
       {
         "kind": "OBJECT",
         "name": "UpdateOfferMutationResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -2506,12 +2498,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "CreateOfferMutationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "offer",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2531,12 +2523,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "OfferInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "myGames",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2558,7 +2550,7 @@
           },
           {
             "name": "otherGames",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2580,7 +2572,7 @@
           },
           {
             "name": "otherId",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2600,12 +2592,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UserGameInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "details",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2619,7 +2611,7 @@
           },
           {
             "name": "gameId",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2639,11 +2631,11 @@
       {
         "kind": "OBJECT",
         "name": "CreateOfferMutationResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -2655,7 +2647,7 @@
           },
           {
             "name": "error",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -2674,12 +2666,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UpdateUserInfoMutationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "info",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2699,12 +2691,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UserInfoInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "email",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -2714,7 +2706,7 @@
           },
           {
             "name": "description",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -2724,7 +2716,7 @@
           },
           {
             "name": "isPro",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
@@ -2734,7 +2726,7 @@
           },
           {
             "name": "location",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "UserInfoLocationInput",
@@ -2744,7 +2736,7 @@
           },
           {
             "name": "userImageUrl",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -2754,7 +2746,7 @@
           },
           {
             "name": "userName",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -2764,7 +2756,7 @@
           },
           {
             "name": "isBanned",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
@@ -2774,7 +2766,7 @@
           },
           {
             "name": "setting_matchNotifications",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
@@ -2790,12 +2782,12 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "UserInfoLocationInput",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": [
           {
             "name": "longitude",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2809,7 +2801,7 @@
           },
           {
             "name": "latitude",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -2829,11 +2821,11 @@
       {
         "kind": "OBJECT",
         "name": "UpdateUserInfoMutationResult",
-        "description": "",
+        "description": null,
         "fields": [
           {
             "name": "result",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -2845,7 +2837,7 @@
           },
           {
             "name": "error",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "OBJECT",
@@ -3660,20 +3652,20 @@
       {
         "kind": "ENUM",
         "name": "CacheControlScope",
-        "description": "",
+        "description": null,
         "fields": null,
         "inputFields": null,
         "interfaces": null,
         "enumValues": [
           {
             "name": "PUBLIC",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "PRIVATE",
-            "description": "",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -3694,7 +3686,7 @@
     "directives": [
       {
         "name": "cacheControl",
-        "description": "",
+        "description": null,
         "locations": [
           "FIELD_DEFINITION",
           "OBJECT",
@@ -3703,7 +3695,7 @@
         "args": [
           {
             "name": "maxAge",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "Int",
@@ -3713,7 +3705,7 @@
           },
           {
             "name": "scope",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "ENUM",
               "name": "CacheControlScope",

@@ -66,7 +66,7 @@ export default ({ match, onClick }: Props) => {
             </div>
 
         </div >
-        <div style={{ height: 5, backgroundColor: colors.primary, width: (match.matchRate || 100) + '%' }} />
+        <div style={{ height: 5,borderRadius:10, backgroundColor: colors.primary, width: (match.matchRate || 100) + '%' }} />
         {!!match.matchRate && <span className='match-rate' style={{ fontWeight: 600, color: 'white' }}>{match.matchRate}% Match Rate</span>}
         <style jsx>
             {`

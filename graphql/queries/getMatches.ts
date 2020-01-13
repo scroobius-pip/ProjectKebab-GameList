@@ -16,7 +16,7 @@ matches(input:$input){
         
       }
       error {
-          message
+          type
       }
 
 }

@@ -89,7 +89,8 @@ export type IError = {
 
 export enum IErrorType {
   UpgradeMembership = 'UPGRADE_MEMBERSHIP',
-  AuthError = 'AUTH_ERROR'
+  AuthError = 'AUTH_ERROR',
+  LocationNotSet = 'LOCATION_NOT_SET'
 }
 
 export type IGame = {
@@ -119,7 +120,7 @@ export type IMatchQueryInput = {
 export type IMatchQueryResult = {
    __typename?: 'MatchQueryResult',
   result?: Maybe<Array<IMatch>>,
-  error?: Maybe<Array<IError>>,
+  error?: Maybe<IError>,
 };
 
 export enum IMatchSortType {
@@ -462,7 +463,7 @@ export type IGetMatchesQueryVariables = {
 };
 
 
-export type IGetMatchesQuery = { __typename?: 'Query', matches: { __typename?: 'MatchQueryResult', result: Maybe<Array<{ __typename?: 'Match', id: string, userImageUrl: string, userName: string, matchRate: Maybe<number>, wantedGameNames: Maybe<Array<string>>, hasGameNames: Maybe<Array<string>>, state: Maybe<string>, country: Maybe<string> }>>, error: Maybe<Array<{ __typename?: 'Error', message: string }>> } };
+export type IGetMatchesQuery = { __typename?: 'Query', matches: { __typename?: 'MatchQueryResult', result: Maybe<Array<{ __typename?: 'Match', id: string, userImageUrl: string, userName: string, matchRate: Maybe<number>, wantedGameNames: Maybe<Array<string>>, hasGameNames: Maybe<Array<string>>, state: Maybe<string>, country: Maybe<string> }>>, error: Maybe<{ __typename?: 'Error', type: IErrorType }> } };
 
 export type IUserGameQueryVariables = {};
 
@@ -850,7 +851,7 @@ export const GetMatchesDocument = gql`
       country
     }
     error {
-      message
+      type
     }
   }
 }

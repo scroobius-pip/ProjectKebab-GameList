@@ -14,7 +14,7 @@ interface Props {
 
 const Page = ({ premiumClicked }: Props) => {
 
-    const TabHead = () => <div style={{ fontSize: 20, fontWeight: 600, display: 'flex', justifyContent: 'center' }}>
+    const TabHead = () => <div style={{ fontSize: '1em', fontWeight: 600, display: 'flex', justifyContent: 'center', textAlign: 'center' }}>
         <Nav variant='pills'   >
             <Nav.Item>
                 <Nav.Link style={{ transition: 'all 200ms ease' }} eventKey='rate'>
