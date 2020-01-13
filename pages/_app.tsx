@@ -82,6 +82,7 @@ class MyApp extends App<Props, {}, State> {
                     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152414840-1"></script>
                     <script dangerouslySetInnerHTML={googleAnalyticsCode} />
                     <script dangerouslySetInnerHTML={hotJarTrackingCode} />
+                    <script dangerouslySetInnerHTML={webPushrCode} />
                 </Head>
                 <Component {...pageProps} />
 
@@ -92,7 +93,13 @@ class MyApp extends App<Props, {}, State> {
 
 
 export default MyApp
-
+const webPushrCode = {
+    __html: `
+    (function(w,d, s, id) {w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.src = "https://cdn.webpushr.com/app.min.js";
+    fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
+    webpushr('init','BEYM7rmfL1x19yjxpqa4Unjyw06o5X-8UMpO1IiFUyG-G36vMzACLbk5oVV4NoVpXn056QsTyza7YIeNsuqzTTY')
+    `
+}
 const hotJarTrackingCode = {
     __html: `
     <!-- Hotjar Tracking Code for nakamalist.now.sh -->
