@@ -1,26 +1,49 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
 import MatchItem from '@components/MatchItem'
 import { Match } from '@components/MatchItem/MatchItem';
-import { useGetMatchesQuery, IMatchSortType, IErrorType } from 'generated/apolloComponents';
+import { useGetMatchesQuery, IMatchSortType, IErrorType, useGetUserInfoQuery, useUpdateLocationMutation } from 'generated/apolloComponents';
 import { useRouter } from 'next/router'
 import SettingsSection from '@components/SettingsSection';
 import Switch from '@components/Switch';
 import SocialShare from '@components/SocialShare';
 import { getApolloContext } from 'react-apollo';
 import { UpdateLocation } from 'functions/UpdateLocation';
-interface Props {
-    matchType: IMatchSortType
+import updateNotifications from 'functions/graphql/mutations/updateNotifications';
+
+interface SharedProps {
     openPremium: () => any
 
 }
+interface Props {
+    matchType: IMatchSortType
 
-export default ({ matchType, openPremium }: Props) => {
-    const { data, loading, error } = useGetMatchesQuery({ variables: { input: { sortBy: matchType } } })
+}
+
+export default ({ openPremium }: SharedProps) => ({ matchType }: Props) => {
+    const { data: matchData, loading: matchLoading } = useGetMatchesQuery({ variables: { input: { sortBy: matchType } } })
+    const { data: userData, loading: userLoading } = useGetUserInfoQuery()
     const apolloClient = useContext(getApolloContext()).client
     const { unsetLocation, setLocation } = UpdateLocation(apolloClient)
-
     const router = useRouter()
+
+
+    const toggleNotifications = async (initialState: boolean) => {
+        if (!initialState) {
+            const status = await Notification.requestPermission()
+            if (status !== 'granted')
+                throw new Error('Rejected Notification')
+            const result = await updateNotifications(true, apolloClient)
+            if (result.error && result.error.type === IErrorType.UpgradeMembership) {
+                openPremium()
+                throw new Error(result.error.type)
+            }
+            document.location.reload()
+        } else {
+            await updateNotifications(false, apolloClient)
+            document.location.reload()
+        }
+    }
 
     const handleMatchItemClicked = (userName: string) => {
         (userName[userName.length - 1] === '*') ? openPremium() : router.push('/profile/' + userName)
@@ -35,7 +58,8 @@ export default ({ matchType, openPremium }: Props) => {
 
 
     const renderMatches = () => {
-        if (data.matches.result.length) {
+
+        if (!matchData.matches.result.length) {
             return <div >
                 <div style={{ textAlign: 'center' }}>
                     {/* <img src='' style={{ width: 200, height: 100 }} /> */}
@@ -50,7 +74,9 @@ export default ({ matchType, openPremium }: Props) => {
                                 subsections: [{
                                     title: 'Enable Match Notifications',
                                     description: "You'll be notified once we've found matches",
-                                    Input: () => <Switch id={'location' + matchType} initialState={false} handleToggle={() => { }} />
+                                    Input: () => {
+                                        return userLoading ? <Spinner variant='light' animation='grow' /> : <Switch id={'notification' + matchType} initialState={userData.me.info.setting_matchNotifications} handleToggle={toggleNotifications} />
+                                    }
                                 }, {
                                     title: 'Invite Others Over',
                                     description: "Spread the word - the more the merrier.",
@@ -66,7 +92,7 @@ export default ({ matchType, openPremium }: Props) => {
         }
 
 
-        return data.matches.result.map((match, i) => {
+        return matchData.matches.result.map((match, i) => {
             const parsedMatch: Match = {
                 matchedGames: {
                     hasGameNames: match.hasGameNames,
@@ -109,15 +135,12 @@ export default ({ matchType, openPremium }: Props) => {
     }
 
     return <div style={{ width: '100%', maxWidth: 500, margin: 'auto', marginTop: 20, }}>
-        {loading ? <Spinner variant='light' animation='grow' style={{
+        {matchLoading ? <Spinner variant='light' animation='grow' style={{
             width: '3em',
             height: '3em'
         }} /> : <>{
 
-            data.matches.error ? renderError(data.matches.error.type) : renderMatches()
+            matchData.matches.error ? renderError(matchData.matches.error.type) : renderMatches()
         }</>}
-
-
-
     </div>
 }

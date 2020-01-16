@@ -4,13 +4,12 @@ import WithLayout from '@components/WithLayout'
 import { colors, font } from 'styles';
 import Section from '@components/Section';
 import { Tab, Nav } from 'react-bootstrap';
-import MatchContainer from '@components/MatchContainer'
-import { IMatchSortType } from 'generated/apolloComponents';
+import initMatchContainer from '@components/MatchContainer'
+import { IMatchSortType } from 'generated/apolloComponents'
 interface Props {
     premiumClicked?: () => {}
+
 }
-
-
 
 const Page = ({ premiumClicked }: Props) => {
 
@@ -41,12 +40,16 @@ const Page = ({ premiumClicked }: Props) => {
         }</style>
     </div>
 
+    const MatchContainer = initMatchContainer({
+        openPremium: premiumClicked
+    })
+
     const TabContent = () => <Tab.Content>
         <Tab.Pane eventKey='rate'>
-            <MatchContainer openPremium={premiumClicked} matchType={IMatchSortType['MatchRate']} />
+            <MatchContainer matchType={IMatchSortType['MatchRate']} />
         </Tab.Pane>
         <Tab.Pane eventKey='location'>
-            <MatchContainer openPremium={premiumClicked} matchType={IMatchSortType['Location']} />
+            <MatchContainer matchType={IMatchSortType['Location']} />
         </Tab.Pane>
     </Tab.Content>
 
@@ -67,8 +70,8 @@ const Page = ({ premiumClicked }: Props) => {
         </>
     )
 
-
 }
+
 
 const styles: { [key: string]: React.CSSProperties } = {
     navItemSpans: {

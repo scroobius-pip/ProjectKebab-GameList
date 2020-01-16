@@ -1,7 +1,7 @@
 import React from 'react'
 import App from 'next/app'
 import Head from 'next/head'
-import { setAuthToken } from 'functions/utils/authToken'
+import { setAuthToken } from 'functions/utils/authTokenCookie'
 import User from 'types/IUser'
 import redirect from 'functions/utils/redirect'
 import ApolloClient from 'apollo-client'

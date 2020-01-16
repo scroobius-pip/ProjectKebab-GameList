@@ -8,6 +8,8 @@ import { withApollo } from 'functions/utils/apollo'
 import getUserInfo from 'functions/graphql/queries/getUserInfo'
 import { getApolloContext } from 'react-apollo'
 import { UpdateLocation } from '../functions/UpdateLocation'
+import updateNotifications from 'functions/graphql/mutations/updateNotifications'
+import { IErrorType } from 'generated/apolloComponents'
 interface Props {
     userSettings: Pick<UserSettings, 'notifications_enabled' | 'location_enabled' | 'premium_enabled'>
     signInClicked?: () => {}
@@ -63,7 +65,20 @@ const Page = (props: Props) => {
 
     const { unsetLocation, setLocation } = UpdateLocation(apolloClient)
 
-
+    const toggleNotifications = async (initialState: boolean) => {
+        if (!initialState) {
+            const status = await Notification.requestPermission()
+            if (status !== 'granted')
+                throw new Error('Rejected Notification')
+            const result = await updateNotifications(true, apolloClient)
+            if (result.error && result.error.type === IErrorType.UpgradeMembership) {
+                props.premiumClicked()
+                throw new Error(result.error.type)
+            }
+        } else {
+            await updateNotifications(false, apolloClient)
+        }
+    }
 
 
     const userSettings: UserSettings = {
@@ -73,7 +88,7 @@ const Page = (props: Props) => {
         handleLocationToggle: async (value) => {
             await (value ? unsetLocation : setLocation)()
         },
-        handleNotificationToggle: () => { },
+        handleNotificationToggle: toggleNotifications,
         handlePremiumToggle: () => {
             props.premiumClicked()
         }

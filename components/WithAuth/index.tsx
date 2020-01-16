@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAuthToken, isExpired } from 'functions/utils/authToken';
+import { getAuthToken, isExpired } from 'functions/utils/authTokenCookie';
 import redirect from 'functions/utils/redirect';
 
 export const withAuth = (WrappedComponent: any) => {

@@ -7,7 +7,7 @@ import { HttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
 import { ApolloProvider } from '@apollo/react-hooks'
 import fetch from 'isomorphic-unfetch'
-import { getAuthToken } from './authToken'
+import { getAuthToken } from './authTokenCookie'
 
 /**
  * Creates and provides the apolloContext
@@ -161,7 +161,7 @@ function createApolloClient(initialState = {}, { getToken }) {
         fetch,
         fetchOptions,
         // uri: 'https://swapem-api.scroobius-pip.now.sh/graphql',
-        uri: 'http://localhost:3000/graphql',
+        uri: 'http://localhost:56604/graphql',
         useGETForQueries: true
     })
 

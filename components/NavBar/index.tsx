@@ -16,7 +16,18 @@ interface Props {
 const StyledNavItem = ({ children, href }) => {
     const router = useRouter()
     const active = router.pathname === href
-    return <Nav.Link onClick={() => Router.push(href)} style={{ fontWeight: font.weights.medium, padding: 7, ...(active ? ({ backgroundColor: '#ffffff0d', borderRadius: 5, color: '#ffffffbf', }) : ({})) }}>
+    return <Nav.Link onClick={() => Router.push(href)} style={{
+        fontWeight: font.weights.medium, padding: 7, ...(active ? ({
+            backgroundColor: '#ffffff0d',
+            borderRadius: 5,
+            color: colors.primary,
+            borderWidth: 0,
+            fontWeight: 'bold',
+            borderRightWidth: 10,
+            borderColor: colors.primary,
+            borderStyle: 'solid'
+        }) : ({}))
+    }}>
         {children}
     </Nav.Link>
 
@@ -37,10 +48,10 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                     </Nav>
                     <Nav style={{ marginRight: 20 }}>
                         <StyledNavItem href='/profile/me'>PROFILE</StyledNavItem>
+                    </Nav>
+                    <Nav >
                         <Nav.Link href='https://discord.gg/XcUPyaB' style={{ fontWeight: font.weights.medium, padding: 7 }}>
-
                             <img style={{ height: '2em' }} src={require('../../assets/icons/discord-icon.svg')} />
-
                             DISCORD
                         </Nav.Link>
 

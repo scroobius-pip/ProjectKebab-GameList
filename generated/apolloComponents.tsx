@@ -453,6 +453,13 @@ export type IUpdateLocationMutationVariables = {
 
 export type IUpdateLocationMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', location: Maybe<{ __typename?: 'UserInfoLocation', country: string, state: string }> }>, error: Maybe<{ __typename?: 'Error', message: string, type: IErrorType, id: string }> }> };
 
+export type IUpdateMatchNotificationsMutationVariables = {
+  status: Scalars['Boolean']
+};
+
+
+export type IUpdateMatchNotificationsMutation = { __typename?: 'Mutation', updateUserInfo: Maybe<{ __typename?: 'UpdateUserInfoMutationResult', result: Maybe<{ __typename?: 'UserInfo', setting_matchNotifications: Maybe<boolean> }>, error: Maybe<{ __typename?: 'Error', message: string, type: IErrorType }> }> };
+
 export type IGetMyDescriptionAndGamesQueryVariables = {};
 
 
@@ -757,6 +764,61 @@ export function useUpdateLocationMutation(baseOptions?: ApolloReactHooks.Mutatio
 export type UpdateLocationMutationHookResult = ReturnType<typeof useUpdateLocationMutation>;
 export type UpdateLocationMutationResult = ApolloReactCommon.MutationResult<IUpdateLocationMutation>;
 export type UpdateLocationMutationOptions = ApolloReactCommon.BaseMutationOptions<IUpdateLocationMutation, IUpdateLocationMutationVariables>;
+export const UpdateMatchNotificationsDocument = gql`
+    mutation updateMatchNotifications($status: Boolean!) {
+  updateUserInfo(input: {info: {setting_matchNotifications: $status}}) {
+    result {
+      setting_matchNotifications
+    }
+    error {
+      message
+      type
+    }
+  }
+}
+    `;
+export type IUpdateMatchNotificationsMutationFn = ApolloReactCommon.MutationFunction<IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables>;
+export type UpdateMatchNotificationsComponentProps = Omit<ApolloReactComponents.MutationComponentOptions<IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables>, 'mutation'>;
+
+    export const UpdateMatchNotificationsComponent = (props: UpdateMatchNotificationsComponentProps) => (
+      <ApolloReactComponents.Mutation<IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables> mutation={UpdateMatchNotificationsDocument} {...props} />
+    );
+    
+export type IUpdateMatchNotificationsProps<TChildProps = {}> = ApolloReactHoc.MutateProps<IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables> & TChildProps;
+export function withUpdateMatchNotifications<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IUpdateMatchNotificationsMutation,
+  IUpdateMatchNotificationsMutationVariables,
+  IUpdateMatchNotificationsProps<TChildProps>>) {
+    return ApolloReactHoc.withMutation<TProps, IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables, IUpdateMatchNotificationsProps<TChildProps>>(UpdateMatchNotificationsDocument, {
+      alias: 'updateMatchNotifications',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useUpdateMatchNotificationsMutation__
+ *
+ * To run a mutation, you first call `useUpdateMatchNotificationsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateMatchNotificationsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateMatchNotificationsMutation, { data, loading, error }] = useUpdateMatchNotificationsMutation({
+ *   variables: {
+ *      status: // value for 'status'
+ *   },
+ * });
+ */
+export function useUpdateMatchNotificationsMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables>) {
+        return ApolloReactHooks.useMutation<IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables>(UpdateMatchNotificationsDocument, baseOptions);
+      }
+export type UpdateMatchNotificationsMutationHookResult = ReturnType<typeof useUpdateMatchNotificationsMutation>;
+export type UpdateMatchNotificationsMutationResult = ApolloReactCommon.MutationResult<IUpdateMatchNotificationsMutation>;
+export type UpdateMatchNotificationsMutationOptions = ApolloReactCommon.BaseMutationOptions<IUpdateMatchNotificationsMutation, IUpdateMatchNotificationsMutationVariables>;
 export const GetMyDescriptionAndGamesDocument = gql`
     query getMyDescriptionAndGames {
   me {

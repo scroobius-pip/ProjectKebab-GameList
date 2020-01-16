@@ -13,7 +13,7 @@ export default ({ MainSection, HiddenSection, style, open = false }: Props) => {
             <div style={style}>
                 {MainSection}
                 <Collapse timeout={200} in={open}>
-                    <div style={{ margin: 0, padding: 0 }}>
+                    <div style={{ margin: 0, padding: 0, width: '100%' }}>
                         {HiddenSection}
                     </div>
                 </Collapse>

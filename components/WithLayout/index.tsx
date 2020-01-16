@@ -9,7 +9,7 @@ import React, { } from 'react';
 import getUserInfo from 'functions/graphql/queries/getUserInfo';
 import { LoginWithModal, PremiumWithModal } from '@components/Modals';
 import PageLoader from '@components/PageLoader'
-import { setAuthToken } from 'functions/utils/authToken';
+import { setAuthToken } from 'functions/utils/authTokenCookie';
 import redirect from 'functions/utils/redirect';
 import User from 'types/IUser';
 import Head from 'next/head';

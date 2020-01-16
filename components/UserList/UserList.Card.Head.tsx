@@ -4,6 +4,7 @@ import { useState } from 'react';
 import TextDropDown from '../TextDropDown';
 import CheckBox from '../CheckBox';
 import CheckBoxGroup from '../CheckBoxGroup';
+import { colors } from 'styles';
 
 export interface FilterValue {
     tradeType: string[]
@@ -51,13 +52,14 @@ export default ({ onFilterChange, onSortChange, initialFilterValue, id, editable
                     }} />
                 </span>
             </div>
-           
+
         </div>
     )
 
 
     const HiddenSection = (
-        <div>
+
+        <div style={{ backgroundColor: colors.background, padding: 20, marginLeft: -20, paddingLeft: 20, marginRight: -20, paddingRight: 20 }}>
             <div style={{ marginBottom: 20 }}>
                 <h6>Trade Type</h6>
                 <div>
@@ -70,6 +72,7 @@ export default ({ onFilterChange, onSortChange, initialFilterValue, id, editable
                     <CheckBoxGroup id={'console-type' + id} initialValues={initialFilterValue.consoleType} onChange={(values) => setConsoleType(values)} />
                 </div>
             </div>
+
             <div style={{ marginBottom: 20, display: 'flex', justifyContent: 'flex-end' }}>
                 <Button variant='secondary' onClick={() => {
                     onFilterChange({
@@ -88,6 +91,7 @@ export default ({ onFilterChange, onSortChange, initialFilterValue, id, editable
             MainSection={MainSection}
             HiddenSection={HiddenSection}
             open={open}
+            style={{ width: '100%', marginBottom: 20, }}
         />
     )
 }

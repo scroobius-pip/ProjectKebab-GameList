@@ -1,4 +1,4 @@
-import { getAuthToken, isExpired } from 'functions/utils/authToken';
+import { getAuthToken, isExpired } from 'functions/utils/authTokenCookie';
 import redirect from 'functions/utils/redirect';
 import React from 'react';
 
@@ -61,9 +61,9 @@ const SignUpButton = ({ onClick }) => (
 const LandingSection = ({ title, children, description }: LandingSectionProps) => {
     return <div id={title} style={{ marginBottom: 40, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 'bolder', marginBottom: 20 }}>{title}</h1>
-        <h4 style={{ textAlign: 'center', marginBottom: 40, fontWeight: 'normal', }}>
+        <h5 style={{ textAlign: 'center', marginBottom: 40, fontWeight: 'normal', }}>
             {description}
-        </h4>
+        </h5>
         {children}
         <div>
             <div style={{
