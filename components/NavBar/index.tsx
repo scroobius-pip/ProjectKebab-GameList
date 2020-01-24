@@ -20,7 +20,7 @@ const StyledNavItem = ({ children, href }) => {
         fontWeight: font.weights.medium, padding: 7, ...(active ? ({
             backgroundColor: '#ffffff0d',
             borderRadius: 5,
-            color: colors.primary,
+            color: 'white',
             borderWidth: 0,
             fontWeight: 'bold',
             borderRightWidth: 10,

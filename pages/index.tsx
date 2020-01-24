@@ -9,6 +9,8 @@ import FeaturesSection from '@components/FeaturesSection';
 import LandingPageAnimation from '@components/LandingPageAnimation';
 import { ScreenClassRender } from 'react-grid-system';
 import FaqSection from '@components/FaqSection';
+import { withApollo } from 'functions/utils/apollo';
+import getUserCount from 'functions/graphql/queries/getUserCount';
 
 // export default class extends React.Component {
 // static async getInitialProps(ctx) {
@@ -76,9 +78,61 @@ const LandingSection = ({ title, children, description }: LandingSectionProps) =
     </div>
 }
 
+const RegisteredStat = ({ userCount }: { userCount: number }) => {
+    if (!userCount || userCount < 100) return null
+    return (
+        <div className='online_stat'>
+            <div className='online_stat_label'>Registered</div>
+            {userCount}
+            <style jsx>
+                {`
+        .online_stat{
+           font-size: 5vw;
+       
+        }
+        .online_stat_label {
+            font-weight: 600;
+            position:relative;
+            color:#AEAEAE;
+            text-transform: uppercase;
+            padding-left: 4vw;
+            font-size: 3vw;
+            letter-spacing:0.2vw;
+        }
+        .online_stat_label:before {
+            content:"";
+            width:2vw;
+            height:2vw;
+            border-radius: 50%;
+            position: absolute;
+            left:0;
+            top:1vw;
+            background-color:${colors.primary};
+        }
+        @media only screen and (min-width: 768px){
+            .online_stat{
+                font-size:20px;
+            }
+            .online_stat_label{
+                font-size:16px;
+                padding-left: 20px;
+                letter-spacing:initial;
+            }
+            .online_stat_label:before {
+                width:10px;
+                height:10px;
+                top:8px;
+            }
+
+        }
+        `}
+            </style>
+        </div>
+    )
+}
 
 
-const Page = ({ signIn }) => {
+const Page = ({ signIn, userCount = 100 }) => {
     return <>
         <div style={{ color: 'white', }}>
 
@@ -159,53 +213,7 @@ const Page = ({ signIn }) => {
                         <SignUpButton onClick={signIn} />
                     </div>
                     <div style={{ marginTop: 20 }}>
-                        <div className='online_stat'>
-                            <div className='online_stat_label'>Registered</div>
-                            1,289
-                        <style jsx>
-                                {`
-                            .online_stat{
-                               font-size: 5vw;
-                           
-                            }
-                            .online_stat_label {
-                                font-weight: 600;
-                                position:relative;
-                                color:#AEAEAE;
-                                text-transform: uppercase;
-                                padding-left: 4vw;
-                                font-size: 3vw;
-                                letter-spacing:0.2vw;
-                            }
-                            .online_stat_label:before {
-                                content:"";
-                                width:2vw;
-                                height:2vw;
-                                border-radius: 50%;
-                                position: absolute;
-                                left:0;
-                                top:1vw;
-                                background-color:${colors.primary};
-                            }
-                            @media only screen and (min-width: 768px){
-                                .online_stat{
-                                    font-size:20px;
-                                }
-                                .online_stat_label{
-                                    font-size:16px;
-                                    padding-left: 20px;
-                                    letter-spacing:initial;
-                                }
-                                .online_stat_label:before {
-                                    width:10px;
-                                    height:10px;
-                                    top:8px;
-                                }
-
-                            }
-                            `}
-                            </style>
-                        </div>
+                        <RegisteredStat userCount={userCount} />
                     </div>
                 </div>
                 <div className='section-link' style={{ textAlign: 'center', position: 'absolute', bottom: '5vh', left: 0, right: 0, fontSize: 18 }}>
@@ -284,16 +292,11 @@ const Page = ({ signIn }) => {
     </>
 }
 
-// Page.getInitialProps = async (ctx) => {
+Page.getInitialProps = async ({ apolloClient }) => {
 
-//     let authToken = getAuthToken(ctx)
-//     if (isExpired(authToken)) {
-//         redirect(ctx, '/login')
-//         return
-//     } else {
-//         redirect(ctx, '/profile/me')
-//     }
-// }
+    const userCount = await getUserCount(apolloClient)
+    return { userCount }
+}
 
 
-export default WithLayout(Page)
+export default withApollo(WithLayout(Page))

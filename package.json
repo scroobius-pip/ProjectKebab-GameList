@@ -11,6 +11,7 @@
     "build-storybook": "build-storybook",
     "graphql-codegen": "graphql-codegen init",
     "generate": "graphql-codegen --config codegen.yml",
+    "download-schema": "apollo schema:download --endpoint=http://localhost:3000/graphql",
     "deploy": "npm run build"
   },
   "repository": {

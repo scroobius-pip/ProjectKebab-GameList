@@ -229,6 +229,7 @@ export type IQuery = {
   offers: IOfferQueryResult,
   me?: Maybe<IUser>,
   user?: Maybe<IUser>,
+  count?: Maybe<Scalars['Int']>,
 };
 
 
@@ -476,6 +477,11 @@ export type IUserGameQueryVariables = {};
 
 
 export type IUserGameQuery = { __typename?: 'Query', me: Maybe<{ __typename?: 'User', id: string, hasGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>>, wantedGames: Maybe<Array<{ __typename?: 'UserGame', id: string, details: { __typename?: 'UserGameDetails', description: string, status: IUserGameDetailsStatus, tradeType: IUserGameDetailsTradeType }, game: { __typename?: 'Game', consoleType: Maybe<string>, id: string, imageUrl: Maybe<string>, name: string } }>> }> };
+
+export type IGetUserCountQueryVariables = {};
+
+
+export type IGetUserCountQuery = { __typename?: 'Query', count: Maybe<number> };
 
 export type IGetUserQueryVariables = {
   username: Scalars['String']
@@ -1038,6 +1044,53 @@ export function useUserGameLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHoo
 export type UserGameQueryHookResult = ReturnType<typeof useUserGameQuery>;
 export type UserGameLazyQueryHookResult = ReturnType<typeof useUserGameLazyQuery>;
 export type UserGameQueryResult = ApolloReactCommon.QueryResult<IUserGameQuery, IUserGameQueryVariables>;
+export const GetUserCountDocument = gql`
+    query getUserCount {
+  count
+}
+    `;
+export type GetUserCountComponentProps = Omit<ApolloReactComponents.QueryComponentOptions<IGetUserCountQuery, IGetUserCountQueryVariables>, 'query'>;
+
+    export const GetUserCountComponent = (props: GetUserCountComponentProps) => (
+      <ApolloReactComponents.Query<IGetUserCountQuery, IGetUserCountQueryVariables> query={GetUserCountDocument} {...props} />
+    );
+    
+export type IGetUserCountProps<TChildProps = {}> = ApolloReactHoc.DataProps<IGetUserCountQuery, IGetUserCountQueryVariables> & TChildProps;
+export function withGetUserCount<TProps, TChildProps = {}>(operationOptions?: ApolloReactHoc.OperationOption<
+  TProps,
+  IGetUserCountQuery,
+  IGetUserCountQueryVariables,
+  IGetUserCountProps<TChildProps>>) {
+    return ApolloReactHoc.withQuery<TProps, IGetUserCountQuery, IGetUserCountQueryVariables, IGetUserCountProps<TChildProps>>(GetUserCountDocument, {
+      alias: 'getUserCount',
+      ...operationOptions
+    });
+};
+
+/**
+ * __useGetUserCountQuery__
+ *
+ * To run a query within a React component, call `useGetUserCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserCountQuery` returns an object from Apollo Client that contains loading, error, and data properties 
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserCountQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetUserCountQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<IGetUserCountQuery, IGetUserCountQueryVariables>) {
+        return ApolloReactHooks.useQuery<IGetUserCountQuery, IGetUserCountQueryVariables>(GetUserCountDocument, baseOptions);
+      }
+export function useGetUserCountLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<IGetUserCountQuery, IGetUserCountQueryVariables>) {
+          return ApolloReactHooks.useLazyQuery<IGetUserCountQuery, IGetUserCountQueryVariables>(GetUserCountDocument, baseOptions);
+        }
+export type GetUserCountQueryHookResult = ReturnType<typeof useGetUserCountQuery>;
+export type GetUserCountLazyQueryHookResult = ReturnType<typeof useGetUserCountLazyQuery>;
+export type GetUserCountQueryResult = ApolloReactCommon.QueryResult<IGetUserCountQuery, IGetUserCountQueryVariables>;
 export const GetUserDocument = gql`
     query getUser($username: String!) {
   user(input: {by: username, value: $username}) {

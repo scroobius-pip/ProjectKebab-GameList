@@ -21,6 +21,7 @@ import LoadingButton from '@components/LoadingButton';
 import { useRouter, Router } from 'next/router';
 import WithLayout from '@components/WithLayout';
 import updateDescription from 'functions/graphql/mutations/updateDescription';
+import useWarnIfUnsavedChanges from 'functions/utils/useWarnIfUnsavedChanges';
 
 
 
@@ -36,8 +37,13 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
     const [hasGameOperations, setHasGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
     const [wantGameOperations, setWantGameOperations] = useState<{ [id: string]: Operation<OnChangeDataUserList> }>({})
     const [changedDescription, setDescription] = useState('')
-
+    const [isSaved, setIsSaved] = useState(true)
     const [saving, setSaving] = useState(false)
+    useWarnIfUnsavedChanges("You've got unsaved changes, you sure ?")(saving ? false : !isSaved)
+
+    useEffect(() => {
+        setIsSaved(isEmpty(hasGameOperations) && isEmpty(wantGameOperations) && !changedDescription.length)
+    }, [hasGameOperations, wantGameOperations, changedDescription])
 
     const sendOperations = (status: IUserGameDetailsStatus, client: ApolloClient<any>) => async (operations: { [id: string]: Operation<OnChangeDataUserList> }, ) => {
         const addOperations: UserGame[] = []
@@ -81,7 +87,7 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
     const wantSendOperations = sendOperations(IUserGameDetailsStatus.Want, apolloClient)
 
 
-    const isSaved = isEmpty(hasGameOperations) && isEmpty(wantGameOperations) && !changedDescription.length;
+
 
     const handleRouteChange = async () => {
         console.log('started routing')
@@ -161,6 +167,7 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
                         <Button onClick={() => Router.push('/profile/me')} variant='outline-primary'>View List</Button>
                         : <LoadingButton
                             onClick={async () => {
+
                                 await saveOperations()
                                 document.location.reload()
 
