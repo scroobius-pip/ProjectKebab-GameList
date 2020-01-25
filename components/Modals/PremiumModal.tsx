@@ -6,6 +6,19 @@ interface Props {
 }
 
 export default ({ close }: Props) => {
+    const openCart = () => {
+        const Paddle = (window as any).Paddle
+        if (Paddle) {
+            Paddle.Checkout.open({
+                product: '575517',
+                passthrough: JSON.stringify({
+                    userId: ''
+                })
+            })
+        }
+    }
+
+
     return <div style={{ backgroundColor: colors.primary, color: 'white', padding: 25, }}>
         <h2><strong>Get Premium</strong></h2>
         <div style={{ marginTop: 10, }}>

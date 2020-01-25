@@ -12,20 +12,6 @@ import FaqSection from '@components/FaqSection';
 import { withApollo } from 'functions/utils/apollo';
 import getUserCount from 'functions/graphql/queries/getUserCount';
 
-// export default class extends React.Component {
-// static async getInitialProps(ctx) {
-//     let authToken = getAuthToken(ctx)
-//     if (isExpired(authToken)) {
-//         redirect(ctx, '/login')
-//         return
-//     } else {
-//         redirect(ctx, '/profile/me')
-//     }
-// }
-// }
-
-
-
 
 interface LandingSectionProps {
     title: string
@@ -291,6 +277,7 @@ const Page = ({ signIn, userCount = 100 }) => {
 
     </>
 }
+
 
 Page.getInitialProps = async ({ apolloClient }) => {
 

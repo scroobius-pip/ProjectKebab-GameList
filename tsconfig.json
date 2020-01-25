@@ -31,6 +31,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/SocialLoginButton"
+    "components/SocialLoginButton", "styles.ts"
   ]
 }

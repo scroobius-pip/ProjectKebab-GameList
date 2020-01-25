@@ -80,6 +80,8 @@ class MyApp extends App<Props, {}, State> {
 
                 <Head>
                     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152414840-1"></script>
+                    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+                    <script />
                     <script dangerouslySetInnerHTML={googleAnalyticsCode} />
                     <script dangerouslySetInnerHTML={hotJarTrackingCode} />
                     <script dangerouslySetInnerHTML={webPushrCode} />
@@ -93,6 +95,13 @@ class MyApp extends App<Props, {}, State> {
 
 
 export default MyApp
+
+const paddleCode = {
+    __html: `
+    Paddle.Setup({vendor:101968,debug:true})
+    `
+}
+
 const webPushrCode = {
     __html: `
     (function(w,d, s, id) {w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.src = "https://cdn.webpushr.com/app.min.js";
