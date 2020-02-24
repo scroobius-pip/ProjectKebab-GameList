@@ -23,6 +23,7 @@ export default ({ close }: Props) => {
         <h2><strong>Get Premium</strong></h2>
         <div style={{ marginTop: 10, }}>
             <ul style={{ lineHeight: 2, fontWeight: 600 }}>
+                <li>Find matches based on your list or location</li>
                 <li>Add 100+ games to your list.</li>
                 <li>Synchronize your steam wishlist. (Coming Soon)</li>
                 <li>Get notifications when someone has what you want. (Coming Soon)</li>
@@ -39,9 +40,9 @@ export default ({ close }: Props) => {
                 </Button>
             </span>
             <span>
-                <Button variant='light'>
+                <Button onClick={openCart} variant='light'>
                     <span style={{ color: colors.primary }}>
-                        <strong> $2.99 / MONTH</strong>
+                        <strong> $4.99 / MONTH</strong>
                     </span>
                 </Button>
             </span>

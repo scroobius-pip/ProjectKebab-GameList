@@ -1,7 +1,7 @@
 import { Collapse, Button, Badge } from 'react-bootstrap'
 import { useState } from 'react'
 import { Props } from './UserList.Table.Row'
-
+import { colors } from '../../styles'
 const RevealButton = ({ active, onClick }: { active: boolean, onClick: () => any }) => {
 
     return (
@@ -17,7 +17,7 @@ export default ({ imageUrl, consoleType, description, name, tradeType, onDelete,
 
     return (
         <>
-            <div onClick={() => setOpen(!open)} style={{ backgroundColor: '#3D3F42', padding: '10px 20px 10px 20px', marginLeft: -20, marginRight: -20, marginBottom: 10 }}>
+            <div onClick={() => setOpen(!open)} style={{ backgroundColor: colors.overlay, padding: '10px 20px 10px 20px', marginLeft: -20, marginRight: -20, marginBottom: 10 }}>
                 <div style={{ display: 'flex', alignItems: 'flex-end' }}>
                     <div style={{ flexGrow: 1 }}>
                         <div>

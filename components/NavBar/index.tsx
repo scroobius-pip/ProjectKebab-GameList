@@ -19,11 +19,11 @@ const StyledNavItem = ({ children, href }) => {
     return <Nav.Link onClick={() => Router.push(href)} style={{
         fontWeight: font.weights.medium, padding: 7, ...(active ? ({
             backgroundColor: '#ffffff0d',
-            borderRadius: 5,
-            color: 'white',
+            borderRadius: 2,
+            color: colors.primary,
             borderWidth: 0,
             fontWeight: 'bold',
-            borderRightWidth: 10,
+            borderRightWidth: 8,
             borderColor: colors.primary,
             borderStyle: 'solid'
         }) : ({}))
@@ -88,7 +88,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
         <div style={{ marginBottom: 20 }}>
             <Navbar collapseOnSelect expand='lg' variant="dark">
                 <Navbar.Brand href="/profile/me" style={{}}>
-                    <img style={{ height: '1.5em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
+                    <img style={{ height: '1.2em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
                 <UserConsumer>
                     {(user) => {

@@ -81,10 +81,10 @@ class MyApp extends App<Props, {}, State> {
                 <Head>
                     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152414840-1"></script>
                     <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
-                    <script />
+                    <script dangerouslySetInnerHTML={paddleCode} />
                     <script dangerouslySetInnerHTML={googleAnalyticsCode} />
                     <script dangerouslySetInnerHTML={hotJarTrackingCode} />
-                    <script dangerouslySetInnerHTML={webPushrCode} />
+                    {/* <script dangerouslySetInnerHTML={webPushrCode} /> */}
                 </Head>
                 <Component {...pageProps} />
 

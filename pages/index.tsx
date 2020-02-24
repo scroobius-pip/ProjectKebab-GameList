@@ -49,9 +49,9 @@ const SignUpButton = ({ onClick }) => (
 const LandingSection = ({ title, children, description }: LandingSectionProps) => {
     return <div id={title} style={{ marginBottom: 40, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 'bolder', marginBottom: 20 }}>{title}</h1>
-        <h5 style={{ textAlign: 'center', marginBottom: 40, fontWeight: 'normal', }}>
+        {description && <h5 style={{ textAlign: 'center', marginBottom: 100, fontWeight: 'normal', }}>
             {description}
-        </h5>
+        </h5>}
         {children}
         <div>
             <div style={{
@@ -148,7 +148,9 @@ const Page = ({ signIn, userCount = 100 }) => {
                             </div>
                             <div style={{ marginTop: 20 }}>
                                 <p >
-                                    Create your game list. Get matched with trade partners to sell or swap physical or digital games.
+                                    Create your game list. <br />
+                                    And get matched with other gamers.<br />
+                                    To sell or swap your physical or digital games.
                             </p>
 
                                 <style jsx>
@@ -224,7 +226,7 @@ const Page = ({ signIn, userCount = 100 }) => {
                 </div>
 
             </div>
-            <LandingSection description='Current and Coming Soon Features' title='Features'>
+            <LandingSection description='Current and coming soon features' title='Features'>
 
                 <div style={{ position: 'relative', height: '90%', }}>
                     <FeaturesSection />

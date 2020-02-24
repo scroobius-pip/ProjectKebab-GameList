@@ -21,7 +21,9 @@ export default (text: string) => {
   const colorMap = {
     'Custom Item': '#EAEBEB',
     'Playstation 4': '#FF7600',
-    'Xone': '#21FAB2'
+    'Xone': '#21FAB2',
+    'Swap': '#EAEBEB',
+    'Sale': '#FFF'
   }
 
 

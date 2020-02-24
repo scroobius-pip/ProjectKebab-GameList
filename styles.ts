@@ -4,8 +4,8 @@ const colors = {
     // primary: 'rgb(0, 200, 152)',
     secondary: '#3D3F42',
     danger: '#FF0055',
-    overlay: 'rgba(255,255,255,0.1)',
-    section: '#292B2F',
+    overlay: 'rgba(234,235,235,.05)',
+    section: 'rgba(234,235,235,.03)',
     text: '#EAEBEB'
 
 }

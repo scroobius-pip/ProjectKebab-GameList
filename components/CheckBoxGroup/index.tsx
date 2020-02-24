@@ -16,14 +16,9 @@ export default ({ initialValues, inline = true, onChange, id }: Props) => {
     function toggleValue(value: string) {
         const newSet = new Set(values)
 
-        if (!values.has(value)) {
-            newSet.add(value)
-            setValues(newSet)
-        } else {
+        values.has(value) ? newSet.delete(value) : newSet.add(value)
 
-            newSet.delete(value)
-            setValues(newSet)
-        }
+        setValues(newSet)
         onChange(Array.from(newSet))
     }
 
@@ -31,7 +26,17 @@ export default ({ initialValues, inline = true, onChange, id }: Props) => {
         <>
             {
                 initialValues.map(value => {
-                    return <CheckBox key={value} id={id + value} inline={inline} value={value} onChange={() => toggleValue(value)} />
+                    return <>
+                        <CheckBox
+                            key={value}
+                            id={id + value}
+                            inline={inline}
+                            value={value}
+                            onChange={() => toggleValue(value)} />
+                        <style jsx>
+                            {``}
+                        </style>
+                    </>
                 }
                 )
             }
