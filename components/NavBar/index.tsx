@@ -86,8 +86,8 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
 
     return (
         <div style={{ marginBottom: 20 }}>
-            <Navbar collapseOnSelect expand='lg' variant="dark">
-                <Navbar.Brand href="/profile/me" style={{}}>
+            <Navbar collapseOnSelect expand='lg' variant="dark" style={{ paddingLeft: 0 }}>
+                <Navbar.Brand href="/profile/me" >
                     <img style={{ height: '1.2em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                 </Navbar.Brand>
                 <UserConsumer>

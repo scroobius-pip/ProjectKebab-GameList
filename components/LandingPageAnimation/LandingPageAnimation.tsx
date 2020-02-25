@@ -60,7 +60,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
                 <img style={{ height: `${itemSize - 1}vw` }} src={require('./icons/reddit-user.svg')} />
             </div>
             <div style={{
-                backgroundColor: colors.section,
+                backgroundColor: colors.overlay,
                 height: '100%',
                 borderRadius: '1vw',
                 flex: 1,
