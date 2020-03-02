@@ -98,11 +98,13 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
                             textAlign: 'center'
                         }}
                     >
-                        {rSprings.map((props, index) => (
-                            <animated.div key={index} style={{ padding: `${itemPadding}vmin`, ...props }}>
-                                <img style={{ height: `${itemSize}vw` }} src={platforms[index]} />
-                            </animated.div>
-                        ))}
+                        {
+                            rSprings.map((props, index) => (
+                                <animated.div key={index} style={{ padding: `${itemPadding}vmin`, ...props }}>
+                                    <img style={{ height: `${itemSize}vw` }} src={platforms[index]} />
+                                </animated.div>
+                            ))
+                        }
 
 
                     </div>
