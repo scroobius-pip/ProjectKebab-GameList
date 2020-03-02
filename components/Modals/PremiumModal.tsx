@@ -1,18 +1,22 @@
 import { Button } from 'react-bootstrap';
 import { colors } from '../../styles'
+import { useContext } from 'react';
+import UserContext from 'context/UserContext';
 
 interface Props {
     close: () => any
 }
 
 export default ({ close }: Props) => {
+    const { id } = useContext(UserContext)
+
     const openCart = () => {
         const Paddle = (window as any).Paddle
         if (Paddle) {
             Paddle.Checkout.open({
                 product: '575517',
                 passthrough: JSON.stringify({
-                    userId: ''
+                    userId: id
                 })
             })
         }
