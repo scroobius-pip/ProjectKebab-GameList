@@ -13,7 +13,15 @@ interface Props {
     onSignOutClicked: () => any
 }
 
-export const StyledNavItem = ({ children, href }) => {
+interface StyledNavItemProps {
+    children: any
+    href: string
+    activeStyle?: React.CSSProperties
+    inactiveStyle?: React.CSSProperties
+}
+
+export const StyledNavItem = ({ children, href, activeStyle, inactiveStyle }: StyledNavItemProps) => {
+
     const router = useRouter()
     const active = router.pathname === href
     return <Nav.Link onClick={() => Router.push(href)} style={{
@@ -26,8 +34,10 @@ export const StyledNavItem = ({ children, href }) => {
             borderRightWidth: 8,
             borderColor: colors.primary,
             borderStyle: 'solid',
-            transition: 'all 0.5s cubic- bezier(0.42, 0, 0.71, 1.1)'
-        }) : ({ color: colors.text }))
+            transition: 'all 0.5s cubic- bezier(0.42, 0, 0.71, 1.1)',
+            ...activeStyle
+        }) : ({ ...inactiveStyle })),
+
     }}>
         {children}
     </Nav.Link >

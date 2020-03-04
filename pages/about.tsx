@@ -10,9 +10,9 @@ const Page = () => {
     return <>
         <Row>
             <Col lg={12}>
-                <Section heading='Privacy Policy'>
+                <Section heading='About'>
                     <p>
-                        Work in progress, rest assured the only data collected is used for tracking website traffic stats. We don't give data to any 3rd parties
+                        I built this platform to build a community of gamers that trust each other to trade video games. "Nakama" means "Comrade" in japanese
                     </p>
                 </Section>
 

@@ -105,9 +105,9 @@ const Layout = (Component: any) => {
                             <PageLoader color='rgb(109, 123, 212)' height={5} options={{ showSpinner: false }} />
                             <ScreenClassProvider>
 
-                                <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
-                                <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
                                 <UserProvider value={user}>
+                                    <LoginWithModal visible={this.state.signInVisible} close={() => this.toggleSignInModal(false)} />
+                                    <PremiumWithModal close={() => this.togglePremiumModal(false)} visible={this.state.premiumVisible} />
                                     <NavBar onSignInClicked={() => this.toggleSignInModal(true)} onSignOutClicked={this.signOut} />
                                     <Component  {...props} signOut={this.signOut} signIn={this.signIn} premiumClicked={() => this.togglePremiumModal(true)} />
                                 </UserProvider>

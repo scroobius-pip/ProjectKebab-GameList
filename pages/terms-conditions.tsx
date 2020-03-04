@@ -2,6 +2,7 @@
 import WithLayout from '@components/WithLayout';
 import { Row, Col } from 'react-bootstrap';
 import Section from '@components/Section';
+import { withApollo } from 'functions/utils/apollo';
 
 const Page = () => {
 
@@ -26,4 +27,4 @@ const Page = () => {
 }
 
 
-export default WithLayout(Page)
+export default withApollo(WithLayout(Page))
