@@ -13,7 +13,7 @@ interface Props {
     onSignOutClicked: () => any
 }
 
-const StyledNavItem = ({ children, href }) => {
+export const StyledNavItem = ({ children, href }) => {
     const router = useRouter()
     const active = router.pathname === href
     return <Nav.Link onClick={() => Router.push(href)} style={{
@@ -25,11 +25,12 @@ const StyledNavItem = ({ children, href }) => {
             fontWeight: 'bold',
             borderRightWidth: 8,
             borderColor: colors.primary,
-            borderStyle: 'solid'
-        }) : ({}))
+            borderStyle: 'solid',
+            transition: 'all 0.5s cubic- bezier(0.42, 0, 0.71, 1.1)'
+        }) : ({ color: colors.text }))
     }}>
         {children}
-    </Nav.Link>
+    </Nav.Link >
 
 }
 

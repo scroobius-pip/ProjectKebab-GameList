@@ -22,10 +22,10 @@ export default ({ editable = false, data, onHasChange, onWantChange }: Props) =>
         <div>
             <Nav variant='pills'>
                 <Nav.Item>
-                    <Nav.Link eventKey='has' style={{ fontWeight: 600 }}>Has</Nav.Link>
+                    <Nav.Link eventKey='has' style={{ fontWeight: 600 }}>Owns</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey='want' style={{ fontWeight: 600 }}>Want</Nav.Link>
+                    <Nav.Link eventKey='want' style={{ fontWeight: 600 }}>Wants</Nav.Link>
                 </Nav.Item>
             </Nav>
         </div>
