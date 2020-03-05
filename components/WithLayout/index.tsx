@@ -114,9 +114,20 @@ const Layout = (Component: any) => {
 
                             </ScreenClassProvider>
                         </div>
-                        <div style={{ position: 'absolute', bottom: 0, height: '2.5rem', width: '100%', }}>
+                        <div className='footer-container' style={{ position: 'absolute', bottom: 0, height: '2.5rem', width: '100%', }}>
                             <Footer />
                         </div>
+                        <style jsx>
+                            {`
+                            .footer-container {
+                                opacity:.3;
+                                transition: all 0.3s cubic-bezier(0.42, 0, 0.71, 1.1);
+                            }
+                            .footer-container:hover {
+                                opacity:1
+                            }
+                            `}
+                        </style>
                     </div>
                 </Container >
             </>
