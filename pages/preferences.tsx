@@ -105,12 +105,12 @@ const Page = (props: Props) => {
 Page.getInitialProps = async ({ apolloClient }): Promise<Props> => {
 
 
-    const { info: { setting_matchNotifications, location: { country } } } = await getUserInfo(apolloClient)
+    const { info: { setting_matchNotifications, isPro, location: { country } } } = await getUserInfo(apolloClient)
     return {
         userSettings: {
             notifications_enabled: setting_matchNotifications,
             location_enabled: !!country.length,
-            premium_enabled: false,
+            premium_enabled: isPro,
         },
 
     }
