@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default ({ close }: Props) => {
-    const { id } = useContext(UserContext)
+    const { id, info: { email, userName } } = useContext(UserContext)
 
     const openCart = () => {
         const Paddle = (window as any).Paddle
@@ -16,7 +16,8 @@ export default ({ close }: Props) => {
             Paddle.Checkout.open({
                 product: '575517',
                 passthrough: JSON.stringify({
-                    userId: id
+                    userName,
+                    userEmail: email
                 })
             })
         }
