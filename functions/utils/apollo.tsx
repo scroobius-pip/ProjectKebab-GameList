@@ -5,9 +5,11 @@ import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
 import { setContext } from 'apollo-link-context'
+import { onError } from 'apollo-link-error'
 import { ApolloProvider } from '@apollo/react-hooks'
 import fetch from 'isomorphic-unfetch'
-import { getAuthToken } from './authTokenCookie'
+import { getAuthToken, setAuthToken } from './authTokenCookie'
+import { Observable } from 'apollo-boost'
 
 /**
  * Creates and provides the apolloContext
@@ -175,10 +177,44 @@ function createApolloClient(initialState = {}, { getToken }) {
         }
     })
 
+    const errorLink = onError(({ operation, forward, graphQLErrors, networkError }) => {
+
+        if (graphQLErrors) {
+            console.log(`[graphql-error-simdi]: ${JSON.stringify(graphQLErrors)}`)
+
+            for (const error of graphQLErrors) {
+
+                switch (error.extensions.code) {
+                    case 'UNAUTHENTICATED':
+                        const oldHeaders = operation.getContext().headers
+                        operation.setContext({
+                            headers: {
+                                ...oldHeaders,
+                                token: ''
+                            }
+                        })
+                        return forward(operation)
+
+
+                    default:
+                        break;
+                }
+
+
+            }
+
+
+        }
+        if (networkError) {
+            // if(networkError.)
+            console.log(`[network-error-simdi]: ${networkError}`)
+        }
+    })
+
     // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
     return new ApolloClient({
         ssrMode: typeof window === 'undefined', // Disables forceFetch on the server (so queries are only run once)
-        link: authLink.concat(httpLink),
+        link: authLink.concat(errorLink).concat(httpLink),
         cache: new InMemoryCache().restore(initialState)
     })
 }

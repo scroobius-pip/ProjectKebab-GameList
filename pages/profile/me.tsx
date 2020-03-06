@@ -13,6 +13,7 @@ import getMyGamesAndDescription from 'functions/graphql/queries/getMyGamesAndDes
 import mapToUserGame from 'graphql/utils/mapToUserGame';
 import { UserInfo as IUserInfo } from 'types/IUser';
 import Head from 'next/head';
+import redirect from 'functions/utils/redirect';
 
 
 
@@ -66,12 +67,12 @@ const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGam
     )
 }
 
-Page.getInitialProps = async ({ apolloClient }) => {
+Page.getInitialProps = async ({ apolloClient, ...ctx }) => {
 
     const user = await getUserInfo(apolloClient)
-
+    // if (!user) redirect(ctx, '/login')
     const gamesAndDescription = await getMyGamesAndDescription(apolloClient)
-
+    // if()
     const {
         description = '',
         userName,

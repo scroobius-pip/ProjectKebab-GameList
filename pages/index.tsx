@@ -1,14 +1,11 @@
-import { getAuthToken, isExpired } from 'functions/utils/authTokenCookie';
-import redirect from 'functions/utils/redirect';
 import React from 'react';
 
 import WithLayout from '@components/WithLayout';
-import { Row, Col, Button, Accordion, Card } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import { colors } from '../styles'
 import FeaturesSection from '@components/FeaturesSection';
 import LandingPageAnimation from '@components/LandingPageAnimation';
 import { ScreenClassRender } from 'react-grid-system';
-import FaqSection from '@components/FaqSection';
 import { withApollo } from 'functions/utils/apollo';
 import getUserCount from 'functions/graphql/queries/getUserCount';
 

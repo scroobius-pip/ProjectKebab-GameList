@@ -4,9 +4,11 @@ import decode from 'jwt-decode'
 
 
 const isExpired = (authToken: string): boolean => {
+
     try {
         const { exp } = decode(authToken)
-        return (Date.now() >= exp * 1000)
+        const oneDay = 86400000
+        return (Date.now() - oneDay >= exp * 1000)
 
     } catch (error) {
         return true
