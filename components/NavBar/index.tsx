@@ -98,22 +98,28 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
     return (
         <div style={{ marginBottom: 20 }}>
             <Navbar collapseOnSelect expand='lg' variant="dark" style={{ paddingLeft: 0 }}>
-                <Navbar.Brand href="/profile/me" >
-                    <img style={{ height: '1.2em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
-                </Navbar.Brand>
+
                 <UserConsumer>
                     {(user) => {
-                        return user ?
-                            <LoggedInComponent user={user} /> :
-                            <Nav style={{ justifyContent: 'flex-end' }}>
+                        return <>
+                            <Navbar.Brand href={user ? "/profile/me" : '/'} >
+                                <img style={{ height: '1.2em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
+                            </Navbar.Brand>
+                            {
+                                user ?
+                                    <LoggedInComponent user={user} /> :
+                                    <Nav style={{ justifyContent: 'flex-end' }}>
 
-                                {router.pathname === '/' ? null : <span>
-                                    <Button style={{ backgroundColor: colors.primary, borderColor: colors.primary }} onClick={onSignInClicked}>
-                                        <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Create your game list</span>
-                                        <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/pencil.svg')} />
-                                    </Button>
-                                </span>}
-                            </Nav>
+                                        {router.pathname === '/' ? null : <span>
+                                            <Button style={{ backgroundColor: colors.primary, borderColor: colors.primary }} onClick={onSignInClicked}>
+                                                <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Create your game list</span>
+                                                <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/pencil.svg')} />
+                                            </Button>
+                                        </span>}
+                                    </Nav>
+                            }
+                        </>
+
 
                     }}
                 </UserConsumer>
