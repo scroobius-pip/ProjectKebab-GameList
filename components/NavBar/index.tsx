@@ -103,7 +103,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                     {(user) => {
                         return <>
                             <Navbar.Brand href={user ? "/profile/me" : '/'} >
-                                <img style={{ height: '1.2em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
+                                <img style={{ height: '1.5em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
                             </Navbar.Brand>
                             {
                                 user ?

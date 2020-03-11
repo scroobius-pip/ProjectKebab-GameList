@@ -89,7 +89,8 @@ const Page = (props: Props) => {
             await (value ? unsetLocation : setLocation)()
         },
         handleNotificationToggle: toggleNotifications,
-        handlePremiumToggle: () => {
+        handlePremiumToggle: (value) => {
+            if (props.userSettings.premium_enabled) throw ''
             props.premiumClicked()
         }
     }

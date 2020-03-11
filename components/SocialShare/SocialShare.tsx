@@ -9,7 +9,7 @@ const IconProps = {
 }
 
 const ButtonProps = {
-    url: 'https://nakamalist.now.sh',
+    url: 'https://rade.trade',
     style: {
         marginLeft: 10
     }
@@ -17,7 +17,7 @@ const ButtonProps = {
 
 export default () => {
     return <div style={{ display: 'flex', justifyContent: 'flex-start', marginTop: 10 }}>
-        <FacebookShareButton quote='' hashtag='#nakama' {...ButtonProps} >
+        <FacebookShareButton quote='' hashtag='#radetrade' {...ButtonProps} >
             <FacebookIcon {...IconProps} />
         </FacebookShareButton>
         <TwitterShareButton {...ButtonProps} >

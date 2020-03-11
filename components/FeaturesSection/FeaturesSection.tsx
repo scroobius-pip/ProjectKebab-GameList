@@ -31,7 +31,7 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
     {
         title: 'No Scammers',
         body: `
-        Nakama uses the SteamRep and USL databases to prevent known scammers from ever registering on the platform.
+        Rade uses the SteamRep and USL databases to prevent known scammers from ever registering on the platform.
         `,
         icon: require('./scamming.svg')
 
