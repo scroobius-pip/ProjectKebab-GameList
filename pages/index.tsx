@@ -8,6 +8,8 @@ import LandingPageAnimation from '@components/LandingPageAnimation';
 import { ScreenClassRender } from 'react-grid-system';
 import { withApollo } from 'functions/utils/apollo';
 import getUserCount from 'functions/graphql/queries/getUserCount';
+import { UserConsumer } from 'context/UserContext';
+import { useRouter } from 'next/router';
 
 
 interface LandingSectionProps {
@@ -39,12 +41,17 @@ opacity:1;
     </div>
 }
 
-const SignUpButton = ({ onClick }) => (
+const PrimaryButton = ({ onClick, text = '' }) => (
     <>
         <div className='button-container'>
 
-            <Button onClick={onClick} className='custom-button' style={{ padding: 10, backgroundColor: colors.primary, borderRadius: 2, borderColor: colors.primary }} block  >
-                <span style={{ fontWeight: 600 }}> SIGN UP</span>
+            <Button onClick={onClick} className='custom-button' style={{
+                padding: 10,
+                backgroundColor: colors.primary,
+                borderRadius: 2,
+                borderColor: colors.primary
+            }} block  >
+                <span style={{ fontWeight: 600 }}> {text}</span>
             </Button>
         </div>
         <style jsx>
@@ -66,6 +73,8 @@ const SignUpButton = ({ onClick }) => (
     </>
 )
 
+
+
 const LandingSection = ({ title, children, description }: LandingSectionProps) => {
     return <div id={title} style={{ marginBottom: 40, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 'bolder', }}>{title}</h1>
@@ -75,7 +84,8 @@ const LandingSection = ({ title, children, description }: LandingSectionProps) =
         {children}
         <div>
             <div style={{
-                display: 'flex', justifyContent: 'center'
+                display: 'flex', 
+                justifyContent: 'center'
             }}>
                 {/* <SignUpButton /> */}
             </div>
@@ -139,6 +149,9 @@ const RegisteredStat = ({ userCount }: { userCount: number }) => {
 
 
 const Page = ({ signIn, userCount = 100 }) => {
+
+    const router = useRouter()
+
     return <>
         <div style={{ color: 'white', }}>
 
@@ -219,7 +232,11 @@ const Page = ({ signIn, userCount = 100 }) => {
                 </Row>
                 <div>
                     <div>
-                        <SignUpButton onClick={signIn} />
+                        <UserConsumer>
+                            {
+                                (user) => <PrimaryButton text={user ? 'PROFILE' : 'SIGN UP'} onClick={user ? () => router.push('/profile/me') : signIn} />
+                            }
+                        </UserConsumer>
                     </div>
                     <div style={{ marginTop: 20 }}>
                         <RegisteredStat userCount={userCount} />

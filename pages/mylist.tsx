@@ -80,9 +80,9 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
         return resultAdd.success && resultDelete.success && resultUpdate.success
     }
 
-    const router = useRouter()
+    // const router = useRouter()
     const apolloClient = useContext(getApolloContext()).client
-    const Router = useRouter()
+    const router = useRouter()
     const hasSendOperations = sendOperations(IUserGameDetailsStatus.Has, apolloClient)
     const wantSendOperations = sendOperations(IUserGameDetailsStatus.Want, apolloClient)
 
@@ -164,7 +164,7 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
             <div>
                 <span>
                     {isSaved ?
-                        <Button onClick={() => Router.push('/profile/me')} variant='outline-primary'>View List</Button>
+                        <Button onClick={() => router.push('/profile/me')} variant='outline-primary'>View List</Button>
                         : <LoadingButton
                             onClick={async () => {
 

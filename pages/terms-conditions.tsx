@@ -96,10 +96,6 @@ const Page = () => {
 
                     <p>No use of rade's logo or other artwork will be allowed for linking absent a trademark license agreement.</p>
 
-                    <h3><strong>iFrames</strong></h3>
-
-                    <p>Without prior approval and written permission, you may not create frames around our Webpages that alter in any way the visual presentation or appearance of our Website.</p>
-
                     <h3><strong>Content Liability</strong></h3>
 
                     <p>We shall not be hold responsible for any content that appears on your Website. You agree to protect and defend us against all claims that is rising on your Website. No link(s) should appear on any Website that may be interpreted as libelous, obscene or criminal, or which infringes, otherwise violates, or advocates the infringement or other violation of, any third party rights.</p>
