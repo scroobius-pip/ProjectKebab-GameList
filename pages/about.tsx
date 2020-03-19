@@ -31,7 +31,7 @@ const Page = () => {
 
                         Actual trades would be done in future iterations of the platform, but i feel it should be done without having to collect private info.
 </p>
-                    <p style={{ float: 'right' }}>I hope you find what i've created useful, cheers!<br />
+                    <p style={{ textAlign: 'right' }}>I hope you find what i've created useful, cheers!<br />
                     - <b>Simdi Jinkins</b>.
                     </p>
                 </Section>
