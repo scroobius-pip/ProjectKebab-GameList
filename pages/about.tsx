@@ -15,7 +15,7 @@ const Page = () => {
                         Hi i'm simdi, i built this platform because there weren't ways of finding trading partners where i live. What i want is a global trading community of gamers, everyone on it could be trusted as one would a friend (this might seem rather idealistic, but it's worth giving a shot).
                     </p>
                     <p>
-                        It's decentralized because i believe your games/items value should depend on you and not by resellers that might devalue excessively to maximize profit (i'm looking at you gamestop).
+                        It's decentralized because i believe your games/items value should depend on you and not by resellers that might devalue excessively to maximize profit.
                     </p>
                     <p>
 
@@ -25,7 +25,7 @@ const Page = () => {
                                 To list your games for other gamers to find. Your rade profile should be linked in reddit posts, steam groups and other online communities.
                             </li>
                             <li>
-                               To get matched with gamers interested in what you want and have.
+                                To get matched with gamers interested in what you want and have.
                             </li>
                         </ol>
 
