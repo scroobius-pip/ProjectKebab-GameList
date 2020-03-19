@@ -19,7 +19,7 @@ const Page = () => {
                     </p>
                     <p>
 
-                        The current version of rade is meant to be used in two ways: <br />
+                        This first version of rade is meant to be used in two ways: <br />
                         <ol>
                             <li>
                                 To list your games for other gamers to find. Your rade profile should be linked in reddit posts, steam groups and other online communities.
