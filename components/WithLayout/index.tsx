@@ -16,6 +16,7 @@ import User from 'types/IUser';
 import Head from 'next/head';
 import { colors } from 'styles';
 import Footer from '@components/Footer/Footer';
+import MetaTags from '@components/MetaTags';
 
 
 interface Props {
@@ -98,6 +99,7 @@ const Layout = (Component: any) => {
             const { user, ...props } = this.props;
 
             return <>
+            <MetaTags/>
                 <Container>
                     <div style={{ minHeight: '100vh', position: 'relative' }}>
                         <div style={{ paddingBottom: '2.6rem' }}>

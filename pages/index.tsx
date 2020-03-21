@@ -10,7 +10,7 @@ import { withApollo } from 'functions/utils/apollo';
 import getUserCount from 'functions/graphql/queries/getUserCount';
 import { UserConsumer } from 'context/UserContext';
 import { useRouter } from 'next/router';
-
+import Head from 'next/head'
 
 interface LandingSectionProps {
     title: string
@@ -84,7 +84,7 @@ const LandingSection = ({ title, children, description }: LandingSectionProps) =
         {children}
         <div>
             <div style={{
-                display: 'flex', 
+                display: 'flex',
                 justifyContent: 'center'
             }}>
                 {/* <SignUpButton /> */}
@@ -153,6 +153,7 @@ const Page = ({ signIn, userCount = 100 }) => {
     const router = useRouter()
 
     return <>
+
         <div style={{ color: 'white', }}>
 
             <div style={{ height: '90vh', display: 'flex', flexDirection: 'column', position: 'relative' }}>
