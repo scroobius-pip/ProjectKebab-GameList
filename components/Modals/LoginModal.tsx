@@ -23,7 +23,7 @@ export default ({ errorMessage = '' }: { errorMessage: string }) => {
             <p>Sign in to create your game list and easily find trade partners</p>
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <a href='https://discord.gg/XcUPyaB'>
+            <a href='https://discord.gg/kWxa4Jr'>
 
                 <img style={{ height: '2em' }} src={require('../../assets/icons/discord-icon.svg')} />
             </a>
