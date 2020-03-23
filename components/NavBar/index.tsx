@@ -61,7 +61,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                         <StyledNavItem href='/profile/me'>PROFILE</StyledNavItem>
                     </Nav>
                     <Nav >
-                        <Nav.Link href='https://discord.gg/XcUPyaB' style={{ fontWeight: font.weights.medium, padding: 7 }}>
+                        <Nav.Link href='https://discord.gg/2DadQ7d' style={{ fontWeight: font.weights.medium, padding: 7 }}>
                             <img style={{ height: '2em' }} src={require('../../assets/icons/discord-icon.svg')} />
                             DISCORD
                         </Nav.Link>
