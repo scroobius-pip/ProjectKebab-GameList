@@ -59,7 +59,7 @@ export default ({ onFilterChange, onSortChange, initialFilterValue, id, editable
 
     const HiddenSection = (
 
-        <div style={{ backgroundColor: colors.background, padding: 20, marginLeft: -20, paddingLeft: 20, marginRight: -20, paddingRight: 20 }}>
+        <div style={{ backgroundColor: colors.overlay, padding: 20, marginLeft: -20, paddingLeft: 20, marginRight: -20, paddingRight: 20 }}>
             <div style={{ marginBottom: 20 }}>
                 <h6>Trade Type</h6>
                 <div>

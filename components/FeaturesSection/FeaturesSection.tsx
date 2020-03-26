@@ -29,7 +29,7 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
         icon: require('./list.svg')
     },
     {
-        title: 'No Scammers',
+        title: 'Scammer Prevention',
         body: `
         Rade uses the SteamRep and USL databases to prevent known scammers from ever registering on the platform.
         `,
