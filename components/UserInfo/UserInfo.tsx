@@ -14,13 +14,28 @@ export interface UserInfoProps extends UserInfo {
     disableChat?: boolean
 }
 
-export default ({ userName, userImageUrl, isPro, epochTimeCreated, location, isBanned, disableChat = false }: UserInfoProps) => {
+const extractUsernameAndPlatform = (user: UserInfo) => {
+    const [steamUserName, platform] = user.email.split('@')
+
+    const isSteam = platform === 'steam'
+    const platformName = isSteam ? steamUserName : user.userName
+
+    return {
+        platform,
+        userName: user.userName,
+        link: isSteam ? `https://steamcommunity.com/profiles/${platformName}` : `https://www.reddit.com/user/${platformName}`
+    }
+}
+
+export default (props: UserInfoProps) => {
+    const { userImageUrl, isPro, epochTimeCreated, location, isBanned, disableChat = false, } = props
+    const { userName, platform, link } = extractUsernameAndPlatform(props)
 
     return <>
         <ProfileImageStatus src={userImageUrl} />
         <UserInfoUserName userName={userName} isPremium={isPro} />
         <UserInfoMemberSince epochTimeCreated={epochTimeCreated} />
-        <UserInfoSocialButtons socialLinks={[{ link: `https://www.reddit.com/user/${userName}`, platform: 'reddit' }]} />
+        <UserInfoSocialButtons socialLinks={[{ link, platform }]} />
         <UserInfoStatus country={location.country} state={location.state} isBanned={isBanned} />
         {disableChat ? null : <UserInfoChat userName={userName} />}
         <UserInfoCopy userName={userName} />

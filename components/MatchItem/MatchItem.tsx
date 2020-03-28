@@ -46,11 +46,11 @@ export default ({ match, onClick }: Props) => {
 
         <div className='match-container' style={styles.container}>
             <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
-                <img style={{ height: '100%', paddingRight: 10 }} src={match.userImage} />
+                <img style={{ height: '100%', marginRight: 10, borderRadius: 5 }} src={match.userImage} />
                 <div style={{ textAlign: 'left' }}>
                     <div>
                         <span style={{ fontSize: 20, fontWeight: 600, marginRight: 5 }}>{match.username}</span>
-                        <img style={{ height: '1.2em' }} src={match.userImage} />
+                        {/* <img style={{ height: '1.2em' }} src={require('../../assets/icons/premium.svg')} /> */}
                     </div>
                     <div>
                         <span style={{ fontSize: 14, fontWeight: 600, color: '#8B8B8B' }}>{`${match.location.country}-${match.location.city}`}</span>
@@ -66,7 +66,7 @@ export default ({ match, onClick }: Props) => {
             </div>
 
         </div >
-        <div style={{ height: 5,borderRadius:10, backgroundColor: colors.primary, width: (match.matchRate || 100) + '%' }} />
+        <div style={{ height: 5, borderRadius: 10, backgroundColor: colors.primary, width: (match.matchRate || 100) + '%' }} />
         {!!match.matchRate && <span className='match-rate' style={{ fontWeight: 600, color: 'white' }}>{match.matchRate}% Match Rate</span>}
         <style jsx>
             {`
@@ -109,6 +109,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderRadius: 5
+        borderRadius: 5,
+        maxHeight: 120
     }
 }

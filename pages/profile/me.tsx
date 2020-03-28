@@ -91,6 +91,7 @@ Page.getInitialProps = async ({ apolloClient, ...ctx }) => {
         description: description || "You haven't provided any details",
         userImageUrl,
         isPro,
+        email,
         epochTimeCreated,
         location
     }

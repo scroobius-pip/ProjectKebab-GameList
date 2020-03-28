@@ -247,7 +247,7 @@ const Page = ({ signIn, userCount = 100 }) => {
 
             </div>
             <LandingSection description='Current and Coming Soon Features' title='Features'>
-                <div style={{ position: 'relative', height: '90%', }}>
+                <div style={{ position: 'relative', height: '100%', }}>
                     <FeaturesSection />
                     <SectionLink name='ROADMAP' href='#Roadmap' />
                 </div>
@@ -257,15 +257,15 @@ const Page = ({ signIn, userCount = 100 }) => {
             </LandingSection> */}
 
             <LandingSection description={''} title='Roadmap'>
-                <div style={{ height: '90%', alignSelf: 'center', textAlign: 'center', maxWidth: 800, color: '#AEAEAE', fontSize: 18 }}>
+                <div style={{ height: '90%', alignSelf: 'center', textAlign: 'center', maxWidth: 800, color: '#AEAEAE', fontSize: 18, marginTop: 20 }}>
                     <p style={{ color: 'white' }}>
-                        <b >Stage 1:</b> Allow reddit and steam users to register, the platform is used only for listing games and matching users, trades aren't done on the platform but through current channels like r/gameswap.
+                        <b >Stage 1:</b> Trade Listing Functionality and Matching
                     </p>
-                    <p style={{ marginTop: 40 }}>
-                        <b>Stage 2:</b> Switch over to invite only membership, allow invited members to register with an email and password. Actual trading is still not done on the platform.
+                    <p style={{ marginTop: 20 }}>
+                        <b>Stage 2:</b> Switch over to invite only membership - you would be able to invite people you trust.
                     </p>
-                    <p style={{ marginTop: 40 }}>
-                        <b>Stage 3:</b> New features !!! users are able to chat, make offers and trade on the platform.
+                    <p style={{ marginTop: 20 }}>
+                        <b>Stage 3:</b> Chat and offers functionality. Trade Insurance - if a trade doesn't work out you get refunded.
                     </p>
                     {/* <p>
                         <b>Stage 4</b> Partnership with steam ? to allow secure trading of games. Swap meets ?. In game currency ?

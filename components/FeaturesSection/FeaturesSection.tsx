@@ -46,6 +46,11 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
         body: 'Get notified once someone has what you want and vice-versa',
         icon: require('./notification.svg')
     },
+    {
+        title: 'Trade Insurance',
+        body: "You would be refunded or given a replacement key if the trade isn't successful.",
+        icon: require('./shield.svg')
+    },
     // {
     //     title: 'Sync Wishlist',
     //     body: 'You can easily synchronize your steam wishlist, more platforms like origin coming soon.',
@@ -71,5 +76,5 @@ const FeatureSlider = () => <CarouselProvider
 
 
 const FeatureGrid = () => <Row>
-    {Features.map((feature, i) => <Col key={i} xl={{ span: 4, offset: i === 3 ? 2 : 0 }} md={{ span: 6, offset: i === 4 ? 3 : 0 }}><FeatureCard {...feature} /> </Col>)}
+    {Features.map((feature, i) => <Col key={i} xl={{ span: 4, offset: i === 3 ? 2 : i === 5 ? 4 : 0 }} md={{ span: 6, }}><FeatureCard {...feature} /> </Col>)}
 </Row >

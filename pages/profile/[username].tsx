@@ -87,7 +87,7 @@ Page.getInitialProps = async ({ apolloClient, query: { username = '' } }) => {
         // userDescription: userDescription || '',
         description: description || "User hasn't provided details",
         userImageUrl,
-
+        email,
         isPro,
         epochTimeCreated,
         location

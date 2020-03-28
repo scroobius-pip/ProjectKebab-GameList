@@ -7,11 +7,11 @@ export default ({ errorMessage = '' }: { errorMessage: string }) => {
         <h2><strong>Login</strong></h2>
         <div style={{ width: '80%', margin: '0 auto', marginTop: 25 }}>
             <span style={{ padding: 10 }}>
-                <SocialLoginButton color='#EA262B' image={require('../../assets/icons/reddit-white.svg')} onClick={() => window.open("https://swapem-auth.scroobius-pip.now.sh/auth/reddit", "_self")} />
+                <SocialLoginButton color='#EA262B' image={require('../../assets/icons/reddit-white.svg')} onClick={() => window.open("https://auth.rade.trade/auth/reddit", "_self")} />
 
             </span>
             <span style={{ padding: 10 }}>
-                <SocialLoginButton color='#2C2F33' image={require('../../assets/icons/steam.svg')} />
+                <SocialLoginButton color='#2C2F33' image={require('../../assets/icons/steam.svg')} onClick={() => window.open("https://auth.rade.trade/auth/steam", "_self")} />
 
             </span>
         </div>
