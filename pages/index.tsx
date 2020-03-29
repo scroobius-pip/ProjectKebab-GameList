@@ -249,7 +249,8 @@ const Page = ({ signIn, userCount = 100 }) => {
             <LandingSection description='Current and Coming Soon Features' title='Features'>
                 <div style={{ position: 'relative', height: '100%', }}>
                     <FeaturesSection />
-                    <SectionLink name='ROADMAP' href='#Roadmap' />
+
+                    {/* <SectionLink name='ROADMAP' href='#Roadmap' /> */}
                 </div>
             </LandingSection>
             {/* <LandingSection title='Faq'>
