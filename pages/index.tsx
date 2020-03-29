@@ -186,9 +186,9 @@ const Page = ({ signIn, userCount = 100 }) => {
                                     To sell or swap your physical or digital games.
                             </p>  Create your game list. <br /> */}
                                 <p>
-                                    1. Create and share your game list. <br />
+                                    1. Create and share your trading list. <br />
                                     2. Get matched with other gamers around the world. <br />
-                                    3. Sell or swap your digital and physical games.
+                                    3. Sell or swap your digital codes and physical games.
                                 </p>
 
                                 <style jsx>
