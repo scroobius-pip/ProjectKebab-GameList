@@ -34,8 +34,8 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
     const [rIndex, setRIndex] = useState(random(0, platforms.length - 1, false))
     const lProps = useSpring({ top: calculateTop(lIndex), config: config.gentle })
     const rProps = useSpring({ top: calculateTop(rIndex), config: config.gentle })
-    const lSprings = useSprings(platforms.length, platforms.map((_, index) => (index === lIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0.1, transform: 'scale(0.8)' })))
-    const rSprings = useSprings(platforms.length, platforms.map((_, index) => (index === rIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0.1, transform: 'scale(0.8)' })))
+    const lSprings = useSprings(platforms.length, platforms.map((_, index) => (index === lIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0, transform: 'scale(0.8)' })))
+    const rSprings = useSprings(platforms.length, platforms.map((_, index) => (index === rIndex ? { opacity: 1, transform: 'scale(1.1)' } : { opacity: 0, transform: 'scale(0.8)' })))
 
     useEffect(() => {
         setInterval(() => {
