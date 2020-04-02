@@ -57,7 +57,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
 
         }}>
             <div style={{}}>
-                <img style={{ height: `${itemSize - 1}vw` }} src={require('./icons/reddit-user.svg')} />
+                <img style={{ height: `${itemSize - 1}vw`, userSelect: 'none' }} src={require('./icons/user1.svg')} />
             </div>
             <div style={{
                 backgroundColor: colors.overlay,
@@ -111,7 +111,7 @@ export default ({ itemSize = 10, itemPadding = 2, }) => {
                 </animated.div>
             </div>
             <div style={{}}>
-                <img style={{ height: `${itemSize - 1}vw` }} src={require('./icons/reddit-user2.svg')} />
+                <img style={{ height: `${itemSize - 1}vw` }} src={require('./icons/user2.svg')} />
             </div>
         </div >
     </div>
