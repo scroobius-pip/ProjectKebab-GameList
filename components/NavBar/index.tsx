@@ -103,19 +103,21 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                     {(user) => {
                         return <>
                             <Navbar.Brand href={user ? "/profile/me" : '/'} >
-                                <img style={{ height: '1.5em', marginBottom: 8 }} src={require('../../assets/icons/logo.svg')} />
+                                <img style={{ height: '1.5em', marginBottom: 8 }} src={require('../../assets/icons/rade-beta-transparent.svg')} />
                             </Navbar.Brand>
                             {
                                 user ?
                                     <LoggedInComponent user={user} /> :
                                     <Nav style={{ justifyContent: 'flex-end' }}>
 
-                                        {router.pathname === '/' ? null : <span>
-                                            <Button style={{ backgroundColor: colors.primary, borderColor: colors.primary }} onClick={onSignInClicked}>
-                                                <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Create your game list</span>
-                                                <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/pencil.svg')} />
-                                            </Button>
-                                        </span>}
+                                        {
+                                            router.pathname === '/' ? null : <span>
+                                                <Button style={{ backgroundColor: colors.primary, borderColor: colors.primary }} onClick={onSignInClicked}>
+                                                    <span style={{ fontWeight: font.weights.medium, marginRight: 10 }}>Create your game list</span>
+                                                    <img style={{ width: '1em', verticalAlign: 'unset' }} src={require('../../assets/icons/pencil.svg')} />
+                                                </Button>
+                                            </span>
+                                        }
                                     </Nav>
                             }
                         </>
