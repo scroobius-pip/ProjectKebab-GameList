@@ -282,9 +282,12 @@ const Page = ({ signIn, userCount = 100 }) => {
 
 
 Page.getInitialProps = async ({ apolloClient }) => {
-
-    const userCount = await getUserCount(apolloClient)
-    return { userCount }
+    try {
+        const userCount = await getUserCount(apolloClient)
+        return { userCount }
+    } catch (error) {
+        return { userCount: 0 }
+    }
 }
 
 
