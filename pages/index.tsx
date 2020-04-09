@@ -16,6 +16,7 @@ interface LandingSectionProps {
     title: string
     children: any
     description?: string
+    height?: string
 }
 
 const SectionLink = ({ name, href }) => {
@@ -75,8 +76,8 @@ const PrimaryButton = ({ onClick, text = '' }) => (
 
 
 
-const LandingSection = ({ title, children, description }: LandingSectionProps) => {
-    return <div id={title} style={{ marginBottom: 40, height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+const LandingSection = ({ title, children, description, height }: LandingSectionProps) => {
+    return <div id={title} style={{ marginBottom: 40, height: height ? height : '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h1 style={{ textAlign: 'center', fontWeight: 'bolder', }}>{title}</h1>
         {description && <h5 style={{ textAlign: 'center', marginBottom: '5vh', fontWeight: 'normal', }}>
             {description}
@@ -257,7 +258,7 @@ const Page = ({ signIn, userCount = 100 }) => {
                 <FaqSection />
             </LandingSection> */}
 
-            <LandingSection description={''} title='Roadmap'>
+            <LandingSection description={''} title='Roadmap' height='initial'>
                 <div style={{ height: '90%', alignSelf: 'center', textAlign: 'center', maxWidth: 800, color: '#AEAEAE', fontSize: 18, marginTop: 20 }}>
                     <p style={{ color: 'white' }}>
                         <b >Stage 1:</b> Trade Listing Functionality and Matching
