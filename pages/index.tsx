@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import WithLayout from '@components/WithLayout';
 import { Row, Col, Button } from 'react-bootstrap';
@@ -11,6 +11,7 @@ import getUserCount from 'functions/graphql/queries/getUserCount';
 import { UserConsumer } from 'context/UserContext';
 import { useRouter } from 'next/router';
 import Head from 'next/head'
+import { getApolloContext } from 'react-apollo';
 
 interface LandingSectionProps {
     title: string
@@ -149,9 +150,17 @@ const RegisteredStat = ({ userCount }: { userCount: number }) => {
 }
 
 
-const Page = ({ signIn, userCount = 100 }) => {
+const Page = ({ signIn }) => {
 
     const router = useRouter()
+    const apolloClient = useContext(getApolloContext()).client
+    const [userCount, setUserCount] = useState(0)
+
+    useEffect(() => {
+        getUserCount(apolloClient).then(value => {
+            setUserCount(value)
+        })
+    }, [])
 
     return <>
 
@@ -281,14 +290,14 @@ const Page = ({ signIn, userCount = 100 }) => {
 }
 
 
-Page.getInitialProps = async ({ apolloClient }) => {
-    try {
-        const userCount = await getUserCount(apolloClient)
-        return { userCount }
-    } catch (error) {
-        return { userCount: 0 }
-    }
-}
+// Page.getInitialProps = async ({ apolloClient }) => {
+//     try {
+//         // const userCount = await getUserCount(apolloClient)
+//         return { userCount: 0 }
+//     } catch (error) {
+//         return { userCount: 0 }
+//     }
+// }
 
 
 export default withApollo(WithLayout(Page))
