@@ -58,7 +58,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                         <StyledNavItem href='/offers'>OFFERS</StyledNavItem>
                     </Nav>
                     <Nav style={{ marginRight: 20 }}>
-                        <StyledNavItem href='/profile/me'>PROFILE</StyledNavItem>
+                        <StyledNavItem href='/p/me'>PROFILE</StyledNavItem>
                     </Nav>
                     <Nav >
                         <Nav.Link href='https://discord.gg/2DadQ7d' style={{ fontWeight: font.weights.medium, padding: 7 }}>
@@ -102,7 +102,7 @@ const NavBarComponent = ({ onSignInClicked, onSignOutClicked }: Props) => {
                 <UserConsumer>
                     {(user) => {
                         return <>
-                            <Navbar.Brand href={user ? "/profile/me" : '/'} >
+                            <Navbar.Brand href={user ? "/p/me" : '/'} >
                                 <img style={{ height: '1.5em', marginBottom: 8 }} src={require('../../assets/icons/rade-beta-transparent.svg')} />
                             </Navbar.Brand>
                             {

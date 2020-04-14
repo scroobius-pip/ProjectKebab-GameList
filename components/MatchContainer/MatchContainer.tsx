@@ -46,7 +46,7 @@ export default ({ openPremium }: SharedProps) => ({ matchType }: Props) => {
     }
 
     const handleMatchItemClicked = (userName: string) => {
-        (userName[userName.length - 1] === '*') ? openPremium() : router.push('/profile/' + userName)
+        (userName[userName.length - 1] === '*') ? openPremium() : router.push('/p/' + userName)
     }
 
     const handleLocationToggle = async (value: boolean) => {

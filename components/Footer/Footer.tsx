@@ -16,7 +16,7 @@ export default () => {
             </Link>
         </div>
         <div style={{ backgroundColor: colors.overlay, padding: 5, display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', width: '100%' }}>
-            <StyledNavItem activeStyle={{ borderRightWidth: 4 }} inactiveStyle={{ color: colors.text }} href='/about'>About</StyledNavItem>
+            {/* <StyledNavItem activeStyle={{ borderRightWidth: 4 }} inactiveStyle={{ color: colors.text }} href='/about'>About</StyledNavItem> */}
             <StyledNavItem activeStyle={{ borderRightWidth: 4 }} inactiveStyle={{ color: colors.text }} href='/terms-conditions'>Terms</StyledNavItem>
             <StyledNavItem activeStyle={{ borderRightWidth: 4 }} inactiveStyle={{ color: colors.text }} href='/privacy-policy'>Privacy</StyledNavItem>
         </div>

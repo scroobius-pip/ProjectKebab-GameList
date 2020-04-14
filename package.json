@@ -14,7 +14,7 @@
     "generate": "graphql-codegen --config codegen.yml",
     "download-schema": "apollo schema:download --endpoint=http://localhost:3000/graphql",
     "deploy": "npm run build",
-    "postbuild": "next-on-netlify"
+    "__postbuild": "next-on-netlify"
   },
   "repository": {
     "type": "git",

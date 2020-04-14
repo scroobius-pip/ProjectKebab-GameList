@@ -164,7 +164,7 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
             <div>
                 <span>
                     {isSaved ?
-                        <Button onClick={() => router.push('/profile/me')} variant='outline-primary'>View List</Button>
+                        <Button onClick={() => router.push('/p/me')} variant='outline-primary'>View List</Button>
                         : <LoadingButton
                             onClick={async () => {
 
