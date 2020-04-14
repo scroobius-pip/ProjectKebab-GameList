@@ -75,7 +75,15 @@ export default ({ openPremium }: SharedProps) => ({ matchType }: Props) => {
                                     title: 'Enable Match Notifications',
                                     description: "You'll be notified once we've found matches",
                                     Input: () => {
-                                        return userLoading ? <Spinner variant='light' animation='grow' style={{ textAlign: 'center' }} /> : <Switch id={'notification' + matchType} initialState={userData.me.info.setting_matchNotifications} handleToggle={toggleNotifications} />
+                                        return userLoading ? <Spinner
+                                            variant='light'
+                                            animation='grow'
+                                            style={{ textAlign: 'center' }} /> :
+                                            <Switch
+                                                id={'notification' + matchType}
+                                                initialState={userData.me.info.setting_matchNotifications}
+                                                handleToggle={toggleNotifications}
+                                            />
                                     }
                                 }, {
                                     title: 'Invite Others Over',
@@ -135,13 +143,15 @@ export default ({ openPremium }: SharedProps) => ({ matchType }: Props) => {
     }
 
     return <div style={{ width: '100%', maxWidth: 500, margin: 'auto', marginTop: 20, }}>
-        {matchLoading ? <Spinner variant='light' animation='grow' style={{
-            width: '3em',
-            height: '3em',
-            textAlign: 'center'
-        }} /> : <>{
-
-            matchData.matches.error ? renderError(matchData.matches.error.type) : renderMatches()
-        }</>}
+        {matchLoading ? <div style={{ textAlign: 'center' }}>
+            <Spinner variant='light' animation='grow' style={{
+                width: '3em',
+                height: '3em',
+                textAlign: 'center'
+            }} />
+        </div> : <>
+                {matchData.matches.error ? renderError(matchData.matches.error.type) : renderMatches()}
+            </>
+        }
     </div>
 }
