@@ -17,14 +17,14 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
     {
         title: 'Matching',
         body: `
-        Easily find gamers to trade with, based on your wish list or your location.
+        Find gamers to trade with, based on your wish list or your location.
         `,
         icon: require('./matching.svg')
     },
     {
         title: 'Game List',
         body: `
-        Manage your list of  games and items, you can share a link on trading subreddits, and let potential traders find your games easily.
+        Manage your list of  games and items, share a link to your trade list on other social and forums, and let potential traders find your games easily.
         `,
         icon: require('./list.svg')
     },
@@ -38,7 +38,7 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
     },
     {
         title: 'Sync Wishlist',
-        body: 'You can easily synchronize your steam wishlist, more platforms like origin coming soon.',
+        body: 'Easily synchronize your wishlist from other platforms like steam & origin',
         icon: require('./sync.svg')
     },
     {
