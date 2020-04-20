@@ -70,7 +70,7 @@ const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGam
 Page.getInitialProps = async ({ apolloClient, ...ctx }) => {
 
     const user = await getUserInfo(apolloClient)
-    // if (!user) redirect(ctx, '/login')
+    if (!user) redirect(ctx, '/')
     const gamesAndDescription = await getMyGamesAndDescription(apolloClient)
     // if()
     const {
