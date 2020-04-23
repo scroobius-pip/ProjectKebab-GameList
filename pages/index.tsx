@@ -245,7 +245,7 @@ const Page = ({ signIn }) => {
                     <div>
                         <UserConsumer>
                             {
-                                (user) => <PrimaryButton text={user ? 'PROFILE' : 'Create your game list'} onClick={user ? () => router.push('/p/me') : signIn} />
+                                (user) => <PrimaryButton text={user ? 'PROFILE' : 'Create Your Trading List'} onClick={user ? () => router.push('/p/me') : signIn} />
                             }
                         </UserConsumer>
                     </div>
