@@ -41,7 +41,7 @@ export default ({ initialContent, onChange }: Props) => {
           },
           list: {
             options: ['unordered', 'ordered']
-          }
+          },
         }
       }
         editorStyle={{

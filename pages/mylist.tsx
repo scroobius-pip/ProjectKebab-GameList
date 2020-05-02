@@ -211,9 +211,32 @@ Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
             want: data.wantedGames.map(mapToUserGame()),
 
         },
-        description: data.info.description || ''
+        description: data.info.description || !data.hasGames.length && !data.wantedGames.length ? InitialDescription : ''
     }
 }
 
 export default withApollo(withAuth(WithLayout(Page)))
 
+const InitialDescription = `
+Hello fellow human thanks for using rade. A quick guide to using this list:
+Use the below "Your List." section to add games and items you own and want, the description box should be used to describe the game/item in detail.
+
+You could use this "details" text box to:
+introduce yourself
+talk about the general terms of trade,
+show a link to how you could be contacted.
+List items that can't be added in the "list" section.
+Here's an example:
+Hello all! I accumulated a lot of duplicate so I'm gonna post it here! I'll be more willing to trade for RPG games/Stuff on my wishlist but you can still offer away!
+Steam keys unless stated otherwise.
+I'm located in Canada.
+[http://steamcommunity.com/id/makenshi/wishlist](http://steamcommunity.com/id/makenshi/wishlist "http://steamcommunity.com/id/makenshi/wishlist")
+Contact me through steamtrades: [https://www.steamtrades.com/user/76561198269203928](https://www.steamtrades.com/user/76561198269203928 "https://www.steamtrades.com/user/76561198269203928")
+
+And another:
+Contact me through this [thread](https://www.reddit.com/r/gameswap/comments/gbh2xf/usa_h_animal_crossing_amiibo_cards_series_14_w_ac/ "https://www.reddit.com/r/gameswap/comments/gbh2xf/usa_h_animal_crossing_amiibo_cards_series_14_w_ac/")
+EU paypal. Buyer covers all fees. Buyer pays first. If you buy multiple games I can lower the price (make an offer for multiple games, now lowball offers please).
+My trade feedback thread [https://www.steamtrades.com/user/76561198077701108](https://www.steamtrades.com/user/76561198077701108 "https://www.steamtrades.com/user/76561198077701108")
+
+Cheers - Simdi Jinkins
+`
