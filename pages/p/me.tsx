@@ -40,7 +40,7 @@ const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGam
             <Row >
                 <Col md={12} lg={3} style={{ marginBottom: 30 }}>
                     <Section>
-                        <UserInfo disableChat {...userInfo} />
+                        <UserInfo me disableChat {...userInfo} />
                     </Section>
                 </Col>
                 <Col md={12} lg={9}>

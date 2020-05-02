@@ -6,6 +6,7 @@ import Section from '@components/Section';
 import { Tab, Nav } from 'react-bootstrap';
 import initMatchContainer from '@components/MatchContainer'
 import { IMatchSortType } from 'generated/apolloComponents'
+import SocialShare from '@components/SocialShare';
 interface Props {
     premiumClicked?: () => {}
 
@@ -67,6 +68,12 @@ const Page = ({ premiumClicked }: Props) => {
                 </div>
 
             </Section>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50, flexDirection: 'column', alignItems: 'center', opacity: 0.8 }}>
+                <h6 style={{}}> Share rade with others</h6>
+                <div>
+                    <SocialShare />
+                </div>
+            </div>
         </>
     )
 

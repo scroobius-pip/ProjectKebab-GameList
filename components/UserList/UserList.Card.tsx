@@ -124,7 +124,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                         {...game}
                     />
                 }) :
-                <img style={{ filter: 'brightness(0.65)', width: '50%', borderRadius: 5 }} src={require('../../assets/icons/empty.jpg')} />
+                <p style={{ fontSize: 20, fontWeight: 600, opacity: .8 }}> 🌵 It's rather lonely here</p>
         }
     </>
 

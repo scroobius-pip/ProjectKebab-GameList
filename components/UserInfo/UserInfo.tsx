@@ -10,7 +10,7 @@ import { UserInfo } from 'types/IUser'
 
 
 export interface UserInfoProps extends UserInfo {
-
+    me?: boolean
     disableChat?: boolean
 }
 
@@ -28,7 +28,7 @@ const extractUsernameAndPlatform = (user: UserInfo) => {
 }
 
 export default (props: UserInfoProps) => {
-    const { userImageUrl, isPro, epochTimeCreated, location, isBanned, disableChat = false, } = props
+    const { userImageUrl, isPro, epochTimeCreated, location, isBanned, disableChat = false, me = false } = props
     const { userName, platform, link } = extractUsernameAndPlatform(props)
 
     return <>
@@ -36,7 +36,7 @@ export default (props: UserInfoProps) => {
         <UserInfoUserName userName={userName} isPremium={isPro} />
         <UserInfoMemberSince epochTimeCreated={epochTimeCreated} />
         <UserInfoSocialButtons socialLinks={[{ link, platform }]} />
-        <UserInfoStatus country={location.country} state={location.state} isBanned={isBanned} />
+        <UserInfoStatus me={me} country={location.country} state={location.state} isBanned={isBanned} />
         {disableChat ? null : <UserInfoChat userName={userName} />}
         <UserInfoCopy userName={userName} />
 

@@ -61,7 +61,7 @@ export default ({ onFilterChange, onSortChange, initialFilterValue, id, editable
 
         <div style={{ backgroundColor: colors.overlay, padding: 20, marginLeft: -20, paddingLeft: 20, marginRight: -20, paddingRight: 20 }}>
             <div style={{ marginBottom: 20 }}>
-                <h6>Trade Type</h6>
+                <h6 style={{ fontWeight: 500 }}>Trade Type</h6>
                 <div>
                     <CheckBoxGroup id={'trade-type' + id} initialValues={initialFilterValue.tradeType} onChange={(values) => setTradeType(values)} />
                 </div>

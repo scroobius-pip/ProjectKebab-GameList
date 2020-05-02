@@ -1,5 +1,7 @@
 import { ReactChild } from 'react'
 import { colors } from '../../styles'
+import TextButton from '@components/TextButton'
+import Router from 'next/router'
 
 interface UserInfoItemProps { name: string, value: string | ReactChild, disabled?: boolean, highlighted?: boolean }
 
@@ -30,9 +32,10 @@ interface Props {
     country: string
     state: string
     isBanned: boolean
+    me: boolean
 }
 
-export default ({ country, state }: Props) => {
+export default ({ country, state, me }: Props) => {
     return (
         <>
             <div style={{ marginBottom: 10 }} >
@@ -50,7 +53,9 @@ export default ({ country, state }: Props) => {
                         </span>
                     </div>
                 } />
-                <UserInfoItem name='Location' highlighted value={`${country}-${state}`} />
+                <UserInfoItem name='Location' highlighted value={country || !me ? `${country}-${state}` : <TextButton onClick={() => Router.push('/preferences')}>
+                    Show Location
+                </TextButton>} />
             </div>
 
         </>

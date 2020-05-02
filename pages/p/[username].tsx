@@ -48,11 +48,8 @@ const Page = ({ userInfo, userGames }: { userInfo: IUserInfo, userGames: UserGam
                     <Row noGutters={false}>
                         <Col lg={12} style={{ marginBottom: 30 }} >
                             <Section heading='Details.'>
-                                {
-                                    userInfo.description.length ?
-                                        <ReactMarkdown source={userInfo.description} /> :
-                                        <Alert variant='info'>{userInfo.userName} hasn't provided any details</Alert>
-                                }
+
+                                <ReactMarkdown source={userInfo.description} />
                             </Section>
                         </Col>
                         <Col lg={12}  >
@@ -85,7 +82,7 @@ Page.getInitialProps = async ({ apolloClient, query: { username = '' } }) => {
         isBanned,
         userName: userName || email,
         // userDescription: userDescription || '',
-        description: description || "User hasn't provided details",
+        description: description || `${userName || email} hasn't provided details`,
         userImageUrl,
         email,
         isPro,

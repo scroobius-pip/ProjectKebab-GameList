@@ -38,7 +38,7 @@ export default ({ value, inline = true, onChange, id }: Props) => {
 
 `}
                 </style>
-                <FormCheck.Label htmlFor={id} ><span style={{ fontSize: 14, color: generateColorFromString(value), fontWeight: 500 }}>{value}</span></FormCheck.Label>
+                <FormCheck.Label htmlFor={id} ><span style={{ fontSize: 14, color: generateColorFromString(value), fontWeight: 'bold' }}>{value}</span></FormCheck.Label>
             </FormCheck>
 
 

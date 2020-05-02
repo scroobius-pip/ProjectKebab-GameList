@@ -153,8 +153,11 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                             }
                         </tbody>
                     </Table> :
-                    <img style={{ width: 100, height: 100, borderRadius: 5, filter: 'brightness(0.65)' }} src={require('../../assets/icons/empty.jpg')} />
+                    // <img style={{ width: 100, height: 100, borderRadius: 5, filter: 'brightness(0.65)' }} src={require('../../assets/icons/empty.jpg')} />
+                    <p style={{ fontSize: 20, fontWeight: 600, opacity: .8 }}>🌵 halp! it's lonely here 🌵</p>
             }
         </>
     )
 }
+
+// ¯\_(ツ)_ /¯ 
