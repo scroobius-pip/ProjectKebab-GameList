@@ -218,25 +218,5 @@ Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
 export default withApollo(withAuth(WithLayout(Page)))
 
 const InitialDescription = `
-Hello fellow human thanks for using rade. A quick guide to using this list:
-Use the below "Your List." section to add games and items you own and want, the description box should be used to describe the game/item in detail.
-
-You could use this "details" text box to:
-introduce yourself
-talk about the general terms of trade,
-show a link to how you could be contacted.
-List items that can't be added in the "list" section.
-Here's an example:
-Hello all! I accumulated a lot of duplicate so I'm gonna post it here! I'll be more willing to trade for RPG games/Stuff on my wishlist but you can still offer away!
-Steam keys unless stated otherwise.
-I'm located in Canada.
-[http://steamcommunity.com/id/makenshi/wishlist](http://steamcommunity.com/id/makenshi/wishlist "http://steamcommunity.com/id/makenshi/wishlist")
-Contact me through steamtrades: [https://www.steamtrades.com/user/76561198269203928](https://www.steamtrades.com/user/76561198269203928 "https://www.steamtrades.com/user/76561198269203928")
-
-And another:
-Contact me through this [thread](https://www.reddit.com/r/gameswap/comments/gbh2xf/usa_h_animal_crossing_amiibo_cards_series_14_w_ac/ "https://www.reddit.com/r/gameswap/comments/gbh2xf/usa_h_animal_crossing_amiibo_cards_series_14_w_ac/")
-EU paypal. Buyer covers all fees. Buyer pays first. If you buy multiple games I can lower the price (make an offer for multiple games, now lowball offers please).
-My trade feedback thread [https://www.steamtrades.com/user/76561198077701108](https://www.steamtrades.com/user/76561198077701108 "https://www.steamtrades.com/user/76561198077701108")
-
-Cheers - Simdi Jinkins
+**Hello fellow human thanks for using rade. **\n\nA quick guide to using this list: \n\nUse the below **\"Your List.\"** section to add games and items you own and want, the description box should be used to describe the game/item in detail.\n\nYou could use this **\"Details.\"** text box to: \n\n- introduce yourself talk about the general terms of trade, \n- show a link to how you could be contacted. \n- List items that can't be added in the \"list\" section. \n\n**Here's an example: **\n\nHello all! I accumulated a lot of duplicate so I'm gonna post it here! I'll be more willing to trade for RPG games/Stuff on my wishlist but you can still offer away! Steam keys unless stated otherwise. I'm located in Canada. \n\nMy steam wishlist -  [http://steamcommunity.com/id/makenshi/wishlist](http://steamcommunity.com/id/makenshi/wishlist \"http://steamcommunity.com/id/makenshi/wishlist\") \n\nContact me through steamtrades: [https://www.steamtrades.com/user/76561198269203928](https://www.steamtrades.com/user/76561198269203928 \"https://www.steamtrades.com/user/76561198269203928\")\n\n​\n\n**And another: **\n\nContact me through this [thread](https://www.reddit.com/r/gameswap/comments/gbh2xf/usa\\_h\\_animal\\_crossing\\_amiibo\\_cards\\_series\\_14\\_w\\_ac/ \"https://www.reddit.com/r/gameswap/comments/gbh2xf/usa\\_h\\_animal\\_crossing\\_amiibo\\_cards\\_series\\_14\\_w\\_ac/\") EU paypal. \n\nBuyer covers all fees. Buyer pays first. If you buy multiple games I can lower the price (make an offer for multiple games, not lowball offers please). \n\n​\n\n**These are just suggestions to get you going - your free to do whatever (just try to be polite, responsible and respectful)**\n\n​\n\nCheers -** Simdi Jinkins**\n
 `
