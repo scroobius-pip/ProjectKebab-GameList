@@ -18,7 +18,7 @@ export default ({ values, onSelect, initialValue }: Props) => {
         }
     }}>
         <Dropdown.Toggle as='span' variant="secondary" id="dropdown-basic">
-            <span style={{ fontWeight: 600, cursor: 'pointer', color: colors.primary }}>{currentDrop}</span>
+            <span style={{ fontWeight: 600, cursor: 'pointer', color: colors.text }}>{currentDrop}</span>
         </Dropdown.Toggle>
         <Dropdown.Menu>
             {
