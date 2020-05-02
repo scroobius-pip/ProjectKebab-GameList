@@ -2,6 +2,9 @@ import { Collapse, Button, Badge } from 'react-bootstrap'
 import { useState } from 'react'
 import { Props } from './UserList.Table.Row'
 import { colors } from '../../styles'
+import UserListTableRowTextArea from './UserList.Table.Row.TextArea'
+import TextDropDown from '@components/TextDropDown'
+
 const RevealButton = ({ active, onClick }: { active: boolean, onClick: () => any }) => {
 
     return (
@@ -14,10 +17,10 @@ const RevealButton = ({ active, onClick }: { active: boolean, onClick: () => any
 
 export default ({ imageUrl, consoleType, description, name, tradeType, onDelete, onDescriptionChange, onTradeTypeChange, id, editable = false }: Props) => {
     const [open, setOpen] = useState(false)
-
+    const backgroundImage = `linear-gradient(rgb(35, 24, 56), rgba(0, 0, 0, 0.8)), url(${imageUrl})`
     return (
         <>
-            <div onClick={() => setOpen(!open)} style={{ backgroundColor: colors.overlay, padding: '10px 20px 10px 20px', marginLeft: -20, marginRight: -20, marginBottom: 10 }}>
+            <div onClick={() => setOpen(!open)} style={{ backgroundColor: colors.overlay, padding: '10px 20px 10px 20px', marginLeft: -20, marginRight: -20, marginBottom: 10, }}>
                 <div style={{ display: 'flex', alignItems: 'flex-end' }}>
                     <div style={{ flexGrow: 1 }}>
                         <div>
@@ -28,7 +31,15 @@ export default ({ imageUrl, consoleType, description, name, tradeType, onDelete,
                                 <Badge variant="primary">{consoleType}</Badge>
                             </span>
                             <span style={{ marginLeft: 10 }}>
-                                <Badge variant="secondary">{tradeType}</Badge>
+                                {
+                                    editable ? <span>
+
+                                        <TextDropDown initialValue={tradeType} values={['Sale', 'Swap']} onSelect={(value) => {
+                                            onTradeTypeChange(id, value)
+                                        }} />  </span> :
+                                        <Badge variant="secondary">{tradeType}</Badge>
+                                }
+
                             </span>
                         </div>
                     </div>
@@ -38,8 +49,11 @@ export default ({ imageUrl, consoleType, description, name, tradeType, onDelete,
                     <RevealButton active={open} onClick={() => setOpen(!open)} />
                 </div>
                 <Collapse timeout={200} in={open}>
-                    <div >
-                        <p style={{ margin: 0, padding: 0 }}>{`${description || 'No Details'}`}</p>
+                    <div style={{ paddingTop: 10 }}>
+                        {/* <p style={{ margin: 0, padding: 0 }}>{`${description || 'No Details'}`}</p> */}
+                        {
+                            editable ? <UserListTableRowTextArea initialValue={description} onChange={(value) => { onDescriptionChange(id, value) }} /> : <p style={{ margin: 0, padding: 0 }}>{`${description || 'No Details'}`}</p>
+                        }
                     </div>
                 </Collapse>
             </div>

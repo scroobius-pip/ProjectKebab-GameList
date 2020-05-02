@@ -1,5 +1,6 @@
 import { Dropdown } from 'react-bootstrap'
 import { useState } from 'react'
+import { colors } from 'styles'
 
 interface Props {
     values: string[],
@@ -10,14 +11,14 @@ interface Props {
 export default ({ values, onSelect, initialValue }: Props) => {
     const [currentDrop, setDrop] = useState(initialValue || values[0])
 
-    return (<Dropdown onSelect={(eventKey: string) => {
+    return (<Dropdown style={{ display: 'inline', verticalAlign: 'text-top' }} onClick={(e) => { e.stopPropagation() }} onSelect={(eventKey: string) => {
         setDrop(eventKey)
         if (onSelect) {
             onSelect(eventKey)
         }
     }}>
         <Dropdown.Toggle as='span' variant="secondary" id="dropdown-basic">
-            <span style={{ fontWeight: 600, cursor: 'pointer' }}>{currentDrop}</span>
+            <span style={{ fontWeight: 600, cursor: 'pointer', color: colors.primary }}>{currentDrop}</span>
         </Dropdown.Toggle>
         <Dropdown.Menu>
             {

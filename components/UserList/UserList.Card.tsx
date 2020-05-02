@@ -119,7 +119,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                         onDelete={handleDelete}
                         onDescriptionChange={handleDescriptionChange}
                         onTradeTypeChange={handleTradeTypeChange}
-
+                        editable={editable}
                         key={game.id}
                         {...game}
                     />

@@ -28,6 +28,7 @@ export default ({ initialValue, onChange }: Props) => {
             maxRows={2}
             defaultValue={initialValue}
             // onChange={handleBlur}
+            onClick={(e) => e.stopPropagation()}
             onMouseLeave={handleBlur}
         // onBlur={handleBlur} 
         />
