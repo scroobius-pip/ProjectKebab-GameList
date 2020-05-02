@@ -211,7 +211,7 @@ Page.getInitialProps = async ({ apolloClient, ...ctx }): Promise<Props> => {
             want: data.wantedGames.map(mapToUserGame()),
 
         },
-        description: data.info.description || !data.hasGames.length && !data.wantedGames.length ? InitialDescription : ''
+        description: data.info.description || (!data.hasGames.length && !data.wantedGames.length ? InitialDescription : '')
     }
 }
 
