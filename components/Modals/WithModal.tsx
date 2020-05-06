@@ -11,7 +11,7 @@ export default (Content: React.ElementType) => ({ visible, close, ...props }: Pr
 
     return (
         <>
-            <Modal onHide={close} show={visible}>
+            <Modal style={{ backgroundColor: 'transparent' }} onHide={close} show={visible}>
                 <ModalBody>
                     <Content {...props} close={close} />
                 </ModalBody>
@@ -20,13 +20,14 @@ export default (Content: React.ElementType) => ({ visible, close, ...props }: Pr
                 {
                     `
          .modal-body {
-             max-width:600px !important;
+           
              padding:0px;
+           
          }
 
          .modal-content {
-             border-radius:0px !important;
-
+             border-radius:10px !important;
+            background-color:transparent;
          }
          `
                 }
