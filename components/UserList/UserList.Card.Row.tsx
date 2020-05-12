@@ -4,6 +4,7 @@ import { Props } from './UserList.Table.Row'
 import { colors } from '../../styles'
 import UserListTableRowTextArea from './UserList.Table.Row.TextArea'
 import TextDropDown from '@components/TextDropDown'
+import ReactMarkdown from 'react-markdown'
 
 const RevealButton = ({ active, onClick }: { active: boolean, onClick: () => any }) => {
 
@@ -52,7 +53,9 @@ export default ({ imageUrl, consoleType, description, name, tradeType, onDelete,
                     <div style={{ paddingTop: 10 }}>
                         {/* <p style={{ margin: 0, padding: 0 }}>{`${description || 'No Details'}`}</p> */}
                         {
-                            editable ? <UserListTableRowTextArea initialValue={description} onChange={(value) => { onDescriptionChange(id, value) }} /> : <p style={{ margin: 0, padding: 0 }}>{`${description || 'No Details'}`}</p>
+                            editable ? <UserListTableRowTextArea initialValue={description} onChange={(value) => { onDescriptionChange(id, value) }} /> :
+                                <ReactMarkdown source={description || 'No Details'} />
+                            // <p style={{ margin: 0, padding: 0 }}>{`${description || 'No Details'}`}</p>
                         }
                     </div>
                 </Collapse>

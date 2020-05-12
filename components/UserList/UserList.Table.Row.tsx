@@ -4,6 +4,7 @@ import TextButton from '../TextButton';
 import TextDropDown from '../TextDropDown';
 import ImageLoader from 'react-load-image'
 import { Spinner } from 'react-bootstrap';
+import ReactMarkdown from 'react-markdown';
 
 export interface Props extends UserGame {
     onDelete: (id: string) => any
@@ -52,7 +53,7 @@ export default ({ imageUrl, consoleType, description, name, tradeType, onDelete,
         <td style={{ height: 40, maxHeight: 40 }}>
             <div style={{ height: '100%' }}>
                 {
-                    editable ? <UserListTableRowTextArea initialValue={description} onChange={(value) => { onDescriptionChange(id, value) }} /> : description
+                    editable ? <UserListTableRowTextArea initialValue={description} onChange={(value) => { onDescriptionChange(id, value) }} /> :  <ReactMarkdown source={description} /> 
                 }
             </div>
         </td>
