@@ -161,7 +161,15 @@ const Page = ({ signIn }) => {
             setUserCount(value)
         })
     }, [])
-
+    const SignInButton = () => {
+        return <div>
+            <UserConsumer>
+                {
+                    (user) => <PrimaryButton text={user ? 'PROFILE' : 'Create Your Trading List'} onClick={user ? () => router.push('/p/me') : signIn} />
+                }
+            </UserConsumer>
+        </div>
+    }
     return <>
 
         <div style={{ color: 'white', }}>
@@ -242,13 +250,7 @@ const Page = ({ signIn }) => {
                     </Col>
                 </Row>
                 <div>
-                    <div>
-                        <UserConsumer>
-                            {
-                                (user) => <PrimaryButton text={user ? 'PROFILE' : 'Create Your Trading List'} onClick={user ? () => router.push('/p/me') : signIn} />
-                            }
-                        </UserConsumer>
-                    </div>
+                    <SignInButton />
                     <div style={{ marginTop: 20 }}>
                         <RegisteredStat userCount={userCount} />
                     </div>
@@ -262,12 +264,16 @@ const Page = ({ signIn }) => {
 
                     {/* <SectionLink name='ROADMAP' href='#Roadmap' /> */}
                 </div>
+                <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+
+                    <SignInButton />
+                </div>
             </LandingSection>
             {/* <LandingSection title='Faq'>
                 <FaqSection />
             </LandingSection> */}
 
-            <LandingSection description={''} title='Roadmap' height='initial'>
+            {/* <LandingSection description={''} title='Roadmap' height='initial'>
                 <div style={{ height: '90%', alignSelf: 'center', textAlign: 'center', maxWidth: 800, color: '#AEAEAE', fontSize: 18, marginTop: 20 }}>
                     <p style={{ color: 'white' }}>
                         <b >Stage 1:</b> Trade Listing Functionality and Matching
@@ -278,12 +284,10 @@ const Page = ({ signIn }) => {
                     <p style={{ marginTop: 20 }}>
                         <b>Stage 3:</b> Chat and offers functionality. Trade Insurance - if a trade doesn't work out you get refunded.
                     </p>
-                    {/* <p>
-                        <b>Stage 4</b> Partnership with steam ? to allow secure trading of games. Swap meets ?. In game currency ?
-                    </p> */}
+                  
                 </div>
 
-            </LandingSection>
+            </LandingSection> */}
         </div>
 
     </>

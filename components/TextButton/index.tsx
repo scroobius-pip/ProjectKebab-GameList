@@ -1,7 +1,7 @@
 import { ReactChildren } from 'react';
 
 interface Props {
-    children: string
+    children: any
     onClick: () => any
 }
 

@@ -5,6 +5,7 @@ import { throttle } from 'lodash';
 import generateColorFromString from '../../functions/utils/generateColorFromString';
 import { Spinner } from 'react-bootstrap';
 import { DebounceInput } from 'react-debounce-input';
+import { groupByConsoleType, GroupedItems } from '../../functions/utils/groupByConsoleType';
 
 async function stall(stallTime = 500) {
     await new Promise(resolve => setTimeout(resolve, stallTime));
@@ -17,27 +18,17 @@ export interface Game {
     imageUrl: string
     custom?: boolean
 }
-0
+
 type Suggestion = Game
 
-interface GroupedGames {
-    [consoleType: string]: Game[]
-}
 
 interface Section {
     consoleType: string
     suggestions: Game[]
 }
 
-const groupGamesByConsoleType = (games: Game[]): GroupedGames => {
-    return games.reduce((r, a) => {
-        r[a.consoleType] = r[a.consoleType] || []
-        r[a.consoleType].push(a)
-        return r
-    }, Object.create(null))
-}
-
-const parseGroupedGamesToSections = (groupedGames: GroupedGames): Section[] => {
+const parseGroupedGamesToSections = (groupedGames: GroupedItems<Game>): Section[] => {
+    
     const suggestions: Section[] = []
     for (const consoleType in groupedGames) {
         suggestions.push({
@@ -79,7 +70,7 @@ export default ({ id, searchFunction, onSelect }: Props) => {
             imageUrl: '',
             custom: true
         }
-        setSuggestions(parseGroupedGamesToSections(groupGamesByConsoleType([...(await searchFunction(value)), customEntry])))
+        setSuggestions(parseGroupedGamesToSections(groupByConsoleType([...(await searchFunction(value)), customEntry])))
 
         setLoading(false)
     }

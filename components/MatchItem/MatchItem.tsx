@@ -1,4 +1,5 @@
 import { colors } from '../../styles'
+import { Fragment } from 'react'
 
 export interface Match {
     username: string
@@ -27,11 +28,11 @@ const MatchedGamesText = ({ matchedGames }: { matchedGames: Match['matchedGames'
 
 
 
-    return <>
+    return <div style={{ fontSize: '1em' }}>
         <span>- </span>
         {!!hasGameNamesCount && <span>Has <b>{hasGameNames[0]}</b> {!!(hasGameNamesCount - 1) && `and ${hasGameNamesCount} others.`} </span>}
         {!!wantGamesNamesCount && <span>Wants <b>{wantGameNames[0]}</b>{!!(wantGamesNamesCount - 1) && `and ${wantGamesNamesCount} others.`}</span>}
-    </>
+    </div>
 }
 
 
@@ -45,15 +46,15 @@ export default ({ match, onClick }: Props) => {
     return <div className='match-item' onClick={handleClick} style={{ marginTop: 15, cursor: 'pointer' }}>
 
         <div className='match-container' style={styles.container}>
-            <div style={{ display: 'flex', flexDirection: 'row', flex: 1 }}>
+            <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
                 <img style={{ height: '100%', marginRight: 10, borderRadius: 5 }} src={match.userImage} />
                 <div style={{ textAlign: 'left' }}>
                     <div>
-                        <span style={{ fontSize: 20, fontWeight: 600, marginRight: 5 }}>{match.username}</span>
+                        <span style={{ fontSize: 16, fontWeight: 600, marginRight: 5 }}>{match.username}</span>
                         {/* <img style={{ height: '1.2em' }} src={require('../../assets/icons/premium.svg')} /> */}
                     </div>
                     <div>
-                        <span style={{ fontSize: 14, fontWeight: 600, color: '#8B8B8B' }}>{`${match.location.country}-${match.location.city}`}</span>
+                        <span style={{ fontSize: 12, fontWeight: 600, color: '#8B8B8B' }}>{`${match.location.country}-${match.location.city}`}</span>
                     </div>
                     <div>
                         <MatchedGamesText matchedGames={match.matchedGames} />
@@ -61,9 +62,9 @@ export default ({ match, onClick }: Props) => {
                 </div>
             </div>
 
-            <div style={{ display: 'flex', }}>
-                <img src={require('../../assets/icons/arrow_right.svg')} />
-            </div>
+            <img src={require('../../assets/icons/arrow_right.svg')} />
+            {/* <div style={{ display: 'flex', }}>
+            </div> */}
 
         </div >
         <div style={{ height: 5, borderRadius: 10, backgroundColor: colors.primary, width: (match.matchRate || 100) + '%' }} />
@@ -107,6 +108,7 @@ const styles: { [key: string]: React.CSSProperties } = {
         backgroundColor: '#3D3F42',
         padding: 20,
         display: 'flex',
+        // width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderRadius: 5,
