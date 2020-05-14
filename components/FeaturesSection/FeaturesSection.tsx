@@ -38,17 +38,17 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
     },
     {
         title: 'Sync Wishlist',
-        body: 'Easily synchronize your wishlist from other platforms like steam & origin',
+        body: 'Easily synchronize your wishlist from other platforms like steam & origin (Coming Soon)',
         icon: require('./sync.svg')
     },
     {
         title: 'Notifications',
-        body: 'Get notified once someone has what you want and vice-versa',
+        body: 'Get notified once someone has what you want and vice-versa (Coming Soon)',
         icon: require('./notification.svg')
     },
     {
         title: 'Trade Insurance',
-        body: "You would be refunded or given a replacement key if the trade isn't successful.",
+        body: "You would be refunded or given a replacement key if the trade isn't successful. (Coming Soon)",
         icon: require('./shield.svg')
     },
     // {

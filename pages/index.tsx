@@ -205,10 +205,10 @@ const Page = ({ signIn }) => {
                             </p>  Create your game list. <br /> */}
                                 <p>
                                     1. Create and share your trading list. <br />
-                                    2. Get matched with other gamers around the world. <br />
+                                    2. Get matched automatically with gamers. <br />
                                     3. Sell or swap your digital codes and physical games.
                                 </p>
-
+                                <p style={{ color: 'white', fontWeight: 600 }}>Rade is trying to make trading digital or physical game's safer and easier.</p>
                                 <style jsx>
                                     {`
                         p{
