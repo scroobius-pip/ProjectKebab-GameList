@@ -46,11 +46,11 @@ const Features: Array<{ title: string, body: string, icon: any }> = [
         body: 'Get notified once someone has what you want and vice-versa (Coming Soon)',
         icon: require('./notification.svg')
     },
-    {
-        title: 'Trade Insurance',
-        body: "You would be refunded or given a replacement key if the trade isn't successful. (Coming Soon)",
-        icon: require('./shield.svg')
-    },
+    // {
+    //     title: 'Trade Insurance',
+    //     body: "You would be refunded or given a replacement key if the trade isn't successful. (Coming Soon)",
+    //     icon: require('./shield.svg')
+    // },
     // {
     //     title: 'Sync Wishlist',
     //     body: 'You can easily synchronize your steam wishlist, more platforms like origin coming soon.',
