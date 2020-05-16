@@ -47,7 +47,7 @@ class MyApp extends App<Props, {}, State> {
 
 
     signIn = async (token: string) => {
-        console.log(token)
+        // 
         if (typeof token === 'string' && token) {
             this.setState({
                 user: await getUserInfo(this.props.apolloClient)

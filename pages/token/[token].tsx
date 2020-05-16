@@ -7,7 +7,7 @@ import WithLayout from '@components/WithLayout';
 
 const Page = ({ signIn, token }) => {
     useEffect(() => {
-        console.log(token)
+
         signIn(token)
     }, [])
 

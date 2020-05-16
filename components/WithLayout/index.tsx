@@ -38,7 +38,7 @@ const Layout = (Component: any) => {
         static async getInitialProps({ ...ctx }) {
             const user = await getUserInfo(ctx.apolloClient)
             // const user = null
-            console.log(user)
+            // console.log(user)
             return { user, ...(Component.getInitialProps ? await Component.getInitialProps(ctx) : {}) }
         }
 
@@ -73,7 +73,7 @@ const Layout = (Component: any) => {
 
 
         signIn = async (token: string) => {
-            console.log(token)
+
             if (typeof token === 'string' && token) {
                 // setUser(await getUserInfo(apolloClient))
                 setAuthToken(token)
@@ -99,7 +99,7 @@ const Layout = (Component: any) => {
             const { user, ...props } = this.props;
 
             return <>
-            <MetaTags/>
+                <MetaTags />
                 <Container>
                     <div style={{ minHeight: '100vh', position: 'relative' }}>
                         <div style={{ paddingBottom: '2.6rem' }}>

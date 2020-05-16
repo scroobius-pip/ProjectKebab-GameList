@@ -97,7 +97,7 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
 
 
     const handleRouteChange = async () => {
-        console.log('started routing')
+        // console.log('started routing')
 
         if (!isSaved) {
             await saveOperations()
@@ -139,12 +139,12 @@ const Page = ({ description, userGames: initialUserGames, premiumClicked }: Prop
             [data.id]: mergedOperations
         })
 
-        console.log(mergeOperation(wantGameOperations))
+        // console.log(mergeOperation(wantGameOperations))
     }
 
 
     const saveOperations = async () => {
-        console.log('sending')
+        // console.log('sending')
         setSaving(true)
 
         const hasResult = await hasSendOperations(hasGameOperations)
