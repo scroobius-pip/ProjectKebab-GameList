@@ -47,7 +47,7 @@ export default ({ match, onClick }: Props) => {
 
         <div className='match-container' style={styles.container}>
             <div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
-                <img style={{ height: '100%', marginRight: 10, borderRadius: 5 }} src={match.userImage} />
+                <img style={{ height: '100%', marginRight: 10, borderRadius: 5, maxHeight: 75 }} src={match.userImage} />
                 <div style={{ textAlign: 'left' }}>
                     <div>
                         <span style={{ fontSize: 16, fontWeight: 600, marginRight: 5 }}>{match.username}</span>
@@ -112,6 +112,6 @@ const styles: { [key: string]: React.CSSProperties } = {
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderRadius: 5,
-        maxHeight: 120
+
     }
 }
