@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
 import MatchItem from '@components/MatchItem'
 import { Match } from '@components/MatchItem/MatchItem';
-import { useGetMatchesQuery, IMatchSortType, IErrorType, useGetUserInfoQuery, useUpdateLocationMutation } from 'generated/apolloComponents';
+import { useGetMatchesQuery, IMatchSortType, IErrorType, useGetUserInfoQuery, useUpdateLocationMutation, GetMatchesQueryResult } from 'generated/apolloComponents';
 import { useRouter } from 'next/router'
 import SettingsSection from '@components/SettingsSection';
 import Switch from '@components/Switch';
@@ -10,6 +10,7 @@ import SocialShare from '@components/SocialShare';
 import { getApolloContext } from 'react-apollo';
 import { UpdateLocation } from 'functions/UpdateLocation';
 import updateNotifications from 'functions/graphql/mutations/updateNotifications';
+import mockMatches from './mocks';
 
 interface SharedProps {
     openPremium: () => any
@@ -100,23 +101,24 @@ export default ({ openPremium }: SharedProps) => ({ matchType }: Props) => {
         }
 
 
-        return matchData.matches.result.map((match, i) => {
-            const parsedMatch: Match = {
-                matchedGames: {
-                    hasGameNames: match.hasGameNames,
-                    wantGameNames: match.wantedGameNames
-                },
-                userImage: match.userImageUrl,
-                username: match.userName,
-                location: {
-                    city: match.state || '',
-                    country: match.country || ''
-                },
-            }
+        return matchData.matches.result
+            .map((match, i) => {
+                const parsedMatch: Match = {
+                    matchedGames: {
+                        hasGameNames: match.hasGameNames,
+                        wantGameNames: match.wantedGameNames
+                    },
+                    userImage: match.userImageUrl,
+                    username: match.userName,
+                    location: {
+                        city: match.state || '',
+                        country: match.country || ''
+                    },
+                }
 
-            return <MatchItem onClick={handleMatchItemClicked} key={i} match={parsedMatch} />
-        }
-        )
+                return <MatchItem onClick={handleMatchItemClicked} key={i} match={parsedMatch} />
+            }
+            )
     }
 
     const renderError = (errorType: IErrorType) => {

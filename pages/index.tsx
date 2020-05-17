@@ -208,7 +208,7 @@ const Page = ({ signIn }) => {
                                     2. Get matched automatically with other traders. <br />
                                     3. Sell or swap your digital codes and physical games.
                                 </p>
-                                <p style={{ color: 'white', fontWeight: 600 }}>Rade is trying to make trading digital or physical game's safer and easier.</p>
+                                <p style={{ color: 'white', fontWeight: 600 }}>Rade is making trading digital or physical game's safer and easier.</p>
                                 <style jsx>
                                     {`
                         p{

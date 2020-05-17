@@ -31,7 +31,7 @@ const MatchedGamesText = ({ matchedGames }: { matchedGames: Match['matchedGames'
     return <div style={{ fontSize: '1em' }}>
         <span>- </span>
         {!!hasGameNamesCount && <span>Has <b>{hasGameNames[0]}</b> {!!(hasGameNamesCount - 1) && `and ${hasGameNamesCount} others.`} </span>}
-        {!!wantGamesNamesCount && <span>Wants <b>{wantGameNames[0]}</b>{!!(wantGamesNamesCount - 1) && `and ${wantGamesNamesCount} others.`}</span>}
+        {!!wantGamesNamesCount && <span>Wants <b>{wantGameNames[0]}</b> {!!(wantGamesNamesCount - 1) && `and ${wantGamesNamesCount} others.`}</span>}
     </div>
 }
 
