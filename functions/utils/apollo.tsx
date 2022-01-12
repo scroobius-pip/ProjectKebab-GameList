@@ -162,8 +162,7 @@ function createApolloClient(initialState = {}, { getToken }) {
         credentials: 'same-origin',
         fetch,
         fetchOptions,
-        uri: 'https://api.rade.trade/graphql',
-        // uri: 'http://localhost:3000/graphql',
+        uri: 'https://rade-api-service.onrender.com/graphql',
         useGETForQueries: true
     })
 
