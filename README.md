@@ -1,2 +1,2 @@
-Frontend for nakama
-React+Typescript+Apollo
+Frontend for Rade
+React+Typescript+Apollo Graphql
