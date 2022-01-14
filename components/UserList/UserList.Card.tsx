@@ -124,7 +124,7 @@ export default ({ initialGames, id, editable = false, onChange, searchFunction }
                         {...game}
                     />
                 }) :
-                <p style={{ fontSize: 20, fontWeight: 600, opacity: .8 }}> 🌵 It's rather lonely here</p>
+                <p style={{ fontSize: 20, fontWeight: 600, opacity: .8 }}> 🌵 Must have been the wind</p>
         }
     </>
 
